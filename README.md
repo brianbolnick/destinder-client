@@ -1,20 +1,22 @@
-# README
-Front-end client for [Destinder LFG](https://www.destinder.com). See the [Destinder Server Repo](https://github.com/destiny-aviato/destinder) for more details.
+# destinder-client
+Front-end client for [Destinder LFG](https://www.destinder.com). See the [Destinder API Repo](https://github.com/destiny-aviato/destinder) for more details.
 
 ## Installation Instructions
 
+### Prerequisites
+This app depends on Node.js and Yarn, so make sure you have those installed if you don't already.
 1. Install Node/npm with homebrew: 
     - `brew install node`
     - run `node -v` and `npm -v` to make sure they installed correctly.
 
-2. Install yarn with homebrew:
+1. Install yarn with homebrew:
     - `brew install yarn`
+    
+### Setup
+To run the app, you'll need to install its dependencies first, then boot it up.
+1. Run `yarn install` to install all node modules
 
-3. Run `yarn install` to install all node modules
-
-4. Run `npm install` 
-
-5. Run `yarn start`. This will start the server and automatically open a session at http://localhost:3000 
+1. Run `yarn start`. This will start the server and automatically open a session at http://localhost:3000 
 
 ## Contributing
 
