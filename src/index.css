@@ -9,6 +9,6 @@ body {
 }
 
 button.ui.circular.icon.left.floated.button.menu-icon {
-  position: relative;
-  bottom: 25px;
+  /* position: relative;
+  bottom: 25px; */
 }
