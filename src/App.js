@@ -1,33 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Container, Sidebar, Segment, Button, Menu, Image, Icon, Header  } from 'semantic-ui-react'
+import { Container, Sidebar, Segment, Button, Menu, Icon, Header  } from 'semantic-ui-react'
 import './App.css';
+import HomePage from './HomePage.js';
+import FireteamsPage from './FireteamsPage.js';
+
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
 
-const Home = () => (
-  <div>
-    <Header as='h2'>Welcome to Destinder! </Header>
-    <p>There's not much here yet, check back soon!</p>
-  </div>
-)
-const Fireteams = () => (
-  <div>
-    <Header as='h2'>LFG!</Header>
-    <p>This is where all of the posts will be.</p>
-  </div>
-)
-
-
 class SidebarLeftPush extends Component {
   state = { visible: false }
+  
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
+  
+  
   render() {
+    // var typed = new Typed('home-subtitle', {
+    //   strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
+    //   loop: true,
+    //   startDelay: 2000,
+    //   backDelay: 1000,
+    //   typeSpeed: 70,
+    //   showCursor: true,
+    //   cursorChar: "|",
+    //   shuffle: true
+    // });
+
+
     const { visible } = this.state
     return (
       <Router>
@@ -51,8 +54,8 @@ class SidebarLeftPush extends Component {
               <Segment basic>
                 <Container fluid>
                   <Button floated='left' onClick={this.toggleVisibility} circular icon='sidebar' className="menu-icon"/>
-                  <Route exact path="/" component={Home}/>
-                  <Route path="/fireteams" component={Fireteams}/>
+                  <Route exact path="/" component={HomePage}/>
+                  <Route path="/fireteams" component={FireteamsPage}/>
                 </Container>
               </Segment>
             </Sidebar.Pusher>
