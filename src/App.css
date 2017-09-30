@@ -26,3 +26,8 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.ui.visible.thin.left.sidebar~.pusher {
+  -webkit-transform: translate3d(110px,0,0);
+  transform: translate3d(110px,0,0);
+}

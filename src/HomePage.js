@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Header  } from 'semantic-ui-react'
 import Typed from 'typed.js';
+import './App.css';
+import './HomePage.css';
 
 
 class TypedReactDemo extends React.Component {
@@ -36,6 +38,24 @@ class TypedReactDemo extends React.Component {
 
 class HomePage extends Component {
     render() {
+
+      // const homeSubtitleStyle = {
+      //   fontWeight: '200'
+      // }
+
+      // const noMarginStyle ={
+      //   margin: '0'
+      // }
+
+      // const logoStlye ={
+      //   width: '90%',
+      //   margin: '10px 10px 0px 10px'
+      // }
+
+      // const heroHeightStyle = {
+      //   height: '150px'
+      // }
+
       return (
         <div className="home-page">
             <Container>

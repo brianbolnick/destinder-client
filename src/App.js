@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Sidebar, Segment, Button, Menu, Icon, Header  } from 'semantic-ui-react'
+import { Container, Sidebar, Segment, Button, Menu, Icon  } from 'semantic-ui-react'
 import './App.css';
 import HomePage from './HomePage.js';
 import FireteamsPage from './FireteamsPage.js';
@@ -10,45 +10,41 @@ import {
   Link
 } from 'react-router-dom'
 
-class SidebarLeftPush extends Component {
-  state = { visible: false }
-  
-
+class SidebarHeader extends Component {
+  state = { visible: true }
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
-
-  
-  
   render() {
-    // var typed = new Typed('home-subtitle', {
-    //   strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
-    //   loop: true,
-    //   startDelay: 2000,
-    //   backDelay: 1000,
-    //   typeSpeed: 70,
-    //   showCursor: true,
-    //   cursorChar: "|",
-    //   shuffle: true
-    // });
-
-
     const { visible } = this.state
     return (
       <Router>
         <div>
           <Sidebar.Pushable as={Segment}>
-            <Sidebar as={Menu} animation='push' width='thin' visible={visible} icon='labeled' vertical inverted>
+            <Sidebar as={Menu} animation='slide along' width='thin' visible={visible} icon='labeled' vertical inverted compact>
               <Menu.Item as={Link} to='/' name='home'>                
                 <Icon name='home' />
                 Home                
               </Menu.Item>
-              <Menu.Item as={Link} to='/fireteams' name='gamepad'>
-                  <Icon name='gamepad' />
+              <Menu.Item as={Link} to='/fireteams' name='user'>
+                  <Icon name='user' />
+                  Profile
+              </Menu.Item>
+              <Menu.Item as={Link} to='/fireteams' name='comments'>
+                  <Icon name='comments' />
                   LFG
               </Menu.Item>
-              <Menu.Item name='camera'>
-                <Icon name='camera' />
-                Channels
+              <Menu.Item as={Link} to='/fireteams' name='group'>
+                  <Icon name='group' />
+                  Team Search
               </Menu.Item>
+              <Menu.Item as={Link} to='/fireteams' name='paypal'>
+                  <Icon name='paypal' />
+                  Donate
+              </Menu.Item>
+              <Menu.Item as={Link} to='/fireteams' name='question circle outline'>
+                  <Icon name='question circle outline' />
+                  FAQ
+              </Menu.Item>
+              
             </Sidebar>
             <Sidebar.Pusher>
               <Segment basic>
@@ -70,7 +66,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <SidebarLeftPush />
+          <SidebarHeader />
       </div>
     );
   }

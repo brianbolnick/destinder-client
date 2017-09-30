@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header  } from 'semantic-ui-react';
 
 
+
 class FireteamsPage extends Component {
     render() {
       return (
