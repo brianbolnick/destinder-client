@@ -104,8 +104,8 @@ class Header extends Component {
         const sidebarStyle = {
             padding: '0',
             margin: '0',
-            maxWidth: '68px',
-            minWidth: '68px'
+            maxWidth: '70px',
+            minWidth: '70px'
         }
         return (
             <Segment basic style={sidebarStyle}>

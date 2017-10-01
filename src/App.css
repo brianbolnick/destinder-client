@@ -55,5 +55,6 @@
 
 .ui.vertical.icon.menu {
   height: 100vh;
+  border-radius: 0;
 }
 
