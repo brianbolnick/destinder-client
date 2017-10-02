@@ -5,7 +5,6 @@ import HomePage from './HomePage.js';
 import FireteamsPage from './FireteamsPage.js';
 import ProfilePage from './ProfilePage.js';
 import { AnimatedRoute } from 'react-router-transition';
-
 import {
     Route,
     Link
@@ -94,7 +93,7 @@ class SidebarHeader extends Component {
     }
 }
 
-class Header extends Component {
+class HeaderOld extends Component {
     state = { activeItem: 'gamepad' }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -137,6 +136,25 @@ class Header extends Component {
                     </Menu.Item>
                 </Menu>
             </Segment>
+        )
+    }
+}
+
+class Header extends Component {
+    state = { activeItem: 'closest' }
+
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+    render() {
+        const { activeItem } = this.state
+
+        return (
+        <Menu text>
+            <Menu.Item header>Destinder</Menu.Item>
+            <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/fireteams' name='LFG' active={activeItem === 'LFG'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/profile' name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick} />        
+        </Menu>
         )
     }
 }

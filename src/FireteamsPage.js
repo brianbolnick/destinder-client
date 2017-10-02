@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import { Container, Header  } from 'semantic-ui-react';
+import { Container, Header, Menu } from 'semantic-ui-react';
+import {
+    Route,
+    Link
+} from 'react-router-dom'
 
 
 
 class FireteamsPage extends Component {
     render() {
-      return (
+        return (
         <div className="fireteams-page">
             <Container>
-              <Header as='h2'>LFG!</Header>
-              <p>This is where all of the posts will be.</p>
+                <Header as='h2'>LFG</Header>
+                <p>Lots of posts!</p>
             </Container>
         </div>
-      );
+        );
     }
-  }
+}
   
-  export default FireteamsPage;
+export default FireteamsPage;
 
 
 

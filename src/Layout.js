@@ -6,18 +6,20 @@ const containerStyle = {
     marginTop: '2%'
   }
 
-const Layout = ({ children }) => (
-    
+const Layout = ({ children }) => (  
+    <div>
+        <Header />
+        {children}
+    </div>
+    // <Grid>
+    //     <Grid.Column width={2}>
+    //         <Header />
+    //     </Grid.Column>
 
-    <Grid>
-        <Grid.Column width={2}>
-            <Header />
-        </Grid.Column>
-
-        <Grid.Column stretched width={14} style={containerStyle}>
-            {children}
-        </Grid.Column>
-    </Grid>
+    //     <Grid.Column stretched width={14} style={containerStyle}>
+    //         {children}
+    //     </Grid.Column>
+    // </Grid>
 )
 
 export default Layout
