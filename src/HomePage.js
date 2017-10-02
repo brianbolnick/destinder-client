@@ -91,16 +91,16 @@ class Home extends Component {
               {/* <Header as='h2'>Welcome to Destinder! </Header>
               <p>LFG for the <span><TypedReactDemo/></span></p> */}
               <Menu text>
-                <Menu.Item header>Sort By</Menu.Item>
-                <Menu.Item as={Link} to='/' name='home'  />
+                <Menu.Item header>DESTINDER</Menu.Item>
+                {/* <Menu.Item as={Link} to='/' name='home'  />
                 <Menu.Item as={Link} to='/fireteams' name='LFG' />
-                <Menu.Item as={Link} to='/profile' name='profile'  />        
+                <Menu.Item as={Link} to='/profile' name='profile'  />         */}
               </Menu>
 
               <Grid columns={1} divided>
                 <Grid.Row>
-                  <Grid.Column width={4}>
-                    <Card as={Link} to='/'  style={{marginBottom: '15%', marginTop: '15%'}}>
+                  <Grid.Column mobile={16} tablet={8} computer={4}>
+                    <Card as={Link} to='/'  style={{marginBottom: '15%', marginTop: '-30%'}}>
                       <Card.Content>
                         <Icon name='home' size='huge' className="home-tile-icon"/>
                       </Card.Content >
@@ -108,7 +108,7 @@ class Home extends Component {
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                  <Grid.Column width={4}>
+                  <Grid.Column mobile={16} tablet={8} computer={4}>
                     <Card as={Link} to='/fireteams'  style={{marginBottom: '15%'}}>
                       <Card.Content>
                         <Icon name='comments' size='huge' className="home-tile-icon"/>
@@ -117,7 +117,7 @@ class Home extends Component {
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                  <Grid.Column width={4}>
+                  <Grid.Column mobile={16} tablet={8} computer={4}>
                     <Card as={Link} to='/profile' >
                       <Card.Content>
                         <Icon name='users' size='huge' className="home-tile-icon"/>

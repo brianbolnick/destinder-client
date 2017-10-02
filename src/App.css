@@ -133,18 +133,18 @@ a.ui.card {
     min-height: 150px;
     max-width: 150px;
     max-height: 150px;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(+45deg);
+    -moz-transform: rotate(+45deg);
+    -ms-transform: rotate(+45deg);
+    -o-transform: rotate(+45deg);
+    transform: rotate(+45deg);
 /* Rotate Origin */
     -webkit-transform-origin: 0 100%;
     -moz-transform-origin: 0 100%;
     -ms-transform-origin: 0 100%;
     -o-transform-origin: 0 100%;
     transform-origin: 0 100%;
-    margin: 60px 0 10px 310px;
+    /* margin: 60px 0 10px 310px; */
 
 
 
@@ -157,8 +157,8 @@ a.ui.card {
     border: silver solid 1px;
     
 
-    -webkit-transform: perspective(1px) translateZ(0) rotate(-45deg);
-    transform: perspective(1px) translateZ(0) rotate(-45deg);
+    -webkit-transform: perspective(1px) translateZ(0) rotate(+45deg);
+    transform: perspective(1px) translateZ(0) rotate(+45deg);
     box-shadow: 0 0 1px transparent;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -170,9 +170,9 @@ a.ui.card:hover {
 
     background-color: transparent;
     border: silver solid 1px;
-    -webkit-transform: translateY(-45deg);
-    -ms-transform: translateY(-45deg);
-    transform: rotate(-45deg) scale(1.1);;
+    -webkit-transform: translateY(+45deg);
+    -ms-transform: translateY(+45deg);
+    transform: rotate(+45deg) scale(1.1);;
     box-shadow: 0 0 15px #f5f5f5;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
@@ -183,9 +183,9 @@ a.ui.card:hover {
 .home-tile-icon {
     margin-left: 21% !important;
     margin-top: 21% !important;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
