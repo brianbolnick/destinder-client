@@ -5,6 +5,7 @@ import Layout from './Layout.js'
 import Home from './HomePage.js';
 import Fireteams from './FireteamsPage.js';
 import Profile from './ProfilePage.js';
+import NotFound from './NotFound.js';
 import { AnimatedRoute } from 'react-router-transition';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import {
@@ -14,6 +15,8 @@ import {
   withRouter,
   Switch
 } from 'react-router-dom'
+
+
 
 const Content = ({ location }) => {
   const currentKey = location.pathname.split('/')[1] || '/'
@@ -52,67 +55,77 @@ const firstChild = props => {
 };
 
 const App = ({ location }) => {
-  // const currentKey = location.pathname.split('/')[1] || '/'
-  // const timeout = { enter: 1500, exit: 1500 }
   
+  const currentKey = location.pathname.split('/')[1] || '/';
+  const timeout = { enter: 1500, exit: 1500 };
   return (
-      // <PageContent />
-      // <TransitionGroup component="main" className="page-main">
-      //   <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
-      //     <section className="page-main-inner">
-      //       <Switch location={location}>
-      //         <Route path="/" exact component={Home} />
-      //         <Route path="/fireteams" component={Fireteams} />
-      //         <Route path="/profile" component={Profile} />
-      //       </Switch>
-      //     </section>
-      //   </CSSTransition>
-      // </TransitionGroup> 
 
-      <Segment basic style= {{padding: '0'}}>
-      <Container fluid >
-          {/*  <Button floated='left' onClick={this.toggleVisibility} circular icon='sidebar' className="menu-icon" /> */}
-          {/* <Route exact path="/" component={Home} /> */}
-          {/* <Route path="/test" component={TransitionExampleGroup}/> */}
-          {/* <Route path="/fireteams" component={FireteamsPage}/> */}
-          {/* <Route path="/profile" component={ProfilePage}/> */}
-          {/* <Route path="/fireteams" component={FireteamsPage}/> */}
+    // <Segment basic style= {{padding: '0'}}>
+    //   <Container fluid >
+    //       <Route exact path="/" component={Home} />
+    //       <Route path="/fireteams" component={Content}/>
+    //       <Route path="/profile" component={Profile}/>
+    //       <Route path='/donate' component={() => window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2'} />
 
-          <AnimatedRoute
-              exact 
-              path="/"
-              component={Home}
-              atEnter={{ offset: -100 }}
-              atLeave={{ offset: -100 }}
-              atActive={{ offset: 0 }}
-              mapStyles={(styles) => ({
-                  transform: `translateX(${styles.offset}%)`,
-              })}
-          />
-          <AnimatedRoute
-              path="/fireteams"
-              component={Content}
-              atEnter={{ offset: -100 }}
-              atLeave={{ offset: -100 }}
-              atActive={{ offset: 0 }}
-              mapStyles={(styles) => ({
-                  transform: `translateX(${styles.offset}%)`,
-              })}
-          />
-          <AnimatedRoute
-              path="/profile"
-              component={Profile}
-              atEnter={{ offset: -100 }}
-              atLeave={{ offset: -100 }}
-              atActive={{ offset: 0 }}
-              mapStyles={(styles) => ({
-                  transform: `translateX(${styles.offset}%)`,
-              })}
-          />
-          <Route path='/donate' component={() => window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2'} />
+    //       {/* <AnimatedRoute
+    //           exact 
+    //           path="/"
+    //           component={Home}
+    //           atEnter={{ offset: -100 }}
+    //           atLeave={{ offset: -100 }}
+    //           atActive={{ offset: 0 }}
+    //           mapStyles={(styles) => ({
+    //               transform: `translateX(${styles.offset}%)`,
+    //           })}
+    //       /> */}
+    //       {/* <AnimatedRoute
+    //           path="/fireteams"
+    //           component={Content}
+    //           atEnter={{ offset: -100 }}
+    //           atLeave={{ offset: -100 }}
+    //           atActive={{ offset: 0 }}
+    //           mapStyles={(styles) => ({
+    //               transform: `translateX(${styles.offset}%)`,
+    //           })}
+    //       /> */}
+    //       {/* <AnimatedRoute
+    //           path="/profile"
+    //           component={Profile}
+    //           atEnter={{ offset: -100 }}
+    //           atLeave={{ offset: -100 }}
+    //           atActive={{ offset: 0 }}
+    //           mapStyles={(styles) => ({
+    //               transform: `translateX(${styles.offset}%)`,
+    //           })}
+    //       /> */}
+    //   </Container>
+    // </Segment>
 
-      </Container>
-    </Segment>
+    // <div>
+    //   {/* <Header /> */}
+    //   <Switch>
+    //     <Route exact path="/" component={Home} />
+    //     <Route path="/fireteams" component={Content}/>
+    //     <Route path="/profile" component={Profile}/>
+    //     {/* <Route path='/users/:userId' render={ ({match})=> <User id={match.params.userId}/>} /> */}
+    //     <Route path='/donate' component={() => window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2'} />
+    //     <Route component={NotFound} />
+    //   </Switch>
+    // </div>
+
+    <TransitionGroup component="main" className="page-main">
+      <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
+        <Segment basic style= {{padding: '0'}}>
+          <Container fluid >     
+            <Switch location={location}>
+              <Route path="/" exact component={Home} />
+              <Route path="/fireteams" component={Fireteams} />
+              <Route path="/profile" component={Profile} />
+            </Switch>
+          </Container>
+        </Segment>
+      </CSSTransition>
+    </TransitionGroup> 
   )
 }
 

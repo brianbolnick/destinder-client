@@ -16,12 +16,12 @@ import {
   Switch
 } from 'react-router-dom'
 
-import Arcstrider from './img/arcstrider.jpg'
-import Sentinel from './img/sentinel.jpg'
-import Dawnblade from './img/dawnblade.jpg'
-import Gunslinger from './img/gunslinger.jpg'
-import Voidwalker from './img/voidwalker.jpg'
-import Striker from './img/striker.jpg'
+import Arcstrider from './img/arcstrider.png'
+import Sentinel from './img/sentinel.png'
+import Dawnblade from './img/dawnblade.png'
+import Gunslinger from './img/gunslinger.png'
+import Voidwalker from './img/voidwalker.png'
+import Striker from './img/striker.png'
 import Logo from './img/logo-with-title-word-black.png'
 
 
@@ -80,7 +80,7 @@ class Home extends Component {
 
     const images = Array(Arcstrider, Dawnblade, Sentinel, Gunslinger, Voidwalker, Striker);
     var image = images[Math.floor(Math.random()*images.length)];
-    // var image = './img/arcstrider.jpg';
+    // var image = Voidwalker;
 
     const backgroundStyle = {
       backgroundImage: `url(${image})`,

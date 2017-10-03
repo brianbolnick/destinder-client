@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Menu } from 'semantic-ui-react';
+// import {posts} from './data/posts';
 import {
     Route,
     Link
@@ -14,6 +15,7 @@ class FireteamsPage extends Component {
             <Container>
                 <Header as='h2'>LFG</Header>
                 <p>Lots of posts!</p>
+                {/* <PostList posts={posts} />   */}
             </Container>
         </div>
         );
