@@ -22,6 +22,7 @@ import Dawnblade from './img/dawnblade.jpg'
 import Gunslinger from './img/gunslinger.jpg'
 import Voidwalker from './img/voidwalker.jpg'
 import Striker from './img/striker.jpg'
+import Logo from './img/logo-with-title-word-black.png'
 
 
 
@@ -91,37 +92,116 @@ class Home extends Component {
               {/* <Header as='h2'>Welcome to Destinder! </Header>
               <p>LFG for the <span><TypedReactDemo/></span></p> */}
               <Menu text>
-                <Menu.Item header>DESTINDER</Menu.Item>
+                <Menu.Item header><Image src={Logo}  size='small' /></Menu.Item>
+                <Menu.Menu position='right'>
+                  
+                  <Menu.Item>
+                    <div>
+                      <Image src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' avatar />
+                      <span>Luminusss</span>
+                    </div>
+                  </Menu.Item>
+                </Menu.Menu>
                 {/* <Menu.Item as={Link} to='/' name='home'  />
                 <Menu.Item as={Link} to='/fireteams' name='LFG' />
                 <Menu.Item as={Link} to='/profile' name='profile'  />         */}
               </Menu>
 
-              <Grid columns={1} divided>
+              <Grid columns={2}>                
                 <Grid.Row>
                   <Grid.Column mobile={16} tablet={8} computer={4}>
-                    <Card as={Link} to='/'  style={{marginBottom: '15%', marginTop: '-30%'}}>
-                      <Card.Content>
-                        <Icon name='home' size='huge' className="home-tile-icon"/>
-                      </Card.Content >
+                    <Card as={Link} to='/profile'  className="home-tile-card" style={{marginTop: '15%', marginBottom: '15%' }}>
+                      <div className='home-tile-content' >
+                        <div className='home-tile-icon'>
+                          <Icon name='user outline' size='massive'/>
+                        </div>
+                        <Card.Content style={{ borderTop: 'none'}}>                        
+                          <Card.Header className='home-tile-text-header'>
+                            Profile
+                          </Card.Header>
+                          {/* <Card.Description className='home-tile-text-body'>
+                            Find players or teams to play with.
+                          </Card.Description> */}
+                        </Card.Content>
+                        {/* <Card.Content>
+                          <div className='home-tile-text'>
+                            <Icon name='user' size='huge' className="home-tile-icon"/>
+                            PROFILE
+                          </div>
+                        </Card.Content > */}
+                      </div>
+                    </Card>
+                  </Grid.Column>
+
+                  <Grid.Column mobile={16} tablet={8} computer={4}>
+                    <Card as={Link} to='/fireteams'  className="home-tile-card"  style={{marginTop: '15%', marginBottom: '15%' }}>
+                      <div className='home-tile-content' >
+                        <div className='home-tile-icon'>
+                          <Icon name='comments' size='massive'/>
+                        </div>
+                        <Card.Content style={{ borderTop: 'none'}}>                        
+                          <Card.Header className='home-tile-text-header'>
+                            LFG
+                          </Card.Header>
+                          {/* <Card.Description className='home-tile-text-body'>
+                            Find players or teams to play with.
+                          </Card.Description> */}
+                        </Card.Content>
+                        {/* <Card.Content>
+                          <div className='home-tile-text'>
+                            <Icon name='user' size='huge' className="home-tile-icon"/>
+                            PROFILE
+                          </div>
+                        </Card.Content > */}
+                      </div>
                     </Card>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                   <Grid.Column mobile={16} tablet={8} computer={4}>
-                    <Card as={Link} to='/fireteams'  style={{marginBottom: '15%'}}>
-                      <Card.Content>
-                        <Icon name='comments' size='huge' className="home-tile-icon"/>
-                      </Card.Content >
-                    </Card>
+                  <Card as={Link} to='/team-search'  className="home-tile-card"  style={{marginTop: '8%'}}>
+                    <div className='home-tile-content' >
+                      <div className='home-tile-icon'>
+                        <Icon name='users' size='massive'/>
+                      </div>
+                      <Card.Content style={{ borderTop: 'none'}}>                        
+                        <Card.Header className='home-tile-text-header'>
+                          Team Search
+                        </Card.Header>
+                        {/* <Card.Description className='home-tile-text-body'>
+                          Find players or teams to play with.
+                        </Card.Description> */}
+                      </Card.Content>
+                      {/* <Card.Content>
+                        <div className='home-tile-text'>
+                          <Icon name='user' size='huge' className="home-tile-icon"/>
+                          PROFILE
+                        </div>
+                      </Card.Content > */}
+                    </div>
+                  </Card>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
                   <Grid.Column mobile={16} tablet={8} computer={4}>
-                    <Card as={Link} to='/profile' >
-                      <Card.Content>
-                        <Icon name='users' size='huge' className="home-tile-icon"/>
-                      </Card.Content >
+                    <Card as={Link} to='/player-search'  className="home-tile-card"  style={{marginTop: '8%'}}>
+                      <div className='home-tile-content' >
+                        <div className='home-tile-icon'>
+                          <Icon name='search' size='massive'/>
+                        </div>
+                        <Card.Content style={{ borderTop: 'none'}}>                        
+                          <Card.Header className='home-tile-text-header'>
+                            Player Search
+                          </Card.Header>
+                          {/* <Card.Description className='home-tile-text-body'>
+                            Find players or teams to play with.
+                          </Card.Description> */}
+                        </Card.Content>
+                        {/* <Card.Content>
+                          <div className='home-tile-text'>
+                            <Icon name='user' size='huge' className="home-tile-icon"/>
+                            PROFILE
+                          </div>
+                        </Card.Content > */}
+                      </div>
                     </Card>
                   </Grid.Column>
                 </Grid.Row>
