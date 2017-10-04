@@ -28,7 +28,7 @@ import Logo from './img/logo-with-title-word-black.png';
 
 
 
-class TypedReactDemo extends React.Component {
+class TypedHeader extends React.Component {
   componentDidMount() {
     // You can pass other options here, such as typing speed, back speed, etc.
     const options = {
@@ -77,160 +77,6 @@ class TypedReactDemo extends React.Component {
 //  }
 // }
 
-class HomeTemp extends Component {
-  render() {
-
-    const images = Array(Arcstrider, Dawnblade, Sentinel, Gunslinger, Voidwalker, Striker);
-    var image = images[Math.floor(Math.random() * images.length)];
-    // var image = Voidwalker;
-
-    const backgroundStyle = {
-      backgroundImage: `url(${image})`,
-      backgroundSize: 'cover'
-    }
-    return (
-      <div className="home-page" style={backgroundStyle}>
-        <Container>
-          {/* <Header as='h2'>Welcome to Destinder! </Header>
-              <p>LFG for the <span><TypedReactDemo/></span></p> */}
-          <Menu text>
-            <Menu.Item header><Image src={Logo} size='small' /></Menu.Item>
-            <Menu.Menu position='right'>
-
-              <Menu.Item>
-                <div>
-                  <Image src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' avatar />
-                  <span>Luminusss</span>
-                </div>
-              </Menu.Item>
-            </Menu.Menu>
-            {/* <Menu.Item as={Link} to='/' name='home'  />
-                <Menu.Item as={Link} to='/fireteams' name='LFG' />
-                <Menu.Item as={Link} to='/profile' name='profile'  />         */}
-          </Menu>
-
-          <Grid columns={2}>
-            <Grid.Row>
-              <Grid.Column mobile={16} tablet={8} computer={4}>
-                <Card as={Link} to='/profile' className="home-tile-card" style={{ marginTop: '15%', marginBottom: '15%' }}>
-                  <div className='home-tile-content' >
-                    <div className='home-tile-icon'>
-                      <Icon name='user outline' size='massive' />
-                    </div>
-                    <Card.Content style={{ borderTop: 'none' }}>
-                      <Card.Header className='home-tile-text-header'>
-                        Profile
-                          </Card.Header>
-                      {/* <Card.Description className='home-tile-text-body'>
-                            Find players or teams to play with.
-                          </Card.Description> */}
-                    </Card.Content>
-                    {/* <Card.Content>
-                          <div className='home-tile-text'>
-                            <Icon name='user' size='huge' className="home-tile-icon"/>
-                            PROFILE
-                          </div>
-                        </Card.Content > */}
-                  </div>
-                </Card>
-              </Grid.Column>
-
-              <Grid.Column mobile={16} tablet={8} computer={4}>
-                <Card as={Link} to='/fireteams' className="home-tile-card" style={{ marginTop: '15%', marginBottom: '15%' }}>
-                  <div className='home-tile-content' >
-                    <div className='home-tile-icon'>
-                      <Icon name='comments' size='massive' />
-                    </div>
-                    <Card.Content style={{ borderTop: 'none' }}>
-                      <Card.Header className='home-tile-text-header'>
-                        LFG
-                          </Card.Header>
-                      {/* <Card.Description className='home-tile-text-body'>
-                            Find players or teams to play with.
-                          </Card.Description> */}
-                    </Card.Content>
-                    {/* <Card.Content>
-                          <div className='home-tile-text'>
-                            <Icon name='user' size='huge' className="home-tile-icon"/>
-                            PROFILE
-                          </div>
-                        </Card.Content > */}
-                  </div>
-                </Card>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column mobile={16} tablet={8} computer={4}>
-                <Card as={Link} to='/team-search' className="home-tile-card" style={{ marginTop: '8%' }}>
-                  <div className='home-tile-content' >
-                    <div className='home-tile-icon'>
-                      <Icon name='users' size='massive' />
-                    </div>
-                    <Card.Content style={{ borderTop: 'none' }}>
-                      <Card.Header className='home-tile-text-header'>
-                        Team Search
-                        </Card.Header>
-                      {/* <Card.Description className='home-tile-text-body'>
-                          Find players or teams to play with.
-                        </Card.Description> */}
-                    </Card.Content>
-                    {/* <Card.Content>
-                        <div className='home-tile-text'>
-                          <Icon name='user' size='huge' className="home-tile-icon"/>
-                          PROFILE
-                        </div>
-                      </Card.Content > */}
-                  </div>
-                </Card>
-              </Grid.Column>
-              <Grid.Column mobile={16} tablet={8} computer={4}>
-                <Card as={Link} to='/player-search' className="home-tile-card" style={{ marginTop: '8%' }}>
-                  <div className='home-tile-content' >
-                    <div className='home-tile-icon'>
-                      <Icon name='search' size='massive' />
-                    </div>
-                    <Card.Content style={{ borderTop: 'none' }}>
-                      <Card.Header className='home-tile-text-header'>
-                        Player Search
-                          </Card.Header>
-                      {/* <Card.Description className='home-tile-text-body'>
-                            Find players or teams to play with.
-                          </Card.Description> */}
-                    </Card.Content>
-                    {/* <Card.Content>
-                          <div className='home-tile-text'>
-                            <Icon name='user' size='huge' className="home-tile-icon"/>
-                            PROFILE
-                          </div>
-                        </Card.Content > */}
-                  </div>
-                </Card>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-
-          {/* <Card.Group itemsPerRow={1}>
-                <Card as={Link} to='/'>
-                  <Card.Content>
-                    <Icon name='home' size='huge' />
-                  </Card.Content >
-                </Card>
-                <Card as={Link} to='/fireteams'>
-                  <Card.Content>
-                    <Icon name='comments' size='huge' />
-                  </Card.Content >
-                </Card>
-                <Card as={Link} to='/profile'>
-                  <Card.Content>
-                    <Icon name='users' size='huge' />
-                  </Card.Content >
-                </Card>
-              </Card.Group> */}
-        </Container>
-      </div>
-    );
-  }
-}
 
 
 class HomeFirst extends Component {
@@ -239,18 +85,18 @@ class HomeFirst extends Component {
       <Container>
         {/* <Header as='h2'>Welcome to Destinder! </Header>
         <p>LFG for the <span><TypedReactDemo/></span></p> */}
-        {/* <Menu text>
+        <Menu text>
           <Menu.Item header><Image src={Logo} size='small' /></Menu.Item>
           <Menu.Menu position='right'>
 
             <Menu.Item>
               <div>
                 <Image src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' avatar />
-                <span>Luminusss</span>
+                <span style={{color: '#f5f5f5', fontWeight: '300'}}>Luminusss</span>
               </div>
             </Menu.Item>
           </Menu.Menu>
-        </Menu> */}
+        </Menu>
 
         <Grid columns={2}>
           <Grid.Row>
@@ -289,7 +135,11 @@ class HomeFirst extends Component {
               <Card as={Link} to='/team-search' className="home-tile-card row2-2" style={{ marginTop: '8%' }}>
                 <div className='home-tile-content row2' >
                   <div className='home-tile-icon'>
-                    <Icon name='users' size='massive' />
+                    <Icon.Group size='massive'>
+                      <Icon name='users' />
+                      {/* <Icon corner color='grey' name='search' /> */}
+                      
+                    </Icon.Group>
                   </div>
                   <Card.Content style={{ borderTop: 'none' }}>
                     <Card.Header className='home-tile-text-header'>
@@ -336,7 +186,7 @@ class HomeSecond extends Component {
     return (
       <Container>
         <Header as='h2'>ANNOUNCEMENTS</Header>
-        <p>LFG for the <span><TypedReactDemo/></span></p>
+        <p>LFG for the <span><TypedHeader/></span></p>
         {/* <Menu text>
           <Menu.Item header><Image src={Logo} size='small' /></Menu.Item>
           <Menu.Menu position='right'>
@@ -457,7 +307,7 @@ class HomeLayout extends Component {
 
         <Parallax.Layer
           offset={1}
-          speed={0}
+          speed={2}
           style={secondStyle}
         >
           <HomeSecond />
@@ -469,47 +319,6 @@ class HomeLayout extends Component {
   }
 
 }
-
-class HomeOld extends Component {
-  render() {
-    return (
-      // <div className="home-page">
-      //     <Container>
-      //         <Header as='h2'>Welcome to Destinder! </Header>
-      //         <p>LFG for the <span><TypedReactDemo/></span></p>
-      //     </Container>
-      // </div>
-      <Segment basic>
-        <Container fluid >
-          <Route exact path="/" component={HomeLayout} />
-          <AnimatedRoute
-            path="/fireteams"
-            component={Fireteams}
-            atEnter={{ offset: -100 }}
-            atLeave={{ offset: -100 }}
-            atActive={{ offset: 0 }}
-            mapStyles={(styles) => ({
-              transform: `translateX(${styles.offset}%)`,
-            })}
-          />
-          <AnimatedRoute
-            path="/profile"
-            component={Profile}
-            atEnter={{ offset: -100 }}
-            atLeave={{ offset: -100 }}
-            atActive={{ offset: 0 }}
-            mapStyles={(styles) => ({
-              transform: `translateX(${styles.offset}%)`,
-            })}
-          />
-          <Route path='/donate' component={() => window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2'} />
-        </Container>
-      </Segment>
-    );
-  }
-}
-
-
 
 export default HomeLayout;
 
