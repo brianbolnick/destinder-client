@@ -315,7 +315,17 @@ class HomeFirst extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <Grid columns={1} >
+          <Grid.Row >
+            <Grid.Column width={16} >
+              <div style={{textAlign: 'center'}}>
+                <Icon name='angle down' size='huge' className='scroll-icon'  onClick={this.props.scrollClick}/>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Container>
+      
 
     )
   }
@@ -439,9 +449,9 @@ class HomeLayout extends Component {
           offset={0}
           speed={0.5}
           style={firstStyle}
-          onClick={() => this.refs.parallax.scrollTo(2)}
+          
         >
-          <HomeFirst />
+          <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(2)}/>
           
         </Parallax.Layer>
 
