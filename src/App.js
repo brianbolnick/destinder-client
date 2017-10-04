@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Sidebar, Segment, Button, Menu, Icon, Image, List, Transition, Label, Header } from 'semantic-ui-react'
+import { Container, Sidebar, Segment, Button, Menu, Icon, Image, List, Transition, Label, Header } from 'semantic-ui-react';
 import './App.css';
 import Layout from './Layout.js'
 import Home from './HomePage.js';
@@ -7,7 +7,7 @@ import Fireteams from './FireteamsPage.js';
 import Profile from './ProfilePage.js';
 import NotFound from './NotFound.js';
 import { AnimatedRoute } from 'react-router-transition';
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import {
   BrowserRouter as Router,
   Route,
@@ -113,19 +113,25 @@ const App = ({ location }) => {
     //   </Switch>
     // </div>
 
-    <TransitionGroup component="main" className="page-main">
-      <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
-        <Segment basic style= {{padding: '0'}}>
-          <Container fluid >     
-            <Switch location={location}>
-              <Route path="/" exact component={Home} />
-              <Route path="/fireteams" component={Fireteams} />
-              <Route path="/profile" component={Profile} />
-            </Switch>
-          </Container>
-        </Segment>
-      </CSSTransition>
-    </TransitionGroup> 
+    // <TransitionGroup component="main" className="page-main">
+    //   <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
+    //     <Segment basic style= {{padding: '0'}}>
+    //       <Container fluid >     
+    //         <Switch location={location}>
+    //           <Route path="/" exact component={Home} />
+    //           <Route path="/fireteams" component={Fireteams} />
+    //           <Route path="/profile" component={Profile} />
+    //         </Switch>
+    //       </Container>
+    //     </Segment>
+    //   </CSSTransition>
+    // </TransitionGroup> 
+    
+    <Switch location={location}>
+      <Route path="/" exact component={Home} />
+      <Route path="/fireteams" component={Fireteams} />
+      <Route path="/profile" component={Profile} />
+    </Switch>
   )
 }
 
