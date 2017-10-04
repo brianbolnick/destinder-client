@@ -254,7 +254,7 @@ class HomeFirst extends Component {
 
         <Grid columns={2}>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
+            <Grid.Column mobile={8} computer={4}>
               <Card as={Link} to='/profile' className="home-tile-card" style={{ marginTop: '15%', marginBottom: '15%' }}>
                 <div className='home-tile-content' >
                   <div className='home-tile-icon'>
@@ -269,8 +269,8 @@ class HomeFirst extends Component {
               </Card>
             </Grid.Column>
 
-            <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card as={Link} to='/fireteams' className="home-tile-card" style={{ marginTop: '15%', marginBottom: '15%' }}>
+            <Grid.Column mobile={8} computer={4}>
+              <Card as={Link} to='/fireteams' className="home-tile-card row2-1" style={{ marginTop: '15%', marginBottom: '15%' }}>
                 <div className='home-tile-content' >
                   <div className='home-tile-icon'>
                     <Icon name='comments' size='massive' />
@@ -285,9 +285,9 @@ class HomeFirst extends Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card as={Link} to='/team-search' className="home-tile-card" style={{ marginTop: '8%' }}>
-                <div className='home-tile-content' >
+            <Grid.Column mobile={8} computer={4}>
+              <Card as={Link} to='/team-search' className="home-tile-card row2-2" style={{ marginTop: '8%' }}>
+                <div className='home-tile-content row2' >
                   <div className='home-tile-icon'>
                     <Icon name='users' size='massive' />
                   </div>
@@ -299,9 +299,9 @@ class HomeFirst extends Component {
                 </div>
               </Card>
             </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
+            <Grid.Column mobile={8} computer={4}>
               <Card as={Link} to='/player-search' className="home-tile-card" style={{ marginTop: '8%' }}>
-                <div className='home-tile-content' >
+                <div className='home-tile-content row2' >
                   <div className='home-tile-icon'>
                     <Icon name='search' size='massive' />
                   </div>
@@ -422,8 +422,14 @@ class HomeLayout extends Component {
       backgroundRepeat: 'inherit',
       color: 'white'
     }
+
+    const homeStyle = {
+      backgroundImage: 'url("https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png")',
+      backgroundSize: 'auto',
+      backgroundRepeat: 'inherit',
+    }
     return (
-      <Parallax ref="parallax" pages={2}>
+      <Parallax ref="parallax" pages={2} style={homeStyle}>
 
         {/* <Parallax.Layer offset={0} speed={1} style={{ backgroundImage: `url(${Voidwalker})`, backgroundSize: 'cover' }} />
             <Parallax.Layer offset={1} speed={1} style={{ backgroundImage: `url(${Striker})`, backgroundSize: 'cover' }} />
