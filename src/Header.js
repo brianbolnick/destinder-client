@@ -54,9 +54,19 @@ class Header extends Component {
       }
       
      toggleVisibility = () => this.setState({ visible: !this.state.visible });
+     
 
     render () {
         const { visible } = this.state
+        const socialStyle = {
+            width: '100%',
+            position: 'absolute',
+            margin: '0',
+            top: 'auto',
+            left: '0',
+            top: 'auto',
+            bottom: '20px'
+        }
         return (
             <Sidebar.Pushable as={Segment}>                
                 <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={{backgroundColor: '#212121'}}>                    
@@ -83,7 +93,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/profile' name='profile'>
-                            <Icon name='user outline' size='large'/>
+                            <Icon name='user circle outline' size='large'/>
                         </Menu.Item>
                         }
                     content='Profile'
@@ -93,7 +103,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/fireteams' name='fireteams'>
-                            <Icon name='comments' size='large'/>
+                            <Icon name='comments' size='large' inverted />
                         </Menu.Item>
                         }
                     content='LFG Boards'
@@ -103,7 +113,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/player-search' name='search'>
-                            <Icon name='search' size='large'/>
+                            <Icon name='id card' size='large'/>
                         </Menu.Item>
                         }
                     content='Guardian Search'
@@ -113,11 +123,66 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/team-search' name='group'>
-                            <Icon name='group' size='large'/>
+                            <Icon corner name='search' size='large' />
                         </Menu.Item>
                         }
                     content='Team Lookup'
                     position='right center'
+                    />                    
+
+                    <Popup
+                    trigger={
+                        <Menu.Item as={Link} to='/donate' name='group'>
+                            <Icon name='paypal' size='large' inverted />
+                        </Menu.Item>
+                        }
+                    content='Help us make the site better! Donate now and receive a special badge.'
+                    position='right center'
+                    />
+
+                    <Popup
+                    trigger={
+                        <Menu.Item as={Link} to='/about' name='about'>
+                            <Icon name='info circle' size='large'/>
+                        </Menu.Item>
+                        }
+                    content='About the site'
+                    position='right center'
+                    />
+
+                    <Popup                        
+                        trigger={
+                            <Menu.Item as={Link} to='/team-search' name='group' style={socialStyle}>
+                                <Icon name='heart' size='large' inverted color='red'/>
+                            </Menu.Item>
+                            }
+                        header='Follow us on social media and earn a follower badge!'
+                        content={
+                            <Menu icon borderless fluid widths={5} >
+                                <Menu.Item href='//twitter.com/destinderdotcom' target='_blank' name='twitter'>
+                                    <Icon name='twitter square' size='large' style={{color: '#2AA3EF'}}/>
+                                </Menu.Item>
+
+                                <Menu.Item  href='//instagram.com/destinderdotcom' target='_blank' name='instagram'>
+                                    <Icon name='instagram' size='large' style={{ color: '#B740A9' }}/>
+                                </Menu.Item>
+
+                                <Menu.Item name='facebook'>
+                                    <Icon name='facebook' size='large' style={{color: '#4969A8' }}/>
+                                </Menu.Item>
+
+                                <Menu.Item  href='//www.reddit.com/r/destinder/' target='_blank' name='reddit'>
+                                    <Icon name='reddit' size='large' style={{ color: '#FC461E' }}/>
+                                </Menu.Item>
+
+                                <Menu.Item href='//github.com/destiny-aviato/destinder' target='_blank'  name='github'>
+                                    <Icon name='github' size='large'/>
+                                </Menu.Item>
+                            </Menu>
+                            }
+                        position='right center'
+                        hoverable
+                        flowing
                     />
 
 
@@ -127,7 +192,7 @@ class Header extends Component {
                     </Menu.Item> */}
                     
                     <Popup
-                    trigger={<Label attached='bottom' style={{backgroundColor: '#FF3B3D', color: '#f5f5f5'}} >BETA</Label>}
+                    trigger={<Label attached='bottom' style={{backgroundColor: '#F2C605', color: '#212121'}} >BETA</Label>}
                     header='Heads up!'
                     content={
                         <div>
