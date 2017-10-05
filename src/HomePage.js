@@ -1,94 +1,56 @@
 import React, { Component } from 'react';
-import { Container, Sidebar, Segment, Button, Menu, Icon, Image, List, Transition, Label, Header, Grid, Card } from 'semantic-ui-react';
-import Typed from 'typed.js';
+import { Container, Menu, Icon, Image, Grid, Card } from 'semantic-ui-react';
+// import Typed from 'typed.js';
 import './App.css';
 import './HomePage.css';
-import Layout from './Layout.js'
-import Fireteams from './FireteamsPage.js';
-import Profile from './ProfilePage.js';
 import Parallax from 'react-springy-parallax';
-import { AnimatedRoute } from 'react-router-transition';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter,
-  Switch
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Arcstrider from './img/arcstrider.png';
-import Sentinel from './img/sentinel.png';
-import Dawnblade from './img/dawnblade.png';
-import Gunslinger from './img/gunslinger.png';
-import Voidwalker from './img/voidwalker.png';
-import Striker from './img/striker.png';
 import Logo from './img/logo-with-title-word-black.png';
+import AnnouncementLogo from './img/announce-with-title-word-white.png';
 
 
 
-class TypedHeader extends React.Component {
-  componentDidMount() {
-    // You can pass other options here, such as typing speed, back speed, etc.
-    const options = {
-      strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
-      loop: true,
-      startDelay: 2000,
-      backDelay: 1000,
-      typeSpeed: 70,
-      showCursor: true,
-      cursorChar: "|",
-      shuffle: true
-    };
-    // this.el refers to the <span> in the render() method
-    this.typed = new Typed(this.el, options);
-  }
+// class TypedHeader extends React.Component {
+//   componentDidMount() {
+//     // You can pass other options here, such as typing speed, back speed, etc.
+//     const options = {
+//       strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
+//       loop: true,
+//       startDelay: 2000,
+//       backDelay: 1000,
+//       typeSpeed: 70,
+//       showCursor: true,
+//       cursorChar: "|",
+//       shuffle: true
+//     };
+//     // this.el refers to the <span> in the render() method
+//     this.typed = new Typed(this.el, options);
+//   }
 
-  componentWillUnmount() {
-    // Make sure to destroy Typed instance on unmounting
-    // to prevent memory leaks
-    this.typed.destroy();
-  }
+//   componentWillUnmount() {
+//     // Make sure to destroy Typed instance on unmounting
+//     // to prevent memory leaks
+//     this.typed.destroy();
+//   }
 
-  render() {
-    return (
-      <span ref={(el) => { this.el = el; }} />
-    );
-  }
-}
-
-// class NavMenu extends Component {
-//     state = { activeItem: 'closest' }
-
-//  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-//  render() {
-//    const { activeItem } = this.state
-
-//    return (
-//      <Menu text>
-//        <Menu.Item header>Sort By</Menu.Item>
-//        <Menu.Item as={Link} to='/' name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-//        <Menu.Item as={Link} to='/fireteams' name='LFG' active={activeItem === 'LFG'} onClick={this.handleItemClick} />
-//        <Menu.Item as={Link} to='/profile' name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick} />        
-//      </Menu>
-//    )
-//  }
+//   render() {
+//     return (
+//       <span ref={(el) => { this.el = el; }} />
+//     );
+//   }
 // }
-
 
 
 class HomeFirst extends Component {
   render() {
     return (
       <Container>
-        {/* <Header as='h2'>Welcome to Destinder! </Header>
-        <p>LFG for the <span><TypedReactDemo/></span></p> */}
+        {/* TODO: Create a separate component for this nav menu */}
         <Menu text>
           <Menu.Item header><Image src={Logo} size='small' /></Menu.Item>
           <Menu.Menu position='right'>
-
             <Menu.Item>
               <div>
                 <Image src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' avatar />
@@ -169,7 +131,7 @@ class HomeFirst extends Component {
           <Grid.Row >
             <Grid.Column width={16} >
               <div style={{textAlign: 'center'}}>
-                <Icon name='angle down' size='huge' className='scroll-icon'  onClick={this.props.scrollClick}/>
+                <Icon name='angle down' size='huge' className='scroll-icon fa-pulse'  onClick={this.props.scrollClick}/>
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -184,85 +146,21 @@ class HomeFirst extends Component {
 class HomeSecond extends Component {
   render() {
     return (
-      <Container>
-        <Header as='h2'>ANNOUNCEMENTS</Header>
-        <p>LFG for the <span><TypedHeader/></span></p>
-        {/* <Menu text>
-          <Menu.Item header><Image src={Logo} size='small' /></Menu.Item>
-          <Menu.Menu position='right'>
+      <Container style={{height: '90vh'}}>
+        <div style={{height: 'calc(100vh - 115px)'}}>
+          <Image src={AnnouncementLogo} size='large' />
+          {/* <p>LFG for the <span><TypedHeader/></span></p> */}
+        </div>
 
-            <Menu.Item>
-              <div>
-                <Image src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' avatar />
-                <span>Luminusss</span>
+        <Grid columns={1} >
+          <Grid.Row >
+            <Grid.Column width={16} >
+              <div style={{textAlign: 'right'}}>
+                <Icon name='angle up' size='huge' className='scroll-icon fa-pulse'  onClick={this.props.scrollClick}/>
               </div>
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu> */}
-
-        {/* <Grid columns={2}>
-          <Grid.Row>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card as={Link} to='/profile' className="home-tile-card" style={{ marginTop: '15%', marginBottom: '15%' }}>
-                <div className='home-tile-content' >
-                  <div className='home-tile-icon'>
-                    <Icon name='user outline' size='massive' />
-                  </div>
-                  <Card.Content style={{ borderTop: 'none' }}>
-                    <Card.Header className='home-tile-text-header'>
-                      Profile
-                    </Card.Header>
-                  </Card.Content>
-                </div>
-              </Card>
-            </Grid.Column>
-
-            <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card as={Link} to='/fireteams' className="home-tile-card" style={{ marginTop: '15%', marginBottom: '15%' }}>
-                <div className='home-tile-content' >
-                  <div className='home-tile-icon'>
-                    <Icon name='comments' size='massive' />
-                  </div>
-                  <Card.Content style={{ borderTop: 'none' }}>
-                    <Card.Header className='home-tile-text-header'>
-                      LFG
-                    </Card.Header>
-                  </Card.Content>
-                </div>
-              </Card>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card as={Link} to='/team-search' className="home-tile-card" style={{ marginTop: '8%' }}>
-                <div className='home-tile-content' >
-                  <div className='home-tile-icon'>
-                    <Icon name='users' size='massive' />
-                  </div>
-                  <Card.Content style={{ borderTop: 'none' }}>
-                    <Card.Header className='home-tile-text-header'>
-                      Team Search
-                  </Card.Header>
-                  </Card.Content>
-                </div>
-              </Card>
-            </Grid.Column>
-            <Grid.Column mobile={16} tablet={8} computer={4}>
-              <Card as={Link} to='/player-search' className="home-tile-card" style={{ marginTop: '8%' }}>
-                <div className='home-tile-content' >
-                  <div className='home-tile-icon'>
-                    <Icon name='search' size='massive' />
-                  </div>
-                  <Card.Content style={{ borderTop: 'none' }}>
-                    <Card.Header className='home-tile-text-header'>
-                      Player Search
-                    </Card.Header>
-                  </Card.Content>
-                </div>
-              </Card>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid> */}
+        </Grid>
       </Container>
     )
   }
@@ -310,7 +208,7 @@ class HomeLayout extends Component {
           speed={2}
           style={secondStyle}
         >
-          <HomeSecond />
+          <HomeSecond scrollClick={() => this.refs.parallax.scrollTo(0)}/>
         </Parallax.Layer>
 
 
