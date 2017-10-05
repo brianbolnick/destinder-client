@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Container, Header } from 'semantic-ui-react'
 import './App.css';
+import Home from './HomePage.js';
+import Fireteams from './FireteamsPage.js';
+import Profile from './ProfilePage.js';
+import NotFound from './NotFound.js';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { Route, withRouter, Switch } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-            <Container text>
-              <Header as='h2'>Welcome to Destinder! </Header>
-              <p>There's not much here yet, check back soon!</p>
-          </Container>
-      </div>
-    );
-  }
+
+const App = ({ location }) => {
+  
+  const currentKey = location.pathname.split('/')[1] || '/';
+  const timeout = { enter: 300, exit: 200 };
+  return (
+
+      <TransitionGroup component="main" className="page-main">
+        <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
+          <Switch location={location}>
+            <Route path="/" exact component={Home} />
+            <Route path="/fireteams" component={Fireteams} />
+            <Route path="/profile" component={Profile} />
+            <Route path='/donate' component={() => window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2'} />
+            <Route component={NotFound} />
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    
+  )
 }
 
-export default App;
+export default withRouter(App)
