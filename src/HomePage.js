@@ -147,7 +147,7 @@ class HomeSecond extends Component {
   render() {
     return (
       <Container style={{height: '90vh'}}>
-        <div style={{height: 'calc(100vh - 115px)'}}>
+        <div style={{height: 'calc(100vh - 135px)'}}>
           <Image src={AnnouncementLogo} size='large' />
           {/* <p>LFG for the <span><TypedHeader/></span></p> */}
         </div>

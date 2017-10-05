@@ -102,6 +102,10 @@
     .hide-on-mobile {
         display: none !important;
     }
+    .ui.visible.thin.left.sidebar~.pusher {
+        -webkit-transform: translate3d(68px,0,0) !important;
+        transform: translate3d(68px,0,0) !important;
+    }
 }
 
 @media only screen and (min-width: 601px) {
@@ -117,6 +121,13 @@
     transform: translate3d(110px,0,0);
 }
 
+
+.ui.hidden.divider.hide-on-med-and-up.header-divider {
+    margin-bottom: 7%;
+    background-color: #e0e1e2;
+    height: 37px;
+    margin-top: 0;
+}
 .ui.vertical.icon.menu {
   height: 100vh;
   border-radius: 0;
@@ -145,6 +156,12 @@
     min-width: 4em;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+
+.ui.container.content-container {
+    margin-top: 1%;
+    margin-left: 0% !important;
+    width: 88%;
 }
 
 /* i.massive.icon, i.massive.icons {
