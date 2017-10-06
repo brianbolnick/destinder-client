@@ -164,6 +164,14 @@
     width: 88%;
 }
 
+.ui.segment.pushable {
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png");
+    background-size: auto;
+}
+
+.menu-icon {
+    color: #c5c6c7 !important;
+}
 /* i.massive.icon, i.massive.icons {
     line-height: 1;
     vertical-align: text-top !important;

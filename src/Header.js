@@ -4,7 +4,7 @@ import HomePage from './HomePage.js';
 import FireteamsPage from './FireteamsPage.js';
 import ProfilePage from './ProfilePage.js';
 import { Route, Link } from 'react-router-dom';
-import Logo from './img/logo-no-text-white.png';
+import Logo from './img/logo-title-only.png';
 
 const betaPopupContent = {
     render() {
@@ -69,7 +69,8 @@ class Header extends Component {
         }
         return (
             <Sidebar.Pushable as={Segment}>                
-                <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={{backgroundColor: '#212121'}}>                    
+                {/* #2f4454 (dark blue),   */}
+                <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={{backgroundColor: '#1f2833'}}>                    
                     {/* <Menu.Item name='logo' >
                         <Image 
                             src={Logo} 
@@ -79,7 +80,8 @@ class Header extends Component {
 
                     <Popup
                     trigger={
-                        <Menu.Item as={Link} to='/' name='home'>
+                       
+                        <Menu.Item as={Link} to='/' name='home' style={{ background: '#45a29e'}}>
                             <Image 
                                 src={Logo} 
                                 size='mini' 
@@ -93,7 +95,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/profile' name='profile'>
-                            <Icon name='user circle outline' size='large'/>
+                            <Icon name='user circle outline' className='menu-icon' inverted  size='large'/>
                         </Menu.Item>
                         }
                     content='Profile'
@@ -103,7 +105,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/fireteams' name='fireteams'>
-                            <Icon name='comments' size='large' inverted />
+                            <Icon name='comments' size='large' inverted className='menu-icon' />
                         </Menu.Item>
                         }
                     content='LFG Boards'
@@ -113,7 +115,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/player-search' name='search'>
-                            <Icon name='id card' size='large'/>
+                            <Icon name='id card' size='large' inverted className='menu-icon' />
                         </Menu.Item>
                         }
                     content='Guardian Search'
@@ -123,7 +125,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/team-search' name='group'>
-                            <Icon corner name='search' size='large' />
+                            <Icon corner name='search' size='large' inverted className='menu-icon'/>
                         </Menu.Item>
                         }
                     content='Team Lookup'
@@ -133,7 +135,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/donate' name='group'>
-                            <Icon name='paypal' size='large' inverted />
+                            <Icon name='paypal' size='large' inverted className='menu-icon'/>
                         </Menu.Item>
                         }
                     content='Help us make the site better! Donate now and receive a special badge.'
@@ -143,7 +145,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/about' name='about'>
-                            <Icon name='info circle' size='large'/>
+                            <Icon name='info circle' size='large'inverted className='menu-icon'/>
                         </Menu.Item>
                         }
                     content='About the site'
@@ -152,7 +154,7 @@ class Header extends Component {
 
                     <Popup                        
                         trigger={
-                            <Menu.Item as={Link} to='/team-search' name='group' style={socialStyle}>
+                            <Menu.Item name='group' style={socialStyle}>
                                 <Icon name='heart' size='large' inverted color='red'/>
                             </Menu.Item>
                             }
@@ -198,7 +200,7 @@ class Header extends Component {
                         <div>
                             Many of these features are still under development, so you may see some bugs!
                             <Divider />
-                            <Button  href="mailto:help@destinder.com" animated style={{backgroundColor: '#5085A5', color: '#f5f5f5' }} >
+                            <Button  href="mailto:help@destinder.com" animated style={{backgroundColor: '#45a29e', color: '#f5f5f5' }} >
                                 <Button.Content visible>Report an Issue</Button.Content>
                                 <Button.Content hidden>
                                     <Icon name='send' />
