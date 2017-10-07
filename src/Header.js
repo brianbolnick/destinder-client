@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment, Menu, Icon, Transition, Label, Image, Popup, Button, Divider, Container } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Icon, Transition, Label, Image, Popup, Button, Divider, Container, Dropdown } from 'semantic-ui-react'
 import HomePage from './HomePage.js';
 import FireteamsPage from './FireteamsPage.js';
 import ProfilePage from './ProfilePage.js';
 import { Route, Link } from 'react-router-dom';
-import Logo from './img/logo-no-text-white.png';
+import Logo from './img/logo-no-text.png';
 
 const betaPopupContent = {
     render() {
@@ -22,16 +22,26 @@ const betaPopupContent = {
     }
 }
 
+
+const themeStyles = {
+    green: {text: "Green", sidebarColor: {backgroundColor: '#272727'} , iconColor: {color: '#f5f5f5'} , headerBackground: {backgroundColor: '#14a76c'} , heartColor: {color: '#D82B30'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    yellow: {text: "Yellow", sidebarColor: {backgroundColor: '#3A3A3B'} , iconColor: {color: '#c5c6c7'} , headerBackground: {backgroundColor: '#F7B831'}, heartColor: {color: '#D82B30'}, labelColor: {color: '#212121', backgroundColor: '#F7B831'}} ,
+    red: {text: "Red", sidebarColor: {backgroundColor: '#212121'}, iconColor: {color: '#f5f5f5'}, headerBackground: {backgroundColor: '#E74C3C'}, heartColor: {color: '#E74C3C'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    seaGreen: {text: "Sea Green", sidebarColor: {backgroundColor: '#202933'}, iconColor: {color: '#c5c6c7'}, headerBackground: {backgroundColor: '#49A29D'}, heartColor: {color: '#E74C3C'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    blue: {text: "Blue", sidebarColor: {backgroundColor: '#2f4454'}, iconColor: {color: '#c5c6c7'}, headerBackground: {backgroundColor: '#C5C6C7'}, heartColor: {color: '#ff695e'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    whiteBlack: {text: "Blue", sidebarColor: {backgroundColor: '#f5f5f5'}, iconColor: {color: '#212121'}, headerBackground: {backgroundColor: '#C5C6C7'}, heartColor: {color: '#ff695e'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}}
+}
+
 class Header extends Component {
-    
+
     // Only show sidebar on tablets and larger
     constructor(props) {
         super(props);
-        this.state = { width: window.innerWidth, height: window.innerHeight };
-        if (this.state.width >= 320 && this.state.width <= 601) {
-            this.state = ({ width: window.innerWidth, height: window.innerHeight, visible: false });
+        this.state = { width: window.innerWidth, height: window.innerHeight, currentTheme: themeStyles.blue };
+        if (this.state.width >= 320 && this.state.width <= 601) {   
+            this.state = ({ width: window.innerWidth, height: window.innerHeight, visible: false, currentTheme: themeStyles.blue  });
         } else {
-            this.state = ({ width: window.innerWidth, height: window.innerHeight, visible: true });
+            this.state = ({ width: window.innerWidth, height: window.innerHeight, visible: true, currentTheme: themeStyles.blue  });
         }  
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
       }
@@ -47,17 +57,62 @@ class Header extends Component {
       
       updateWindowDimensions() {
         if (this.state.width >= 320 && this.state.width <= 601) {
-            this.setState({ width: window.innerWidth, height: window.innerHeight, visible: false });
+            this.setState({ width: window.innerWidth, height: window.innerHeight, visible: false, currentTheme: themeStyles.blue  });
         } else {
-            this.setState({ width: window.innerWidth, height: window.innerHeight, visible: true });
+            this.setState({ width: window.innerWidth, height: window.innerHeight, visible: true, currentTheme: themeStyles.blue  });
         }  
       }
       
      toggleVisibility = () => this.setState({ visible: !this.state.visible });
+
+     changeTheme = (e, data) => {
+        console.log(data.value);
+         this.setState({currentTheme: data.value});
+        //  this.setState({ visible: !this.state.visible });
+     }
+    //  changeTheme = (e, data) => console.log(data.value);
      
 
     render () {
+
+
+        const themeOptions = [
+            {
+                key: 'Green/Black',
+                text: 'Green',
+                value: themeStyles.green                
+            },
+            {
+                key: 'Yellow/Gray',
+                text: 'Yellow',
+                value: themeStyles.yellow                
+            },
+            {
+                key: 'Red/Black',
+                text: 'Red',
+                value: themeStyles.red                
+            },
+            {
+                key: 'Sea Green',
+                text: 'Sea Green',
+                value: themeStyles.seaGreen                
+            },
+            {
+                key: 'Blue/Gray',
+                text: 'Blue',
+                value: themeStyles.blue                            
+            },
+            {
+                key: 'White/Black',
+                text: 'White/Black',
+                value: themeStyles.whiteBlack                
+            }
+        ]
+
+        const { currentTheme } = this.state;
+
         const { visible } = this.state
+
         const socialStyle = {
             width: '100%',
             position: 'absolute',
@@ -69,7 +124,8 @@ class Header extends Component {
         }
         return (
             <Sidebar.Pushable as={Segment}>                
-                <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={{backgroundColor: '#212121'}}>                    
+                {/* #2f4454 (dark blue),   */}
+                <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={currentTheme.sidebarColor}>                    
                     {/* <Menu.Item name='logo' >
                         <Image 
                             src={Logo} 
@@ -79,7 +135,8 @@ class Header extends Component {
 
                     <Popup
                     trigger={
-                        <Menu.Item as={Link} to='/' name='home'>
+                       
+                        <Menu.Item as={Link} to='/' name='home' style={currentTheme.headerBackground}>
                             <Image 
                                 src={Logo} 
                                 size='mini' 
@@ -93,7 +150,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/profile' name='profile'>
-                            <Icon name='user circle outline' size='large'/>
+                            <Icon name='user circle outline' style={currentTheme.iconColor} inverted  size='large'/>
                         </Menu.Item>
                         }
                     content='Profile'
@@ -103,7 +160,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/fireteams' name='fireteams'>
-                            <Icon name='comments' size='large' inverted />
+                            <Icon name='comments' size='large' inverted style={currentTheme.iconColor}/>
                         </Menu.Item>
                         }
                     content='LFG Boards'
@@ -113,7 +170,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/player-search' name='search'>
-                            <Icon name='id card' size='large'/>
+                            <Icon name='id card' size='large' inverted style={currentTheme.iconColor} />
                         </Menu.Item>
                         }
                     content='Guardian Search'
@@ -123,7 +180,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/team-search' name='group'>
-                            <Icon corner name='search' size='large' />
+                            <Icon corner name='search' size='large' inverted style={currentTheme.iconColor}/>
                         </Menu.Item>
                         }
                     content='Team Lookup'
@@ -133,7 +190,7 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/donate' name='group'>
-                            <Icon name='paypal' size='large' inverted />
+                            <Icon name='paypal' size='large' inverted style={currentTheme.iconColor}/>
                         </Menu.Item>
                         }
                     content='Help us make the site better! Donate now and receive a special badge.'
@@ -143,17 +200,33 @@ class Header extends Component {
                     <Popup
                     trigger={
                         <Menu.Item as={Link} to='/about' name='about'>
-                            <Icon name='info circle' size='large'/>
+                            <Icon name='info circle' size='large'inverted style={currentTheme.iconColor}/>
                         </Menu.Item>
                         }
                     content='About the site'
                     position='right center'
                     />
+                    <Popup                
+                    trigger={
+                        <Menu.Item name='settings'>
+                            <Icon name='settings' size='large' inverted style={currentTheme.iconColor}/>
+                        </Menu.Item>
+                        }
+                    content={                        
+                        <div>
+                            Customize the sidebar theme: 
+                            <Divider/> 
+                            <Dropdown  upward scrolling text={currentTheme.text} selection fluid options={themeOptions} onChange={this.changeTheme} />
+                        </div>
+                    }
+                    position='right center'
+                    hoverable
+                    />
 
                     <Popup                        
                         trigger={
-                            <Menu.Item as={Link} to='/team-search' name='group' style={socialStyle}>
-                                <Icon name='heart' size='large' inverted color='red'/>
+                            <Menu.Item name='group' style={socialStyle}>
+                                <Icon name='heart' size='large' inverted style={currentTheme.heartColor}/>
                             </Menu.Item>
                             }
                         header='Follow us on social media and earn a follower badge!'
@@ -192,13 +265,13 @@ class Header extends Component {
                     </Menu.Item> */}
                     
                     <Popup
-                    trigger={<Label attached='bottom' style={{backgroundColor: '#F2C605', color: '#212121'}} >BETA</Label>}
+                    trigger={<Label attached='bottom' style={currentTheme.labelColor} >BETA</Label>}
                     header='Heads up!'
                     content={
                         <div>
                             Many of these features are still under development, so you may see some bugs!
                             <Divider />
-                            <Button  href="mailto:help@destinder.com" animated style={{backgroundColor: '#5085A5', color: '#f5f5f5' }} >
+                            <Button  href="mailto:help@destinder.com" animated style={{backgroundColor: '#45a29e', color: '#f5f5f5' }} >
                                 <Button.Content visible>Report an Issue</Button.Content>
                                 <Button.Content hidden>
                                     <Icon name='send' />
