@@ -75,6 +75,15 @@ class Header extends Component {
 
     render () {
 
+        const trigger = (
+            <span>
+              <Image avatar src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' /> Luminusss
+            </span>
+          )
+
+        const languageOptions = [
+            { key: 'us', value: 'us', flag: 'us', text: 'English' }
+        ]
 
         const themeOptions = [
             {
@@ -208,7 +217,7 @@ class Header extends Component {
                     />
                     <Popup                
                     trigger={
-                        <Menu.Item name='settings'>
+                        <Menu.Item name='settings' className='hide-on-med-and-up'>
                             <Icon name='settings' size='large' inverted style={currentTheme.iconColor}/>
                         </Menu.Item>
                         }
@@ -286,6 +295,39 @@ class Header extends Component {
                 <Sidebar.Pusher>
                     <Button floated='left' onClick={this.toggleVisibility} icon='sidebar' className="menu-icon hide-on-med-and-up" />
                     <Divider className='hide-on-med-and-up header-divider' style={{ marginBottom: '7%' }} hidden/>
+                    <Menu compact className='hide-on-mobile' style={{  float: 'right',  marginRight: '10%', backgroundColor: 'transparent'}}>
+                        <Menu.Menu position='right'>                            
+                            <Popup                
+                            trigger={
+                                <Menu.Item name='settings' style={{color: '#f5f5f5'}}>
+                                    <Icon name='settings' size='large' inverted style={currentTheme.iconColor}/>
+                                    Customize
+                                </Menu.Item>
+                                }
+                            content={                        
+                                <div>
+                                    Sidebar theme: 
+                                    <Divider/> 
+                                    <Dropdown scrolling text={currentTheme.text} selection  options={themeOptions} onChange={this.changeTheme} />
+                                    <Divider hidden />
+                                    Language:
+                                    <Divider/> 
+                                    <Dropdown scrolling text='Language' selection  options={languageOptions} />
+                                    
+                                </div>
+                            }
+                            position='right center'
+                            hoverable
+                            />
+                            <Menu.Item name='user-name'>
+                                <Dropdown trigger={trigger} pointing='top left' icon={null} style={{color: '#f5f5f5'}}>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item>Logout</Dropdown.Item>                                
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Menu.Item >
+                        </Menu.Menu>
+                    </Menu>
                     <Container className='content-container'>
                         {this.props.children}
                     </Container>

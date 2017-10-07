@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Menu } from 'semantic-ui-react';
+import { Container, Header, Menu, Segment } from 'semantic-ui-react';
 import Layout from './Layout.js'
 
 // import {posts} from './data/posts';
