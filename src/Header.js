@@ -68,6 +68,7 @@ class Header extends Component {
      changeTheme = (e, data) => {
         console.log(data.value);
          this.setState({currentTheme: data.value});
+        //  localStorage.setItem('theme', data.value);
         //  this.setState({ visible: !this.state.visible });
      }
     //  changeTheme = (e, data) => console.log(data.value);
