@@ -38,7 +38,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
         if (localStorage.theme == null) {
-            localStorage.setItem('theme', JSON.stringify(themeStyles.blue));
+            localStorage.setItem('theme', JSON.stringify(themeStyles.red));
         }
         // console.log(localStorage);
         this.state = { width: window.innerWidth, height: window.innerHeight, currentTheme: localStorage.getItem('theme') };
@@ -301,8 +301,8 @@ class Header extends Component {
                 <Sidebar.Pusher>
                     <Button floated='left' onClick={this.toggleVisibility} icon='sidebar' className="menu-icon hide-on-med-and-up" />
                     <Divider className='hide-on-med-and-up header-divider' style={{ marginBottom: '7%' }} hidden/>
-                    <Menu compact className='hide-on-mobile' style={{  float: 'right',  marginRight: '10%', backgroundColor: 'transparent'}}>
-                        <Menu.Menu position='right'>                            
+                    <Menu compact className='hide-on-mobile' style={{  float: 'right',  marginRight: '10%', backgroundColor: 'transparent', border: 'none', boxShadow: 'none'}}>
+                        <Menu.Menu position='right' style={{border: 'none'}}>                            
                             <Popup                
                             trigger={
                                 <Menu.Item name='settings' style={{color: '#f5f5f5'}}>

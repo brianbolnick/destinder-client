@@ -9,8 +9,9 @@ import { Link } from 'react-router-dom';
 import LayerBackground from './img/layers-test-bg-only.png';
 import LayerChars from './img/layers-test-chars.png';
 import LayerShips from './img/layers-test-ships.png';
+import LayerOverlay from './img/bg-overlay.png';
 import Logo from './img/logo-with-title-word-black.png';
-import Arcstrider from './img/arcstrider.png';
+import Arcstrider from './img/sentinel-dark.png';
 
 import AnnouncementLogo from './img/announce-with-title-word-white.png';
 
@@ -246,6 +247,16 @@ class HomeLayout extends Component {
         backgroundPositionY: '83px',
         backgroundSize: '400px'
     }
+    const overlayStyle = {
+        backgroundImage: `url(${LayerOverlay})`,
+        backgroundPosition: 'bottom center',
+        backgroundSize: 'auto',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '800px',
+        position: 'fixed',
+        zIndex: '-1'
+    }
 
     const charsStyle = {
         backgroundImage: `url(${LayerChars})`,
@@ -276,37 +287,21 @@ class HomeLayout extends Component {
     return (
       <Parallax ref="parallax" pages={3} style={homeStyle}>
 
-           
-        <Parallax.Layer
-          offset={0}
-          speed={0.5}
-          style={bgStyle}
-          
-        />
-        
-        
-        <Parallax.Layer offset={0} speed={1} style={shipStyle} />
-
-        <Parallax.Layer offset={0} speed={0.75} style={charsStyle} >
+        {/* First section */}
+        <Parallax.Layer offset={0} speed={0.5} style={bgStyle} />
+        <Parallax.Layer offset={0} speed={0.8} style={shipStyle} />
+        <Parallax.Layer offset={0} speed={0.6} style={overlayStyle} />
+        <Parallax.Layer offset={0} speed={0.5} style={charsStyle} >
             <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(1)}/>
         </Parallax.Layer>
 
-        <Parallax.Layer
-          offset={1}
-          speed={1}
-          style={firstStyle}
-          
-        >
-          <HomeSecond downScrollClick={() => this.refs.parallax.scrollTo(2)} upScrollClick={() => this.refs.parallax.scrollTo(0)}/>
-          
+        {/* Second Section */}
+        <Parallax.Layer offset={1} speed={0.1} style={firstStyle}>
+          <HomeSecond downScrollClick={() => this.refs.parallax.scrollTo(2)} upScrollClick={() => this.refs.parallax.scrollTo(0)}/>          
         </Parallax.Layer>
         
-
-        <Parallax.Layer
-          offset={2}
-          speed={2}
-          style={secondStyle}
-        >
+        {/* Third Section */}
+        <Parallax.Layer offset={2} speed={2} style={secondStyle} >
           <HomeThird scrollClick={() => this.refs.parallax.scrollTo(0)}/>
         </Parallax.Layer>
 

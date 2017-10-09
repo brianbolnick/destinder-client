@@ -10,7 +10,7 @@ class FireteamsPage extends Component {
     render() {
         return (
             <Layout>
-                <div className="fireteams-page">
+                <div className="fireteams-page" style={{height: '100vh'}}>
                     <Container>
                         <Header as='h2'>LFG</Header>
                         <p>All LFG posts are here.</p>
