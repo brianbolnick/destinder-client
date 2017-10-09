@@ -1,51 +1,51 @@
 import React, { Component } from 'react';
-import { Container, Menu, Icon, Image, Grid, Card, Dropdown } from 'semantic-ui-react';
-// import Typed from 'typed.js';
+import { Container, Menu, Icon, Image, Grid, Card, Dropdown, Header, Divider } from 'semantic-ui-react';
+import Typed from 'typed.js';
 import './App.css';
 import './HomePage.css';
 import Parallax from 'react-springy-parallax';
 import { Link } from 'react-router-dom';
-
+import MobileBackground from './img/war-zone.jpg';
 import LayerBackground from './img/layers-test-bg-only.png';
 import LayerChars from './img/layers-test-chars.png';
 import LayerShips from './img/layers-test-ships.png';
 import LayerOverlay from './img/bg-overlay.png';
-import Logo from './img/logo-with-title-word-black.png';
-import Arcstrider from './img/sentinel-dark.png';
+import Logo from './img/logo-words-only-white.png';
+import Arcstrider from './img/striker-dark-2.png';
 
 import AnnouncementLogo from './img/announce-with-title-word-white.png';
 
 
 
-// class TypedHeader extends React.Component {
-//   componentDidMount() {
-//     // You can pass other options here, such as typing speed, back speed, etc.
-//     const options = {
-//       strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
-//       loop: true,
-//       startDelay: 2000,
-//       backDelay: 1000,
-//       typeSpeed: 70,
-//       showCursor: true,
-//       cursorChar: "|",
-//       shuffle: true
-//     };
-//     // this.el refers to the <span> in the render() method
-//     this.typed = new Typed(this.el, options);
-//   }
+class TypedHeader extends React.Component {
+  componentDidMount() {
+    // You can pass other options here, such as typing speed, back speed, etc.
+    const options = {
+      strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
+      loop: true,
+      startDelay: 2000,
+      backDelay: 1000,
+      typeSpeed: 70,
+      showCursor: true,
+      cursorChar: "|",
+      shuffle: true
+    };
+    // this.el refers to the <span> in the render() method
+    this.typed = new Typed(this.el, options);
+  }
 
-//   componentWillUnmount() {
-//     // Make sure to destroy Typed instance on unmounting
-//     // to prevent memory leaks
-//     this.typed.destroy();
-//   }
+  componentWillUnmount() {
+    // Make sure to destroy Typed instance on unmounting
+    // to prevent memory leaks
+    this.typed.destroy();
+  }
 
-//   render() {
-//     return (
-//       <span ref={(el) => { this.el = el; }} />
-//     );
-//   }
-// }
+  render() {
+    return (
+      <span ref={(el) => { this.el = el; }} />
+    );
+  }
+}
 
 
 class HomeFirst extends Component {
@@ -60,7 +60,7 @@ class HomeFirst extends Component {
     return (
       <Container>
         {/* TODO: Create a separate component for this nav menu */}
-        <Menu compact className='hide-on-mobile' style={{  float: 'right', backgroundColor: 'transparent'}}>
+        <Menu compact style={{  float: 'right',  backgroundColor: 'transparent', border: 'none', boxShadow: 'none'}}>>
             <Menu.Menu position='right'>                                        
                 <Menu.Item name='user-name'>
                     <Dropdown trigger={trigger} pointing='top left' icon={null} style={{color: '#f5f5f5'}}>
@@ -72,8 +72,32 @@ class HomeFirst extends Component {
             </Menu.Menu>
         </Menu>
 
-        <div style={{height: 'calc(100vh - 90px)' }} >
+        {/* <div style={{height: 'calc(100vh - 300px)' }} >            
+        </div> */}
+        <div className='hide-on-mobile' style={{height: '100px' }} >            
         </div>
+        <div className='hide-on-med-and-up' style={{height: '45vh' }} >            
+        </div>
+        
+        <Grid columns={1} >
+            <Grid.Row style={{paddingBottom: '0' }}>
+                <Grid.Column width={16} >
+                    <div style={{textAlign: 'right'}}>
+                        <Image src={Logo} size='large' style={{ float: 'right'}} />
+                    </div>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row style={{padding: '0' }}>
+                <Grid.Column width={16} >
+                    <div style={{textAlign: 'right'}}>
+                        <Header style={{color: '#f5f5f5'}} size='huge'> LFG For the <TypedHeader /> </Header> 
+                    </div>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
+         <div style={{height: 'calc(100vh - 300px)' }} >            
+        </div>
+
         <Grid columns={1} >
           <Grid.Row >
             <Grid.Column width={16} >
@@ -95,18 +119,6 @@ class HomeSecond extends Component {
         return (
             <Container>
             {/* TODO: Create a separate component for this nav menu */}
-            <Menu text>
-                <Menu.Item header><Image src={Logo} size='small' /></Menu.Item>
-                <Menu.Menu position='right'>
-                <Menu.Item>
-                    <div>
-                    <Image src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' avatar />
-                    <span style={{color: '#f5f5f5', fontWeight: '300'}}>Luminusss</span>
-                    </div>
-                </Menu.Item>
-                </Menu.Menu>
-            </Menu>
-    
             <Grid columns={2}>
                 <Grid.Row>
                 <Grid.Column mobile={8} computer={4}>
@@ -184,12 +196,12 @@ class HomeSecond extends Component {
                 </Grid.Column>
                 </Grid.Row>
             </Grid>
-            </Container>
+        </Container>
             
     
         )
-        }
     }
+}
 
 class HomeThird extends Component {
     render() {
@@ -219,7 +231,12 @@ class HomeLayout extends Component {
     const firstStyle = {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         backgroundImage: `url(${Arcstrider})`,
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        backgroundPosition: 'bottom center',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '750px',
+        position: 'fixed',
       }
     
     const bgStyle = {
@@ -230,6 +247,18 @@ class HomeLayout extends Component {
       backgroundRepeat: 'no-repeat',
       width: '100%',
       height: '800px',
+      position: 'fixed',
+      zIndex: '-3'
+    }
+
+    const mobileStyle = {
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      backgroundImage: `url(${MobileBackground})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'bottom center',
+      backgroundRepeat: 'no-repeat',
+      width: '100%',
+      height: '300px',
       position: 'fixed',
       zIndex: '-3'
     }
@@ -279,19 +308,23 @@ class HomeLayout extends Component {
     }
 
     const homeStyle = {
-      backgroundImage: 'url("https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png")',
+      backgroundImage: 'url("https://www.toptal.com/designers/subtlepatterns/patterns/asfalt.png")',
       backgroundSize: 'auto',
       backgroundRepeat: 'inherit',
+    //   backgroundColor: '#212121'
     }
 
     return (
       <Parallax ref="parallax" pages={3} style={homeStyle}>
 
         {/* First section */}
-        <Parallax.Layer offset={0} speed={0.5} style={bgStyle} />
-        <Parallax.Layer offset={0} speed={0.8} style={shipStyle} />
-        <Parallax.Layer offset={0} speed={0.6} style={overlayStyle} />
-        <Parallax.Layer offset={0} speed={0.5} style={charsStyle} >
+        <Parallax.Layer className='hide-on-med-and-up' offset={0} speed={0.5} style={mobileStyle} >
+            <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(1)}/>
+        </Parallax.Layer>
+        <Parallax.Layer className='hide-on-mobile' offset={0} speed={0.5} style={bgStyle} />
+        <Parallax.Layer className='hide-on-mobile' offset={0} speed={0.8} style={shipStyle} />
+        <Parallax.Layer className='hide-on-mobile' offset={0} speed={0.6} style={overlayStyle} />
+        <Parallax.Layer className='hide-on-mobile' offset={0} speed={0.5} style={charsStyle} >
             <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(1)}/>
         </Parallax.Layer>
 
