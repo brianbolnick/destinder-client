@@ -3,6 +3,7 @@ import './App.css';
 import Home from './HomePage.js';
 import Fireteams from './FireteamsPage.js';
 import Profile from './ProfilePage.js';
+import Test from './TestPage.js';
 import NotFound from './NotFound.js';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Route, withRouter, Switch } from 'react-router-dom';
@@ -20,6 +21,7 @@ const App = ({ location }) => {
             <Route path="/" exact component={Home} />
             <Route path="/fireteams" component={Fireteams} />
             <Route path="/profile" component={Profile} />
+            <Route path="/test" component={Test} />
             <Route path='/donate' component={() => window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2'} />
             <Route component={NotFound} />
           </Switch>

@@ -37,7 +37,11 @@ class Header extends Component {
     // Only show sidebar on tablets and larger
     constructor(props) {
         super(props);
-        this.state = { width: window.innerWidth, height: window.innerHeight, currentTheme: themeStyles.blue };
+        if (localStorage.theme == null) {
+            localStorage.setItem('theme', JSON.stringify(themeStyles.red));
+        }
+        // console.log(localStorage);
+        this.state = { width: window.innerWidth, height: window.innerHeight, currentTheme: localStorage.getItem('theme') };
         if (this.state.width >= 320 && this.state.width <= 601) {   
             this.state = ({ width: window.innerWidth, height: window.innerHeight, visible: false, currentTheme: themeStyles.blue  });
         } else {
@@ -66,8 +70,10 @@ class Header extends Component {
      toggleVisibility = () => this.setState({ visible: !this.state.visible });
 
      changeTheme = (e, data) => {
-        console.log(data.value);
-         this.setState({currentTheme: data.value});
+        // console.log(data.value);         
+        localStorage.setItem('theme', JSON.stringify(data.value));
+        this.setState({currentTheme: data.value});        
+        // console.log(localStorage);
         //  this.setState({ visible: !this.state.visible });
      }
     //  changeTheme = (e, data) => console.log(data.value);
@@ -117,10 +123,10 @@ class Header extends Component {
                 value: themeStyles.whiteBlack                
             }
         ]
+        // console.log(localStorage.getItem('theme'));
+        const currentTheme = JSON.parse(localStorage.getItem('theme'));
 
-        const { currentTheme } = this.state;
-
-        const { visible } = this.state
+        const { visible } = this.state;
 
         const socialStyle = {
             width: '100%',
@@ -295,8 +301,8 @@ class Header extends Component {
                 <Sidebar.Pusher>
                     <Button floated='left' onClick={this.toggleVisibility} icon='sidebar' className="menu-icon hide-on-med-and-up" />
                     <Divider className='hide-on-med-and-up header-divider' style={{ marginBottom: '7%' }} hidden/>
-                    <Menu compact className='hide-on-mobile' style={{  float: 'right',  marginRight: '10%', backgroundColor: 'transparent'}}>
-                        <Menu.Menu position='right'>                            
+                    <Menu compact className='hide-on-mobile' style={{  float: 'right',  marginRight: '10%', backgroundColor: 'transparent', border: 'none', boxShadow: 'none'}}>
+                        <Menu.Menu position='right' style={{border: 'none'}}>                            
                             <Popup                
                             trigger={
                                 <Menu.Item name='settings' style={{color: '#f5f5f5'}}>
