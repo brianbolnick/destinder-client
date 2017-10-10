@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Menu, Icon, Image, Grid, Card, Dropdown, Header, Divider } from 'semantic-ui-react';
+import { Container, Menu, Icon, Image, Grid, Card, Dropdown, Header, Divider, Input } from 'semantic-ui-react';
 import Typed from 'typed.js';
 import './App.css';
 import './HomePage.css';
@@ -47,30 +47,50 @@ class TypedHeader extends React.Component {
   }
 }
 
+class NavBar extends Component {
+    render() {
+        const trigger = (
+            <span>
+              <Image avatar src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' /> Luminusss
+            </span>
+          )
+        return (
+           
+            <Menu compact style={{  width: '100%',  backgroundColor: 'transparent', border: 'none', boxShadow: 'none'}}>
+                <Menu.Menu position='left'>   
+                    <Menu.Item style={{color: '#f5f5f5' }} as={Link} to='/fireteams' name='lfg'>
+                        LFG
+                    </Menu.Item >             
+                    <Menu.Item style={{color: '#f5f5f5' }} as={Link} to='/team-search' name='lfg'>
+                        Team Lookup
+                    </Menu.Item >      
+                </Menu.Menu>      
+                <Menu.Menu position='right'>   
+                    <Menu.Item>
+                        <Input icon='search' placeholder='Search for a player..' />
+                    </Menu.Item>                         
+                    <Menu.Item name='user-name'>
+                        <Dropdown pointing trigger={trigger} pointing='top left' icon={null} style={{color: '#f5f5f5'}}>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to='/profile'>Profile</Dropdown.Item>                                
+                                <Dropdown.Item>Logout</Dropdown.Item>                                
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Item >
+                </Menu.Menu>
+            </Menu>
+        )
+    }
+}
 
 class HomeFirst extends Component {
   render() {
 
-    const trigger = (
-        <span>
-          <Image avatar src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' /> Luminusss
-        </span>
-      )
+
 
     return (
       <Container>
-        {/* TODO: Create a separate component for this nav menu */}
-        <Menu compact style={{  float: 'right',  backgroundColor: 'transparent', border: 'none', boxShadow: 'none'}}>>
-            <Menu.Menu position='right'>                                        
-                <Menu.Item name='user-name'>
-                    <Dropdown trigger={trigger} pointing='top left' icon={null} style={{color: '#f5f5f5'}}>
-                        <Dropdown.Menu>
-                            <Dropdown.Item>Logout</Dropdown.Item>                                
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Menu.Item >
-            </Menu.Menu>
-        </Menu>
+        <NavBar />
 
         {/* <div style={{height: 'calc(100vh - 300px)' }} >            
         </div> */}
@@ -95,7 +115,7 @@ class HomeFirst extends Component {
                 </Grid.Column>
             </Grid.Row>
         </Grid>
-         <div style={{height: 'calc(100vh - 300px)' }} >            
+         <div style={{height: 'calc(100vh - 350px)' }} >            
         </div>
 
         <Grid columns={1} >
@@ -315,7 +335,7 @@ class HomeLayout extends Component {
     }
 
     return (
-      <Parallax ref="parallax" pages={3} style={homeStyle}>
+      <Parallax ref="parallax" pages={2} style={homeStyle}>
 
         {/* First section */}
         <Parallax.Layer className='hide-on-med-and-up' offset={0} speed={0.5} style={mobileStyle} >
@@ -329,12 +349,12 @@ class HomeLayout extends Component {
         </Parallax.Layer>
 
         {/* Second Section */}
-        <Parallax.Layer offset={1} speed={0.1} style={firstStyle}>
+        {/* <Parallax.Layer offset={1} speed={0.1} style={firstStyle}>
           <HomeSecond downScrollClick={() => this.refs.parallax.scrollTo(2)} upScrollClick={() => this.refs.parallax.scrollTo(0)}/>          
         </Parallax.Layer>
-        
+         */}
         {/* Third Section */}
-        <Parallax.Layer offset={2} speed={2} style={secondStyle} >
+        <Parallax.Layer offset={1} speed={2} style={secondStyle} >
           <HomeThird scrollClick={() => this.refs.parallax.scrollTo(0)}/>
         </Parallax.Layer>
 
