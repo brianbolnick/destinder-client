@@ -34,3 +34,70 @@
     background: #f7f7f7 !important;
     /* color: #212121 !important; */
 }
+
+.ui.visible.left.sidebar~.pusher {
+    -webkit-transform: translate3d(110px,0,0);
+    transform: translate3d(110px,0,0);
+}
+
+.ui.tabular.menu .active.item {
+    background: #4a4a4a;
+    color: #00d5d5;
+    border: 0;
+    /* border-color: #d4d4d5; */
+    font-weight: 700;
+    /* margin-bottom: -1px; */
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: .28571429rem .28571429rem 0 0!important;
+}
+
+.ui.tabular.menu .item {
+    color: #00d5d5;
+    font-weight: 300;
+}
+
+.ui.tabular.menu .item:hover {
+    color: #00d5d5;
+    font-weight: 600;
+}
+
+.ui.attached.tabular.menu {
+    background-color: #212121;
+    border: 0;
+}
+
+.ui.bottom.attached.segment.active.tab {
+    height: 78.4vh;
+    background-color: #4a4a4a;
+    border: 0;
+}
+
+img.ui.image.trials-player-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    -moz-box-shadow: 4px 6px 5px 0px #bdb7bd;
+    border: 2px solid #9a9a9a;
+}
+
+.ui.grid.profile-panels .two.wide.column {
+    padding-right: 0;
+    width: 9.5% !important;
+}
+.ui.grid.profile-panels .stretched.fourteen.wide.column {
+    padding-left: 0;
+    width: 90.5%!important;
+}
+
+.ui.grid.profile-panels .ui.bottom.attached.segment.active.tab {
+    padding: 0;
+}
+
+.ui.grid.profile-panels .ui.borderless.vertical.left.attached.left.tabular.menu {
+    height: 85vh;
+}
+
+.ui.vertical.tabular.menu .item:hover {
+    border-right: solid 4px #F5F5F5;
+}
