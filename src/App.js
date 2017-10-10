@@ -18,7 +18,7 @@ const App = ({ location }) => {
       <TransitionGroup component="main" className="page-main">
         <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
           <Switch location={location}>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={Test} />
             <Route path="/fireteams" component={Fireteams} />
             <Route path="/profile" component={Profile} />
             <Route path="/test" component={Test} />
