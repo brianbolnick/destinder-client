@@ -77,7 +77,7 @@ class NewForm extends Component {
         ]
         return (
             <div style={{ margin: '0 auto' }}>
-                <Accordion styled style={{ marginLeft: 'auto', marginRight: 'auto', width: '75%' }}>
+                <Accordion className='fireteams-form-accordion' styled >
                     <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
                         <Icon color='yellow' style={{ marginRight: '15px' }} name='write' size='big' />
                         New Post

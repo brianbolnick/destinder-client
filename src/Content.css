@@ -101,3 +101,28 @@ img.ui.image.trials-player-icon {
 .ui.vertical.tabular.menu .item:hover {
     border-right: solid 4px #F5F5F5;
 }
+
+.accordion.ui.styled.fireteams-form-accordion {
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.overview-tabs .ui.tabular.menu .active.item {
+    margin-bottom: 13px;
+}
+
+.ui.segment.stat-card-subheader {
+    margin: 0;
+    height: 100px !important;
+}
+
+/* Mobile only branding */
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+    .accordion.ui.styled.fireteams-form-accordion {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
+
