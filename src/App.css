@@ -103,8 +103,8 @@
         display: none !important;
     }
     .ui.visible.thin.left.sidebar~.pusher {
-        -webkit-transform: translate3d(68px,0,0) !important;
-        transform: translate3d(68px,0,0) !important;
+        -webkit-transform: translate3d(59px,0,0) !important;
+        transform: translate3d(59px,0,0) !important;
     }
 }
 
@@ -117,8 +117,8 @@
 
 /* Other Customizations */
 .ui.visible.thin.left.sidebar~.pusher {
-    -webkit-transform: translate3d(110px,0,0);
-    transform: translate3d(110px,0,0);
+    -webkit-transform: translate3d(101px,0,0);
+    transform: translate3d(101px,0,0);
 }
 
 

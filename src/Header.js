@@ -142,7 +142,7 @@ class Header extends Component {
         return (
             <Sidebar.Pushable as={Segment} style={currentTheme.backgroundImage}>                
                 {/* #2f4454 (dark blue),   */}
-                <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={currentTheme.sidebarColor}>                    
+                <Sidebar as={Menu} className='content-sidebar' animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={currentTheme.sidebarColor}>                    
                     {/* <Menu.Item name='logo' >
                         <Image 
                             src={Logo} 
