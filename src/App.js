@@ -3,6 +3,7 @@ import './App.css';
 import Home from './HomePage.js';
 import Fireteams from './FireteamsPage.js';
 import Profile from './ProfilePage.js';
+import TeamSearch from './TeamSearch.js';
 import Test from './TestPage.js';
 import NotFound from './NotFound.js';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -18,7 +19,7 @@ const App = ({ location }) => {
       <TransitionGroup component="main" className="page-main">
         <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
           <Switch location={location}>
-            <Route path="/" exact component={Test} />
+            <Route path="/" exact component={Home} />
             <Route path="/fireteams" component={Fireteams} />
             <Route path="/profile" component={Profile} />
             <Route path="/test" component={Test} />

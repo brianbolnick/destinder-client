@@ -8,7 +8,7 @@ import {
 import TrialsLogo from './img/trialsofthenine.png';
 
 
-class ProfilePage extends Component {
+class TeamSearchPage extends Component {
     
     state = { activeItem: 'home' }
     
@@ -73,4 +73,4 @@ class ProfilePage extends Component {
     }
 }
   
-export default ProfilePage;
+export default TeamSearchPage;

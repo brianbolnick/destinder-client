@@ -5,6 +5,8 @@ import FireteamsPage from './FireteamsPage.js';
 import ProfilePage from './ProfilePage.js';
 import { Route, Link } from 'react-router-dom';
 import Logo from './img/logo-no-text.png';
+import ArcstriderDark from './img/arcstrider-dark.png';
+import ArcstriderLight from './img/arcstrider-light.png';
 
 const betaPopupContent = {
     render() {
@@ -24,12 +26,12 @@ const betaPopupContent = {
 
 
 const themeStyles = {
-    green: {text: "Green", sidebarColor: {backgroundColor: '#272727'} , iconColor: {color: '#f5f5f5'} , headerBackground: {backgroundColor: '#14a76c'} , heartColor: {color: '#D82B30'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
-    yellow: {text: "Yellow", sidebarColor: {backgroundColor: '#3A3A3B'} , iconColor: {color: '#c5c6c7'} , headerBackground: {backgroundColor: '#F7B831'}, heartColor: {color: '#D82B30'}, labelColor: {color: '#212121', backgroundColor: '#F7B831'}} ,
-    red: {text: "Red", sidebarColor: {backgroundColor: '#212121'}, iconColor: {color: '#f5f5f5'}, headerBackground: {backgroundColor: '#E74C3C'}, heartColor: {color: '#E74C3C'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
-    seaGreen: {text: "Sea Green", sidebarColor: {backgroundColor: '#202933'}, iconColor: {color: '#c5c6c7'}, headerBackground: {backgroundColor: '#49A29D'}, heartColor: {color: '#E74C3C'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
-    blue: {text: "Blue", sidebarColor: {backgroundColor: '#2f4454'}, iconColor: {color: '#c5c6c7'}, headerBackground: {backgroundColor: '#C5C6C7'}, heartColor: {color: '#ff695e'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
-    whiteBlack: {text: "Blue", sidebarColor: {backgroundColor: '#f5f5f5'}, iconColor: {color: '#212121'}, headerBackground: {backgroundColor: '#C5C6C7'}, heartColor: {color: '#ff695e'}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}}
+    green: {text: "Green", sidebarColor: {backgroundColor: '#272727'} , iconColor: {color: '#f5f5f5'} , headerBackground: {backgroundColor: '#14a76c'} , heartColor: {color: '#D82B30'}, backgroundImage: {backgroundImage:  `url(${ArcstriderDark})`}, labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    yellow: {text: "Yellow", sidebarColor: {backgroundColor: '#3A3A3B'} , iconColor: {color: '#c5c6c7'} , headerBackground: {backgroundColor: '#F7B831'}, heartColor: {color: '#D82B30'},  backgroundImage: {backgroundImage:  `url(${ArcstriderDark})`}, labelColor: {color: '#212121', backgroundColor: '#F7B831'}} ,
+    red: {text: "Red", sidebarColor: {backgroundColor: '#212121'}, iconColor: {color: '#f5f5f5'}, headerBackground: {backgroundColor: '#E74C3C'}, heartColor: {color: '#E74C3C'},  backgroundImage: {backgroundImage:  `url(${ArcstriderDark})`},labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    seaGreen: {text: "Sea Green", sidebarColor: {backgroundColor: '#202933'}, iconColor: {color: '#c5c6c7'}, headerBackground: {backgroundColor: '#49A29D'}, heartColor: {color: '#E74C3C'},  backgroundImage: {backgroundImage:  `url(${ArcstriderDark})`},labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    blue: {text: "Blue", sidebarColor: {backgroundColor: '#2f4454'}, iconColor: {color: '#c5c6c7'}, headerBackground: {backgroundColor: '#C5C6C7'}, heartColor: {color: '#ff695e'},  backgroundImage: {backgroundImage:  `url(${ArcstriderDark})`},labelColor: {color: '#212121', backgroundColor: '#F1C42E'}},
+    whiteBlack: {text: "Blue", sidebarColor: {backgroundColor: '#f5f5f5'}, iconColor: {color: '#212121'}, headerBackground: {backgroundColor: '#C5C6C7'}, heartColor: {color: '#ff695e'},  backgroundImage: {backgroundImage:  `url(${ArcstriderDark})`},labelColor: {color: '#212121', backgroundColor: '#F1C42E'}}
 }
 
 class Header extends Component {
@@ -138,7 +140,7 @@ class Header extends Component {
             bottom: '20px'
         }
         return (
-            <Sidebar.Pushable as={Segment}>                
+            <Sidebar.Pushable as={Segment} style={currentTheme.backgroundImage}>                
                 {/* #2f4454 (dark blue),   */}
                 <Sidebar as={Menu} animation='slide along' width='very thin' icon='labeled' visible={visible} vertical inverted compact style={currentTheme.sidebarColor}>                    
                     {/* <Menu.Item name='logo' >
@@ -298,7 +300,7 @@ class Header extends Component {
                     hoverable
                     />
                 </Sidebar>
-                <Sidebar.Pusher>
+                <Sidebar.Pusher >
                     <Button floated='left' onClick={this.toggleVisibility} icon='sidebar' className="menu-icon hide-on-med-and-up" />
                     <Divider className='hide-on-med-and-up header-divider' style={{ marginBottom: '7%' }} hidden/>
                     <Menu compact className='hide-on-mobile' style={{  float: 'right',  marginRight: '10%', backgroundColor: 'transparent', border: 'none', boxShadow: 'none'}}>
