@@ -3,6 +3,7 @@ import './App.css';
 import Home from './HomePage.js';
 import Fireteams from './FireteamsPage.js';
 import Profile from './ProfilePage.js';
+import TeamSearch from './TeamSearch.js';
 import Test from './TestPage.js';
 import NotFound from './NotFound.js';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
