@@ -16,18 +16,21 @@ const playerData = [
                 subclass: 'Sentinel',
                 light_level: '302',
                 emblem: "https://bungie.net//common/destiny2_content/icons/9a74b99143d97a7ccd01b958592b96cb.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/dacfa513281d101aa4dd276a0aacfc0f.jpg"
             },
             {
                 character_type: 'Hunter',
                 subclass: 'Arcstrider',
                 light_level: '301',
                 emblem: "https://bungie.net//common/destiny2_content/icons/9a74b99143d97a7ccd01b958592b96cb.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/dacfa513281d101aa4dd276a0aacfc0f.jpg"
             },
             {
                 character_type: 'Warlock',
                 subclass: 'Dawnblade',
                 light_level: '299',
                 emblem: "https://bungie.net//common/destiny2_content/icons/9a74b99143d97a7ccd01b958592b96cb.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/dacfa513281d101aa4dd276a0aacfc0f.jpg"
             },
         ]
     },
@@ -39,18 +42,21 @@ const playerData = [
                 subclass: 'Sentinel',
                 light_level: '302',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/1f5e4a3cfeaca5fd6465ffd15b81ffa6.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/d3c2e878297ea7e1152e2895ae20cf2c.jpg"
             },
             {
                 character_type: 'Hunter',
                 subclass: 'Arcstrider',
                 light_level: '301',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/1f5e4a3cfeaca5fd6465ffd15b81ffa6.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/d3c2e878297ea7e1152e2895ae20cf2c.jpg"
             },
             {
                 character_type: 'Warlock',
                 subclass: 'Dawnblade',
                 light_level: '299',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/1f5e4a3cfeaca5fd6465ffd15b81ffa6.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/d3c2e878297ea7e1152e2895ae20cf2c.jpg"
             },
         ]
     },
@@ -62,18 +68,21 @@ const playerData = [
                 subclass: 'Sentinel',
                 light_level: '302',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/329b866699d4048e9a8ca8d8861b0277.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/798f5839febe4ad28b42e2c88c94db9d.jpg"
             },
             {
                 character_type: 'Hunter',
                 subclass: 'Arcstrider',
                 light_level: '301',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/329b866699d4048e9a8ca8d8861b0277.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/798f5839febe4ad28b42e2c88c94db9d.jpg"
             },
             {
                 character_type: 'Warlock',
                 subclass: 'Dawnblade',
                 light_level: '299',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/329b866699d4048e9a8ca8d8861b0277.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/798f5839febe4ad28b42e2c88c94db9d.jpg"
             },
         ]
     },
@@ -85,46 +94,33 @@ const playerData = [
                 subclass: 'Sentinel',
                 light_level: '302',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/0a8dfa6d28e2c49068f445613e27a5d5.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/a0dd3e3444de2012b554ea4c8b655da9.jpg"
             },
             {
                 character_type: 'Hunter',
                 subclass: 'Arcstrider',
                 light_level: '301',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/0a8dfa6d28e2c49068f445613e27a5d5.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/a0dd3e3444de2012b554ea4c8b655da9.jpg"
             },
             {
                 character_type: 'Warlock',
                 subclass: 'Dawnblade',
                 light_level: '299',
                 emblem: "https://www.bungie.net/common/destiny2_content/icons/0a8dfa6d28e2c49068f445613e27a5d5.jpg",
+                emblem_background: "https://www.bungie.net/common/destiny2_content/icons/a0dd3e3444de2012b554ea4c8b655da9.jpg"
             },
         ]
     }
 ]
 
 const FireteamPlayerCard = (props) => {
-    
-    
-    // getInitialState : function () {
-    //     return({hidden : "hidden"});
-    // }
-    // componentWillMount : function () {
-    //     var that = this;
-    //     setTimeout(function() {
-    //         that.show();
-    //     }, that.props.wait);
-    // }
-    // show : function () {
-    //     this.setState({hidden : ""});
-    // } 
-    
     return (
-        <div>
-           
-            <Card>                
+        <div>           
+            <Card style={{boxShadow: 'none'}}>                
                 <Card.Content style={{padding: '0' }}>
                     <Card.Header>                    
-                        <Segment>
+                        <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`}}>
                             {props.data.player_name}
                         </Segment>
                     </Card.Header>
@@ -133,12 +129,12 @@ const FireteamPlayerCard = (props) => {
                     
                     <div style={{textAlign: '-webkit-center', position: 'relative',  bottom: '60px'}}>
                         <Segment circular style={{ width: 125, height: 125 }} >
-                        <Header as='h2' style={{color: '#212121' }}>
-                            1.67
-                            <Header.Subheader>
-                            K/D
-                            </Header.Subheader>
-                        </Header>   
+                            <Header as='h2' style={{color: '#212121' }}>
+                                1.67
+                                <Header.Subheader>
+                                K/D
+                                </Header.Subheader>
+                            </Header>   
                         </Segment>
                     </div>
 
@@ -149,10 +145,34 @@ const FireteamPlayerCard = (props) => {
                 </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                <a>
-                    <Icon name='user' />
-                    22 Friends
-                </a>
+                    <Grid textAlign='center' columns='equal' divided>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <Header as='h4' style={{color: '#212121' }}>
+                                    1.67
+                                    <Header.Subheader>
+                                    K/D
+                                    </Header.Subheader>
+                                </Header>   
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Header as='h5' style={{color: '#212121' }}>
+                                    1.67
+                                    <Header.Subheader>
+                                    K/D
+                                    </Header.Subheader>
+                                </Header> 
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Header as='h5' style={{color: '#212121' }}>
+                                    1.67
+                                    <Header.Subheader>
+                                    K/D
+                                    </Header.Subheader>
+                                </Header> 
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                 </Card.Content>
             </Card>
         </div>
