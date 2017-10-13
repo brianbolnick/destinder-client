@@ -114,7 +114,10 @@ img.ui.image.trials-player-icon {
 
 .ui.segment.stat-card-subheader {
     margin: 0;
-    height: 100px !important;
+    height: 65px !important;
+    box-shadow: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .ui.segment.stat-card-header {    
@@ -129,6 +132,14 @@ img.ui.image.trials-player-icon {
 .ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui) {
     margin-top: 0;
 }
+
+.ui.label, .ui.labels .label {
+    font-size: .8em;
+}
+
+/* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
+/* /background: linear-gradient(316deg, #BD97D5 8%, #DACBE3 64%, #E9E6EB 93%, #EDEDED 100%); */
+/* /background: linear-gradient(316deg, #9DCEED 35%, #C0DBED 64%, #E4E9ED 93%, #EDEDED 100%) */
 
 /* Mobile only branding */
 @media only screen and (max-width: 767px) and (min-width: 320px) {
