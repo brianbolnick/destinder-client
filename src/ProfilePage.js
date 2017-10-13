@@ -15,8 +15,20 @@ import Carousel from 'nuka-carousel';
 
 
 const SliderTest = (props) => {
+    var Decorators = [{
+        component: React.createClass({
+          render() {
+            return ( <div/>
+            )
+          }
+        }),
+        position: 'CenterLeft',
+        style: {
+          padding: 20
+        }
+      }];
       return (
-        <Carousel>
+        <Carousel wrapAround={true} decorators={Decorators}>
           {props.slides}
         </Carousel>
       )    
@@ -86,14 +98,14 @@ class ProfilePage extends Component {
         <Layout>
             <div className="profile-page" style={{height: '100vh' }}>
                 <Container>
-                    <div style={{ height: '50px' }} />
+                    <div className='hide-on-mobile' style={{ height: '50px' }} />
                     <div> 
                         <Card className='hide-on-mobile' fluid style={{height: '85vh'}}>
                             <Card.Content style={{ padding: '0'}}>
                                 <Tab grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2}} menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }} panes={sideTabs} />
                             </Card.Content>
                         </Card>
-                        <div className='hide-on-med-and-up' >
+                        <div style={{paddingLeft: '9%'}} className='hide-on-med-and-up' >
                         
                             <SliderTest slides={slides}/>
                         </div>
