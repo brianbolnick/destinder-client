@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Menu, Card, Tab, Segment, Sidebar, Icon, Image, Grid, Transition, Label } from 'semantic-ui-react';
+import { Container, Header, Menu, Card, Tab, Segment, Sidebar, Icon, Image, Grid, Transition, Label, Popup } from 'semantic-ui-react';
 import Layout from './Layout.js';
 import {
     Route,
@@ -140,15 +140,27 @@ const KillChart = (props) => {
     var pointBackgroundColors = [];
     for (var i = 0; i < temp_wins.length; i++) {
         if (temp_wins[i] == 0) {
-            pointBackgroundColors.push("#2ecc71");
+            pointBackgroundColors.push("#f5f5f5");
         } else {
-            pointBackgroundColors.push("#e74c3c");
+            pointBackgroundColors.push("#212121");
         }
     }
 
     const barData = {
         labels: temp_dates,
         datasets: [
+            {
+            label: 'Sales',
+            type:'line',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            fill: false,
+            borderColor: '#eee',
+            borderWidth: 1,
+            backgroundColor: '#EC932F',
+            pointBorderColor: '#212121',
+            pointRadius: 3.5,
+            pointBackgroundColor: pointBackgroundColors
+          },
           {
             label: 'Deaths',
             backgroundColor: '#e74c3c',
@@ -280,7 +292,7 @@ const KillChart = (props) => {
                 gridLines: {
                     display: false
                 },
-                stacked: true,
+                stacked: false,
                 ticks: {                          
                     max: 10,
                     beginAtZero: false                            
@@ -337,7 +349,14 @@ const FireteamPlayerCard = (props) => {
         <div>           
             <Card style={{boxShadow: 'none'}}>                
                 <Card.Content style={{padding: '0' }}>
-                    <Card.Header style={{display: 'none' }}>                    
+                <Popup
+                trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{margin: '0'}}/></Label>  }
+                content='badges and stuff!'
+                position='top right'
+                /> 
+                
+                    <Card.Header  style={{display: 'none' }}>              
+                            
                         <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`}}>
                             {props.data.player_name}
                         </Segment>
@@ -358,10 +377,17 @@ const FireteamPlayerCard = (props) => {
 
                     
                 </Card.Meta>
+                {/* <Popup
+                trigger={<Label as='a' circular color='teal' floating><Icon name="user circle" style={{margin: '0'}}/></Label>}
+                content='badges and stuff!'
+                position='top right'
+                /> */}
+
+                
                 <Card.Description style={{padding: '10px'}}>
                     <div style={{
                         textAlign: 'center',
-                        marginBottom: '3%',
+                        marginBottom: '2%',
                         fontSize: '1.25em',
                         fontWeight: '700',
                     }}>{props.data.player_name}</div>
@@ -372,6 +398,11 @@ const FireteamPlayerCard = (props) => {
                     }}>Sentinel</div>
                     <div style={{padding: '15px'}}>
                         <KillChart key={`${props.data.player_name}${props.data.characters[0].character_type}`} data={props.data.characters[0].recent_games}/>
+                        <div style={{
+                            textAlign: 'center',
+                            fontSize: '0.8em',
+                            fontWeight: '400',
+                        }}>Recent Games K/D Spread</div>
                     </div>
                     <Grid textAlign='center' columns='equal' divided style={{marginTop: '20px', marginBottom: '10px'}}>                        
                         <Grid.Row>
@@ -497,7 +528,8 @@ class ProfilePage extends Component {
             { menuItem: 'Fireteam', render: () => <Tab.Pane><FireteamOverview data={playerData}/></Tab.Pane> }
         ]
         
-        const sideTabs = [{ menuItem:  <Menu.Item style={{ textAlign: 'center', padding: '0', height: '16%', backgroundImage: `url(${TrialsLogo})`, backgroundSize: 'cover', backgroundPosition: 'center'}} key='overview'></Menu.Item>, render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane> }];
+        // const sideTabs = [{ menuItem:  <Menu.Item style={{ textAlign: 'center', padding: '0', height: '16%', backgroundImage: `url(${TrialsLogo})`, backgroundSize: 'cover', backgroundPosition: 'center'}} key='overview'></Menu.Item>, render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane> }];
+        const sideTabs = [{ menuItem:  <Menu.Item style={{ textAlign: 'center', padding: '0', height: '16%', backgroundImage: 'url("https://www.bungie.net/img/theme/destiny/icons/game_modes/allmodes.png")', backgroundSize: 'cover', backgroundPosition: 'center'}} key='overview'></Menu.Item>, render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane> }];
         
         playerData.map(function(object, i) {
             sideTabs.push({ menuItem:  <Menu.Item style={{ textAlign: 'center'}} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab panes={getPlayerCharacters(object)} /></Tab.Pane> })

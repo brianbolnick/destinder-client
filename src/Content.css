@@ -99,7 +99,7 @@ img.ui.image.trials-player-icon {
 }
 
 .ui.vertical.tabular.menu .item:hover {
-    border-right: solid 4px #F5F5F5;
+    border-left: solid 4px #F5F5F5;
 }
 
 .accordion.ui.styled.fireteams-form-accordion {
@@ -135,6 +135,15 @@ img.ui.image.trials-player-icon {
 
 .ui.label, .ui.labels .label {
     font-size: .8em;
+}
+
+.ui.floating.label {
+    top: 7em;
+}
+
+.ui.vertical.tabular.menu .active.item {
+    background-color: transparent;
+    border-left: solid 4px #F5F5F5;
 }
 
 /* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
