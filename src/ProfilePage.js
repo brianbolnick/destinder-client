@@ -125,8 +125,12 @@ const KillChart = (props) => {
     let temp_data = [];
     let temp_wins = [];
     let temp_dates = [];
+    let kills = [];
+    let deaths = [];
 
     props.data.reverse().map( function(object, i) {
+        kills.push(object.kills);
+        deaths.push(object.deaths * -1);
         temp_data.push(object.kd_ratio);
         temp_wins.push(object.standing);
         temp_dates.push(object.game_date);
@@ -143,7 +147,7 @@ const KillChart = (props) => {
     }
 
     const barData = {
-        labels: ['', '', '', '', '', '', ''],
+        labels: temp_dates,
         datasets: [
           {
             label: 'Deaths',
@@ -152,7 +156,7 @@ const KillChart = (props) => {
             borderWidth: 1,
             hoverBackgroundColor: '#e74c3c',
             hoverBorderColor: '#e74c3c',
-            data: [-3, -1, -5, -5, -4, -1, -0]
+            data: deaths
           },
           {
             label: 'Kills',
@@ -161,7 +165,7 @@ const KillChart = (props) => {
             borderWidth: 1,
             hoverBackgroundColor: '#2ecc71',
             hoverBorderColor: '#2ecc71',
-            data: [4, 6, 3, 5, 0, 2, 4]
+            data: kills
           }
         ]
       };
@@ -178,7 +182,8 @@ const KillChart = (props) => {
                 pointBorderColor: "white",
                 pointRadius: 4,
                 borderWidth: 1,
-                showLine: true
+                showLine: true,
+                stack: 'Stack 0'
             },
             {
                 type: 'line',
@@ -189,7 +194,8 @@ const KillChart = (props) => {
                 borderColor: "black",
                 pointRadius: 0,
                 borderWidth: 1,
-                pointHoverRadius: 0
+                pointHoverRadius: 0,
+                stack: 'Stack 0'
             }
         ]
     };
@@ -248,13 +254,15 @@ const KillChart = (props) => {
     const barOptions = {
         responsive: true,
         tooltips: {
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    console.log(temp_dates[tooltipItem.index]);
-                    // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
-                    return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
-                }
-            }
+            mode: 'index',
+            intersect: false,
+            // callbacks: {
+            //     label: function(tooltipItem, data) {
+            //         console.log(temp_dates[tooltipItem.index]);
+            //         // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
+            //         return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
+            //     }
+            // }
         },
         scales: {
             xAxes: [{
@@ -295,8 +303,27 @@ const KillChart = (props) => {
                 top: 0,
                 bottom: 0
             }
+        },
+        plugins: {
+            datalabels: {
+                color: 'white',
+                display: function(context) {
+                    return context.dataset.data[context.dataIndex] > 15;
+                },
+                font: {
+                    weight: 'bold'
+                },
+                formatter: Math.round
+            }
         }
     };
+
+    const plugins = [{
+        afterDraw: (chartInstance, easing) => {
+            const ctx = chartInstance.chart.ctx;
+            ctx.fillText("This text drawn by a plugin", 100, 100);
+        }
+    }];
         
     
     return (
