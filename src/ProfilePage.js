@@ -5,7 +5,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
-import {Line} from 'react-chartjs-2';
+import {Line, Bar} from 'react-chartjs-2';
 import TimeAgo from 'timeago-react';
 import TrialsLogo from './img/trialsofthenine.png';
 
@@ -121,8 +121,6 @@ const playerData = [
 ]
 
 
-
-
 const KillChart = (props) => {
     let temp_data = [];
     let temp_wins = [];
@@ -144,6 +142,29 @@ const KillChart = (props) => {
         }
     }
 
+    const barData = {
+        labels: ['', '', '', '', '', '', ''],
+        datasets: [
+          {
+            label: 'Deaths',
+            backgroundColor: '#e74c3c',
+            borderColor: '#e74c3c',
+            borderWidth: 1,
+            hoverBackgroundColor: '#e74c3c',
+            hoverBorderColor: '#e74c3c',
+            data: [-3, -1, -5, -5, -4, -1, -0]
+          },
+          {
+            label: 'Kills',
+            backgroundColor: '#2ecc71',
+            borderColor: '#2ecc71',
+            borderWidth: 1,
+            hoverBackgroundColor: '#2ecc71',
+            hoverBorderColor: '#2ecc71',
+            data: [4, 6, 3, 5, 0, 2, 4]
+          }
+        ]
+      };
     
     const data = {
         labels: ['', '', '', '', '', '', '', '', '', ''],
@@ -173,59 +194,114 @@ const KillChart = (props) => {
         ]
     };
 
-        const options = {
-            responsive: true,
-            tooltips: {
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        console.log(temp_dates[tooltipItem.index]);
-                        // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
-                        return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
-                    }
-                }
-            },
-            scales: {
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Last 15 Games'
-                    },
-                    gridLines: {
-                        display: false
-                    },
-                    display: false
-                }],
-                yAxes: [{
-                    gridLines: {
-                        display: false
-                    },
-                    ticks: {                          
-                        max: 10,
-                        beginAtZero: false                            
-                    },
-                    display: false
-                }]
-            },
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Recent Games'
-            },
-            layout: {
-                padding: {
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    bottom: 0
+    const options = {
+        responsive: true,
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    console.log(temp_dates[tooltipItem.index]);
+                    // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
+                    return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
                 }
             }
-        };
+        },
+        scales: {
+            xAxes: [{
+                scaleLabel: {
+                    display: false,
+                    labelString: 'Last 15 Games'
+                },
+                gridLines: {
+                    display: false
+                },
+                display: false
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                },
+                ticks: {                          
+                    max: 10,
+                    beginAtZero: false                            
+                },
+                display: false
+            }]
+        },
+        legend: {
+            display: false
+        },
+        title: {
+            display: false,
+            text: 'Recent Games',
+            position: 'bottom'
+        },
+        layout: {
+            padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        }
+    };
+
+    const barOptions = {
+        responsive: true,
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    console.log(temp_dates[tooltipItem.index]);
+                    // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
+                    return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
+                }
+            }
+        },
+        scales: {
+            xAxes: [{
+                scaleLabel: {
+                    display: false,
+                    labelString: 'Last 15 Games'
+                },
+                stacked: true,
+                gridLines: {
+                    display: false
+                },
+                display: false
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                },
+                stacked: true,
+                ticks: {                          
+                    max: 10,
+                    beginAtZero: false                            
+                },
+                display: false
+            }]
+        },
+        legend: {
+            display: false
+        },
+        title: {
+            display: false,
+            text: 'Recent Games',
+            position: 'bottom'
+        },
+        layout: {
+            padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        }
+    };
         
     
     return (
-        <Line key={props.data.key} data={data} options={options}/>
+        // <Line key={props.data.key} data={data} options={options}/>
+        <Bar key={props.data.key} data={barData} options={barOptions}/>
     )
 }
 
@@ -234,16 +310,16 @@ const FireteamPlayerCard = (props) => {
         <div>           
             <Card style={{boxShadow: 'none'}}>                
                 <Card.Content style={{padding: '0' }}>
-                    <Card.Header>                    
+                    <Card.Header style={{display: 'none' }}>                    
                         <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`}}>
                             {props.data.player_name}
                         </Segment>
                     </Card.Header>
-                <Card.Meta style={{height: '150px'}}>
-                    <Segment style={{backgroundColor: '#f7f7f7' }} className='stat-card-subheader'/>                        
+                <Card.Meta style={{height: '150px', marginBottom: '-20px'}}>
+                    <Segment style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`, backgroundSize: 'cover'}} className='stat-card-subheader'/>                        
                     
-                    <div style={{textAlign: '-webkit-center', position: 'relative',  bottom: '60px'}}>
-                        <Segment circular style={{ width: 125, height: 125 }} >
+                    <div style={{textAlign: '-webkit-center', position: 'relative',  bottom: '43px'}}>
+                        <Segment circular style={{ width: 50, height: 50 }} >
                             <Header as='h2' style={{color: '#212121' }}>
                                 1.67
                                 <Header.Subheader>
@@ -256,7 +332,21 @@ const FireteamPlayerCard = (props) => {
                     
                 </Card.Meta>
                 <Card.Description style={{padding: '10px'}}>
-                    <Grid textAlign='center' columns='equal' divided style={{marginBottom: '5px'}}>
+                    <div style={{
+                        textAlign: 'center',
+                        marginBottom: '3%',
+                        fontSize: '1.25em',
+                        fontWeight: '700',
+                    }}>{props.data.player_name}</div>
+                    <div style={{
+                        textAlign: 'center',
+                        fontSize: '1em',
+                        fontWeight: '400',
+                    }}>Sentinel</div>
+                    <div style={{padding: '15px'}}>
+                        <KillChart key={`${props.data.player_name}${props.data.characters[0].character_type}`} data={props.data.characters[0].recent_games}/>
+                    </div>
+                    <Grid textAlign='center' columns='equal' divided style={{marginTop: '20px', marginBottom: '10px'}}>                        
                         <Grid.Row>
                             <Grid.Column>
                                 <Header as='h4' style={{color: '#212121' }}>
@@ -284,11 +374,11 @@ const FireteamPlayerCard = (props) => {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                    <KillChart key={`${props.data.player_name}${props.data.characters[0].character_type}`} data={props.data.characters[0].recent_games}/>
+                    
                 </Card.Description>
                 </Card.Content>
                 <Card.Content extra style={{backgroundColor: '#f7f7f7'}}>
-                    <div>
+                    {/* <div>
                     <Header as='h6' style={{color: '#212121' }}>
                         ACCOUNT BADGES
                     </Header>
@@ -306,7 +396,23 @@ const FireteamPlayerCard = (props) => {
                             <Icon style={{margin: '0'}} name='dollar' />
                         </Label>
                     </Label.Group>
-                    </div>
+                    </div> */}
+                    <Grid  columns='equal'>
+                        <Grid.Row style={{padding: '0' }}>
+                            <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
+                                <Image style={{ borderRadius: '4px'}} bordered src='https://www.bungie.net/common/destiny2_content/icons/f23023062214b6b778c220f3d841a4ce.jpg' />
+                            </Grid.Column>
+                            <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
+                                <Image style={{borderRadius: '4px'}} bordered src='https://www.bungie.net/common/destiny2_content/icons/701304da200d854161358a9ed522daa7.jpg' />
+                            </Grid.Column>
+                            <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
+                                <Image style={{borderRadius: '4px'}} bordered src='https://www.bungie.net/common/destiny2_content/icons/a517910fcae40a77ee3f432456bd81c4.jpg' />
+                            </Grid.Column>
+                            <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
+                                <Image style={{borderRadius: '4px'}} bordered src='https://bungie.net/common/destiny2_content/icons/5e995f3d538bbfdc83f887b11a1f747c.jpg' />
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                 </Card.Content>
             </Card>
         </div>
