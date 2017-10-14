@@ -4,7 +4,7 @@ import KillChart from './charts/KillChart.js';
 
 
 
-const FireteamPlayerCard = (props) => {
+const PlayerStatCard = (props) => {
     const profileContent = (
         <div>
             <Grid centered divided columns={2}>
@@ -125,7 +125,7 @@ const FireteamPlayerCard = (props) => {
                             </Grid.Column>
                             <Grid.Column>
                                 <Header as='h4' style={{color: '#212121' }}>
-                                    89.3%
+                                    89.3
                                     <Header.Subheader>
                                     WIN %
                                     </Header.Subheader>
@@ -160,4 +160,4 @@ const FireteamPlayerCard = (props) => {
     )
 }
 
-export default FireteamPlayerCard;
+export default PlayerStatCard;
