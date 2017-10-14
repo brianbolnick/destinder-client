@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Menu, Icon, Image, Grid, Card, Dropdown, Header, Divider, Input } from 'semantic-ui-react';
+// eslint-disable-next-line 
+import { Container, Menu, Icon, Image, Grid, Card, Dropdown, Header, Input } from 'semantic-ui-react';
 import Typed from 'typed.js';
 import './App.css';
 import './HomePage.css';
@@ -49,6 +50,7 @@ class TypedHeader extends React.Component {
 
 class NavBar extends Component {
     render() {
+        // eslint-disable-next-line 
         const trigger = (
             <span>
               <Image avatar src='https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg' /> Luminusss
@@ -69,14 +71,14 @@ class NavBar extends Component {
                     <Menu.Item>
                         <Input icon='search' placeholder='Search for a player..' />
                     </Menu.Item>                         
-                    <Menu.Item name='user-name'>
+                    {/* <Menu.Item name='user-name'>
                         <Dropdown pointing trigger={trigger} pointing='top left' icon={null} style={{color: '#f5f5f5'}}>
                             <Dropdown.Menu>
                                 <Dropdown.Item as={Link} to='/profile'>Profile</Dropdown.Item>                                
                                 <Dropdown.Item>Logout</Dropdown.Item>                                
                             </Dropdown.Menu>
                         </Dropdown>
-                    </Menu.Item >
+                    </Menu.Item > */}
                 </Menu.Menu>
             </Menu>
         )
@@ -134,6 +136,7 @@ class HomeFirst extends Component {
   }
 }
 
+// eslint-disable-next-line 
 class HomeSecond extends Component {
     render() {
         return (
@@ -248,6 +251,7 @@ class HomeThird extends Component {
 
 class HomeLayout extends Component {
   render() {
+    // eslint-disable-next-line 
     const firstStyle = {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         backgroundImage: `url(${Arcstrider})`,

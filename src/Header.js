@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment, Menu, Icon, Transition, Label, Image, Popup, Button, Divider, Container, Dropdown } from 'semantic-ui-react'
-import HomePage from './HomePage.js';
-import FireteamsPage from './FireteamsPage.js';
-import ProfilePage from './ProfilePage.js';
-import { Route, Link } from 'react-router-dom';
+import { Sidebar, Segment, Menu, Icon, Label, Image, Popup, Button, Divider, Container, Dropdown } from 'semantic-ui-react'
+
+import { Link } from 'react-router-dom';
 import Logo from './img/logo-no-text.png';
 import ArcstriderDark from './img/arcstrider-dark.png';
-import ArcstriderLight from './img/arcstrider-light.png';
+// import ArcstriderLight from './img/arcstrider-light.png';
 
+ // eslint-disable-next-line
 const betaPopupContent = {
     render() {
         return (
@@ -136,9 +135,9 @@ class Header extends Component {
             margin: '0',
             top: 'auto',
             left: '0',
-            top: 'auto',
             bottom: '20px'
         }
+        
         return (
             <Sidebar.Pushable as={Segment} style={currentTheme.backgroundImage}>                
                 {/* #2f4454 (dark blue),   */}

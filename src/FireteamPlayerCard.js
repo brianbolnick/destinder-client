@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Container, Header, Menu, Card, Tab, Segment, Sidebar, Icon, Image, Grid, Transition, Label, Popup } from 'semantic-ui-react';
+import React from 'react';
+import {  Header, Card, Segment,  Icon, Image, Grid, Label, Popup } from 'semantic-ui-react';
 import KillChart from './charts/KillChart.js';
 
 
@@ -8,14 +8,13 @@ const FireteamPlayerCard = (props) => {
         <div>           
             <Card style={{boxShadow: 'none'}}>                
                 <Card.Content style={{padding: '0' }}>
-                <Popup
-                trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{margin: '0'}}/></Label>  }
-                content='badges and stuff!'
-                position='top right'
-                /> 
+                    <Popup
+                    trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{margin: '0'}}/></Label>  }
+                    content='badges and stuff!'
+                    position='top right'
+                    /> 
                 
-                    <Card.Header  style={{display: 'none' }}>              
-                            
+                    <Card.Header  style={{display: 'none' }}>                                          
                         <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`}}>
                             {props.data.player_name}
                         </Segment>

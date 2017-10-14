@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Menu, Segment, Accordion, Icon, Form, Radio, Dropdown, Button } from 'semantic-ui-react';
+import { Container, Accordion, Icon, Form,  Dropdown, Button } from 'semantic-ui-react';
 import Layout from './Layout.js';
 // import {posts} from './data/posts';
-import { Route, Link } from 'react-router-dom';
 import './Content.css';
 
 
@@ -51,7 +50,9 @@ class NewForm extends Component {
 
     render() {
         const { activeIndex } = this.state
+         // eslint-disable-next-line
         const { value } = this.state
+         // eslint-disable-next-line
         const labelStyle = {
             /* display: block; */
             margin: '0 0 .28571429rem 0',
