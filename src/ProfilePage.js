@@ -84,7 +84,13 @@ class ProfilePage extends Component {
          // eslint-disable-next-line
         playerData.map(function(object, i) {
             sideTabs.push({ menuItem:  <Menu.Item style={{ textAlign: 'center'}} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab panes={getPlayerCharacters(object)} /></Tab.Pane> })
-            slides.push(<FireteamPlayerCard key={i} data={object} />);
+            slides.push(
+                <Transition key={i} animation='fly down' duration={3000} transitionOnMount={true}>  
+                    <div>              
+                        <FireteamPlayerCard key={i} data={object} />
+                    </div>
+                </Transition>   
+            );
         }); 
 
         return (
