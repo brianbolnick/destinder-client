@@ -1,5 +1,7 @@
 import React from 'react';
 import {Line, Bar} from 'react-chartjs-2';
+var ta = require('time-ago')();
+
 
 const KillChart = (props) => {
     let temp_data = [];
@@ -13,8 +15,7 @@ const KillChart = (props) => {
         deaths.push(object.deaths * -1);
         temp_data.push(object.kd_ratio);
         temp_wins.push(object.standing);
-        temp_dates.push(object.game_date);
-
+        temp_dates.push(ta.ago(object.game_date));
     });
 
     var pointBackgroundColors = [];
@@ -30,7 +31,7 @@ const KillChart = (props) => {
         labels: temp_dates,
         datasets: [
             {
-            label: 'Sales',
+            label: 'Win/Loss',
             type:'line',
             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             fill: false,
@@ -97,7 +98,8 @@ const KillChart = (props) => {
         tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
-                    console.log(temp_dates[tooltipItem.index]);
+                    // console.log(temp_dates[tooltipItem.index]);
+                    console.log(tooltipItem);
                     // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
                     return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
                 }
@@ -148,13 +150,39 @@ const KillChart = (props) => {
         tooltips: {
             mode: 'index',
             intersect: false,
-            // callbacks: {
-            //     label: function(tooltipItem, data) {
-            //         console.log(temp_dates[tooltipItem.index]);
-            //         // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
-            //         return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
-            //     }
-            // }
+            position: 'nearest',
+            callbacks: {
+                // title: function(tooltipItem, chart) {
+                //     return tooltipItem.xLabel;
+                // },
+                label: function(tooltipItem, data) {
+                    // console.log(temp_dates[tooltipItem.index]);
+                    if (tooltipItem.datasetIndex === 0) {
+                        // console.log("wins");
+                        var k = kills[tooltipItem.index];
+                        var d = deaths[tooltipItem.index];
+                        var kd = Math.abs(parseFloat(k / d).toFixed(2));
+                        if (temp_wins[tooltipItem.index] === 0) {
+                            return "Win (" + kd + " K/D)";                            
+                        } else {
+                            return "Loss (" + kd + " K/D)";
+                        }
+                    } else if (tooltipItem.datasetIndex === 1) {
+                        // console.log("deaths");
+                        return "Deaths: " + Math.abs(tooltipItem.yLabel);
+                    } else {
+                        // console.log("kills");
+                        return "Kills: " + tooltipItem.yLabel;
+                    }
+                    // console.log(tooltipItem);
+                    
+                    // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
+                    
+                },
+                // filter: function (tooltipItem) {
+                //     return tooltipItem.datasetIndex === 0;
+                // }
+            }
         },
         scales: {
             xAxes: [{

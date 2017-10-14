@@ -50,11 +50,17 @@ const FireteamPlayerCard = (props) => {
                         fontSize: '1.25em',
                         fontWeight: '700',
                     }}>{props.data.player_name}</div>
-                    <div style={{
+                    <Popup
+                    trigger={<div style={{
                         textAlign: 'center',
                         fontSize: '1em',
                         fontWeight: '400',
-                    }}>Sentinel</div>
+                        marginBottom: '5%'
+                    }}><Image src={props.data.characters[0].subclass_icon} avatar size='mini'/>{props.data.characters[0].subclass}</div>}
+                    content='Subclass stats!'
+                    position='bottom center'
+                    /> 
+                    
                     <div style={{padding: '15px'}}>
                         <KillChart key={`${props.data.player_name}${props.data.characters[0].character_type}`} data={props.data.characters[0].recent_games}/>
                         <div style={{
@@ -74,7 +80,7 @@ const FireteamPlayerCard = (props) => {
                                 </Header>   
                             </Grid.Column>
                             <Grid.Column>
-                                <Header as='h5' style={{color: '#7198B7' }}>
+                                <Header as='h4' style={{color: '#7198B7' }}>
                                     2315
                                     <Header.Subheader>
                                     ELO
@@ -82,7 +88,7 @@ const FireteamPlayerCard = (props) => {
                                 </Header> 
                             </Grid.Column>
                             <Grid.Column>
-                                <Header as='h5' style={{color: '#212121' }}>
+                                <Header as='h4' style={{color: '#212121' }}>
                                     89.3%
                                     <Header.Subheader>
                                     WIN %

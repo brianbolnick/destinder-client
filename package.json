@@ -16,7 +16,7 @@
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
     "styled-components": "^2.2.0",
-    "timeago-react": "^1.2.2",
+    "time-ago": "^0.1.0",
     "typed.js": "^2.0.6"
   },
   "devDependencies": {
