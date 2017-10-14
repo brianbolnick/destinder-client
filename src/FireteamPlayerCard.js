@@ -1,21 +1,57 @@
-import React, { Component } from 'react';
-import { Container, Header, Menu, Card, Tab, Segment, Sidebar, Icon, Image, Grid, Transition, Label, Popup } from 'semantic-ui-react';
+import React from 'react';
+import {  Header, Card, Segment,  Icon, Image, Grid, Label, Popup, Button, Rating, Divider } from 'semantic-ui-react';
 import KillChart from './charts/KillChart.js';
 
 
+
 const FireteamPlayerCard = (props) => {
+    const profileContent = (
+        <div>
+            <Grid centered divided columns={2}>
+                <Grid.Column textAlign='center'>
+                    <div>
+                        <Header as='h6' style={{color: '#212121' }}>
+                            ACCOUNT BADGES
+                        </Header>
+                        <Label.Group>
+                            <Label  style={{backgroundColor: '#212121', color: '#f5f5f5' }}>
+                                <Icon  name='wizard' /> ARCHITECT
+                            </Label>
+                            <Label  style={{backgroundColor: '#2ecc71',color: '#f5f5f5' }}>
+                                <Icon  name='dollar' /> DONATOR
+                            </Label>
+                            <Label  style={{backgroundColor: '#1DA1F2', color: '#f5f5f5' }}>
+                                <Icon name='users' /> FOLLOWER
+                            </Label>
+                            <Label  style={{backgroundColor: '#026670', color: '#f5f5f5' }}>
+                                <Icon name='dollar' /> VETERAN
+                            </Label>
+                        </Label.Group>
+                    </div> 
+                </Grid.Column>
+                <Grid.Column textAlign='center'>
+                    <Header as='h6'>REPUTATION</Header>                      
+                    <Rating icon='star' defaultRating={3.5} maxRating={5} />   
+                    <Divider hidden style={{margin: '0'}}/>               
+                    <Button>Go to Profile</Button>
+                </Grid.Column>
+            </Grid>
+        </div>
+    )
+
     return (
         <div>           
             <Card style={{boxShadow: 'none'}}>                
                 <Card.Content style={{padding: '0' }}>
-                <Popup
-                trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{margin: '0'}}/></Label>  }
-                content='badges and stuff!'
-                position='top right'
-                /> 
+                    <Popup
+                    trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{margin: '0'}}/></Label>  }
+                    content={profileContent}
+                    position='bottom center'
+                    hoverable
+                    flowing
+                    /> 
                 
-                    <Card.Header  style={{display: 'none' }}>              
-                            
+                    <Card.Header  style={{display: 'none' }}>                                          
                         <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`}}>
                             {props.data.player_name}
                         </Segment>
@@ -101,25 +137,7 @@ const FireteamPlayerCard = (props) => {
                 </Card.Description>
                 </Card.Content>
                 <Card.Content extra style={{backgroundColor: '#f7f7f7'}}>
-                    {/* <div>
-                    <Header as='h6' style={{color: '#212121' }}>
-                        ACCOUNT BADGES
-                    </Header>
-                    <Label.Group>
-                        <Label  style={{backgroundColor: '#212121', color: '#f5f5f5' }}>
-                            <Icon style={{margin: '0'}} name='wizard' />
-                        </Label>
-                        <Label  style={{backgroundColor: '#2ecc71',color: '#f5f5f5' }}>
-                            <Icon style={{margin: '0'}} name='dollar' />
-                        </Label>
-                        <Label  style={{backgroundColor: '#1DA1F2', color: '#f5f5f5' }}>
-                            <Icon style={{margin: '0'}} name='users' />
-                        </Label>
-                        <Label  style={{backgroundColor: '#026670', color: '#f5f5f5' }}>
-                            <Icon style={{margin: '0'}} name='dollar' />
-                        </Label>
-                    </Label.Group>
-                    </div> */}
+                    
                     <Grid  columns='equal'>
                         <Grid.Row style={{padding: '0' }}>
                             <Grid.Column style={{padding: '5px 4px 7px 4px' }}>

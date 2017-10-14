@@ -1,4 +1,5 @@
 import React from 'react';
+ // eslint-disable-next-line
 import {Line, Bar} from 'react-chartjs-2';
 var ta = require('time-ago')();
 
@@ -9,7 +10,7 @@ const KillChart = (props) => {
     let temp_dates = [];
     let kills = [];
     let deaths = [];
-
+ // eslint-disable-next-line
     props.data.reverse().map( function(object, i) {
         kills.push(object.kills);
         deaths.push(object.deaths * -1);
@@ -62,7 +63,7 @@ const KillChart = (props) => {
           }
         ]
       };
-    
+     // eslint-disable-next-line
     const data = {
         labels: ['', '', '', '', '', '', '', '', '', ''],
         datasets: [{
@@ -93,6 +94,7 @@ const KillChart = (props) => {
         ]
     };
 
+     // eslint-disable-next-line
     const options = {
         responsive: true,
         tooltips: {
@@ -237,7 +239,7 @@ const KillChart = (props) => {
             }
         }
     };
-
+     // eslint-disable-next-line
     const plugins = [{
         afterDraw: (chartInstance, easing) => {
             const ctx = chartInstance.chart.ctx;

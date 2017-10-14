@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
 import Sentinel from '../img/sentinel-icon.png'
 import Striker from '../img/striker-icon.png'
-import Sunbreaker from '../img/sunbreaker-icon.png'
-import Nightstalker from '../img/nightstalker-icon.png'
+
+// import Sunbreaker from '../img/sunbreaker-icon.png'
+// import Nightstalker from '../img/nightstalker-icon.png'
 import Arcstrider from '../img/arcstrider-icon.png'
-import Gunslinger from '../img/gunslinger-icon.png'
-import Voidwalker from '../img/voidwalker-icon.png'
+// import Gunslinger from '../img/gunslinger-icon.png'
+// import Voidwalker from '../img/voidwalker-icon.png'
 import Dawnblade from '../img/dawnblade-icon.png'
-import Stormcaller from '../img/stormcaller-icon.png'
+// import Stormcaller from '../img/stormcaller-icon.png'
 
 const playerData = [
     {
