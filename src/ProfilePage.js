@@ -6,7 +6,6 @@ import {
     Link
 } from 'react-router-dom';
 import {Line, Bar} from 'react-chartjs-2';
-import TimeAgo from 'timeago-react';
 import TrialsLogo from './img/trialsofthenine.png';
 import KillChart from './charts/KillChart.js';
 import FireteamPlayerCard from './FireteamPlayerCard.js';
