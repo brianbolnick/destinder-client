@@ -146,6 +146,19 @@ img.ui.image.trials-player-icon {
     border-left: solid 4px #F5F5F5;
 }
 
+.player-tabs .ui.tabular.menu  a.item {
+    margin-bottom: 13px;
+}
+
+.player-tabs .ui.tabular.menu .active.item {
+    margin-bottom: 13px;
+}
+
+.ui.bottom.attached.segment.active.tab {
+    background-image: url('./img/abstract-background.png');
+    background-position-y: -165px;
+    background-position-x: -60px;
+}
 /* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #BD97D5 8%, #DACBE3 64%, #E9E6EB 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #9DCEED 35%, #C0DBED 64%, #E4E9ED 93%, #EDEDED 100%) */

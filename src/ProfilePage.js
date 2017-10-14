@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Container, Menu, Card, Tab, Image, Grid, Transition,  } from 'semantic-ui-react';
 import Layout from './Layout.js';
 import createReactClass from 'create-react-class';
-import FireteamPlayerCard from './FireteamPlayerCard.js';
+import PlayerStatCard from './PlayerStatCard.js';
 import playerData from './data/TempPlayerData.js';
 import Carousel from 'nuka-carousel';
+import PlayerOverview from './PlayerOverview.js';
+import CardBackground from './img/abstract-background.png';
 
 const OverviewSlides = (props) => {
     var Decorators = [{
@@ -31,7 +33,7 @@ const FireteamOverview = (props) => {
         return (
             <Transition key={i} animation='fly down' duration={1000 + (i * 1000)} transitionOnMount={true}>
                 <Grid.Column style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}>
-                    <FireteamPlayerCard key={i} data={object} />
+                    <PlayerStatCard key={i} data={object} />
                 </Grid.Column>
             </Transition>
             
@@ -49,14 +51,7 @@ const FireteamOverview = (props) => {
     )
 }
 
-const PlayerCharacterData = (props) => {
-    // console.log(props);
-    return (
-        <div>
-            {props.data.player_name}
-        </div>
-    )
-}
+
 
 class ProfilePage extends Component {
     
@@ -69,7 +64,7 @@ class ProfilePage extends Component {
             var chars = [];
              // eslint-disable-next-line
             props.characters.map(function(object, i) {
-                chars.push({ menuItem: `${object.character_type}`, render: () => <Tab.Pane><PlayerCharacterData data={props}/></Tab.Pane> })            
+                chars.push({ menuItem: `${object.character_type}`, render: () => <Tab.Pane><PlayerOverview data={props}/></Tab.Pane> })            
             });
             return chars;
         };
@@ -83,11 +78,11 @@ class ProfilePage extends Component {
         const slides = [];
          // eslint-disable-next-line
         playerData.map(function(object, i) {
-            sideTabs.push({ menuItem:  <Menu.Item style={{ textAlign: 'center'}} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab panes={getPlayerCharacters(object)} /></Tab.Pane> })
+            sideTabs.push({ menuItem:  <Menu.Item style={{ textAlign: 'center'}} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab className='player-tabs' panes={getPlayerCharacters(object)} /></Tab.Pane> })
             slides.push(
                 <Transition key={i} animation='fly down' duration={3000} transitionOnMount={true}>  
                     <div>              
-                        <FireteamPlayerCard key={i} data={object} />
+                        <PlayerStatCard key={i} data={object} />
                     </div>
                 </Transition>   
             );
@@ -100,7 +95,7 @@ class ProfilePage extends Component {
                         <div className='hide-on-mobile' style={{ height: '50px' }} />
                         <div> 
                             <Card className='hide-on-mobile' fluid style={{height: '85vh'}}>
-                                <Card.Content style={{ padding: '0'}}>
+                                <Card.Content style={{ padding: '0', backgroundImage: `url(${CardBackground}`, backgroundSize: 'cover'}}>
                                     <Tab grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2}} menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }} panes={sideTabs} />
                                 </Card.Content>
                             </Card>
