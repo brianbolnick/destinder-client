@@ -41,7 +41,7 @@ const PlayerOverview = (props) => {
              <div style={{marginLeft: '2%', marginRight: '2%'  }}>             
                 <Grid centered stretched verticalAlign='middle' columns={2} style={{height: '80vh' }}>
                     <Grid.Column width={4}>
-                        <PlayerStatCard data={props.data} />
+                        <PlayerStatCard player_name={props.player_name} data={props.data} />
                     </Grid.Column>
                     <Grid.Column width={12} style={{height: '77vh',     width: '100%' }}>
                         <StatsCard data={props.data}/>

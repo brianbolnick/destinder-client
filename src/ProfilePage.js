@@ -30,10 +30,11 @@ const OverviewSlides = (props) => {
 
 const FireteamOverview = (props) => {
     const columns = props.data.map(function(object, i) {
+        // console.log(object);
         return (
             <Transition key={i} animation='fly down' duration={1000 + (i * 1000)} transitionOnMount={true}>
                 <Grid.Column style={{paddingLeft: '0.5rem', paddingRight: '0.5rem'}}>
-                    <PlayerStatCard key={i} data={object} />
+                    <PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} />
                 </Grid.Column>
             </Transition>
             
@@ -64,7 +65,7 @@ class ProfilePage extends Component {
             var chars = [];
              // eslint-disable-next-line
             props.characters.map(function(object, i) {
-                chars.push({ menuItem: `${object.character_type}`, render: () => <Tab.Pane><PlayerOverview data={props}/></Tab.Pane> })            
+                chars.push({ menuItem: `${object.character_type}`, render: () => <Tab.Pane><PlayerOverview player_name={props.player_name} data={object}/></Tab.Pane> })            
             });
             return chars;
         };
@@ -82,7 +83,7 @@ class ProfilePage extends Component {
             slides.push(
                 <Transition key={i} animation='fly down' duration={3000} transitionOnMount={true}>  
                     <div>              
-                        <PlayerStatCard key={i} data={object} />
+                        {<PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} />}
                     </div>
                 </Transition>   
             );
