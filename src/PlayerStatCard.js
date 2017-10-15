@@ -5,9 +5,8 @@ import KillChart from './charts/KillChart.js';
 
 
 const PlayerStatCard = (props) => {
-    if (props.data.recent_games == null) {
-        console.log(props.data);
-    }
+    
+    // console.log(props.data.stats[0]);
     // console.log("recent games: " + props.data.recent_games);
     const profileContent = (
         <div>
@@ -66,7 +65,7 @@ const PlayerStatCard = (props) => {
                     <div style={{textAlign: '-webkit-center', position: 'relative',  bottom: '43px'}}>
                         <Segment circular style={{ width: 50, height: 50 }} >
                             <Header as='h2' style={{color: '#212121' }}>
-                                1.67
+                                {props.data.stats[0].kd_ratio}
                                 <Header.Subheader>
                                 K/D
                                 </Header.Subheader>
@@ -89,7 +88,7 @@ const PlayerStatCard = (props) => {
                         marginBottom: '2%',
                         fontSize: '1.25em',
                         fontWeight: '700',
-                    }}>{props.data.player_name}</div>
+                    }}>{props.player_name}</div>
                     <Popup
                     trigger={<div style={{
                         textAlign: 'center',
@@ -113,7 +112,7 @@ const PlayerStatCard = (props) => {
                         <Grid.Row>
                             <Grid.Column>
                                 <Header as='h4' style={{color: '#212121' }}>
-                                    2.05
+                                    {props.data.stats[0].kad_ratio}
                                     <Header.Subheader>
                                     KA/D
                                     </Header.Subheader>
@@ -121,7 +120,7 @@ const PlayerStatCard = (props) => {
                             </Grid.Column>
                             <Grid.Column>
                                 <Header as='h4' style={{color: '#7198B7' }}>
-                                    2315
+                                    {props.data.stats[0].elo.value}
                                     <Header.Subheader>
                                     ELO
                                     </Header.Subheader>
@@ -129,7 +128,7 @@ const PlayerStatCard = (props) => {
                             </Grid.Column>
                             <Grid.Column>
                                 <Header as='h4' style={{color: '#212121' }}>
-                                    89.3
+                                    {props.data.stats[0].win_rate}
                                     <Header.Subheader>
                                     WIN %
                                     </Header.Subheader>
