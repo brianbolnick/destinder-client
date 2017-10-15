@@ -5,6 +5,10 @@ import KillChart from './charts/KillChart.js';
 
 
 const PlayerStatCard = (props) => {
+    if (props.data.recent_games == null) {
+        console.log(props.data);
+    }
+    // console.log("recent games: " + props.data.recent_games);
     const profileContent = (
         <div>
             <Grid centered divided columns={2}>
@@ -52,12 +56,12 @@ const PlayerStatCard = (props) => {
                     /> 
                 
                     <Card.Header  style={{display: 'none' }}>                                          
-                        <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`}}>
+                        <Segment className='stat-card-header' style={{backgroundImage: `url(${props.data.emblem_background})`}}>
                             {props.data.player_name}
                         </Segment>
                     </Card.Header>
                 <Card.Meta style={{height: '150px', marginBottom: '-20px'}}>
-                    <Segment style={{backgroundImage: `url(${props.data.characters[0].emblem_background})`, backgroundSize: 'cover'}} className='stat-card-subheader'/>                        
+                    <Segment style={{backgroundImage: `url(${props.data.emblem_background})`, backgroundSize: 'cover'}} className='stat-card-subheader'/>                        
                     
                     <div style={{textAlign: '-webkit-center', position: 'relative',  bottom: '43px'}}>
                         <Segment circular style={{ width: 50, height: 50 }} >
@@ -92,13 +96,13 @@ const PlayerStatCard = (props) => {
                         fontSize: '1em',
                         fontWeight: '400',
                         marginBottom: '5%'
-                    }}><Image src={props.data.characters[0].subclass_icon} avatar size='mini'/>{props.data.characters[0].subclass}</div>}
+                    }}><Image src={props.data.subclass_icon} avatar size='mini'/>{props.data.subclass}</div>}
                     content='Subclass stats!'
                     position='bottom center'
                     /> 
                     
                     <div style={{padding: '15px'}}>
-                        <KillChart key={`${props.data.player_name}${props.data.characters[0].character_type}`} data={props.data.characters[0].recent_games}/>
+                        {<KillChart key={`${props.data.player_name}${props.data.character_type}`} data={props.data.recent_games}/>}
                         <div style={{
                             textAlign: 'center',
                             fontSize: '0.8em',
