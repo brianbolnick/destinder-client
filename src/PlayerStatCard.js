@@ -5,9 +5,14 @@ import KillChart from './charts/KillChart.js';
 
 
 const PlayerStatCard = (props) => {
-    
-    // console.log(props.data.stats[0]);
-    // console.log("recent games: " + props.data.recent_games);
+    var exotic = props.data.items[0].helmet;
+
+    for (var key in props.data.items[0]) {
+        if (props.data.items[0][key].item_tier == "Exotic") {
+            exotic = props.data.items[0][key];
+        }
+    }
+
     const profileContent = (
         <div>
             <Grid centered divided columns={2}>
@@ -74,14 +79,7 @@ const PlayerStatCard = (props) => {
                     </div>
 
                     
-                </Card.Meta>
-                {/* <Popup
-                trigger={<Label as='a' circular color='teal' floating><Icon name="user circle" style={{margin: '0'}}/></Label>}
-                content='badges and stuff!'
-                position='top right'
-                /> */}
-
-                
+                </Card.Meta>                
                 <Card.Description style={{padding: '10px'}}>
                     <div style={{
                         textAlign: 'center',
@@ -143,17 +141,37 @@ const PlayerStatCard = (props) => {
                     
                     <Grid  columns='equal'>
                         <Grid.Row style={{padding: '0' }}>
-                            <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
-                                <Image style={{ borderRadius: '4px'}} bordered src='https://www.bungie.net/common/destiny2_content/icons/f23023062214b6b778c220f3d841a4ce.jpg' />
+                            <Grid.Column style={{padding: '5px 4px 7px 4px' }}>                                
+                                <Popup
+                                trigger={<Image style={{ borderRadius: '4px'}} bordered src={props.data.items[0].primary_weapon_1.item_icon} />}
+                                content={props.data.items[0].primary_weapon_1.item_name}
+                                header="Primary 1"
+                                position='top center'
+                                /> 
                             </Grid.Column>
                             <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
-                                <Image style={{borderRadius: '4px'}} bordered src='https://www.bungie.net/common/destiny2_content/icons/701304da200d854161358a9ed522daa7.jpg' />
+                            <Popup
+                                trigger={<Image style={{ borderRadius: '4px'}} bordered src={props.data.items[0].primary_weapon_2.item_icon} />}
+                                content={props.data.items[0].primary_weapon_2.item_name}
+                                header="Primary 2"
+                                position='top center'
+                                /> 
                             </Grid.Column>
                             <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
-                                <Image style={{borderRadius: '4px'}} bordered src='https://www.bungie.net/common/destiny2_content/icons/a517910fcae40a77ee3f432456bd81c4.jpg' />
+                            <Popup
+                                trigger={<Image style={{ borderRadius: '4px'}} bordered src={props.data.items[0].power_weapon.item_icon} />}
+                                content={props.data.items[0].power_weapon.item_name}
+                                header="Power"
+                                position='top center'
+                                /> 
                             </Grid.Column>
                             <Grid.Column style={{padding: '5px 4px 7px 4px' }}>
-                                <Image style={{borderRadius: '4px'}} bordered src='https://bungie.net/common/destiny2_content/icons/5e995f3d538bbfdc83f887b11a1f747c.jpg' />
+                            <Popup
+                                trigger={<Image style={{ borderRadius: '4px'}} bordered src={exotic.item_icon} />}
+                                content={exotic.item_name}
+                                header={exotic.item_type}
+                                position='top center'
+                                /> 
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
