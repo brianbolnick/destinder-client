@@ -5,6 +5,28 @@ import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';
 import playerData from './data/TempPlayerData.js';
 
+const StatsCard = props => {
+  return (
+    <Card>
+      <Grid
+        centered
+        stretched
+        verticalAlign="middle"
+        style={{ height: "77vh" }}
+      >
+        <Grid.Row>
+          <Grid.Column>STUFF</Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>STUFF</Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>STUFF</Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Card>
+  );
+};
 
 const StatsCard = (props) => {
     return (
