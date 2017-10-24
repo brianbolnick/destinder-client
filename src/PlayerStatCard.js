@@ -8,7 +8,7 @@ const PlayerStatCard = (props) => {
     var exotic = props.data.items[0].helmet;
 
     for (var key in props.data.items[0]) {
-        if (props.data.items[0][key].item_tier == "Exotic") {
+        if (props.data.items[0][key].item_tier === "Exotic") {
             exotic = props.data.items[0][key];
         }
     }
