@@ -155,9 +155,9 @@ img.ui.image.trials-player-icon {
 }
 
 .ui.bottom.attached.segment.active.tab {
-    background-image: url('./img/abstract-background.png');
+    /* background-image: url('./img/abstract-background.png');
     background-position-y: -165px;
-    background-position-x: -60px;
+    background-position-x: -60px; */
 }
 /* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #BD97D5 8%, #DACBE3 64%, #E9E6EB 93%, #EDEDED 100%); */
