@@ -27,16 +27,25 @@
     color: #f5f5f5;
 }
 
+.ui.two.column.grid {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: relative;
+    top: 260px;
+    right: 50px;
+}
+
 a.ui.card.home-tile-card {
     min-width: 200px;
     min-height: 200px;
     max-width: 200px;
     max-height: 200px;
-    -webkit-transform: rotate(+45deg);
+    /* -webkit-transform: rotate(+45deg);
     -moz-transform: rotate(+45deg);
     -ms-transform: rotate(+45deg);
     -o-transform: rotate(+45deg);
-    transform: rotate(+45deg);
+    transform: rotate(+45deg); */
 
     box-shadow: 0 0 1px transparent;
     -webkit-transition-duration: 0.3s;
@@ -57,10 +66,10 @@ a.ui.card.home-tile-card {
 a.ui.card.home-tile-card:hover {
     background-color: transparent;
     border: silver solid 1px;
-    -webkit-transform: translateY(+45deg);
+    /* -webkit-transform: translateY(+45deg);
     -ms-transform: translateY(+45deg);
     transform: rotate(+45deg) scale(1.1);
-    transform: rotate(+45deg);
+    transform: rotate(+45deg); */
     box-shadow: 0 0 15px #f5f5f5;
     text-shadow: 0 0 15px #f5f5f5;
     
@@ -89,6 +98,11 @@ a.ui.card.home-tile-card:hover {
     -moz-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     -o-transform: rotate(-45deg); 
+}
+
+
+.ui.column.grid>[class*="three wide computer"].column, .ui.grid>.column.row>[class*="three wide computer"].column, .ui.grid>.row>[class*="three wide computer"].column, .ui.grid>[class*="three wide computer"].column {
+    width: 20%!important;
 }
 
 .home-tile-icon.i {
@@ -138,6 +152,12 @@ i.massive.icon, i.massive.icons {
     transition-duration: 0.5s;
 }
 
+.ui.text.menu {
+    margin-top: 0;
+    position: relative;
+    bottom: 37px;
+}
+
 /* Mobile Theming */
 @media only screen and (max-width: 767px) and (min-width: 320px) {
     a.ui.card.home-tile-card {
@@ -145,8 +165,38 @@ i.massive.icon, i.massive.icons {
         min-height: 130px;
         max-width: 130px;
         max-height: 130px;
-        margin-top: -5%;
+        margin-top: 10%;
         margin-left: 10%;
+    }
+
+    .ui.two.column.grid {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: relative;
+        top: -30px;
+        left: 23px;
+    }
+
+    .row.row2 {
+        margin-top: -19px;
+    }
+
+    .row.row1 {
+        margin-bottom: -10px;
+    }
+
+    .ui.text.menu {
+        position: relative;
+        bottom: 100px;
+    }
+
+    /* .ui.column.grid>[class*="three wide computer"].column, .ui.grid>.column.row>[class*="three wide computer"].column, .ui.grid>.row>[class*="three wide computer"].column, .ui.grid>[class*="three wide computer"].column {
+        width: 40%!important;
+    } */
+
+    .three.wide.computer.eight.wide.mobile.column {
+        width: 36% !important;
     }
 
     .home-tile-icon.i {

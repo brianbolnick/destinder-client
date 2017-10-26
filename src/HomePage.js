@@ -65,13 +65,13 @@ class HomeFirst extends Component {
         </Menu>
 
         <Grid columns={2}>
-          <Grid.Row>
-            <Grid.Column mobile={8} computer={4}>
+          <Grid.Row className='row1'>
+            <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
                 to="/profile"
                 className="home-tile-card"
-                style={{ marginTop: "15%", marginBottom: "15%" }}
+                
               >
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
@@ -86,12 +86,12 @@ class HomeFirst extends Component {
               </Card>
             </Grid.Column>
 
-            <Grid.Column mobile={8} computer={4}>
+            <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
                 to="/fireteams"
                 className="home-tile-card row2-1"
-                style={{ marginTop: "15%", marginBottom: "15%" }}
+                
               >
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
@@ -106,13 +106,13 @@ class HomeFirst extends Component {
               </Card>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            <Grid.Column mobile={8} computer={4}>
+          <Grid.Row className='row2'>
+            <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
                 to="/team-search"
                 className="home-tile-card row2-2"
-                style={{ marginTop: "8%" }}
+                
               >
                 <div className="home-tile-content row2">
                   <div className="home-tile-icon">
@@ -129,12 +129,12 @@ class HomeFirst extends Component {
                 </div>
               </Card>
             </Grid.Column>
-            <Grid.Column mobile={8} computer={4}>
+            <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
                 to="/player-search"
                 className="home-tile-card"
-                style={{ marginTop: "8%" }}
+               
               >
                 <div className="home-tile-content row2">
                   <div className="home-tile-icon">
