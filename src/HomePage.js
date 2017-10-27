@@ -64,7 +64,7 @@ class HomeFirst extends Component {
           </Menu.Menu>
         </Menu>
 
-        <Grid columns={2}>
+        <Grid columns={2} className="home-columns">
           <Grid.Row className='row1'>
             <Grid.Column mobile={8} computer={3}>
               <Card

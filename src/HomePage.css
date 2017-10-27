@@ -27,7 +27,7 @@
     color: #f5f5f5;
 }
 
-.ui.two.column.grid {
+.ui.two.column.grid.home-columns {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -169,7 +169,7 @@ i.massive.icon, i.massive.icons {
         margin-left: 10%;
     }
 
-    .ui.two.column.grid {
+    .ui.two.column.grid.home-columns {
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
