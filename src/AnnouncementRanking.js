@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react'
 
 const AnnouncementRanking = () => (
   <div>
-    <Button
+    <Button  
       color='red'
       content='Like'
       icon='heart'

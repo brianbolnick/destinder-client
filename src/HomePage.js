@@ -10,6 +10,7 @@ import Arcstrider from "./img/arcstrider.png";
 import Logo from "./img/logo-with-title-word-black.png";
 import AnnouncementLogo from "./img/announce-with-title-word-white.png";
 import AnnouncementTable from './AnnouncementTable.js';
+import AnnouncementCard from './AnnouncementCard.js'
 
 
 // class TypedHeader extends React.Component {
@@ -179,12 +180,14 @@ class HomeSecond extends Component {
           <Image src={AnnouncementLogo} size="large" />
           {/* <p>LFG for the <span><TypedHeader/></span></p> */}
         </div>
+      <br />
+      <br />
 
-        <Grid columns={1}>
+        <Grid columns={4}>
           <Grid.Row>
-            <Grid.Column width={16}>
+            <Grid.Column width={4}>
               <div style={{ textAlign: "right" }}>
-                <AnnouncementTable />
+                <AnnouncementCard />
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -194,7 +197,7 @@ class HomeSecond extends Component {
         <Grid columns={1}>
           <Grid.Row>
             <Grid.Column width={16}>
-              <div style={{ textAlign: "right" }}>
+              <div style={{ textAlign: "center" }}>
                 <Icon
                   name="angle up"
                   size="huge"
