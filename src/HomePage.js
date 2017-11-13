@@ -200,9 +200,7 @@ class HomeSecond extends Component {
 class HomeLayout extends Component {
   render() {
     const firstStyle = {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+
       backgroundImage: `url(${Arcstrider})`,
       backgroundSize: "cover"
     };
