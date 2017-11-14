@@ -155,6 +155,121 @@ i.massive.icon, i.massive.icons {
 
 .ui.text.menu {
     margin-top: 0;
+    margin-bottom: 7%;
+}
+
+
+.first-layer-home {
+    background-image: url(./img/voidwalker.png);
+    background-size: cover !important;
+}
+
+.three.wide.computer.eight.wide.mobile.column {
+    width: 223px !important;
+}
+
+/* Tablet Theming */
+@media only screen and (min-width: 768px) and (max-width: 960px) {
+    /* a.ui.card.home-tile-card {
+        min-width: 130px;
+        min-height: 130px;
+        max-width: 130px;
+        max-height: 130px;
+        margin-top: 10%;
+        margin-left: 10%;
+    } */
+
+    .first-layer-home {
+        background-image: url(./img/voidwalker.png);        
+        background-size: cover !important;
+        background-position-x: -325px;
+    }
+
+    .ui.container.home-first-container {
+        position: relative;
+        top: 110px;
+    }
+
+    .ui.two.column.grid.home-columns {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: relative;
+        top: -30px;
+        left: 30px;
+    }
+
+    .row.row2 {
+        margin-top: -19px;
+    }
+
+    .row.row1 {
+        margin-bottom: 13px;
+    }
+
+    .ui.text.menu {
+        position: relative;
+        bottom: 100px;
+        margin-top: 0;
+        margin-bottom: 16%;
+    }
+
+    /* .ui.column.grid>[class*="three wide computer"].column, .ui.grid>.column.row>[class*="three wide computer"].column, .ui.grid>.row>[class*="three wide computer"].column, .ui.grid>[class*="three wide computer"].column {
+        width: 40%!important;
+    } */
+
+
+
+    .home-tile-icon.i {
+        display: inline-block;
+        vertical-align: text-top !important;    
+        font-size:  5em !important;
+    }
+
+    /* .home-tile-icon {        
+        color: #f5f5f5;    
+        height: 70px;
+        text-align: center;
+        line-height: 60px;
+    } */
+/* 
+    .home-tile-text {
+        color: #f5f5f5;
+        font-size: 1.5em;
+        font-weight: 200;
+    } */
+
+    /* .header.home-tile-text-header {
+        color: #f5f5f5 !important;
+        text-align: center;
+        font-weight: 300;
+        font-size: 1.5em;       
+    } */
+
+    /* .description.home-tile-text-body {
+        color: #c1c1c1 !important;
+        text-align: center;
+    } */
+
+    /* i.massive.icon, i.massive.icons {
+        line-height: 1;
+        vertical-align: middle;
+        font-size: 3em;
+    } */
+
+    /* .home-tile-content {
+        margin: 4px 32px 0px 0px;
+    } */
+    /* .home-tile-content.row2 {
+        margin: 0 0px 0 -32px;
+    }
+
+    a.ui.card.home-tile-card.row2-1 {
+        margin-top: 10%;
+    }
+    a.ui.card.home-tile-card.row2-2 {
+        margin-top: 10%;
+    } */
 }
 
 /* Mobile Theming */
@@ -166,6 +281,17 @@ i.massive.icon, i.massive.icons {
         max-height: 130px;
         margin-top: 10%;
         margin-left: 10%;
+    }
+
+    .first-layer-home {
+        background-image: url(./img/striker.png);        
+        background-size: cover !important;
+        background-position-x: -585px;
+    }
+
+    .ui.container.home-first-container {
+        position: relative;
+        top: 110px;
     }
 
     .ui.two.column.grid.home-columns {
@@ -188,6 +314,8 @@ i.massive.icon, i.massive.icons {
     .ui.text.menu {
         position: relative;
         bottom: 100px;
+        margin-top: 0;
+        margin-bottom: 16%;
     }
 
     /* .ui.column.grid>[class*="three wide computer"].column, .ui.grid>.column.row>[class*="three wide computer"].column, .ui.grid>.row>[class*="three wide computer"].column, .ui.grid>[class*="three wide computer"].column {
@@ -195,7 +323,7 @@ i.massive.icon, i.massive.icons {
     } */
 
     .three.wide.computer.eight.wide.mobile.column {
-        width: 36% !important;
+        width: 142px !important;
     }
 
     .home-tile-icon.i {

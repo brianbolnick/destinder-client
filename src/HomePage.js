@@ -43,7 +43,7 @@ import AnnouncementLogo from "./img/announce-with-title-word-white.png";
 class HomeFirst extends Component {
   render() {
     return (
-      <Container>
+      <Container className="home-first-container">
         {/* TODO: Create a separate component for this nav menu */}
         <Menu text>
           <Menu.Item header>
@@ -200,7 +200,6 @@ class HomeSecond extends Component {
 class HomeLayout extends Component {
   render() {
     const firstStyle = {
-
       backgroundImage: `url(${Arcstrider})`,
       backgroundSize: "cover"
     };
@@ -227,7 +226,7 @@ class HomeLayout extends Component {
             <Parallax.Layer offset={1} speed={1} style={{ backgroundImage: `url(${Striker})`, backgroundSize: 'cover' }} />
             <Parallax.Layer offset={2} speed={1} style={{ backgroundImage: `url(${Dawnblade})`, backgroundSize: 'cover' }} /> */}
 
-        <Parallax.Layer offset={0} speed={0.5} style={firstStyle}>
+        <Parallax.Layer offset={0} speed={0.5} className='first-layer-home'>
           <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(2)} />
         </Parallax.Layer>
 
