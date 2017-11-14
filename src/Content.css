@@ -1,3 +1,32 @@
+i.world.big.link.icon.header-button {
+    position: relative;
+    left: 10px;
+    top: 10px;
+    font-size: 2.5em;
+}
+
+/* .ui.raised.card.nav-card {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+
+    width: 150px;
+    height: 150px;
+}
+
+.content.nav-card-content {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+
+     -webkit-transform-origin: 0 100%;
+     -moz-transform-origin: 0 100%;
+     -ms-transform-origin: 0 100%;
+     -o-transform-origin: 0 100%;
+     transform-origin: 0 113%;
+
+} */
+
 .ui.toggle.checkbox input:checked~.box:before, .ui.toggle.checkbox input:checked~label:before {
     background-color: #e74c3d!important;
 }
@@ -102,7 +131,7 @@ img.ui.image.trials-player-icon {
     border-left: solid 4px #F5F5F5;
 }
 
-.accordion.ui.styled.fireteams-form-accordion {
+.accordion.ui.styled.lfg-form-accordion {
     margin-left: auto;
     margin-right: auto;
     width: 75%;
@@ -165,7 +194,7 @@ img.ui.image.trials-player-icon {
 
 /* Mobile only branding */
 @media only screen and (max-width: 767px) and (min-width: 320px) {
-    .accordion.ui.styled.fireteams-form-accordion {
+    .accordion.ui.styled.lfg-form-accordion {
         margin-left: auto;
         margin-right: auto;
         width: 100%;

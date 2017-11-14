@@ -95,7 +95,7 @@ class NewForm extends Component {
     ];
     return (
       <div style={{ margin: "0 auto" }}>
-        <Accordion className="fireteams-form-accordion" styled>
+        <Accordion className="lfg-form-accordion" styled>
           <Accordion.Title
             active={activeIndex === 0}
             index={0}
@@ -174,11 +174,11 @@ class NewForm extends Component {
   }
 }
 
-class FireteamsPage extends Component {
+class LfgPage extends Component {
   render() {
     return (
       <Layout>
-        <div className="fireteams-page" style={{ height: "100vh" }}>
+        <div className="lfg-page" style={{ height: "100vh" }}>
           <Container>
             {/* <Header as='h2'>LFG</Header>
                         <p>All LFG posts are here.</p> */}
@@ -191,4 +191,4 @@ class FireteamsPage extends Component {
   }
 }
 
-export default FireteamsPage;
+export default LfgPage;

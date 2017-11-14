@@ -95,7 +95,7 @@ class NavBar extends Component {
           <Menu.Item
             style={{ color: "#f5f5f5" }}
             as={Link}
-            to="/fireteams"
+            to="/lfg"
             name="lfg"
           >
             LFG
@@ -209,7 +209,7 @@ class HomeSecond extends Component {
             <Grid.Column mobile={8} computer={4}>
               <Card
                 as={Link}
-                to="/fireteams"
+                to="/lfg"
                 className="home-tile-card row2-1"
                 style={{ marginTop: "15%", marginBottom: "15%" }}
               >

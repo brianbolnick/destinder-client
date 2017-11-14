@@ -4,6 +4,10 @@
     background-size: cover;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 .header-link {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);

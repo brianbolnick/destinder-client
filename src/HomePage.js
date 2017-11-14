@@ -5,43 +5,10 @@ import "./App.css";
 import "./HomePage.css";
 import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
-
-import Arcstrider from "./img/arcstrider.png";
 import Logo from "./img/logo-with-title-word-black.png";
 import AnnouncementLogo from "./img/announce-with-title-word-white.png";
-import AnnouncementTable from './AnnouncementTable.js';
 import AnnouncementCard from './AnnouncementCard.js'
 
-
-// class TypedHeader extends React.Component {
-//   componentDidMount() {
-//     // You can pass other options here, such as typing speed, back speed, etc.
-//     const options = {
-//       strings: ['elite', "winners", "salty", "complainers", "ragers", "try hards", "losers", "good looking", "masses"],
-//       loop: true,
-//       startDelay: 2000,
-//       backDelay: 1000,
-//       typeSpeed: 70,
-//       showCursor: true,
-//       cursorChar: "|",
-//       shuffle: true
-//     };
-//     // this.el refers to the <span> in the render() method
-//     this.typed = new Typed(this.el, options);
-//   }
-
-//   componentWillUnmount() {
-//     // Make sure to destroy Typed instance on unmounting
-//     // to prevent memory leaks
-//     this.typed.destroy();
-//   }
-
-//   render() {
-//     return (
-//       <span ref={(el) => { this.el = el; }} />
-//     );
-//   }
-// }
 
 class HomeFirst extends Component {
   render() {
@@ -92,7 +59,7 @@ class HomeFirst extends Component {
             <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
-                to="/fireteams"
+                to="/lfg"
                 className="home-tile-card row2-1"
                 
               >
@@ -215,10 +182,7 @@ class HomeSecond extends Component {
 
 class HomeLayout extends Component {
   render() {
-    const firstStyle = {
-      backgroundImage: `url(${Arcstrider})`,
-      backgroundSize: "cover"
-    };
+
     const secondStyle = {
       display: "flex",
       alignItems: "center",
@@ -237,7 +201,7 @@ class HomeLayout extends Component {
       backgroundRepeat: "inherit"
     };
     return (
-      <Parallax ref="parallax" pages={2} style={homeStyle}>
+      <Parallax ref="parallax" pages={2} style={homeStyle}  >
         {/* <Parallax.Layer offset={0} speed={1} style={{ backgroundImage: `url(${Voidwalker})`, backgroundSize: 'cover' }} />
             <Parallax.Layer offset={1} speed={1} style={{ backgroundImage: `url(${Striker})`, backgroundSize: 'cover' }} />
             <Parallax.Layer offset={2} speed={1} style={{ backgroundImage: `url(${Dawnblade})`, backgroundSize: 'cover' }} /> */}

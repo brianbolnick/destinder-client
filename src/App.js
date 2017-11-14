@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./HomePage.js";
-import Fireteams from "./FireteamsPage.js";
+import Lfg from "./LfgPage.js";
 import Profile from "./ProfilePage.js";
 // import TeamSearch from './TeamSearch.js';
 import Test from "./TestPage.js";
@@ -22,7 +22,7 @@ const App = ({ location }) => {
       >
         <Switch location={location}>
           <Route path="/" exact component={Home} />
-          <Route path="/fireteams" component={Fireteams} />
+          <Route path="/lfg" component={Lfg} />
           <Route path="/profile" component={Profile} />
           <Route path="/test" component={Test} />
           <Route

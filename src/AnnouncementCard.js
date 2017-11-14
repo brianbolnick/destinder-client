@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Image, Grid, Segment  } from 'semantic-ui-react'
+import { Button, Card, Grid, Segment  } from 'semantic-ui-react'
 import AnnouncementRanking from './AnnouncementRanking.js'
 
 const AnnouncementLearnMore = () => (
