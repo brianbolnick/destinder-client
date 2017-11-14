@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import Arcstrider from "./img/arcstrider.png";
 import Logo from "./img/logo-with-title-word-black.png";
 import AnnouncementLogo from "./img/announce-with-title-word-white.png";
+import AnnouncementTable from './AnnouncementTable.js';
+import AnnouncementCard from './AnnouncementCard.js'
+
 
 // class TypedHeader extends React.Component {
 //   componentDidMount() {
@@ -173,15 +176,28 @@ class HomeSecond extends Component {
   render() {
     return (
       <Container style={{ height: "90vh" }}>
-        <div style={{ height: "calc(100vh - 135px)" }}>
+        <div>
           <Image src={AnnouncementLogo} size="large" />
           {/* <p>LFG for the <span><TypedHeader/></span></p> */}
         </div>
+      <br />
+      <br />
+
+        <Grid columns={4}>
+          <Grid.Row>
+            <Grid.Column width={4}>
+              <div style={{ textAlign: "right" }}>
+                <AnnouncementCard />
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
 
         <Grid columns={1}>
           <Grid.Row>
             <Grid.Column width={16}>
-              <div style={{ textAlign: "right" }}>
+              <div style={{ textAlign: "center" }}>
                 <Icon
                   name="angle up"
                   size="huge"
