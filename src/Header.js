@@ -190,13 +190,21 @@ class HeaderComponent extends Component {
   render() {
     return (
       <div>
-        <Modal basic trigger={<Icon className='header-button' link name={'world'} size={'big'} />} closeIcon dimmer={'blurring'}>
+        <Modal basic trigger={
+          <Icon.Group size='big'>
+            <Icon loading size='huge' name='sun' inverted color='yellow'/>
+            <Icon className='header-button' link name='world' />
+          </Icon.Group>
+          } 
+          closeIcon 
+          dimmer={'blurring'}
+          >
           <Header icon='location arrow' content='Orbit' />
           <Modal.Content>
             <NavLinks />
           </Modal.Content>
-          <Modal.Actions>
-            <Button as={Link} to='/' basic>
+          <Modal.Actions style={{textAlign: 'center' }}>
+            <Button as={Link} to='/'  color='teal' inverted>
               <Icon name='home' /> Home
             </Button>
           </Modal.Actions>

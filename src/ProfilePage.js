@@ -95,7 +95,7 @@ class ProfilePage extends Component {
                     <Container>
                         <div className='hide-on-mobile' style={{ height: '50px' }} />
                         <div> 
-                            <Card className='hide-on-mobile' fluid style={{height: '85vh', background: 'transparent'}}>
+                            <Card className='hide-on-mobile' fluid style={{height: '85vh', background: 'transparent', boxShadow: 'none'}}>
                                 <Card.Content style={{ padding: '0', backgroundImage: `url(${CardBackground}`, backgroundSize: 'cover'}}>
                                     <Tab grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2}} menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }} panes={sideTabs} />
                                 </Card.Content>
