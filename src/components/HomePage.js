@@ -1,26 +1,16 @@
 import React, { Component } from "react";
 import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown } from "semantic-ui-react";
 // import Typed from 'typed.js';
-import "./App.css";
-import "./HomePage.css";
+import "../css/App.css";
+import "../css/HomePage.css";
 import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
-import Logo from "./img/logo-with-title-word-black.png";
-import AnnouncementLogo from "./img/announce-with-title-word-white.png";
+import Logo from "../img/logo-with-title-word-black.png";
+import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 import AnnouncementCard from './AnnouncementCard.js'
-import { API_ROOT } from './api-config';
+import { API_URL } from '../tools/api-config';
 
 const jwt = JSON.parse(localStorage.getItem('jwt'));
-
-const hostname = window && window.location && window.location.hostname;
-let bungieClientId;
-if (hostname === 'localhost') {
-    bungieClientId = '22576';
-} else {
-    bungieClientId = '13736';
-}
-
-const bungieAuthorizeUrl = 'https://www.bungie.net/en/OAuth/Authorize';
 
 class LoginButton extends Component {
   isLoggedIn() {
@@ -71,7 +61,7 @@ class LoginButton extends Component {
                     </Dropdown.Menu>
                   </Dropdown>
                   :
-                  <Button animated as='a' href={`${API_ROOT}/login`}>
+                  <Button animated as='a' href={`${API_URL}/login`}>
                     <Button.Content visible>Login</Button.Content>
                     <Button.Content hidden>
                       <Icon name='right arrow' />

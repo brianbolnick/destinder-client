@@ -11,19 +11,19 @@ import {
   Input
 } from "semantic-ui-react";
 import Typed from "typed.js";
-import "./App.css";
-import "./HomePage.css";
+import "../css/App.css";
+import "../css/HomePage.css";
 import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
-import MobileBackground from "./img/war-zone.jpg";
-import LayerBackground from "./img/layers-test-bg-only.png";
-import LayerChars from "./img/layers-test-chars.png";
-import LayerShips from "./img/layers-test-ships.png";
-import LayerOverlay from "./img/bg-overlay.png";
-import Logo from "./img/logo-words-only-white.png";
-import Arcstrider from "./img/striker-dark-2.png";
+import MobileBackground from "../img/war-zone.jpg";
+import LayerBackground from "../img/layers-test-bg-only.png";
+import LayerChars from "../img/layers-test-chars.png";
+import LayerShips from "../img/layers-test-ships.png";
+import LayerOverlay from "../img/bg-overlay.png";
+import Logo from "../img/logo-words-only-white.png";
+import Arcstrider from "../img/striker-dark-2.png";
 
-import AnnouncementLogo from "./img/announce-with-title-word-white.png";
+import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 
 class TypedHeader extends React.Component {
   componentDidMount() {

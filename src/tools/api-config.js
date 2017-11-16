@@ -9,4 +9,4 @@ if (hostname === 'localhost') {
   backendHost = 'https://destinder-api.herokuapp.com';
 }
 
-export const API_ROOT = `${backendHost}`;
+export const API_URL = `${backendHost}`;

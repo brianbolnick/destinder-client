@@ -14,8 +14,8 @@ import {
 } from "semantic-ui-react";
 
 import { Link } from "react-router-dom";
-import Logo from "./img/logo-no-text.png";
-import ArcstriderDark from "./img/arcstrider-dark.png";
+import Logo from "../img/logo-no-text.png";
+import ArcstriderDark from "../img/arcstrider-dark.png";
 // import ArcstriderLight from './img/arcstrider-light.png';
 
 // eslint-disable-next-line

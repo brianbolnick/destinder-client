@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   Button, Header, Icon, Modal, Card
 } from "semantic-ui-react";
-import './Content.css';
+import '../css/Content.css';
 import { Link } from "react-router-dom";
 
 const currentLocation = window.location.pathname.split("/")[1] || "/";

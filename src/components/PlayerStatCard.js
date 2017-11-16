@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Header, Card, Segment,  Icon, Image, Grid, Label, Popup, Button, Rating, Divider } from 'semantic-ui-react';
-import KillChart from './charts/KillChart.js';
+import KillChart from '../charts/KillChart.js';
 
 
 

@@ -1,4 +1,4 @@
-import { API_ROOT } from './api-config';
+import { API_URL } from './api-config';
 
 export function getQueryParams() {
     const query = window.location.search.substring(1);
@@ -9,11 +9,11 @@ export function getQueryParams() {
     }, {});
   }
 
-  console.log("api root", API_ROOT);
+  console.log("api root", API_URL);
 
   export function fetchUserDetails(options) {
     const { token } = options;
-    const url = `${API_ROOT}/user?token=${token}`;
+    const url = `${API_URL}/user?token=${token}`;
   
     return fetch(url, {
       headers: {

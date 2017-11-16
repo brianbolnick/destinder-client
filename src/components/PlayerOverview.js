@@ -3,7 +3,7 @@ import { Container, Menu, Card, Tab, Image, Grid, Transition, Divider } from 'se
 import Layout from './Layout.js';
 import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';
-import playerData from './data/TempPlayerData.js';
+import playerData from '../data/TempPlayerData.js';
 
 
 const StatsCard = (props) => {

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "./App.css";
+import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./LfgPage.js";
 import Profile from "./ProfilePage.js";
@@ -8,7 +8,7 @@ import Test from "./TestPage.js";
 import NotFound from "./NotFound.js";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Route, withRouter, Switch } from "react-router-dom";
-import { getQueryParams } from './utils';
+import { getQueryParams } from '../tools/utils';
 import  jwtDecode from 'jwt-decode';
 
 

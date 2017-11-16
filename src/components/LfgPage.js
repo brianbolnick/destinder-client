@@ -1,15 +1,20 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { getLfgPosts } from '../actions/index';
 import {
   Container,
   Accordion,
   Icon,
   Form,
   Dropdown,
-  Button
+  Button,
+  Divider,
+  Card
 } from "semantic-ui-react";
 import Layout from "./Layout.js";
 // import {posts} from './data/posts';
-import "./Content.css";
+import "../css/Content.css";
+import src from '../img/abstract-background.png'
 
 class TagSearch extends Component {
   render() {
@@ -175,15 +180,31 @@ class NewForm extends Component {
 }
 
 class LfgPage extends Component {
+  componentWillMount() {
+    this.props.getLfgPosts();
+  }
   render() {
     return (
       <Layout>
         <div className="lfg-page" style={{ height: "100vh" }}>
           <Container>
-            {/* <Header as='h2'>LFG</Header>
-                        <p>All LFG posts are here.</p> */}
             <div style={{ height: "50px" }} />
             <NewForm />
+            <Divider />
+            <Card.Group itemsPerRow={3}>
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+              <Card raised image={src} />
+            </Card.Group>
           </Container>
         </div>
       </Layout>
@@ -191,4 +212,6 @@ class LfgPage extends Component {
   }
 }
 
-export default LfgPage;
+export default connect(null, { getLfgPosts: getLfgPosts })(LfgPage)
+
+// export default LfgPage;
