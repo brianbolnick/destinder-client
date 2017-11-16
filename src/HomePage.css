@@ -172,6 +172,19 @@ i.massive.icon, i.massive.icons {
     width: 223px !important;
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .ui.text.menu {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 991px) {
+    .ui.text.menu {
+        margin-top: 0;
+        margin-bottom: -10%;
+    }
+}
 /* Tablet Theming */
 @media only screen and (min-width: 768px) and (max-width: 960px) {
     /* a.ui.card.home-tile-card {
