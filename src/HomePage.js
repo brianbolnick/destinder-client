@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Menu, Icon, Image, Grid, Card, Button } from "semantic-ui-react";
+import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown } from "semantic-ui-react";
 // import Typed from 'typed.js';
 import "./App.css";
 import "./HomePage.css";
@@ -31,19 +31,45 @@ class LoginButton extends Component {
       return false;
   }
 
+  onLogoutClick() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('auth_token');
+    console.log('logging out');
+    window.location.replace('/');    
+  }
+
   render() {
+    // const trigger = (
+    //   <span>
+    //     <Image
+    //       avatar
+    //       src={jwt.profile_picture}
+    //     />{" "}
+    //     {jwt.display_name}
+    //   </span>
+    // );
+    
       return (
               this.isLoggedIn()
-                  ?
-                  <div>
-                    <Image
-                      src={jwt.profile_picture}
-                      avatar
-                    />
-                    <span style={{ color: "#f5f5f5", fontWeight: "400" }}>
-                      {jwt.display_name}
-                    </span> 
-                  </div>
+                  ?                  
+                  <Dropdown
+                    trigger={
+                      <span>
+                        <Image
+                          avatar
+                          src={jwt.profile_picture}
+                        />{" "}
+                        {jwt.display_name}
+                      </span>
+                    }
+                    pointing="top left"
+                    icon={null}
+                    style={{ color: "#f5f5f5" }}
+                  >
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                   :
                   <Button animated as='a' href={`${API_ROOT}/login`}>
                     <Button.Content visible>Login</Button.Content>
