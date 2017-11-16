@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Menu, Icon, Image, Grid, Card } from "semantic-ui-react";
+import { Container, Menu, Icon, Image, Grid, Card, Button } from "semantic-ui-react";
 // import Typed from 'typed.js';
 import "./App.css";
 import "./HomePage.css";
@@ -8,13 +8,57 @@ import { Link } from "react-router-dom";
 import Logo from "./img/logo-with-title-word-black.png";
 import AnnouncementLogo from "./img/announce-with-title-word-white.png";
 import AnnouncementCard from './AnnouncementCard.js'
+import { API_ROOT } from './api-config';
 
+const jwt = JSON.parse(localStorage.getItem('jwt'));
 
-class HomeFirst extends Component {
+const hostname = window && window.location && window.location.hostname;
+let bungieClientId;
+if (hostname === 'localhost') {
+    bungieClientId = '22576';
+} else {
+    bungieClientId = '13736';
+}
+
+const bungieAuthorizeUrl = 'https://www.bungie.net/en/OAuth/Authorize';
+
+class LoginButton extends Component {
+  isLoggedIn() {
+
+      if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
+          return true;
+      }
+      return false;
+  }
+
   render() {
+      return (
+              this.isLoggedIn()
+                  ?
+                  <div>
+                    <Image
+                      src={jwt.profile_picture}
+                      avatar
+                    />
+                    <span style={{ color: "#f5f5f5", fontWeight: "400" }}>
+                      {jwt.display_name}
+                    </span> 
+                  </div>
+                  :
+                  <Button animated as='a' href={`${API_ROOT}/login`}>
+                    <Button.Content visible>Login</Button.Content>
+                    <Button.Content hidden>
+                      <Icon name='right arrow' />
+                    </Button.Content>
+                  </Button>
+
+      )
+  }
+}
+
+class HomeNav extends Component {
+  render () {
     return (
-      <Container className="home-first-container">
-        {/* TODO: Create a separate component for this nav menu */}
         <Menu text>
           <Menu.Item header>
             <Image src={Logo} size="small" />
@@ -22,17 +66,20 @@ class HomeFirst extends Component {
           <Menu.Menu position="right">
             <Menu.Item>
               <div>
-                <Image
-                  src="https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg"
-                  avatar
-                />
-                <span style={{ color: "#f5f5f5", fontWeight: "300" }}>
-                  Luminusss
-                </span>
+                <LoginButton />
               </div>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
+    )
+  }
+}
+
+class HomeFirst extends Component {
+  render() {
+    return (
+      <Container className="home-first-container">
+        <HomeNav />
 
         <Grid columns={2} className="home-columns">
           <Grid.Row className='row1'>

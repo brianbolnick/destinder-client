@@ -4,7 +4,7 @@ import AnnouncementRanking from './AnnouncementRanking.js'
 
 const AnnouncementLearnMore = () => (
     <div>
-        <Button inverted color='blue' style={{ height: '40px;'}}>Learn More</Button>
+        <Button inverted color='blue' style={{ height: '40px'}}>Learn More</Button>
     </div>
   )
 

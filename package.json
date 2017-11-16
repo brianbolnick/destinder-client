@@ -5,6 +5,7 @@
   "dependencies": {
     "chart.js": "^2.7.0",
     "chartjs-plugin-datalabels": "^0.1.0",
+    "jwt-decode": "^2.2.0",
     "materialize-css": "^0.100.2",
     "nuka-carousel": "^3.0.0",
     "react": "^15.6.2",
