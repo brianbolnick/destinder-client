@@ -214,6 +214,16 @@ img.ui.image.trials-player-icon {
     background-position-y: -165px;
     background-position-x: -60px; */
 }
+
+.form-label {
+    display: block;
+    margin: 0 0 .28571429rem;
+    color: rgba(0,0,0,.87);
+    font-size: .92857143em;
+    font-weight: 700;
+    text-transform: none;
+}
+
 /* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #BD97D5 8%, #DACBE3 64%, #E9E6EB 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #9DCEED 35%, #C0DBED 64%, #E4E9ED 93%, #EDEDED 100%) */
