@@ -154,6 +154,6 @@ class NewLfgPost extends Component {
 }
 
 export default reduxForm({
-    form: 'radioExample'
+    form: 'lfgForm'
 })(NewLfgPost)
 

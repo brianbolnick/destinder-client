@@ -7,5 +7,4 @@ export default combineReducers({
     routing: routerReducer,
     lfgPosts: LfgPostsReducer,
     form: formReducer
-
 });

@@ -34,10 +34,11 @@ class LfgPage extends Component {
   handleChange = (e, { value }) => this.setState({ value });
 
   renderLfgPosts() {
+    console.log(this.props.lfgPosts);
     return this.props.lfgPosts.map((lfgPost) => {
       return (
         <Card key={lfgPost.id} >
-          <Card.Content header='About Amy' />
+          <Card.Content header={lfgPost.id} />
           <Card.Content >
             {lfgPost.message}
           </Card.Content>
