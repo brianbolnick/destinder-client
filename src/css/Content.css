@@ -237,6 +237,15 @@ img.ui.image.trials-player-icon {
     color: rgb(48, 252, 118)!important;
 }
 
+input[type=text]:focus {
+    background: transparent !important;
+    color: #212121 !important;
+}
+
+.content {
+    color: #212121;
+}
+
 /* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #BD97D5 8%, #DACBE3 64%, #E9E6EB 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #9DCEED 35%, #C0DBED 64%, #E4E9ED 93%, #EDEDED 100%) */

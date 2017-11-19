@@ -15,78 +15,68 @@ const jwt = JSON.parse(localStorage.getItem('jwt'));
 class LoginButton extends Component {
   isLoggedIn() {
 
-      if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
-          return true;
-      }
-      return false;
+    if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
+      return true;
+    }
+    return false;
   }
 
   onLogoutClick() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('auth_token');
     console.log('logging out');
-    window.location.replace('/');    
+    window.location.replace('/');
   }
 
   render() {
-    // const trigger = (
-    //   <span>
-    //     <Image
-    //       avatar
-    //       src={jwt.profile_picture}
-    //     />{" "}
-    //     {jwt.display_name}
-    //   </span>
-    // );
-    
-      return (
-              this.isLoggedIn()
-                  ?                  
-                  <Dropdown
-                    trigger={
-                      <span>
-                        <Image
-                          avatar
-                          src={jwt.profile_picture}
-                        />{" "}
-                        {jwt.display_name}
-                      </span>
-                    }
-                    pointing="top left"
-                    icon={null}
-                    style={{ color: "#f5f5f5" }}
-                  >
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  :
-                  <Button animated as='a' href={`${API_URL}/login`}>
-                    <Button.Content visible>Login</Button.Content>
-                    <Button.Content hidden>
-                      <Icon name='right arrow' />
-                    </Button.Content>
-                  </Button>
+    return (
+      this.isLoggedIn()
+        ?
+        <Dropdown
+          trigger={
+            <span>
+              <Image
+                avatar
+                src={jwt.profile_picture}
+              />{" "}
+              {jwt.display_name}
+            </span>
+          }
+          pointing="top left"
+          icon={null}
+          style={{ color: "#f5f5f5" }}
+        >
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        :
+        <Button animated as='a' href={`${API_URL}/login`}>
+          <Button.Content visible>Login</Button.Content>
+          <Button.Content hidden>
+            <Icon name='right arrow' />
+          </Button.Content>
+        </Button>
 
-      )
+    )
   }
 }
 
 class HomeNav extends Component {
-  render () {
+  render() {
     return (
-        <Menu text>
-          <Menu.Item header>
-            <Image src={Logo} size="small" />
+      <Menu text>
+        <Menu.Item header>
+          <Image src={Logo} size="small" />
+        </Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item>
+            <div>
+              <LoginButton />
+            </div>
           </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item>
-              <div>
-                <LoginButton />
-              </div>
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
+        </Menu.Menu>
+      </Menu>
     )
   }
 }
@@ -104,7 +94,7 @@ class HomeFirst extends Component {
                 as={Link}
                 to="/profile"
                 className="home-tile-card"
-                
+
               >
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
@@ -124,7 +114,7 @@ class HomeFirst extends Component {
                 as={Link}
                 to="/lfg"
                 className="home-tile-card row2-1"
-                
+
               >
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
@@ -145,7 +135,7 @@ class HomeFirst extends Component {
                 as={Link}
                 to="/team-search"
                 className="home-tile-card row2-2"
-                
+
               >
                 <div className="home-tile-content row2">
                   <div className="home-tile-icon">
@@ -167,7 +157,7 @@ class HomeFirst extends Component {
                 as={Link}
                 to="/player-search"
                 className="home-tile-card"
-               
+
               >
                 <div className="home-tile-content row2">
                   <div className="home-tile-icon">
@@ -210,8 +200,8 @@ class HomeSecond extends Component {
           <Image src={AnnouncementLogo} size="large" />
           {/* <p>LFG for the <span><TypedHeader/></span></p> */}
         </div>
-      <br />
-      <br />
+        <br />
+        <br />
 
         <Grid columns={4}>
           <Grid.Row>

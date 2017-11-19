@@ -1,31 +1,65 @@
 import React, { Component } from "react";
-import { createLfgPost } from '../actions/index';
+import { createLfgPost, getMatchingUsers } from '../actions/index';
 import {
     Form,
     Dropdown,
     Button,
-    Icon
 } from "semantic-ui-react";
-import { Toggle, CheckboxField, Checkbox, LabelInputField, SelectField, TextAreaField } from 'react-semantic-redux-form';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { Toggle, CheckboxField, LabelInputField, SelectField, TextAreaField } from 'react-semantic-redux-form';
 import { Field, reduxForm } from 'redux-form';
+import UserSearch from './LfgUserSearch';
 
 
-const gameTypeOptions = [{ key: "s", text: "Story", value: "story" }];
+//TODO: Update this to include api id of mode 
+// Story: 2
+// Strike: 3
+// Raid: 4
+// AllPvP: 5
+// Patrol: 6
+// AllPvE: 7
+// Control: 10
+// Clash: 12
+// Nightfall: 16
+// HeroicNightfall: 17
+// AllStrikes: 18
+// IronBanner: 19
+// Supremacy: 31
+// Survival: 37
+// Countdown: 38
+// TrialsOfTheNine: 39
+// TrialsCountdown: 41
+// TrialsSurvival: 42
+// IronBannerControl: 43
+// IronBannerClash: 44
+// IronBannerSupremacy: 45
+const gameTypeOptions = [
+    { key: "2", text: "Story", value: 2 },
+    { key: "3", text: "Strike", value: 3 },
+    { key: "4", text: "Raid", value: 4 },
+    { key: "5", text: "PVP - Any", value: 5 },
+    { key: "6", text: "Patrol", value: 6 },
+    { key: "7", text: "PVE - Any", value: 7 },
+    { key: "10", text: "Control", value: 10 },
+    { key: "12", text: "Clash", value: 12 },
+    { key: "16", text: "Nightfall", value: 16 },
+    { key: "17", text: "Nightfall - Heroic", value: 17 },
+    { key: "18", text: "Strikes", value: 18 },
+    { key: "19", text: "Iron Banner", value: 19 },
+    { key: "31", text: "Supremacy", value: 31 },
+    { key: "37", text: "Survival", value: 37 },
+    { key: "38", text: "Countdown", value: 38 },
+    { key: "39", text: "Trials of the Nine", value: 39 }
+];
+
 const teamOptions = [
     { key: "any", text: "Any", value: "any" },
     { key: "similar", text: "Similar", value: "similar" },
     { key: "sherpa", text: "Sherpa (Help Needed)", value: "sherpa" },
     { key: "sherpee", text: "Sherpee (Someone to Carry)", value: "sherpee" }
 ];
-const characterOptions = [
-    { key: "t", text: "Titan", value: "titan" },
-    { key: "h", text: "Hunter", value: "hunter" },
-    { key: "w", text: "Warlock", value: "warlock" }
-];
 
 class TagSearch extends Component {
+
     render() {
         const tagOptions = [
             {
@@ -65,6 +99,7 @@ class TagSearch extends Component {
                 selection
                 options={tagOptions}
                 onChange={this.props.handleChange}
+                onSearchChange={this.props.handleSearchChange}
             />
         );
     }
@@ -72,10 +107,13 @@ class TagSearch extends Component {
 
 
 class NewLfgPost extends Component {
-
-
-    handleChange = (e, { value }) => {
+    handleChange = (e, { value }) => {       
         this.props.change('fireteam', value)
+    }
+
+    handleSearchChange = ( e, data) => {
+        // console.log(data.searchQuery);
+        getMatchingUsers(data.searchQuery);
     }
 
     handleFormSubmit(props) {
@@ -83,6 +121,7 @@ class NewLfgPost extends Component {
     }
     render() {
         const { handleSubmit } = this.props;
+        
         return (
             <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <Form.Group>
@@ -117,7 +156,7 @@ class NewLfgPost extends Component {
                         component={SelectField}
                         name='character_id'
                         label="Character"
-                        options={characterOptions}
+                        options={this.props.characters}
                         width={4}
                     />
                     <Field
@@ -127,10 +166,14 @@ class NewLfgPost extends Component {
                         options={teamOptions}
                         width={4}
                     />
-                    <Form.Field width={8}>
-                        <label>Tag Your Fireteam</label>
-                        <TagSearch handleChange={this.handleChange} />
-                    </Form.Field>
+                    {/* <Form.Field width={8}>
+                        <label>Tag Your Fireteam (Must have a Destinder Account)</label>
+                        <TagSearch 
+                        handleChange={this.handleChange} 
+                        handleSearchChange={this.handleSearchChange}
+                        />
+                    </Form.Field> */}
+                    <UserSearch formProps={this.props}/>
                 </Form.Group>
                 <Field
                     component={TextAreaField}
