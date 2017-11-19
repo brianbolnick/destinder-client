@@ -224,6 +224,19 @@ img.ui.image.trials-player-icon {
     text-transform: none;
 }
 
+.ui.basic.green.button, .ui.basic.green.buttons .button {
+    -webkit-box-shadow: 0 0 0 1px rgb(113, 247, 159) inset!important;
+    box-shadow: 0 0 0 1px rgb(113, 247, 159) inset!important;
+    color: rgb(113, 247, 159) !important;
+}
+
+.ui.basic.green.button:hover, .ui.basic.green.buttons .button:hover {
+    background: 0 0!important;
+    -webkit-box-shadow: 0 0 0 1px rgb(48, 252, 118) inset!important;
+    box-shadow: 0 0 0 1px rgb(48, 252, 118) inset!important;
+    color: rgb(48, 252, 118)!important;
+}
+
 /* background: linear-gradient(316deg, #EE7D31 8%, #EDC1A3 64%, #EDE4DE 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #BD97D5 8%, #DACBE3 64%, #E9E6EB 93%, #EDEDED 100%); */
 /* /background: linear-gradient(316deg, #9DCEED 35%, #C0DBED 64%, #E4E9ED 93%, #EDEDED 100%) */

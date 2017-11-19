@@ -146,7 +146,7 @@ class NewLfgPost extends Component {
                 />
                 <Form.Field control={Button} primary className='submit-btn'
                     type='submit'>
-                    Login
+                    Create Post
                 </Form.Field>
             </Form>
         )
