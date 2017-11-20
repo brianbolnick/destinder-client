@@ -8,29 +8,6 @@ import { Toggle, CheckboxField, LabelInputField, SelectField, TextAreaField } fr
 import { Field, reduxForm } from 'redux-form';
 import UserSearch from './LfgUserSearch';
 
-
-//TODO: Update this to include api id of mode 
-// Story: 2
-// Strike: 3
-// Raid: 4
-// AllPvP: 5
-// Patrol: 6
-// AllPvE: 7
-// Control: 10
-// Clash: 12
-// Nightfall: 16
-// HeroicNightfall: 17
-// AllStrikes: 18
-// IronBanner: 19
-// Supremacy: 31
-// Survival: 37
-// Countdown: 38
-// TrialsOfTheNine: 39
-// TrialsCountdown: 41
-// TrialsSurvival: 42
-// IronBannerControl: 43
-// IronBannerClash: 44
-// IronBannerSupremacy: 45
 const gameTypeOptions = [
     { key: "2", text: "Story", value: 2 },
     { key: "3", text: "Strike", value: 3 },
@@ -58,23 +35,40 @@ const teamOptions = [
 ];
 
 class NewLfgPost extends Component {
-    handleChange = (e, { value }) => {       
+    handleChange = (e, { value }) => {
         this.props.change('fireteam', value)
     }
 
-    handleSearchChange = ( e, data) => {
+    handleSearchChange = (e, data) => {
         // console.log(data.searchQuery);
         getMatchingUsers(data.searchQuery);
     }
 
-    handleFormSubmit(props) {
-        createLfgPost(props);
-    }
+    // handleFormSubmit(props) {
+    //     console.log("in form submit func");
+    //     createLfgPost(props);
+
+    // }
+
+    // submit(props, dispatch) {
+    //     return new Promise((resolve, reject) => {
+    //         dispatch({
+    //             type: 'CREATE_POST_START',
+    //             payload: props,
+    //             resolve, 
+    //             reject
+    //         }).catch((error) => {
+    //             console.log(error);
+    //         })
+    //     })
+    //     // this.props.createLfgPost(props);
+    // }
+
     render() {
-        const { handleSubmit } = this.props;
-        
+        const { handleSubmit, pristine, reset, submitting } = this.props;
+
         return (
-            <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Field width={3}>
                         <label className="form-label">Mode</label>
@@ -117,14 +111,7 @@ class NewLfgPost extends Component {
                         options={teamOptions}
                         width={4}
                     />
-                    {/* <Form.Field width={8}>
-                        <label>Tag Your Fireteam (Must have a Destinder Account)</label>
-                        <TagSearch 
-                        handleChange={this.handleChange} 
-                        handleSearchChange={this.handleSearchChange}
-                        />
-                    </Form.Field> */}
-                    <UserSearch formProps={this.props}/>
+                    <UserSearch formProps={this.props} />
                 </Form.Group>
                 <Field
                     component={TextAreaField}
@@ -138,10 +125,17 @@ class NewLfgPost extends Component {
                 <Field name='fireteam' component={LabelInputField}
                     style={{ display: 'none' }}
                 />
-                <Form.Field control={Button} primary className='submit-btn'
+                <Form.Field
+                    control={Button}
+                    primary
+                    className='submit-btn'
+                    onClick={reset}
+                    loading={this.props.fetching}
                     type='submit'>
                     Create Post
-                </Form.Field>
+                </Form.Field> 
+                 {/* <SubmitButton submitting={submitting} reset={reset} /> */}
+
             </Form>
         )
     }
@@ -151,3 +145,4 @@ export default reduxForm({
     form: 'lfgForm'
 })(NewLfgPost)
 
+;

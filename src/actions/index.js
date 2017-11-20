@@ -4,7 +4,8 @@ import {
     CREATE_LFG_POST,
     GET_PLAYER_CHARACTERS,
     GET_MATCHING_USERS,
-    FETCH_POSTS_START
+    FETCH_POSTS_START,
+    CREATE_POST_START
 } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
@@ -17,9 +18,9 @@ export function getPostsSuccess(posts) {
 
 
 export const getLfgPosts = () => {
-    
+
     return (dispatch, getState) => {
-        dispatch({ type: FETCH_POSTS_START  })
+        dispatch({ type: FETCH_POSTS_START })
         axios.get(`${API_URL}/v1/lfg_posts`).then(response => {
             dispatch({ type: GET_LFG_POSTS, payload: response.data })
         }).catch(error => console.log(error))
@@ -47,18 +48,19 @@ export const getPlayerCharacters = (user_id) => {
 }
 
 
-export function createLfgPost(props) {
-    axios.post(`${API_URL}/v1/lfg_posts`,
-        props,
-        config
-    )
-        .then(response => {
-            return {
-                type: CREATE_LFG_POST,
-                payload: response.data
-            };
-        })
-        .catch(error => console.log(error))
+export const createLfgPost = (props) => {
+    return (dispatch, getState) => {
+        dispatch({ type: CREATE_POST_START})        
+        axios.post(`${API_URL}/v1/lfg_posts`,
+            props,
+            config
+        )
+            .then(response => {
+                dispatch({ type: CREATE_LFG_POST, payload: response.data })
+            })
+            .catch(error => console.log(error))
+    };
+
 }
 
 

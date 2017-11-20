@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getPlayerCharacters } from '../actions/index';
+import { getPlayerCharacters, createLfgPost } from '../actions/index';
 import {
-  Accordion,
-  Icon,
-  Button
+    Accordion,
+    Icon,
+    Button
 } from "semantic-ui-react";
 // import "../css/Content.css";
 import NewForm from './LfgPostForm';
@@ -13,73 +13,86 @@ import { API_URL } from '../tools/api-config';
 const jwt = JSON.parse(localStorage.getItem('jwt'));
 
 class FormContainer extends Component {
-  state = { activeIndex: 1 };
+    state = { activeIndex: 1 };
 
-  componentWillMount() {
-    this.props.getPlayerCharacters(jwt.user_id);
-  }
+    componentWillMount() {
+        console.log(this.props);
+        this.props.getPlayerCharacters(jwt.user_id);
+    }
 
-  handleClick = (e, titleProps) => {
-    const { index } = titleProps;
-    const { activeIndex } = this.state;
-    const newIndex = activeIndex === index ? -1 : index;
 
-    this.setState({ activeIndex: newIndex });
-  };
+    handleFormSubmit(props) {
+        this.props.createLfgPost(props);
+    }
+    handleClick = (e, titleProps) => {
+        const { index } = titleProps;
+        const { activeIndex } = this.state;
+        const newIndex = activeIndex === index ? -1 : index;
 
-  handleChange = (e, { value }) => this.setState({ value });
+        this.setState({ activeIndex: newIndex });
+    };
 
-  renderCharacters() {
-    return this.props.characters.map((character, index) => {
-      return {
-          key: index,
-          value: character.character_id,
-          text: character.character_type
-      }
-    })
-  }
+    handleChange = (e, { value }) => this.setState({ value });
 
-  render() {
-    const { activeIndex } = this.state;
-    const charOptions = this.renderCharacters();
+    renderCharacters() {
+        return this.props.characters.map((character, index) => {
+            return {
+                key: index,
+                value: character.character_id,
+                text: character.character_type
+            }
+        })
+    }
 
-    return (
-      this.props.isLoggedIn
-        ?
-        <Accordion className="lfg-form-accordion" styled>
-          <Accordion.Title
-            active={activeIndex === 0}
-            index={0}
-            onClick={this.handleClick}
-          >
+    render() {
+        const { activeIndex } = this.state;
+        const charOptions = this.renderCharacters();
+        // console.log(this.props.fetchingNewPost);
+
+        return (
+            this.props.isLoggedIn
+                ?
+                <Accordion className="lfg-form-accordion" styled>
+                    <Accordion.Title
+                        active={activeIndex === 0}
+                        index={0}
+                        onClick={this.handleClick}
+                    >
+                        <Icon
+                            color="yellow"
+                            style={{ marginRight: "15px" }}
+                            name="write"
+                            size="big"
+                        />
+                        New Post
             <Icon
-              color="yellow"
-              style={{ marginRight: "15px" }}
-              name="write"
-              size="big"
-            />
-            New Post
-            <Icon
-              style={{ float: "right", marginTop: "7px" }}
-              name="dropdown"
-            />
-          </Accordion.Title>
-          <Accordion.Content active={activeIndex === 0}>
-            <NewForm characters={charOptions}/>
-          </Accordion.Content>
-        </Accordion>
+                            style={{ float: "right", marginTop: "7px" }}
+                            name="dropdown"
+                        />
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 0}>
+                        <NewForm 
+                        characters={charOptions} 
+                        onSubmit={this.handleFormSubmit.bind(this)}
+                        fetching={this.props.fetchingNewPost}
+                        />
+                    </Accordion.Content>
+                </Accordion>
 
-        :
+                :
 
-        <Button color='green' basic fluid as='a' href={`${API_URL}/login`}>
-          You must be signed in to create a new post.
+                <Button color='green' basic fluid as='a' href={`${API_URL}/login`}>
+                    You must be signed in to create a new post.
         </Button>
-    )
-  }
+        )
+    }
 }
 
 function mapStateToProps(state) {
-    return { characters: state.lfgPosts.characters }
-  }
-  
-  export default connect(mapStateToProps, { getPlayerCharacters: getPlayerCharacters })(FormContainer)
+    return { 
+        characters: state.lfgPosts.characters,
+        fetchingNewPost: state.lfgPosts.fetchingNewPost
+     }
+}
+
+export default connect(mapStateToProps, { getPlayerCharacters, createLfgPost })(FormContainer)

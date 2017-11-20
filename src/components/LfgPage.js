@@ -43,7 +43,7 @@ class LfgPage extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const posts = this.props.lfgPosts.map((lfgPost) => {
       return (
         <Card key={lfgPost.id} >
