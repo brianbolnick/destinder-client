@@ -2,17 +2,10 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { getMatchingUsers } from '../actions/index';
 import {
-    Accordion,
-    Icon,
-    Button,
     Dropdown,
     Form
 } from "semantic-ui-react";
-// import "../css/Content.css";
-import NewForm from './LfgPostForm';
-import { API_URL } from '../tools/api-config';
 
-const jwt = JSON.parse(localStorage.getItem('jwt'));
 
 class UserSearch extends Component {
 

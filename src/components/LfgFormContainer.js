@@ -59,7 +59,7 @@ class FormContainer extends Component {
               size="big"
             />
             New Post
-                        <Icon
+            <Icon
               style={{ float: "right", marginTop: "7px" }}
               name="dropdown"
             />

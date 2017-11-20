@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { createLfgPost, getMatchingUsers } from '../actions/index';
 import {
     Form,
-    Dropdown,
-    Button,
+    Button
 } from "semantic-ui-react";
 import { Toggle, CheckboxField, LabelInputField, SelectField, TextAreaField } from 'react-semantic-redux-form';
 import { Field, reduxForm } from 'redux-form';
@@ -57,54 +56,6 @@ const teamOptions = [
     { key: "sherpa", text: "Sherpa (Help Needed)", value: "sherpa" },
     { key: "sherpee", text: "Sherpee (Someone to Carry)", value: "sherpee" }
 ];
-
-class TagSearch extends Component {
-
-    render() {
-        const tagOptions = [
-            {
-                text: "ii WALZ ii",
-                value: 2,
-                image: {
-                    avatar: true,
-                    src:
-                        "https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg"
-                }
-            },
-            {
-                text: "Putin Pudding",
-                value: 3,
-                image: {
-                    avatar: true,
-                    src:
-                        "https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg"
-                }
-            },
-            {
-                text: "KURTO13",
-                value: 4,
-                image: {
-                    avatar: true,
-                    src:
-                        "https://www.bungie.net//img/profile/avatars/bungie_day_15_27.jpg"
-                }
-            }
-        ];
-        return (
-            <Dropdown
-                placeholder="Fireteam"
-                fluid
-                multiple
-                search
-                selection
-                options={tagOptions}
-                onChange={this.props.handleChange}
-                onSearchChange={this.props.handleSearchChange}
-            />
-        );
-    }
-}
-
 
 class NewLfgPost extends Component {
     handleChange = (e, { value }) => {       

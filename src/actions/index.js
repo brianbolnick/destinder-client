@@ -3,7 +3,8 @@ import {
     GET_LFG_POST,
     CREATE_LFG_POST,
     GET_PLAYER_CHARACTERS,
-    GET_MATCHING_USERS
+    GET_MATCHING_USERS,
+    FETCH_POSTS_START
 } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
@@ -16,7 +17,9 @@ export function getPostsSuccess(posts) {
 
 
 export const getLfgPosts = () => {
+    
     return (dispatch, getState) => {
+        dispatch({ type: FETCH_POSTS_START  })
         axios.get(`${API_URL}/v1/lfg_posts`).then(response => {
             dispatch({ type: GET_LFG_POSTS, payload: response.data })
         }).catch(error => console.log(error))

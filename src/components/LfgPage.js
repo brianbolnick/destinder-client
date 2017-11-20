@@ -9,7 +9,26 @@ import {
 import Layout from "./Layout.js";
 import "../css/Content.css";
 import LfgFormContainer from './LfgFormContainer';
+import { BounceLoader } from 'react-spinners';
+
+
 const jwt = JSON.parse(localStorage.getItem('jwt'));
+
+
+class PostData extends Component {
+  render() {
+    return (
+      this.props.fetched ?
+        <Card.Group itemsPerRow={3}>
+          {this.props.posts}
+        </Card.Group>
+        :
+        <div style={{ textAlign: '-webkit-center' }}>
+          <BounceLoader color={'#3dd6d0'} />
+        </div>
+    )
+  }
+}
 
 class LfgPage extends Component {
   componentWillMount() {
@@ -23,8 +42,9 @@ class LfgPage extends Component {
     return false;
   }
 
-  renderLfgPosts() {
-    return this.props.lfgPosts.map((lfgPost) => {
+  render() {
+    console.log(this.props);
+    const posts = this.props.lfgPosts.map((lfgPost) => {
       return (
         <Card key={lfgPost.id} >
           <Card.Content header={lfgPost.id} />
@@ -35,9 +55,6 @@ class LfgPage extends Component {
       )
     })
 
-  }
-
-  render() {
     return (
       <Layout>
         <div className="lfg-page" style={{ height: "100vh" }}>
@@ -48,9 +65,7 @@ class LfgPage extends Component {
             </div>
             <Divider />
             count: {this.props.lfgPosts.length}
-            <Card.Group itemsPerRow={3}>
-              {this.renderLfgPosts()}
-            </Card.Group>
+            <PostData fetching={this.props.fetching} fetched={this.props.fetched} posts={posts} />
           </Container>
         </div>
       </Layout>
@@ -59,7 +74,11 @@ class LfgPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { lfgPosts: state.lfgPosts.all }
+  return {
+    lfgPosts: state.lfgPosts.all,
+    fetched: state.lfgPosts.fetched,
+    fetching: state.lfgPosts.fetching
+  }
 }
 
 export default connect(mapStateToProps, { getLfgPosts: getLfgPosts })(LfgPage)
