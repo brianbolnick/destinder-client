@@ -20,7 +20,7 @@ class PostData extends Component {
     return (
       this.props.fetched ?
         <Card.Group itemsPerRow={3}>
-          {this.props.posts}
+          {this.props.posts.reverse()}
         </Card.Group>
         :
         <div style={{ textAlign: '-webkit-center' }}>

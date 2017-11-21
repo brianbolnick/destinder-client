@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-import { Container, Menu, Card, Tab, Image, Grid, Transition, Divider } from 'semantic-ui-react';
-import Layout from './Layout.js';
-import createReactClass from 'create-react-class';
+import React from 'react';
+import { Container,  Card,  Grid, Transition, Divider } from 'semantic-ui-react';
 import PlayerStatCard from './PlayerStatCard.js';
-import playerData from '../data/TempPlayerData.js';
 
 
 const StatsCard = (props) => {

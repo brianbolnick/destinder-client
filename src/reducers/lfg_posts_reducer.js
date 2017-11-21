@@ -33,10 +33,8 @@ export default function (state = INITIAL_STATE, action) {
         case GET_MATCHING_USERS:
             return { ...state, users: action.payload };
         case CREATE_LFG_POST:
-            console.log("received");
             return { ...state, fetchingNewPost: false, all: [...state.all, action.payload] }
         case CREATE_POST_START:
-            console.log("fetching");
             return { ...state, fetchingNewPost: true }
         default:
             return state;

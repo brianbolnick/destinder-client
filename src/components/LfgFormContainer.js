@@ -16,14 +16,13 @@ class FormContainer extends Component {
     state = { activeIndex: 1 };
 
     componentWillMount() {
-        console.log(this.props);
         this.props.getPlayerCharacters(jwt.user_id);
     }
 
-
-    handleFormSubmit(props) {
-        this.props.createLfgPost(props);
+    handleFormSubmit = values => {
+        this.props.createLfgPost(values);
     }
+
     handleClick = (e, titleProps) => {
         const { index } = titleProps;
         const { activeIndex } = this.state;
@@ -65,15 +64,15 @@ class FormContainer extends Component {
                             size="big"
                         />
                         New Post
-            <Icon
+                        <Icon
                             style={{ float: "right", marginTop: "7px" }}
                             name="dropdown"
                         />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 0}>
                         <NewForm 
-                        characters={charOptions} 
-                        onSubmit={this.handleFormSubmit.bind(this)}
+                        characters={charOptions}
+                        onSubmit={this.handleFormSubmit}
                         fetching={this.props.fetchingNewPost}
                         />
                     </Accordion.Content>
@@ -83,7 +82,7 @@ class FormContainer extends Component {
 
                 <Button color='green' basic fluid as='a' href={`${API_URL}/login`}>
                     You must be signed in to create a new post.
-        </Button>
+                </Button>
         )
     }
 }

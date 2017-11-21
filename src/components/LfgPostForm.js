@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createLfgPost, getMatchingUsers } from '../actions/index';
+import { getMatchingUsers } from '../actions/index';
 import {
     Form,
     Button
@@ -35,37 +35,17 @@ const teamOptions = [
 ];
 
 class NewLfgPost extends Component {
+
     handleChange = (e, { value }) => {
         this.props.change('fireteam', value)
     }
 
     handleSearchChange = (e, data) => {
-        // console.log(data.searchQuery);
         getMatchingUsers(data.searchQuery);
     }
 
-    // handleFormSubmit(props) {
-    //     console.log("in form submit func");
-    //     createLfgPost(props);
-
-    // }
-
-    // submit(props, dispatch) {
-    //     return new Promise((resolve, reject) => {
-    //         dispatch({
-    //             type: 'CREATE_POST_START',
-    //             payload: props,
-    //             resolve, 
-    //             reject
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         })
-    //     })
-    //     // this.props.createLfgPost(props);
-    // }
-
     render() {
-        const { handleSubmit, pristine, reset, submitting } = this.props;
+        const { handleSubmit} = this.props;
 
         return (
             <Form onSubmit={handleSubmit}>
@@ -129,13 +109,10 @@ class NewLfgPost extends Component {
                     control={Button}
                     primary
                     className='submit-btn'
-                    onClick={reset}
                     loading={this.props.fetching}
                     type='submit'>
                     Create Post
                 </Form.Field> 
-                 {/* <SubmitButton submitting={submitting} reset={reset} /> */}
-
             </Form>
         )
     }
@@ -144,5 +121,3 @@ class NewLfgPost extends Component {
 export default reduxForm({
     form: 'lfgForm'
 })(NewLfgPost)
-
-;
