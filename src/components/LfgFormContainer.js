@@ -6,24 +6,30 @@ import {
     Icon,
     Button
 } from "semantic-ui-react";
-// import "../css/Content.css";
 import NewForm from './LfgPostForm';
 import { API_URL } from '../tools/api-config';
-
-const jwt = JSON.parse(localStorage.getItem('jwt'));
+import { jwt } from '../tools/jwt';
 
 class FormContainer extends Component {
-    state = { activeIndex: 1 };
+    state = { activeIndex: -1 };
 
     componentWillMount() {
-        this.props.getPlayerCharacters(jwt.user_id);
+        //populate form character options with users characters
+        if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
+            this.props.getPlayerCharacters(jwt.user_id);
+        }
     }
 
     handleFormSubmit = values => {
+        //close accordion on submit
+        this.setState({activeIndex: -1 })
+
+        //merge user id with form props
         values = {...values, user_id: JSON.parse(localStorage.getItem('jwt')).user_id}
         this.props.createLfgPost(values);
     }
 
+    //handles click for accordion and active items
     handleClick = (e, titleProps) => {
         const { index } = titleProps;
         const { activeIndex } = this.state;
@@ -34,6 +40,7 @@ class FormContainer extends Component {
 
     handleChange = (e, { value }) => this.setState({ value });
 
+    //creates an object for the characters option of the form, based on api response
     renderCharacters() {
         return this.props.characters.map((character, index) => {
             return {
@@ -48,6 +55,7 @@ class FormContainer extends Component {
         const { activeIndex } = this.state;
         const charOptions = this.renderCharacters();
 
+        //only show the form if the user is logged in
         return (
             this.props.isLoggedIn
                 ?

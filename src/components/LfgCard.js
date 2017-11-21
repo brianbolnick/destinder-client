@@ -6,9 +6,7 @@ import {
 } from "semantic-ui-react";
 import { deleteLfgPost } from '../actions/index';
 import { connect } from 'react-redux'
-
-const jwt = JSON.parse(localStorage.getItem('jwt'));
-
+import { jwt } from '../tools/jwt';
 
 const user_id = ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) ? jwt.user_id : null
 

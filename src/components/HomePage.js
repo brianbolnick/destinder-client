@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown } from "semantic-ui-react";
-// import Typed from 'typed.js';
-import "../css/App.css";
 import "../css/HomePage.css";
 import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
@@ -9,8 +7,7 @@ import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 import AnnouncementCard from './AnnouncementCard.js'
 import { API_URL } from '../tools/api-config';
-
-const jwt = JSON.parse(localStorage.getItem('jwt'));
+import { jwt } from '../tools/jwt';
 
 class LoginButton extends Component {
   isLoggedIn() {

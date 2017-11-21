@@ -11,10 +11,7 @@ import "../css/Content.css";
 import LfgFormContainer from './LfgFormContainer';
 import { BounceLoader } from 'react-spinners';
 import LfgCard from './LfgCard';
-
-
-const jwt = JSON.parse(localStorage.getItem('jwt'));
-
+import { jwt } from '../tools/jwt';
 
 class PostData extends Component {
   render() {

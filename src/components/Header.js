@@ -5,7 +5,7 @@ import {
 import '../css/Content.css';
 import { Link } from "react-router-dom";
 
-const currentLocation = window.location.pathname.split("/")[1] || "/";
+let currentLocation = window.location.pathname.split("/")[1] || "/";
 
 class ProfileCard extends Component {
   render() {
@@ -17,7 +17,7 @@ class ProfileCard extends Component {
           raised
           style={{ border: 'solid 3px #212121' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               <Icon name='marker' />
               Profile
@@ -35,7 +35,7 @@ class ProfileCard extends Component {
           raised
           style={{ border: 'solid 3px #71f79f' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               Profile
           </Card.Header>
@@ -51,17 +51,17 @@ class ProfileCard extends Component {
 class LfgCard extends Component {
   render() {
     return (
-      currentLocation === 'lfg'
+      this.props.currentLocation === 'lfg'
         ?
         <Card
           className="nav-card"
           raised
           style={{ border: 'solid 3px #212121' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               <Icon name='marker' />
-                LFG Boards
+              LFG Boards
             </Card.Header>
             <Card.Description>
               Find a fireteam to play with.
@@ -76,7 +76,7 @@ class LfgCard extends Component {
           raised
           style={{ border: 'solid 3px #71f79f' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               LFG Boards
           </Card.Header>
@@ -92,7 +92,7 @@ class LfgCard extends Component {
 class FireteamsCard extends Component {
   render() {
     return (
-      currentLocation === 'fireteams'
+      this.props.currentLocation === 'fireteams'
         ?
         <Card
           className="nav-card"
@@ -102,7 +102,7 @@ class FireteamsCard extends Component {
           <Card.Content className="nav-card-content">
             <Card.Header>
               <Icon name='marker' />
-                Fireteam Search
+              Fireteam Search
             </Card.Header>
             <Card.Description>
               Lookup stats for an opposing fireteam.
@@ -117,7 +117,7 @@ class FireteamsCard extends Component {
           raised
           style={{ border: 'solid 3px #71f79f' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               Fireteam Search
           </Card.Header>
@@ -133,20 +133,20 @@ class FireteamsCard extends Component {
 class PlayerCard extends Component {
   render() {
     return (
-      currentLocation === 'players'
+      this.props.currentLocation === 'players'
         ?
         <Card
           className="nav-card"
           raised
           style={{ border: 'solid 3px #212121' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               <Icon name='marker' />
-                Player Search
+              Player Search
             </Card.Header>
             <Card.Description>
-                View the profile of another player.
+              View the profile of another player.
             </Card.Description>
           </Card.Content>
         </Card>
@@ -158,12 +158,12 @@ class PlayerCard extends Component {
           raised
           style={{ border: 'solid 3px #71f79f' }}
         >
-          <Card.Content  className="nav-card-content">
+          <Card.Content className="nav-card-content">
             <Card.Header>
               Player Search
           </Card.Header>
             <Card.Description>
-            View the profile of another player.
+              View the profile of another player.
           </Card.Description>
           </Card.Content>
         </Card>
@@ -172,14 +172,15 @@ class PlayerCard extends Component {
 }
 
 class NavLinks extends Component {
+
   render() {
     return (
       <div>
         <Card.Group itemsPerRow={4}>
-          <ProfileCard />
-          <LfgCard />
-          <FireteamsCard />
-          <PlayerCard />
+          <ProfileCard currentLocation={this.props.currentLocation}/>
+          <LfgCard currentLocation={this.props.currentLocation}/>
+          <FireteamsCard currentLocation={this.props.currentLocation}/>
+          <PlayerCard currentLocation={this.props.currentLocation}/>
         </Card.Group>
       </div>
     )
@@ -187,24 +188,29 @@ class NavLinks extends Component {
 }
 
 class HeaderComponent extends Component {
+  state = { currentLocation: window.location.pathname.split("/")[1] || "/" };
+  
+  componentWillMount() {
+    this.setState({ currentLocation: window.location.pathname.split("/")[1] || "/" })
+  }
   render() {
     return (
       <div>
         <Modal basic trigger={
           <Icon.Group size='big'>
-            <Icon loading size='huge' name='sun' inverted color='yellow'/>
+            <Icon loading size='huge' name='sun' inverted color='yellow' />
             <Icon className='header-button' link name='world' />
           </Icon.Group>
-          } 
-          closeIcon 
+        }
+          closeIcon
           dimmer={'blurring'}
-          >
+        >
           <Header icon='location arrow' content='Orbit' />
           <Modal.Content>
-            <NavLinks />
+            <NavLinks currentLocation={this.state.currentLocation}/>
           </Modal.Content>
-          <Modal.Actions style={{textAlign: 'center' }}>
-            <Button as={Link} to='/'  color='teal' inverted>
+          <Modal.Actions style={{ textAlign: 'center' }}>
+            <Button as={Link} to='/' color='teal' inverted>
               <Icon name='home' /> Home
             </Button>
           </Modal.Actions>
