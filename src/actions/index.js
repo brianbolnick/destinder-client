@@ -4,7 +4,8 @@ import {
     GET_PLAYER_CHARACTERS,
     GET_MATCHING_USERS,
     FETCH_POSTS_START,
-    CREATE_POST_START
+    CREATE_POST_START,
+    DELETE_LFG_POST
 } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
@@ -61,5 +62,21 @@ export const createLfgPost = (props) => {
     };
 
 }
+
+
+export const deleteLfgPost = (id) => {
+    return (dispatch, getState) => {
+        axios.delete(`${API_URL}/v1/lfg_posts/${id}`,
+            config
+        )
+            .then(response => {
+                dispatch({ type: DELETE_LFG_POST, payload: response.data })
+            })
+            .catch(error => console.log(error))
+    };
+
+}
+
+
 
 

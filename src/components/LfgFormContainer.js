@@ -20,6 +20,7 @@ class FormContainer extends Component {
     }
 
     handleFormSubmit = values => {
+        values = {...values, user_id: JSON.parse(localStorage.getItem('jwt')).user_id}
         this.props.createLfgPost(values);
     }
 

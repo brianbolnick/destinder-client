@@ -4,7 +4,8 @@ import {
     GET_MATCHING_USERS,
     FETCH_POSTS_START,
     CREATE_LFG_POST,
-    CREATE_POST_START
+    CREATE_POST_START,
+    DELETE_LFG_POST
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -36,6 +37,8 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, fetchingNewPost: false, all: [...state.all, action.payload] }
         case CREATE_POST_START:
             return { ...state, fetchingNewPost: true }
+        case DELETE_LFG_POST:
+            return {...state, all: state.all.filter(post => post.id !== action.payload.id)}
         default:
             return state;
     }

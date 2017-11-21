@@ -101,7 +101,7 @@ const KillChart = props => {
       callbacks: {
         label: function(tooltipItem, data) {
           // console.log(temp_dates[tooltipItem.index]);
-          console.log(tooltipItem);
+          // console.log(tooltipItem);
           // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
           return "K/D: " + tooltipItem.yLabel + " (1 day ago)";
         }

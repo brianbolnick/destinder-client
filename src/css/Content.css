@@ -6,6 +6,11 @@ i.world.big.link.icon.header-button {
     color: #fffcf2;
 }
 
+
+.ui.styled.accordion .accordion .active.title, .ui.styled.accordion .accordion .title:hover, .ui.styled.accordion .active.title, .ui.styled.accordion .title:hover {    
+    color: #212121 !important;
+}
+
 i.icon.loading {
     height: 1em;
     line-height: 1;

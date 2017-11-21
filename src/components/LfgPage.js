@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getLfgPosts } from '../actions/index';
+import { getLfgPosts, deleteLfgPost } from '../actions/index';
 import {
   Container,
   Divider,
@@ -10,6 +10,7 @@ import Layout from "./Layout.js";
 import "../css/Content.css";
 import LfgFormContainer from './LfgFormContainer';
 import { BounceLoader } from 'react-spinners';
+import LfgCard from './LfgCard';
 
 
 const jwt = JSON.parse(localStorage.getItem('jwt'));
@@ -43,15 +44,9 @@ class LfgPage extends Component {
   }
 
   render() {
-    // console.log(this.props);
     const posts = this.props.lfgPosts.map((lfgPost) => {
       return (
-        <Card key={lfgPost.id} >
-          <Card.Content header={lfgPost.id} />
-          <Card.Content >
-            {lfgPost.message}
-          </Card.Content>
-        </Card>
+        <LfgCard key={lfgPost.id} data={lfgPost}  />
       )
     })
 
@@ -81,5 +76,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getLfgPosts: getLfgPosts })(LfgPage)
+export default connect(mapStateToProps, { getLfgPosts, deleteLfgPost })(LfgPage)
 
