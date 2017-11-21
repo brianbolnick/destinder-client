@@ -31,6 +31,7 @@
     "typed.js": "^2.0.6"
   },
   "devDependencies": {
+    "jest-localstorage-mock": "^2.1.0",
     "react-scripts": "1.0.14"
   },
   "scripts": {
