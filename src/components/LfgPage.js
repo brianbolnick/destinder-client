@@ -59,7 +59,7 @@ class LfgPage extends Component {
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />
             </div>
             <Divider />
-            count: {this.props.lfgPosts.length}
+            {/* count: {this.props.lfgPosts.length} */}
             <PostData fetching={this.props.fetching} fetched={this.props.fetched} posts={posts} />
           </Container>
         </div>

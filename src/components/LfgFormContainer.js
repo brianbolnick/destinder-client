@@ -47,7 +47,6 @@ class FormContainer extends Component {
     render() {
         const { activeIndex } = this.state;
         const charOptions = this.renderCharacters();
-        // console.log(this.props.fetchingNewPost);
 
         return (
             this.props.isLoggedIn
