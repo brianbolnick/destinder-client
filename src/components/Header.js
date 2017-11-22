@@ -172,15 +172,20 @@ class PlayerCard extends Component {
 }
 
 class NavLinks extends Component {
+  state = { currentLocation: window.location.pathname.split("/")[1] || "/" };
+  
+  componentWillMount() {
+    this.setState({ currentLocation: window.location.pathname.split("/")[1] || "/" })
+  }
 
   render() {
     return (
       <div>
         <Card.Group itemsPerRow={4}>
-          <ProfileCard currentLocation={this.props.currentLocation}/>
-          <LfgCard currentLocation={this.props.currentLocation}/>
-          <FireteamsCard currentLocation={this.props.currentLocation}/>
-          <PlayerCard currentLocation={this.props.currentLocation}/>
+          <ProfileCard currentLocation={this.state.currentLocation}/>
+          <LfgCard currentLocation={this.state.currentLocation}/>
+          <FireteamsCard currentLocation={this.state.currentLocation}/>
+          <PlayerCard currentLocation={this.state.currentLocation}/>
         </Card.Group>
       </div>
     )
@@ -188,11 +193,7 @@ class NavLinks extends Component {
 }
 
 class HeaderComponent extends Component {
-  state = { currentLocation: window.location.pathname.split("/")[1] || "/" };
-  
-  componentWillMount() {
-    this.setState({ currentLocation: window.location.pathname.split("/")[1] || "/" })
-  }
+
   render() {
     return (
       <div>
@@ -207,7 +208,7 @@ class HeaderComponent extends Component {
         >
           <Header icon='location arrow' content='Orbit' />
           <Modal.Content>
-            <NavLinks currentLocation={this.state.currentLocation}/>
+            <NavLinks />
           </Modal.Content>
           <Modal.Actions style={{ textAlign: 'center' }}>
             <Button as={Link} to='/' color='teal' inverted>

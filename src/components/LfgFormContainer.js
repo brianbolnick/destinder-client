@@ -59,7 +59,7 @@ class FormContainer extends Component {
         return (
             this.props.isLoggedIn
                 ?
-                <Accordion className="lfg-form-accordion" styled>
+                <Accordion className="lfg-form-accordion">
                     <Accordion.Title
                         active={activeIndex === 0}
                         index={0}

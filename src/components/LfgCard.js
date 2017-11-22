@@ -7,6 +7,7 @@ import {
 import { deleteLfgPost } from '../actions/index';
 import { connect } from 'react-redux'
 import { jwt } from '../tools/jwt';
+var ta = require("time-ago")();
 
 const user_id = ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) ? jwt.user_id : null
 
@@ -33,15 +34,16 @@ class LfgCard extends Component {
 
                 <Card.Content header={`ID: ${data.id}`} />
                 <Card.Content >
-                    created at: {data.created_at} <br />
-                    fireteam data: {data.fireteam_data} <br />
-                    is fireteam post: {data.is_fireteam_post} <br />
-                    message: {data.message} <br />
-                    player data: {data.player_data} <br />
-                    posting user id: {data.user_id} <br />
-                    <Divider />
-                    {deleteButton}
-
+                    <div>
+                        created:  {ta.ago(data.created_at)} <br />
+                        fireteam data: {data.fireteam_data} <br />
+                        is fireteam post: {data.is_fireteam_post} <br />
+                        message: {data.message} <br />
+                        player data: {data.player_data} <br />
+                        posting user id: {data.user_id} <br />
+                        <Divider />
+                        {deleteButton}
+                    </div>
                 </Card.Content>
             </Card>
         )

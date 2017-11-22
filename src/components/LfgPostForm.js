@@ -45,15 +45,15 @@ class NewLfgPost extends Component {
     }
 
     render() {
-        const { handleSubmit} = this.props;
+        const { handleSubmit } = this.props;
 
         return (
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} inverted>
                 <Form.Group>
                     <Form.Field width={3}>
                         <label className="form-label">Mode</label>
                         <div style={{ display: "inline-flex", marginTop: "3%" }}>
-                            <span style={{ color: "#212121", marginRight: "10%" }}>
+                            <span style={{ color: "#f5f5f5", marginRight: "10%" }}>
                                 PVE
                             </span>{" "}
                             <Field
@@ -65,32 +65,43 @@ class NewLfgPost extends Component {
                         </div>
                     </Form.Field>
 
-                    <Form.Field width={13}>
+                    <Form.Field width={6}>
                         <Field
                             component={SelectField}
                             name='mode'
-                            label="Game Mode"
+                            label="Game Type"
                             options={gameTypeOptions}
                             placeholder="Story"
+                        />
+                    </Form.Field>
+
+                    <Form.Field width={7} disabled>
+                        <Field
+                            component={SelectField}
+                            name='checkpoint'
+                            label="Checkpoint"
                         />
                     </Form.Field>
                 </Form.Group>
 
                 <Form.Group>
-                    <Field
-                        component={SelectField}
-                        name='character_id'
-                        label="Character"
-                        options={this.props.characters}
-                        width={4}
-                    />
-                    <Field
-                        component={SelectField}
-                        name='looking_for'
-                        label="Looking For..."
-                        options={teamOptions}
-                        width={4}
-                    />
+                    <Form.Field width={3}>
+                        <Field
+                            component={SelectField}
+                            name='character_id'
+                            label="Character"
+                            options={this.props.characters}
+                        />
+                    </Form.Field>
+                    <Form.Field width={6}>
+                        <Field
+                            component={SelectField}
+                            name='looking_for'
+                            label="Looking For..."
+                            options={teamOptions}
+                            width={4}
+                        />
+                    </Form.Field>
                     <UserSearch formProps={this.props} />
                 </Form.Group>
                 <Field
@@ -107,7 +118,8 @@ class NewLfgPost extends Component {
                 />
                 <Form.Field
                     control={Button}
-                    primary
+                    color='yellow'
+                    inverted
                     className='submit-btn'
                     loading={this.props.fetching}
                     type='submit'>

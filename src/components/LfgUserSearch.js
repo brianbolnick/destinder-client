@@ -37,7 +37,7 @@ class UserSearch extends Component {
           })
 
         return (
-            <Form.Field width={8}>
+            <Form.Field width={7}>
                 <label>Tag Your Fireteam (Must have a Destinder Account)</label>
                 <Dropdown
                 placeholder="Fireteam"
