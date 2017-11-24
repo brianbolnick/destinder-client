@@ -10,16 +10,32 @@ import {
 import Layout from "./Layout.js";
 import "../css/Content.css";
 import LfgFormContainer from './LfgFormContainer';
-import { BounceLoader } from 'react-spinners';
+import { BounceLoader, ScaleLoader } from 'react-spinners';
 import LfgCard from './LfgCard';
 import { jwt } from '../tools/jwt';
+
+class LoadingPost extends Component {
+  render() {
+    return (
+      this.props.fetching ?
+        <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
+          <div style={{ textAlign: '-webkit-center', height:' 100%', paddingTop: '50%' }}>
+            <ScaleLoader color={'#3dd6d0'} />
+          </div>
+        </Grid.Column>
+        :
+        null
+    )
+  }
+}
 
 class PostData extends Component {
   render() {
     return (
       this.props.fetched ?
         <Grid>
-           {this.props.posts.reverse()}
+          <LoadingPost fetching={this.props.fetchingNewPost} />
+          {this.props.posts.reverse()}
         </Grid>
         :
         <div style={{ textAlign: '-webkit-center' }}>
@@ -41,24 +57,31 @@ class LfgPage extends Component {
     return false;
   }
 
+
   render() {
+    
     const posts = this.props.lfgPosts.map((lfgPost) => {
       return (
-        <LfgCard key={lfgPost.id} data={lfgPost}  />
+        <LfgCard key={lfgPost.id} data={lfgPost} />
       )
     })
 
     return (
       <Layout>
         <div className="lfg-page" style={{ height: "100vh" }}>
-          <Container style={{ width: '80%'}}>
+          <Container style={{ width: '80%' }}>
             <div style={{ height: "50px" }} />
             <div style={{ margin: "0 auto" }}>
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />
             </div>
             <Divider />
             {/* count: {this.props.lfgPosts.length} */}
-            <PostData fetching={this.props.fetching} fetched={this.props.fetched} posts={posts} />
+            <PostData
+              fetching={this.props.fetching}
+              fetched={this.props.fetched}
+              posts={posts}
+              fetchingNewPost={this.props.fetchingNewPost}
+            />
           </Container>
         </div>
       </Layout>
@@ -70,7 +93,8 @@ function mapStateToProps(state) {
   return {
     lfgPosts: state.lfgPosts.all,
     fetched: state.lfgPosts.fetched,
-    fetching: state.lfgPosts.fetching
+    fetching: state.lfgPosts.fetching,
+    fetchingNewPost: state.lfgPosts.fetchingNewPost
   }
 }
 
