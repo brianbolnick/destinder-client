@@ -4,7 +4,8 @@ import { getLfgPosts, deleteLfgPost } from '../actions/index';
 import {
   Container,
   Divider,
-  Card
+  Card,
+  Grid
 } from "semantic-ui-react";
 import Layout from "./Layout.js";
 import "../css/Content.css";
@@ -17,9 +18,9 @@ class PostData extends Component {
   render() {
     return (
       this.props.fetched ?
-        <Card.Group itemsPerRow={3} stackable>
-          {this.props.posts.reverse()}
-        </Card.Group>
+        <Grid>
+           {this.props.posts.reverse()}
+        </Grid>
         :
         <div style={{ textAlign: '-webkit-center' }}>
           <BounceLoader color={'#3dd6d0'} />

@@ -42,6 +42,7 @@ export const getMatchingUsers = (name) => {
 export const getPlayerCharacters = (user_id) => {
     return (dispatch, getState) => {
         axios.get(`${API_URL}/v1/users/${user_id}/characters`).then(response => {
+            console.log(response.data)
             dispatch({ type: GET_PLAYER_CHARACTERS, payload: response.data })
         }).catch(error => console.log(error))
     };

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
     Card,
     Icon,
-    Divider
+    Divider,
+    Grid
 } from "semantic-ui-react";
 import { deleteLfgPost } from '../actions/index';
 import { connect } from 'react-redux'
@@ -32,39 +33,41 @@ class LfgCard extends Component {
         const character_data = JSON.parse(data.character_data)
 
         return (
-            <Card className="lfg-post-card" >
+            <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
+                <Card className="lfg-post-card" >
 
-                <Card.Content header={`ID: ${data.id}`} />
-                {/* <Card.Content >
-                    <div>
-                        created:  {ta.ago(data.created_at)} <br />
-                        fireteam data: {data.fireteam_data} <br />
-                        is fireteam post: {data.is_fireteam_post} <br />
-                        message: {data.message} <br />
-                        player data: {data.player_data} <br />
-                        posting user id: {data.user_id} <br />
-                        <Divider />
-                        {deleteButton}
-                    </div>
-                </Card.Content> */}
-                <Card.Content >
-                    <div>
-                        created:  {ta.ago(data.created_at)} <br />
-                        fireteam data: {data.fireteam_data} <br />
-                        is fireteam post: {data.is_fireteam_post} <br />
-                        message: {data.message} <br />
-                        player data: {data.player_data} <br />
-                        posting user id: {data.user_id} <br />
-                        character: {character_data.character_type} <br />
-                        subclass: {character_data.subclass} <br />
-                        light level: {character_data.light_level} <br />
-                        emblem: {character_data.emblem} <br />
-                        emblem bg: {character_data.emblem_background} <br />
-                        <Divider />
-                        {deleteButton}
-                    </div>
-                </Card.Content>
-            </Card>
+                    <Card.Content header={`ID: ${data.id}`} />
+                    {/* <Card.Content >
+                        <div>
+                            created:  {ta.ago(data.created_at)} <br />
+                            fireteam data: {data.fireteam_data} <br />
+                            is fireteam post: {data.is_fireteam_post} <br />
+                            message: {data.message} <br />
+                            player data: {data.player_data} <br />
+                            posting user id: {data.user_id} <br />
+                            <Divider />
+                            {deleteButton}
+                        </div>
+                    </Card.Content> */}
+                    <Card.Content >
+                        <div>
+                            created:  {ta.ago(data.created_at)} <br />
+                            fireteam data: {data.fireteam_data} <br />
+                            is fireteam post: {data.is_fireteam_post} <br />
+                            message: {data.message} <br />
+                            player data: {data.player_data} <br />
+                            posting user id: {data.user_id} <br />
+                            character: {character_data.character_type} <br />
+                            subclass: {character_data.subclass} <br />
+                            light level: {character_data.light_level} <br />
+                            emblem: {character_data.emblem} <br />
+                            emblem bg: {character_data.emblem_background} <br />
+                            <Divider />
+                            {deleteButton}
+                        </div>
+                    </Card.Content>
+                </Card>
+            </Grid.Column>
         )
     }
 }
