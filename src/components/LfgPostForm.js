@@ -88,6 +88,7 @@ class NewLfgPost extends Component {
                 <Form.Group>
                     <Form.Field width={3}>
                         <Field
+                            fluid
                             component={SelectField}
                             name='character_id'
                             label="Character"
@@ -99,8 +100,7 @@ class NewLfgPost extends Component {
                             component={SelectField}
                             name='looking_for'
                             label="Looking For..."
-                            options={teamOptions}
-                            width={4}
+                            options={teamOptions}  
                         />
                     </Form.Field>
                     <UserSearch formProps={this.props} />

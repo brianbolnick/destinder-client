@@ -23,6 +23,22 @@ i.world.link.icon.header-button:hover {
 .ui.accordion .title:not(.ui) {
     font-size: 1.1em;
     color: #FDD66F;
+    padding: 0;
+}
+
+.rc-steps-vertical .rc-steps-item-tail:after {
+    height: 100%;
+    width: 1px;
+}
+
+.rc-steps-item-tail:after {
+    content: '';
+    display: inline-block;
+    background: #e9e9e9;
+    height: 1px;
+    border-radius: 1px;
+    width: 100%;
+    transition: background .3s;
 }
 
 i.icon.loading {

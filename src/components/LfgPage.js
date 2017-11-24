@@ -5,7 +5,10 @@ import {
   Container,
   Divider,
   Card,
-  Grid
+  Grid,
+  Button,
+  Modal,
+  Header
 } from "semantic-ui-react";
 import Layout from "./Layout.js";
 import "../css/Content.css";
@@ -19,7 +22,7 @@ class LoadingPost extends Component {
     return (
       this.props.fetching ?
         <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
-          <div style={{ textAlign: '-webkit-center', height:' 100%', paddingTop: '50%' }}>
+          <div style={{ textAlign: '-webkit-center', height: ' 100%', paddingTop: '50%' }}>
             <ScaleLoader color={'#3dd6d0'} />
           </div>
         </Grid.Column>
@@ -57,9 +60,12 @@ class LfgPage extends Component {
     return false;
   }
 
+  handleRefreshButtonClick() {
+    this.props.getLfgPosts();
+  }
 
   render() {
-    
+
     const posts = this.props.lfgPosts.map((lfgPost) => {
       return (
         <LfgCard key={lfgPost.id} data={lfgPost} />
@@ -70,7 +76,18 @@ class LfgPage extends Component {
       <Layout>
         <div className="lfg-page" style={{ height: "100vh" }}>
           <Container style={{ width: '80%' }}>
-            <div style={{ height: "50px" }} />
+            <div style={{ height: "50px" }} >
+              <Button floated='right' basic size='large' inverted onClick={() => this.handleRefreshButtonClick()} circular icon='refresh' />
+              <Modal trigger={<Button floated='right' size='large' basic inverted circular icon='filter' />}>
+                <Modal.Header>Filter</Modal.Header>
+                <Modal.Content >                 
+                  <Modal.Description>
+                    <Header>Filter stuff</Header>                    
+                  </Modal.Description>
+                </Modal.Content>
+              </Modal>
+              
+            </div>
             <div style={{ margin: "0 auto" }}>
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />
             </div>

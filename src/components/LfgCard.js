@@ -12,6 +12,8 @@ import {
 import { deleteLfgPost } from '../actions/index';
 import { connect } from 'react-redux'
 import { jwt } from '../tools/jwt';
+import { GAME_TYPES } from '../data/common_constants'
+
 var ta = require("time-ago")();
 
 const user_id = ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) ? jwt.user_id : null
@@ -103,21 +105,27 @@ class LfgCard extends Component {
                         }}
                     />
 
-                    <Card.Content >
+                    <Card.Content style={{ paddingTop: '0' }}>
+                        <div style={{
+                            textTransform: 'uppercase',
+                            textAlign: 'center',
+                            letterSpacing: '4px',
+                            fontSize: '0.8em'
+                        }}>{GAME_TYPES[data.game_type]}</div>
+                        <div style={{
+                            textTransform: 'uppercase',
+                            textAlign: 'center',
+                            letterSpacing: '3px',
+                            fontSize: '0.6em'
+                        }}>{ta.ago(data.created_at)}</div>
+                        
                         <div>
-                            {/* created:  {ta.ago(data.created_at)} <br />
-                            fireteam data: {data.fireteam_data} <br />
-                            is fireteam post: {data.is_fireteam_post} <br />
-                            message: {data.message} <br />
-                            player data: {data.player_data} <br />
-                            posting user id: {data.user_id} <br />
-                            character: {character_data.character_type} <br />
-                            subclass: {character_data.subclass} <br />
-                            light level: {character_data.light_level} <br /> */}
-                            mode: {data.game_type} 
-                            <Divider hidden/>
-                            {data.message} 
-                            <Divider hidden/>
+
+                            <Divider hidden />
+                            {data.message}
+                            <div class="rc-steps-item-tail"></div>
+                            <div class="rc-steps-item-tail"></div>
+                            <Divider hidden />
                             <StatData mode={data.game_type} />
                         </div>
                         <Divider />
