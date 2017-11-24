@@ -32,7 +32,7 @@ export const getMatchingUsers = (name) => {
         if (name === "") {
             dispatch({ type: GET_MATCHING_USERS, payload: name })
         } else {
-            axios.get(`${API_URL}/v1/users/find/${name}`).then(response => {
+            axios.get(`${API_URL}/v1/users/find/?data=${name}`).then(response => {
                 dispatch({ type: GET_MATCHING_USERS, payload: response.data })
             }).catch(error => console.log(error))
         }
@@ -49,14 +49,17 @@ export const getPlayerCharacters = (user_id) => {
 
 
 export const createLfgPost = (props) => {
-    return (dispatch, getState) => {
+    return (dispatch, getState) => {        
         dispatch({ type: CREATE_POST_START})        
         axios.post(`${API_URL}/v1/lfg_posts`,
             props,
             config
         )
-            .then(response => {
-                dispatch({ type: CREATE_LFG_POST, payload: response.data })
+            .then(response => {                
+                dispatch({ 
+                    type: CREATE_LFG_POST, 
+                    payload: response.data
+                })
             })
             .catch(error => console.log(error))
     };

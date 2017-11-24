@@ -80,6 +80,7 @@ class NewLfgPost extends Component {
                             component={SelectField}
                             name='checkpoint'
                             label="Checkpoint"
+                            options={gameTypeOptions}
                         />
                     </Form.Field>
                 </Form.Group>

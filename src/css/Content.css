@@ -151,6 +151,10 @@ textarea {
 .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
     background-color: #51A3A3 !important;
 }
+
+.ui.card.lfg-post-card {
+    /* max-width: 415px; */
+}
 /* 
 .ui.styled.accordion .active.title {
     background: #F7f7f7;

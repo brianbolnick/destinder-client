@@ -17,7 +17,7 @@ class PostData extends Component {
   render() {
     return (
       this.props.fetched ?
-        <Card.Group itemsPerRow={3}>
+        <Card.Group itemsPerRow={3} stackable>
           {this.props.posts.reverse()}
         </Card.Group>
         :
@@ -50,7 +50,7 @@ class LfgPage extends Component {
     return (
       <Layout>
         <div className="lfg-page" style={{ height: "100vh" }}>
-          <Container>
+          <Container style={{ width: '80%'}}>
             <div style={{ height: "50px" }} />
             <div style={{ margin: "0 auto" }}>
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />

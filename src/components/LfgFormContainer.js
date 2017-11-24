@@ -42,11 +42,11 @@ class FormContainer extends Component {
 
     //creates an object for the characters option of the form, based on api response
     renderCharacters() {
-        return this.props.characters.map((character, index) => {
+        return Object.keys(this.props.characters).map((character, index) => {
             return {
                 key: index,
-                value: character.character_id,
-                text: character.character_type
+                value: character,
+                text: this.props.characters[character].character_type
             }
         })
     }
