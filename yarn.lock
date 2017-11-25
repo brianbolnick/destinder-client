@@ -62,6 +62,10 @@ acorn@^5.0.0, acorn@^5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.1.2.tgz#911cb53e036807cf0fa778dc5d370fbd864246d7"
 
+adblockdetect@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/adblockdetect/-/adblockdetect-0.0.1.tgz#fad5989ed5bcca41895bb71ade164b68a5f8450d"
+
 add-dom-event-listener@1.x:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/add-dom-event-listener/-/add-dom-event-listener-1.0.2.tgz#8faed2c41008721cf111da1d30d995b85be42bed"
@@ -5889,6 +5893,13 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-ad-block-detect@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-ad-block-detect/-/react-ad-block-detect-1.0.1.tgz#805f43d25a5df425e810439d26c08b0b335efed2"
+  dependencies:
+    adblockdetect "^0.0.1"
+    react "^15.4.2"
+
 react-chartjs-2@^2.6.4:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-2.6.4.tgz#6474d4480a6c74f2061ee0bbbe6d0f4db2170a81"
@@ -6132,7 +6143,7 @@ react-transition-group@^2.2.1:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react@^15.6.1, react@^15.6.2:
+react@^15.4.2, react@^15.6.1, react@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   dependencies:

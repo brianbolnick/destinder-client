@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Advertisement } from 'semantic-ui-react'
+import AdBlockDetect from 'react-ad-block-detect';
 
 export default class LeaderboardAd extends Component {
     componentDidMount() {
@@ -7,16 +8,22 @@ export default class LeaderboardAd extends Component {
     }
 
     render() {
-        return (            
-            <Advertisement centered unit='large leaderboard'>
-                <ins 
-                    className="adsbygoogle"
-                    style={{ display: "inline-block", width: '728px', height: '90px' }}
-                    data-ad-client="ca-pub-2757454986564342"
-                    data-ad-slot="5967597110"
-                >
-                </ins>
-            </Advertisement>
-    )
+        return (
+            <div>
+                <Advertisement centered unit='large leaderboard'>
+                    <ins
+                        className="adsbygoogle"
+                        style={{ display: "block" }}
+                        data-ad-client="ca-pub-2757454986564342"
+                        data-ad-slot="5485215532"
+                        data-ad-format="auto"
+                    >
+                    </ins>
+                </Advertisement>
+                <AdBlockDetect>
+                    <Advertisement centered test="This site is supported by advertisements. Please consider disabling your adblocker in order to help us enhance Destinder!" unit='large leaderboard' />
+                </AdBlockDetect>
+            </div>
+        )
     }
 }
