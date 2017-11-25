@@ -52,28 +52,28 @@ class StatData extends Component {
                 <Grid.Row >
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value>1.21</Statistic.Value>
+                            <Statistic.Value>{this.props.player_data.kd_ratio}</Statistic.Value>
                             <Statistic.Label>K/D</Statistic.Label>
                         </Statistic>
                     </Grid.Column>
 
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value>1350</Statistic.Value>
+                            <Statistic.Value>{this.props.player_data.elo.elo}</Statistic.Value>
                             <Statistic.Label>ELO</Statistic.Label>
                         </Statistic>
                     </Grid.Column>
 
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value>78%</Statistic.Value>
+                            <Statistic.Value>{this.props.player_data.win_rate}%</Statistic.Value>
                             <Statistic.Label>WIN</Statistic.Label>
                         </Statistic>
                     </Grid.Column>
 
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value>1.48</Statistic.Value>
+                            <Statistic.Value>{this.props.player_data.kad_ratio}</Statistic.Value>
                             <Statistic.Label>K/AD</Statistic.Label>
                         </Statistic>
                     </Grid.Column>
@@ -107,6 +107,55 @@ class LfgCard extends Component {
             <Icon link onClick={() => { window.location.href = `https://account.xbox.com/en-US/SkypeMessages?gamerTag=${player_data.player_name}` }} name='mail' />
             :
             null
+
+        const micIcon = data.has_mic
+            ?
+            <Popup
+                trigger={<Icon className="post-icon" name='microphone' color='blue' />}
+                content='I have a mic'
+            />
+            :
+            <Popup
+                trigger={<Icon className="post-icon" name='microphone slash' style={{ color: '#212121' }} />}
+                content='No Mic'
+            />
+
+        let lookingForIcon;
+        switch (data.looking_for) {
+            case 'any':
+                lookingForIcon =
+                    <Popup
+                        trigger={<Icon className="post-icon" color='red' inverted name='world' />}
+                        content='Looking for anyone'
+                    />
+                break;
+            case 'similar':
+                lookingForIcon =
+                    <Popup
+                        trigger={<Icon className="post-icon" color='red' inverted name='bar chart' />}
+                        content='Looking for similar'
+                    />
+                break;
+            case 'sherpa':
+                lookingForIcon =
+                    <Popup
+                        trigger={<Icon className="post-icon" color='red' inverted name='child' />}
+                        content='Looking to be carried'
+                    />
+                break;
+            case 'sherpee':
+                lookingForIcon =
+                    <Popup
+                        trigger={<Icon className="post-icon" color='red' inverted name='map outline' />}
+                        content='Looking to carry someone'
+                    />
+                break;
+            default:
+                break;
+
+        }
+
+
 
         const character_data = JSON.parse(data.character_data);
         const player_data = JSON.parse(data.player_data);
@@ -149,51 +198,39 @@ class LfgCard extends Component {
                                             <p>
                                                 {data.message}
                                             </p>
-                                        </Message>            
+                                        </Message>
                                     </Grid.Column>
-                                    <Grid.Column width={4} style={{ paddingRight: "0" }}>
-                                        <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
-                                            <Step status="wait" icon={
-                                                <Popup
-                                                    trigger={<Icon className="post-icon" name='microphone' color='blue' />}
-                                                    content='I have a mic!'
-                                                />}
-                                            />
-                                            <Step icon={
-                                                <Popup
-                                                    trigger={<Icon className="post-icon"  color='red' inverted name='map' />}
-                                                    content='Looking to be carried'
-                                                />}
-                                            />
-                                            <Step icon={
-                                                <Popup
-                                                    trigger={<Icon className="post-icon"  name='tag'  color='green' />}
-                                                    content='These are my badges!'
-                                                />}
-                                            />
-                                        </Steps>
-                                    </Grid.Column>
+                                <Grid.Column width={4} style={{ paddingRight: "0" }}>
+                                    <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
+                                        <Step status="wait" icon={micIcon} />
+                                        <Step icon={lookingForIcon} />
+                                        <Step icon={
+                                            <Popup
+                                                trigger={<Icon className="post-icon" name='tag' color='green' />}
+                                                content='These are my badges!'
+                                            />}
+                                        />
+                                    </Steps>
+                                </Grid.Column>
                                 </Grid.Row>
                             </Grid>
-
-
-                            <Divider hidden />
-                            <StatData mode={data.game_type} />
+                        <Divider hidden />
+                        <StatData mode={data.game_type} player_data={player_data}/>
                         </div>
-                        <Divider />
-                        <Grid textAlign='center' columns='equal'>
-                            <Grid.Row>
-                                <Grid.Column>
-                                    {deleteButton}
-                                </Grid.Column>
-                                <Grid.Column width={6} style={{}}>
-                                    <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
-                                </Grid.Column>
-                                <Grid.Column style={{}}>
-                                    {mailButton}
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
+                    <Divider />
+                    <Grid textAlign='center' columns='equal'>
+                        <Grid.Row>
+                            <Grid.Column>
+                                {deleteButton}
+                            </Grid.Column>
+                            <Grid.Column width={6} style={{}}>
+                                <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
+                            </Grid.Column>
+                            <Grid.Column style={{}}>
+                                {mailButton}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
 
                     </Card.Content>
                 </Card>

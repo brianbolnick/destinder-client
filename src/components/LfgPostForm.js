@@ -69,7 +69,6 @@ class NewLfgPost extends Component {
 
     render() {
         const { handleSubmit, pristine } = this.props;
-
         return (
             <Form onSubmit={handleSubmit} inverted>
                 <Form.Group>
