@@ -4,21 +4,18 @@ import {
     Icon,
     Divider,
     Grid,
-    Segment,
     Rating,
-    Statistic,
-    Label,
     Popup,
     Message
 } from "semantic-ui-react";
-import { deleteLfgPost } from '../actions/index';
+import { deleteLfgPost } from '../../actions/index';
 import { connect } from 'react-redux'
-import { jwt } from '../tools/jwt';
-import { GAME_TYPES } from '../data/common_constants'
-import "../css/steps.css";
+import { jwt } from '../../tools/jwt';
+import { GAME_TYPES } from '../../data/common_constants'
+import "../../css/steps.css";
 import { Steps } from 'antd';
+import { TrialsData, PveData, PvpData} from './LfgStatDisplay';
 const Step = Steps.Step;
-
 
 var ta = require("time-ago")();
 
@@ -45,44 +42,7 @@ class HeaderData extends Component {
     }
 }
 
-class StatData extends Component {
-    render() {
-        return (
-            <Grid columns={4} divided>
-                <Grid.Row >
-                    <Grid.Column>
-                        <Statistic size='mini'>
-                            <Statistic.Value>{this.props.player_data.kd_ratio}</Statistic.Value>
-                            <Statistic.Label>K/D</Statistic.Label>
-                        </Statistic>
-                    </Grid.Column>
 
-                    <Grid.Column>
-                        <Statistic size='mini'>
-                            <Statistic.Value>{this.props.player_data.elo.elo}</Statistic.Value>
-                            <Statistic.Label>ELO</Statistic.Label>
-                        </Statistic>
-                    </Grid.Column>
-
-                    <Grid.Column>
-                        <Statistic size='mini'>
-                            <Statistic.Value>{this.props.player_data.win_rate}%</Statistic.Value>
-                            <Statistic.Label>WIN</Statistic.Label>
-                        </Statistic>
-                    </Grid.Column>
-
-                    <Grid.Column>
-                        <Statistic size='mini'>
-                            <Statistic.Value>{this.props.player_data.kad_ratio}</Statistic.Value>
-                            <Statistic.Label>K/AD</Statistic.Label>
-                        </Statistic>
-                    </Grid.Column>
-
-                </Grid.Row>
-            </Grid>
-        )
-    }
-}
 
 class LfgCard extends Component {
     deletePostClick() {
@@ -95,6 +55,8 @@ class LfgCard extends Component {
 
     render() {
         const { data } = this.props;
+        const character_data = JSON.parse(data.character_data);
+        const player_data = JSON.parse(data.player_data);
 
         let deleteButton = null;
 
@@ -155,10 +117,25 @@ class LfgCard extends Component {
 
         }
 
-
-
-        const character_data = JSON.parse(data.character_data);
-        const player_data = JSON.parse(data.player_data);
+        let statData;
+        switch (data.game_type) {
+            case '2':
+            case '3':
+            case '4':
+            case '6':
+            case '7':
+            case '16':
+            case '17':
+            case '18':
+                statData = <PveData mode={data.game_type} player_data={player_data}/>
+                break;
+            case '39':
+                statData = <TrialsData mode={data.game_type} player_data={player_data}/>
+                break;
+            default:
+                statData = <PvpData mode={data.game_type} player_data={player_data}/>
+                break;
+        }
 
         return (
             <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
@@ -215,7 +192,7 @@ class LfgCard extends Component {
                                 </Grid.Row>
                             </Grid>
                         <Divider hidden />
-                        <StatData mode={data.game_type} player_data={player_data}/>
+                        {statData}                        
                         </div>
                     <Divider />
                     <Grid textAlign='center' columns='equal'>

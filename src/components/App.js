@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "../css/App.css";
 import Home from "./HomePage.js";
-import Lfg from "./LfgPage.js";
+import Lfg from "./Lfg/LfgPage.js";
 import Profile from "./ProfilePage.js";
 // import TeamSearch from './TeamSearch.js';
 import NotFound from "./NotFound.js";

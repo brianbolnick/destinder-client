@@ -1,30 +1,22 @@
 import React, { Component } from "react";
-import { getMatchingUsers } from '../actions/index';
+import { getMatchingUsers } from '../../actions/index';
 import {
     Form,
-    Button
+    Button,
 } from "semantic-ui-react";
 import { Toggle, CheckboxField, LabelInputField, SelectField, TextAreaField } from 'react-semantic-redux-form';
 import { Field, reduxForm } from 'redux-form';
 import UserSearch from './LfgUserSearch';
 
-const gameTypeOptions = [
-    { key: "2", text: "Story", value: 2 },
-    { key: "3", text: "Strike", value: 3 },
-    { key: "4", text: "Raid", value: 4 },
-    { key: "5", text: "PVP - Any", value: 5 },
-    { key: "6", text: "Patrol", value: 6 },
+const pveOptions = [
     { key: "7", text: "PVE - Any", value: 7 },
-    { key: "10", text: "Control", value: 10 },
-    { key: "12", text: "Clash", value: 12 },
+    { key: "4", text: "Raid - Leviathan", value: 4 },
     { key: "16", text: "Nightfall", value: 16 },
     { key: "17", text: "Nightfall - Heroic", value: 17 },
-    { key: "18", text: "Strikes", value: 18 },
-    { key: "19", text: "Iron Banner", value: 19 },
-    { key: "31", text: "Supremacy", value: 31 },
-    { key: "37", text: "Survival", value: 37 },
-    { key: "38", text: "Countdown", value: 38 },
-    { key: "39", text: "Trials of the Nine", value: 39 }
+    { key: "2", text: "Story", value: 2 },
+    { key: "3", text: "Strike", value: 3 },
+    { key: "6", text: "Patrol", value: 6 },
+    { key: "18", text: "Strikes", value: 18 }
 ];
 
 const teamOptions = [
@@ -34,30 +26,42 @@ const teamOptions = [
     { key: "sherpee", text: "Sherpee (Someone to Carry)", value: "sherpee" }
 ];
 
+const pvpOptions = [
+    { key: "5", text: "PVP - Any", value: 5 },
+    { key: "39", text: "Trials of the Nine", value: 39 },
+    { key: "19", text: "Iron Banner", value: 19 },
+    { key: "10", text: "Control", value: 10 },
+    { key: "12", text: "Clash", value: 12 },
+    { key: "31", text: "Supremacy", value: 31 },
+    { key: "37", text: "Survival", value: 37 },
+    { key: "38", text: "Countdown", value: 38 }
+]
+
 
 const validate = values => {
     const errors = {}
     if (!values.message) {
-      errors.message = 'Please enter a message.'
+        errors.message = 'Please enter a message.'
     } else if (values.message.length > 60) {
-      errors.message = 'Must be 60 characters or less'
+        errors.message = 'Must be 60 characters or less'
     }
     if (!values.mode) {
-      errors.mode = 'Please select a game type.'
-    } 
+        errors.mode = 'Please select a game type.'
+    }
 
     if (!values.looking_for) {
-      errors.looking_for = 'Please select an option.'
-    } 
+        errors.looking_for = 'Please select an option.'
+    }
 
     if (!values.character_id) {
-      errors.character_id = 'Please select a character.'
-    } 
+        errors.character_id = 'Please select a character.'
+    }
     return errors
-  }
+}
 
 
 class NewLfgPost extends Component {
+    state = { checked: false, raid: false }
 
     handleChange = (e, { value }) => {
         this.props.change('fireteam', value)
@@ -67,8 +71,19 @@ class NewLfgPost extends Component {
         getMatchingUsers(data.searchQuery);
     }
 
+    handleGameTypeChange = (e, { name, value }) => console.log(this.state);
+
+    toggle = () => this.setState({ checked: !this.state.checked })
+
+    
     render() {
-        const { handleSubmit, pristine } = this.props;
+
+        // const raidOptions = 
+        //     switch(this.state.)
+
+        const { handleSubmit} = this.props;
+
+        console.log(this.props)
         return (
             <Form onSubmit={handleSubmit} inverted>
                 <Form.Group>
@@ -83,6 +98,8 @@ class NewLfgPost extends Component {
                                 label='PVP'
                                 width={8}
                                 name='game_mode_toggle'
+                                onChange={this.toggle}
+                                checked={this.state.checked}
                             />
                         </div>
                     </Form.Field>
@@ -92,17 +109,18 @@ class NewLfgPost extends Component {
                             component={SelectField}
                             name='mode'
                             label="Game Type"
-                            options={gameTypeOptions}
+                            options={this.state.checked ? pvpOptions : pveOptions}
+                            onChange={console.log(this)}
                             placeholder="Story"
                         />
                     </Form.Field>
 
-                    <Form.Field width={7} disabled>
+                    <Form.Field width={7} disabled={!this.state.raid}>
                         <Field
                             component={SelectField}
                             name='checkpoint'
                             label="Checkpoint"
-                            options={gameTypeOptions}
+                            options={pvpOptions}
                         />
                     </Form.Field>
                 </Form.Group>
@@ -122,7 +140,7 @@ class NewLfgPost extends Component {
                             component={SelectField}
                             name='looking_for'
                             label="Looking For..."
-                            options={teamOptions}  
+                            options={teamOptions}
                         />
                     </Form.Field>
                     <UserSearch formProps={this.props} />
@@ -147,7 +165,7 @@ class NewLfgPost extends Component {
                     loading={this.props.fetching}
                     type='submit'>
                     Create Post
-                </Form.Field> 
+                </Form.Field>
             </Form>
         )
     }

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getPlayerCharacters, createLfgPost } from '../actions/index';
+import { getPlayerCharacters, createLfgPost } from '../../actions/index';
 import {
     Accordion,
     Icon,
     Button
 } from "semantic-ui-react";
 import NewForm from './LfgPostForm';
-import { API_URL } from '../tools/api-config';
-import { jwt } from '../tools/jwt';
+import { API_URL } from '../../tools/api-config';
+import { jwt } from '../../tools/jwt';
 
 class FormContainer extends Component {
     state = { activeIndex: -1 };

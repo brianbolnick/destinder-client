@@ -18,6 +18,13 @@ i.world.link.icon.header-button:hover {
     color: #f5f5f5;
 }
 
+.ui.mini.statistic>.value.long-stat, .ui.mini.statistics .statistic>.value.long-stat {
+    font-size: 1.1em !important;
+}
+.ui.mini.statistic>.value.extra-long-stat, .ui.mini.statistics .statistic>.value.extra-long-stat {
+    font-size: 0.9em !important;
+}
+
 .ui.mini.statistic>.value, .ui.mini.statistics .statistic>.value {
     font-size: 1.3rem!important;
     /* color: #696D7C; */
@@ -154,6 +161,8 @@ textarea {
 .ui.inverted.yellow.button:hover, .ui.inverted.yellow.buttons .button:hover {
     background-color: #fed766;
 }
+
+
 
 /* .ui.raised.card.nav-card {
     -webkit-transform: rotate(45deg);

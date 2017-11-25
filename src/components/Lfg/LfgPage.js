@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getLfgPosts, deleteLfgPost } from '../actions/index';
+import { getLfgPosts, deleteLfgPost } from '../../actions/index';
 import {
   Container,
   Divider,
-  Card,
   Grid,
   Button,
   Modal,
   Header
 } from "semantic-ui-react";
-import Layout from "./Layout.js";
-import "../css/Content.css";
+import Layout from "../Layout.js";
+import "../../css/Content.css";
 import LfgFormContainer from './LfgFormContainer';
 import { BounceLoader, ScaleLoader } from 'react-spinners';
 import LfgCard from './LfgCard';
-import { jwt } from '../tools/jwt';
+import { jwt } from '../../tools/jwt';
 
 class LoadingPost extends Component {
   render() {
