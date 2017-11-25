@@ -74,7 +74,7 @@ class LfgPage extends Component {
 
     return (
       <Layout>
-        <div className="lfg-page" style={{ height: "100vh" }}>
+        <div className="lfg-page">
           <Container style={{ width: '80%' }}>
             <div style={{ height: "50px" }} >
               <Button floated='right' basic size='large' inverted onClick={() => this.handleRefreshButtonClick()} circular icon='refresh' />
