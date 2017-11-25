@@ -34,6 +34,29 @@ const teamOptions = [
     { key: "sherpee", text: "Sherpee (Someone to Carry)", value: "sherpee" }
 ];
 
+
+const validate = values => {
+    const errors = {}
+    if (!values.message) {
+      errors.message = 'Please enter a message.'
+    } else if (values.message.length > 60) {
+      errors.message = 'Must be 60 characters or less'
+    }
+    if (!values.mode) {
+      errors.mode = 'Please select a game type.'
+    } 
+
+    if (!values.looking_for) {
+      errors.looking_for = 'Please select an option.'
+    } 
+
+    if (!values.character_id) {
+      errors.character_id = 'Please select a character.'
+    } 
+    return errors
+  }
+
+
 class NewLfgPost extends Component {
 
     handleChange = (e, { value }) => {
@@ -45,7 +68,7 @@ class NewLfgPost extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, pristine } = this.props;
 
         return (
             <Form onSubmit={handleSubmit} inverted>
@@ -132,5 +155,6 @@ class NewLfgPost extends Component {
 }
 
 export default reduxForm({
-    form: 'lfgForm'
+    form: 'lfgForm',
+    validate
 })(NewLfgPost)
