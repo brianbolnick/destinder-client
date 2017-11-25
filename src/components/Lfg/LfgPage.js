@@ -4,7 +4,6 @@ import { getLfgPosts, deleteLfgPost } from '../../actions/index';
 import {
   Container,
   Divider,
-  Advertisement,
   Grid,
   Button,
   Modal,
@@ -32,6 +31,18 @@ class LoadingPost extends Component {
     )
   }
 }
+
+
+const FilterModal = () => (
+  <Modal trigger={<Button floated='right' size='large' basic inverted circular icon='filter' />}>
+    <Modal.Header>Filter</Modal.Header>
+    <Modal.Content >
+      <Modal.Description>
+        <Header>We'll have some sweet filtering options coming soon.</Header>
+      </Modal.Description>
+    </Modal.Content>
+  </Modal>
+)
 
 class PostData extends Component {
   render() {
@@ -80,21 +91,12 @@ class LfgPage extends Component {
           <Container style={{ width: '80%' }}>
             <div style={{ height: "50px" }} >
               <Button floated='right' basic size='large' inverted onClick={() => this.handleRefreshButtonClick()} circular icon='refresh' />
-              <Modal trigger={<Button floated='right' size='large' basic inverted circular icon='filter' />}>
-                <Modal.Header>Filter</Modal.Header>
-                <Modal.Content >
-                  <Modal.Description>
-                    <Header>We'll have some sweet filtering options coming soon.</Header>
-                  </Modal.Description>
-                </Modal.Content>
-              </Modal>
-
+              <FilterModal />
             </div>
             <div style={{ margin: "0 auto" }}>
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />
             </div>
             <Divider />
-            {/* count: {this.props.lfgPosts.length} */}
             <PostData
               fetching={this.props.fetching}
               fetched={this.props.fetched}
