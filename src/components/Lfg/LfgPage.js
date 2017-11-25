@@ -4,6 +4,7 @@ import { getLfgPosts, deleteLfgPost } from '../../actions/index';
 import {
   Container,
   Divider,
+  Advertisement,
   Grid,
   Button,
   Modal,
@@ -15,6 +16,7 @@ import LfgFormContainer from './LfgFormContainer';
 import { BounceLoader, ScaleLoader } from 'react-spinners';
 import LfgCard from './LfgCard';
 import { jwt } from '../../tools/jwt';
+import LeaderboardAd from '../LeaderboardAd';
 
 class LoadingPost extends Component {
   render() {
@@ -73,19 +75,20 @@ class LfgPage extends Component {
 
     return (
       <Layout>
-        <div className="lfg-page" style={{minHeight: '100vh' }}>
+        <div className="lfg-page" style={{ minHeight: '100vh' }}>
+
           <Container style={{ width: '80%' }}>
             <div style={{ height: "50px" }} >
               <Button floated='right' basic size='large' inverted onClick={() => this.handleRefreshButtonClick()} circular icon='refresh' />
               <Modal trigger={<Button floated='right' size='large' basic inverted circular icon='filter' />}>
                 <Modal.Header>Filter</Modal.Header>
-                <Modal.Content >                 
+                <Modal.Content >
                   <Modal.Description>
-                    <Header>Filter stuff</Header>                    
+                    <Header>We'll have some sweet filtering options coming soon.</Header>
                   </Modal.Description>
                 </Modal.Content>
               </Modal>
-              
+
             </div>
             <div style={{ margin: "0 auto" }}>
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />
@@ -99,6 +102,8 @@ class LfgPage extends Component {
               fetchingNewPost={this.props.fetchingNewPost}
             />
           </Container>
+          <Divider hidden />
+          <LeaderboardAd />
         </div>
       </Layout>
     );

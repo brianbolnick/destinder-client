@@ -7,36 +7,7 @@ import {
 import { Toggle, CheckboxField, LabelInputField, SelectField, TextAreaField } from 'react-semantic-redux-form';
 import { Field, reduxForm } from 'redux-form';
 import UserSearch from './LfgUserSearch';
-
-const pveOptions = [
-    { key: "7", text: "PVE - Any", value: 7 },
-    { key: "4", text: "Raid - Leviathan", value: 4 },
-    { key: "16", text: "Nightfall", value: 16 },
-    { key: "17", text: "Nightfall - Heroic", value: 17 },
-    { key: "2", text: "Story", value: 2 },
-    { key: "3", text: "Strike", value: 3 },
-    { key: "6", text: "Patrol", value: 6 },
-    { key: "18", text: "Strikes", value: 18 }
-];
-
-const teamOptions = [
-    { key: "any", text: "Any", value: "any" },
-    { key: "similar", text: "Similar", value: "similar" },
-    { key: "sherpa", text: "Sherpa (Help Needed)", value: "sherpa" },
-    { key: "sherpee", text: "Sherpee (Someone to Carry)", value: "sherpee" }
-];
-
-const pvpOptions = [
-    { key: "5", text: "PVP - Any", value: 5 },
-    { key: "39", text: "Trials of the Nine", value: 39 },
-    { key: "19", text: "Iron Banner", value: 19 },
-    { key: "10", text: "Control", value: 10 },
-    { key: "12", text: "Clash", value: 12 },
-    { key: "31", text: "Supremacy", value: 31 },
-    { key: "37", text: "Survival", value: 37 },
-    { key: "38", text: "Countdown", value: 38 }
-]
-
+import {pveOptions, pvpOptions, raidOptions, teamOptions} from '../../data/DropdownOptions';
 
 const validate = values => {
     const errors = {}
@@ -71,7 +42,14 @@ class NewLfgPost extends Component {
         getMatchingUsers(data.searchQuery);
     }
 
-    handleGameTypeChange = (e, { name, value }) => console.log(this.state);
+    handleGameTypeChange = (e, value) => {        
+        if (value === 4) {
+            this.setState({ raid: true })
+        } else {
+            this.setState({ raid: false })
+        }
+        
+    }
 
     toggle = () => this.setState({ checked: !this.state.checked })
 
@@ -83,7 +61,7 @@ class NewLfgPost extends Component {
 
         const { handleSubmit} = this.props;
 
-        console.log(this.props)
+        
         return (
             <Form onSubmit={handleSubmit} inverted>
                 <Form.Group>
@@ -105,14 +83,14 @@ class NewLfgPost extends Component {
                     </Form.Field>
 
                     <Form.Field width={6}>
-                        <Field
-                            component={SelectField}
-                            name='mode'
-                            label="Game Type"
-                            options={this.state.checked ? pvpOptions : pveOptions}
-                            onChange={console.log(this)}
+                        <Field 
+                            component={SelectField} 
+                            name='mode' 
+                            label="Game Type" 
+                            options={this.state.checked ? pvpOptions : pveOptions} 
+                            onChange={this.handleGameTypeChange}
                             placeholder="Story"
-                        />
+                         />
                     </Form.Field>
 
                     <Form.Field width={7} disabled={!this.state.raid}>
@@ -120,7 +98,7 @@ class NewLfgPost extends Component {
                             component={SelectField}
                             name='checkpoint'
                             label="Checkpoint"
-                            options={pvpOptions}
+                            options={raidOptions}
                         />
                     </Form.Field>
                 </Form.Group>

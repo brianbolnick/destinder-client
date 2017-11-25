@@ -14,5 +14,8 @@ export const GAME_TYPES = {
     31: 'Supremacy',
     37: 'Survival',
     38: 'Countdown',
-    39: 'Trials of the Nine'
+    39: 'Trials of the Nine',
+    100: 'PVE - Other',
+    101: 'PVP - Other',
+    102: 'Other',
   }
