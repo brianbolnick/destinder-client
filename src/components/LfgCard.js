@@ -7,12 +7,18 @@ import {
     Segment,
     Rating,
     Statistic,
-    Label
+    Label,
+    Popup,
+    Message
 } from "semantic-ui-react";
 import { deleteLfgPost } from '../actions/index';
 import { connect } from 'react-redux'
 import { jwt } from '../tools/jwt';
 import { GAME_TYPES } from '../data/common_constants'
+import "../css/steps.css";
+import { Steps } from 'antd';
+const Step = Steps.Step;
+
 
 var ta = require("time-ago")();
 
@@ -42,24 +48,38 @@ class HeaderData extends Component {
 class StatData extends Component {
     render() {
         return (
-            <Statistic.Group size='mini'>
-                <Statistic>
-                    <Statistic.Value>1.21</Statistic.Value>
-                    <Statistic.Label>K/D</Statistic.Label>
-                </Statistic>
-                <Statistic>
-                    <Statistic.Value>1350</Statistic.Value>
-                    <Statistic.Label>ELO</Statistic.Label>
-                </Statistic>
-                <Statistic>
-                    <Statistic.Value>78</Statistic.Value>
-                    <Statistic.Label>WIN %</Statistic.Label>
-                </Statistic>
-                <Statistic>
-                    <Statistic.Value>1.48</Statistic.Value>
-                    <Statistic.Label>K/AD</Statistic.Label>
-                </Statistic>
-            </Statistic.Group>
+            <Grid columns={4} divided>
+                <Grid.Row >
+                    <Grid.Column>
+                        <Statistic size='mini'>
+                            <Statistic.Value>1.21</Statistic.Value>
+                            <Statistic.Label>K/D</Statistic.Label>
+                        </Statistic>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                        <Statistic size='mini'>
+                            <Statistic.Value>1350</Statistic.Value>
+                            <Statistic.Label>ELO</Statistic.Label>
+                        </Statistic>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                        <Statistic size='mini'>
+                            <Statistic.Value>78%</Statistic.Value>
+                            <Statistic.Label>WIN</Statistic.Label>
+                        </Statistic>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                        <Statistic size='mini'>
+                            <Statistic.Value>1.48</Statistic.Value>
+                            <Statistic.Label>K/AD</Statistic.Label>
+                        </Statistic>
+                    </Grid.Column>
+
+                </Grid.Row>
+            </Grid>
         )
     }
 }
@@ -118,13 +138,45 @@ class LfgCard extends Component {
                             letterSpacing: '3px',
                             fontSize: '0.6em'
                         }}>{ta.ago(data.created_at)}</div>
-                        
-                        <div>
 
+                        <div>
                             <Divider hidden />
-                            {data.message}
-                            <div class="rc-steps-item-tail"></div>
-                            <div class="rc-steps-item-tail"></div>
+
+                            <Grid columns={2}>
+                                <Grid.Row stretched>
+                                    <Grid.Column width={12}>
+                                        <Message>
+                                            <p>
+                                                {data.message}
+                                            </p>
+                                        </Message>            
+                                    </Grid.Column>
+                                    <Grid.Column width={4} style={{ paddingRight: "0" }}>
+                                        <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
+                                            <Step status="wait" icon={
+                                                <Popup
+                                                    trigger={<Icon className="post-icon" name='microphone' color='blue' />}
+                                                    content='I have a mic!'
+                                                />}
+                                            />
+                                            <Step icon={
+                                                <Popup
+                                                    trigger={<Icon className="post-icon"  color='red' inverted name='map' />}
+                                                    content='Looking to be carried'
+                                                />}
+                                            />
+                                            <Step icon={
+                                                <Popup
+                                                    trigger={<Icon className="post-icon"  name='tag'  color='green' />}
+                                                    content='These are my badges!'
+                                                />}
+                                            />
+                                        </Steps>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+
+
                             <Divider hidden />
                             <StatData mode={data.game_type} />
                         </div>

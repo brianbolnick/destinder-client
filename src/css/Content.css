@@ -1,3 +1,5 @@
+/* @import '~antd/dist/antd.css'; */
+
 i.world.big.link.icon.header-button {
     position: relative;
     left: 10px;
@@ -14,6 +16,34 @@ i.world.link.icon.header-button {
 i.world.link.icon.header-button:hover {
     opacity: .8 !important;
     color: #f5f5f5;
+}
+
+.ui.mini.statistic>.value, .ui.mini.statistics .statistic>.value {
+    font-size: 1.3rem!important;
+    /* color: #696D7C; */
+}
+
+.ui.statistic>.value~.label, .ui.statistics .statistic>.value~.label {
+    color: #696D7C;
+    font-weight: 400;
+}
+
+.ui.star.rating .active.icon {
+    background: 0 0!important;
+    color: #FDD66F!important;
+    text-shadow: 0 -1px 0 #FDD66F,-1px 0 0 #FDD66F,0 1px 0 #FDD66F,1px 0 0 #FDD66F!important;
+}
+
+i.blue.icon {
+    color: #47D5CF!important;
+}
+
+i.green.icon {
+    color: #77F6A2!important;
+}
+
+.post-icon {
+    font-size: 0.8em !important;
 }
 
 /* .ui.styled.accordion .accordion .active.title, .ui.styled.accordion .accordion .title:hover, .ui.styled.accordion .active.title, .ui.styled.accordion .title:hover {    
