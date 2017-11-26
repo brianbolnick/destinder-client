@@ -1,3 +1,15 @@
+import React from "react";
+import {
+  Architect,
+  Follower, 
+  Veteran, 
+  Sponsor,
+  LittleHelper,
+  CakeBoss,
+  Donator,
+  BigDonator
+} from './badges';
+
 export const GAME_TYPES = {
     2: 'Story',
     3: 'Strikes Playlist',
@@ -18,4 +30,15 @@ export const GAME_TYPES = {
     100: 'PVE - Other',
     101: 'PVP - Other',
     102: 'Other',
+  }
+
+  export const BADGES = {
+    1: <Donator />,
+    2: <Architect />,
+    3: <BigDonator />,
+    4: <Sponsor/>,
+    5: <Veteran />, 
+    6: <CakeBoss />,
+    7: <LittleHelper />,
+    8: <Follower />
   }

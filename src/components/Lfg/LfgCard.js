@@ -6,15 +6,16 @@ import {
     Grid,
     Rating,
     Popup,
-    Message
+    Message,
+    Label
 } from "semantic-ui-react";
 import { deleteLfgPost } from '../../actions/index';
 import { connect } from 'react-redux'
 import { jwt } from '../../tools/jwt';
-import { GAME_TYPES } from '../../data/common_constants'
+import { GAME_TYPES, BADGES } from '../../data/common_constants'
 import "../../css/steps.css";
 import { Steps } from 'antd';
-import { TrialsData, PveData, PvpData} from './LfgStatDisplay';
+import { TrialsData, PveData, PvpData } from './LfgStatDisplay';
 const Step = Steps.Step;
 
 var ta = require("time-ago")();
@@ -53,10 +54,24 @@ class LfgCard extends Component {
         return (user_id === this.props.data.user_id && user_id != null);
     }
 
+
+
     render() {
         const { data } = this.props;
         const character_data = JSON.parse(data.character_data);
         const player_data = JSON.parse(data.player_data);
+
+        const badges = player_data.player_badges.map((badge) => {
+            return (
+                <Popup
+                    key={badge.id}
+                    position='top center' 
+                    hoverable                   
+                    trigger={BADGES[badge.id]}
+                    content={badge.description}
+                />
+            )
+        })
 
         let deleteButton = null;
 
@@ -127,13 +142,13 @@ class LfgCard extends Component {
             case '16':
             case '17':
             case '18':
-                statData = <PveData mode={data.game_type} player_data={player_data}/>
+                statData = <PveData mode={data.game_type} player_data={player_data} />
                 break;
             case '39':
-                statData = <TrialsData mode={data.game_type} player_data={player_data}/>
+                statData = <TrialsData mode={data.game_type} player_data={player_data} />
                 break;
             default:
-                statData = <PvpData mode={data.game_type} player_data={player_data}/>
+                statData = <PvpData mode={data.game_type} player_data={player_data} />
                 break;
         }
 
@@ -177,37 +192,46 @@ class LfgCard extends Component {
                                             </p>
                                         </Message>
                                     </Grid.Column>
-                                <Grid.Column width={4} style={{ paddingRight: "0" }}>
-                                    <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
-                                        <Step status="wait" icon={micIcon} />
-                                        <Step icon={lookingForIcon} />
-                                        <Step icon={
-                                            <Popup
-                                                trigger={<Icon className="post-icon" name='tag' color='green' />}
-                                                content='These are my badges!'
-                                            />}
-                                        />
-                                    </Steps>
-                                </Grid.Column>
+                                    <Grid.Column width={4} style={{ paddingRight: "0" }}>
+                                        <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
+                                            <Step status="wait" icon={micIcon} />
+                                            <Step icon={lookingForIcon} />
+                                            <Step icon={
+                                                <Popup
+                                                    wide
+                                                    hoverable
+                                                    position='left center'
+                                                    trigger={<Icon className="post-icon" name='tag' color='green' />}
+                                                    content={
+                                                        <div>
+                                                            <Label.Group>
+                                                                {badges}
+                                                            </Label.Group>
+                                                        </div>
+                                                    }
+                                                />}
+                                            />
+                                        </Steps>
+                                    </Grid.Column>
                                 </Grid.Row>
                             </Grid>
-                        <Divider hidden />
-                        {statData}                        
+                            <Divider hidden />
+                            {statData}
                         </div>
-                    <Divider />
-                    <Grid textAlign='center' columns='equal'>
-                        <Grid.Row>
-                            <Grid.Column>
-                                {deleteButton}
-                            </Grid.Column>
-                            <Grid.Column width={6} style={{}}>
-                                <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
-                            </Grid.Column>
-                            <Grid.Column style={{}}>
-                                {mailButton}
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                        <Divider />
+                        <Grid textAlign='center' columns='equal'>
+                            <Grid.Row>
+                                <Grid.Column>
+                                    {deleteButton}
+                                </Grid.Column>
+                                <Grid.Column width={6} style={{}}>
+                                    <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
+                                </Grid.Column>
+                                <Grid.Column style={{}}>
+                                    {mailButton}
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
 
                     </Card.Content>
                 </Card>

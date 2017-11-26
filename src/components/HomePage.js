@@ -5,7 +5,6 @@ import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
-import AnnouncementCard from './AnnouncementCard.js'
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
 
