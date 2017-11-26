@@ -396,6 +396,17 @@ img.ui.image.trials-player-icon {
     color: rgb(48, 252, 118)!important;
 }
 
+.ui.inverted.green.button, .ui.inverted.green.buttons .button {
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 0 2px #77F6A2 inset!important;
+    box-shadow: 0 0 0 2px #77F6A2 inset!important;
+    color: #77F6A2;
+}
+
+.ui.inverted.green.button:hover, .ui.inverted.green.buttons .button:hover {
+    background-color: #77F6A2;
+}
+
 input[type=text]:focus {
     background: transparent !important;
     color: #212121 !important;

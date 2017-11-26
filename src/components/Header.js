@@ -173,7 +173,7 @@ class PlayerCard extends Component {
 
 class NavLinks extends Component {
   state = { currentLocation: window.location.pathname.split("/")[1] || "/" };
-  
+
   componentWillMount() {
     this.setState({ currentLocation: window.location.pathname.split("/")[1] || "/" })
   }
@@ -182,10 +182,10 @@ class NavLinks extends Component {
     return (
       <div>
         <Card.Group itemsPerRow={4}>
-          <ProfileCard currentLocation={this.state.currentLocation}/>
-          <LfgCard currentLocation={this.state.currentLocation}/>
-          <FireteamsCard currentLocation={this.state.currentLocation}/>
-          <PlayerCard currentLocation={this.state.currentLocation}/>
+          <ProfileCard currentLocation={this.state.currentLocation} />
+          <LfgCard currentLocation={this.state.currentLocation} />
+          <FireteamsCard currentLocation={this.state.currentLocation} />
+          <PlayerCard currentLocation={this.state.currentLocation} />
         </Card.Group>
       </div>
     )
@@ -211,7 +211,10 @@ class HeaderComponent extends Component {
             <NavLinks />
           </Modal.Content>
           <Modal.Actions style={{ textAlign: 'center' }}>
-            <Button as={Link} to='/' color='teal' inverted>
+            <Button floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
+              <Icon name='paypal' /> Help Run the site, donate now!
+            </Button>
+            <Button floated='right' as={Link} to='/' color='teal' inverted>
               <Icon name='home' /> Home
             </Button>
           </Modal.Actions>

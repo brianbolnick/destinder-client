@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown } from "semantic-ui-react";
+import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown, Modal, Divider } from "semantic-ui-react";
 import "../css/HomePage.css";
 import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 import AnnouncementCard from './AnnouncementCard.js'
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
+
+
 
 class LoginButton extends Component {
   isLoggedIn() {
@@ -19,6 +21,7 @@ class LoginButton extends Component {
   }
 
   onLogoutClick() {
+    localStorage.getItem('jwt')
     localStorage.removeItem('jwt');
     localStorage.removeItem('auth_token');
     console.log('logging out');
@@ -79,10 +82,56 @@ class HomeNav extends Component {
 }
 
 class HomeFirst extends Component {
+
+  state = { showIntro: false };
+
+  componentWillMount() {
+    const showIntro = localStorage.getItem('showIntro');
+    if (showIntro === null) {
+      localStorage.setItem('showIntro', true);
+      this.setState({ showIntro: true })
+    } else if (showIntro === false) {
+      this.setState({ showIntro: false })
+    }
+
+  }
+
+  handleDismissClick() {
+    console.log(this.state);
+    localStorage.setItem('showIntro', false);
+    this.setState({ showIntro: false })
+    console.log(this.state)
+  }
+
   render() {
     return (
       <Container className="home-first-container">
         <HomeNav />
+        <Modal basic size='small' open={this.state.showIntro} dimmer='blurring'>
+          <Modal.Header style={{ fontSize: '1.7em', color: '#FDD66F' }}>
+            Welcome to Destinder!
+          </Modal.Header>
+          <Modal.Content style={{ color: '#f5f5f5', fontSize: '1.3em' }}>
+            <p>We're working on rebuilding the site, so some features are still under construction.</p>
+            <Divider />
+            <p>We appreciate your patience as we're working to get everything up to date!
+              Be sure to follow us on social media to get important updates on our progress: </p>
+            <div style={{textAlign: 'center' }}>
+              <Icon name='twitter' size='large' link onClick={() => {window.location.replace('https://twitter.com/Destinderdotcom')} }/>
+              <Icon name='instagram' size='large' link onClick={() => {window.location.replace('https://www.instagram.com/destinderdotcom/')} }/>
+              <Icon name='reddit' size='large' link onClick={() => {window.location.replace('https://www.reddit.com/r/destinder/')} }/>
+            </div>
+
+          </Modal.Content>
+          <Modal.Actions>
+            <Button floated='left' basic inverted onClick={() => {window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"')} } >
+              <Icon name='paypal' /> Help Run the site, donate now!
+            </Button>
+            <Button floated='right'inverted basic color='teal' onClick={this.handleDismissClick.bind(this)} >
+              <Icon name='checkmark' /> Don't show again
+            </Button>
+          </Modal.Actions>
+        </Modal>
 
         <Grid columns={2} className="home-columns">
           <Grid.Row className='row1'>
@@ -203,8 +252,8 @@ class HomeSecond extends Component {
         <Grid columns={4}>
           <Grid.Row>
             <Grid.Column width={4}>
-              <div style={{ textAlign: "right" }}>
-                <AnnouncementCard />
+              <div style={{ textAlign: "center", height: '60vh'}}>
+                {/* <AnnouncementCard /> */}
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -214,7 +263,7 @@ class HomeSecond extends Component {
         <Grid columns={1}>
           <Grid.Row>
             <Grid.Column width={16}>
-              <div style={{ textAlign: "center" }}>
+              <div style={{ textAlign: "right" }}>
                 <Icon
                   name="angle up"
                   size="huge"
@@ -252,10 +301,6 @@ class HomeLayout extends Component {
     };
     return (
       <Parallax ref="parallax" pages={2} style={homeStyle}  >
-        {/* <Parallax.Layer offset={0} speed={1} style={{ backgroundImage: `url(${Voidwalker})`, backgroundSize: 'cover' }} />
-            <Parallax.Layer offset={1} speed={1} style={{ backgroundImage: `url(${Striker})`, backgroundSize: 'cover' }} />
-            <Parallax.Layer offset={2} speed={1} style={{ backgroundImage: `url(${Dawnblade})`, backgroundSize: 'cover' }} /> */}
-
         <Parallax.Layer offset={0} speed={0.5} className='first-layer-home'>
           <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(2)} />
         </Parallax.Layer>
