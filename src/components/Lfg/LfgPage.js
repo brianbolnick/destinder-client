@@ -104,7 +104,9 @@ class LfgPage extends Component {
             />
           </Container>
           <Divider hidden />
-          <LeaderboardAd />
+          <div className='hide-on-mobile'>
+            <LeaderboardAd />
+          </div>
         </div>
       </Layout>
     );

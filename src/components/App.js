@@ -3,6 +3,7 @@ import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./Lfg/LfgPage.js";
 import Profile from "./ProfilePage.js";
+import Admin from "./AdminPage.js";
 // import TeamSearch from './TeamSearch.js';
 import NotFound from "./NotFound.js";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -64,6 +65,7 @@ class App extends Component  {
             <Route path="/" exact component={Home} />
             <Route path="/lfg" component={Lfg} />
             <Route path="/profile" component={Profile} />
+            <Route path="/admin" component={Admin} />
             <Route
               path="/donate"
               component={() =>
