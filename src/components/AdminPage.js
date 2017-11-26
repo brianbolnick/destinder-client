@@ -15,6 +15,7 @@ class Admin extends Component {
             const users = response.data.map((user) => {
                 return (
                     <Table.Row key={user.id}>
+                        <Table.Cell>{user.id}</Table.Cell>
                         <Table.Cell>{user.display_name}</Table.Cell>
                         <Table.Cell>{user.api_membership_type}</Table.Cell>
                         <Table.Cell>{user.locale}</Table.Cell>
@@ -35,6 +36,7 @@ class Admin extends Component {
                         <Table celled>
                             <Table.Header>
                                 <Table.Row>
+                                    <Table.HeaderCell>ID</Table.HeaderCell>
                                     <Table.HeaderCell>User Name</Table.HeaderCell>
                                     <Table.HeaderCell>Platform</Table.HeaderCell>
                                     <Table.HeaderCell>Locale</Table.HeaderCell>
