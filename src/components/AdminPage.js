@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Container, Header, Table } from "semantic-ui-react";
+import { Container, Header, Table, Label } from "semantic-ui-react";
 import Layout from "./Layout.js";
 import axios from 'axios';
+import { BADGES } from '../data/common_constants'
+
 import { API_URL } from '../tools/api-config';
 const config = { headers: { 'AUTHORIZATION': `Bearer ${localStorage.getItem('auth_token')}` } }
 
@@ -11,7 +13,7 @@ class Admin extends Component {
 
     componentWillMount() {
         axios.get(`${API_URL}/v1/users`).then(response => {
-            console.log(response.data)
+
             const users = response.data.map((user) => {
                 return (
                     <Table.Row key={user.id}>
@@ -19,7 +21,13 @@ class Admin extends Component {
                         <Table.Cell>{user.display_name}</Table.Cell>
                         <Table.Cell>{user.api_membership_type}</Table.Cell>
                         <Table.Cell>{user.locale}</Table.Cell>
-                        <Table.Cell>badges</Table.Cell>
+                        <Table.Cell>
+                            <Label.Group>
+                                {user.badges.map((badge) => {
+                                    return BADGES[badge.id]
+                                })}
+                            </Label.Group>
+                        </Table.Cell>
                     </Table.Row>
                 )
             })
