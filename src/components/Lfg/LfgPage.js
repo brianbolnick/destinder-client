@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getLfgPosts, deleteLfgPost } from '../../actions/index';
+import { getLfgPosts, deleteLfgPost, filterMode, filterLookingFor, filterMic, filterElo, filterKd } from '../../actions/index';
 import {
   Container,
   Divider,
   Grid,
-  Button,
-  Modal,
-  Header
+  Button
 } from "semantic-ui-react";
 import Layout from "../Layout.js";
 import "../../css/Content.css";
@@ -16,6 +14,7 @@ import { BounceLoader, ScaleLoader } from 'react-spinners';
 import LfgCard from './LfgCard';
 import { jwt } from '../../tools/jwt';
 import LeaderboardAd from '../LeaderboardAd';
+import FilterModal from './FilterModal';
 
 class LoadingPost extends Component {
   render() {
@@ -32,17 +31,6 @@ class LoadingPost extends Component {
   }
 }
 
-
-const FilterModal = () => (
-  <Modal trigger={<Button floated='right' size='large' basic inverted circular icon='filter' />}>
-    <Modal.Header>Filter</Modal.Header>
-    <Modal.Content >
-      <Modal.Description>
-        <Header>We'll have some sweet filtering options coming soon.</Header>
-      </Modal.Description>
-    </Modal.Content>
-  </Modal>
-)
 
 class PostData extends Component {
   render() {
@@ -76,6 +64,28 @@ class LfgPage extends Component {
     this.props.getLfgPosts();
   }
 
+  handleFilterModeChange = (data) => {
+    this.props.filterMode(data);
+  }
+
+  handleLookingForFilterChange = (data) => {
+    this.props.filterLookingFor(data);
+  }
+
+  handleMicFilterChange = (data) => {
+    this.props.filterMic(data);
+  }
+
+  handleEloFilterChange = (data) => {
+    console.log(data)    
+    this.props.filterElo(data);
+  }
+
+  handleKdFilterChange = (data) => {
+    console.log(data)
+    this.props.filterKd(data);
+  }
+
   render() {
 
     const posts = this.props.lfgPosts.map((lfgPost) => {
@@ -90,7 +100,14 @@ class LfgPage extends Component {
           <Container style={{ width: '80%' }}>
             <div style={{ height: "50px" }} >
               <Button floated='right' basic size='large' inverted onClick={() => this.handleRefreshButtonClick()} circular icon='refresh' />
-              <FilterModal />
+              <FilterModal     
+                onModeChange={this.handleFilterModeChange.bind(this)}         
+                onLookingForChange={this.handleLookingForFilterChange.bind(this)}         
+                onMicChange={this.handleMicFilterChange.bind(this)}         
+                onEloChange={this.handleEloFilterChange.bind(this)}         
+                onKdChange={this.handleKdFilterChange.bind(this)}         
+                onResetClick={this.handleRefreshButtonClick.bind(this)}         
+              />
             </div>
             <div style={{ margin: "0 auto" }}>
               <LfgFormContainer isLoggedIn={this.isLoggedIn()} />
@@ -122,5 +139,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getLfgPosts, deleteLfgPost })(LfgPage)
+export default connect(mapStateToProps, { getLfgPosts, deleteLfgPost, filterMode, filterLookingFor, filterMic, filterElo, filterKd })(LfgPage)
 

@@ -6,8 +6,7 @@ import {
     Grid,
     Rating,
     Popup,
-    Message,
-    Label
+    Label,
 } from "semantic-ui-react";
 import { deleteLfgPost } from '../../actions/index';
 import { connect } from 'react-redux'
@@ -65,8 +64,8 @@ class LfgCard extends Component {
             return (
                 <Popup
                     key={badge.id}
-                    position='top center' 
-                    hoverable                   
+                    position='top center'
+                    hoverable
                     trigger={BADGES[badge.id]}
                     content={badge.description}
                 />
@@ -183,55 +182,74 @@ class LfgCard extends Component {
                         <div>
                             <Divider hidden />
 
-                            <Grid columns={2}>
-                                <Grid.Row stretched>
+                            <Grid columns={2} >
+                                <Grid.Row stretched style={{padding: '0' }}>
                                     <Grid.Column width={12}>
-                                        <Message>
-                                            <p>
-                                                {data.message}
-                                            </p>
-                                        </Message>
-                                    </Grid.Column>
-                                    <Grid.Column width={4} style={{ paddingRight: "0" }}>
-                                        <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
-                                            <Step status="wait" icon={micIcon} />
-                                            <Step icon={lookingForIcon} />
-                                            <Step icon={
-                                                <Popup
-                                                    wide
-                                                    hoverable
-                                                    position='left center'
-                                                    trigger={<Icon className="post-icon" name='tag' color='green' />}
-                                                    content={
-                                                        <div>
-                                                            <Label.Group>
-                                                                {badges}
-                                                            </Label.Group>
-                                                        </div>
-                                                    }
-                                                />}
+                                        {/* <Grid.Row style={{height: '0' }}>
+                                            <Popup
+                                                trigger={<div style={{
+                                                    fontSize: '1em',
+                                                    fontWeight: '400',
+                                                    marginBottom: '5%',
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '1px'
+                                                }}><Image 
+                                                    src={SUBCLASS_ICONS[character_data.subclass]} 
+                                                    avatar 
+                                                    size='mini' 
+                                                    style={{marginRight: '10px', width: '2.5em', height: '2.5em'}}
+                                                    />{character_data.subclass}</div>}
+                                                content='Subclass stats!'
+                                                position='bottom center'
                                             />
-                                        </Steps>
+                                        </Grid.Row> */}
+                                        <Divider fitted style={{fontSize: '0.8rem'}} horizontal>MESSAGE</Divider>
+                                    <Grid.Row style={{marginTop: '-50px' }}>
+                                        <p>
+                                            {data.message}
+                                        </p>
+                                    </Grid.Row>
                                     </Grid.Column>
+                                <Grid.Column width={4} style={{ paddingRight: "0" }}>
+                                    <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
+                                        <Step status="wait" icon={micIcon} />
+                                        <Step icon={lookingForIcon} />
+                                        <Step icon={
+                                            <Popup
+                                                wide
+                                                hoverable
+                                                position='left center'
+                                                trigger={<Icon className="post-icon" name='tag' color='green' />}
+                                                content={
+                                                    <div>
+                                                        <Label.Group>
+                                                            {badges}
+                                                        </Label.Group>
+                                                    </div>
+                                                }
+                                            />}
+                                        />
+                                    </Steps>
+                                </Grid.Column>
                                 </Grid.Row>
                             </Grid>
-                            <Divider hidden />
-                            {statData}
+                        <Divider hidden />
+                        {statData}
                         </div>
-                        <Divider />
-                        <Grid textAlign='center' columns='equal'>
-                            <Grid.Row>
-                                <Grid.Column>
-                                    {deleteButton}
-                                </Grid.Column>
-                                <Grid.Column width={6} style={{}}>
-                                    <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
-                                </Grid.Column>
-                                <Grid.Column style={{}}>
-                                    {mailButton}
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
+                    <Divider />
+                    <Grid textAlign='center' columns='equal'>
+                        <Grid.Row>
+                            <Grid.Column>
+                                {deleteButton}
+                            </Grid.Column>
+                            <Grid.Column width={6} style={{}}>
+                                <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
+                            </Grid.Column>
+                            <Grid.Column style={{}}>
+                                {mailButton}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
 
                     </Card.Content>
                 </Card>

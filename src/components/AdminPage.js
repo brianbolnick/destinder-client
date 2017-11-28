@@ -3,9 +3,7 @@ import { Container, Header, Table, Label } from "semantic-ui-react";
 import Layout from "./Layout.js";
 import axios from 'axios';
 import { BADGES } from '../data/common_constants'
-
 import { API_URL } from '../tools/api-config';
-const config = { headers: { 'AUTHORIZATION': `Bearer ${localStorage.getItem('auth_token')}` } }
 
 class Admin extends Component {
 

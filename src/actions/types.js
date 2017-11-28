@@ -6,5 +6,12 @@ export const GET_MATCHING_USERS = 'GET_MATCHING_USERS';
 export const FETCH_POSTS_START = 'FETCH_POSTS_START';
 export const CREATE_POST_START = 'CREATE_POST_START';
 export const DELETE_LFG_POST =  'DELETE_LFG_POST';
+export const SHOW_ALL_POSTS = 'SHOW_ALL_POSTS';
+export const FILTER_MODE = 'FILTER_MODE';
+export const FILTER_LOOKING_FOR = 'FILTER_LOOKING_FOR';
+export const FILTER_MIC = 'FILTER_MIC';
+export const FILTER_ELO = 'FILTER_ELO';
+export const FILTER_KD = 'FILTER_KD';
+
 
 

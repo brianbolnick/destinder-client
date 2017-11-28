@@ -5,20 +5,59 @@ import {
     GET_MATCHING_USERS,
     FETCH_POSTS_START,
     CREATE_POST_START,
-    DELETE_LFG_POST
+    DELETE_LFG_POST,
+    SHOW_ALL_POSTS,
+    FILTER_ELO,
+    FILTER_KD,
+    FILTER_LOOKING_FOR,
+    FILTER_MIC,
+    FILTER_MODE
 } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
 const config = { headers: { 'AUTHORIZATION': `Bearer ${localStorage.getItem('auth_token')}` } }
 
 export function getPostsSuccess(posts) {
-    // console.log(posts);
     return { type: GET_LFG_POSTS, payload: posts };
 }
 
+export const filterMode = (data) => {
+    return (dispatch, getState) => {        
+        dispatch({ type: FILTER_MODE, payload: data })
+    };
+}
+
+export const filterMic = (data) => {
+    return (dispatch, getState) => {        
+        dispatch({ type: FILTER_MIC, payload: data })
+    };
+}
+
+export const filterLookingFor = (data) => {
+    return (dispatch, getState) => {  
+        dispatch({ type: FILTER_LOOKING_FOR, payload: data })
+    };
+}
+
+export const filterElo = (data) => {
+    return (dispatch, getState) => {        
+        dispatch({ type: FILTER_ELO, payload: data })
+    };
+}
+
+export const showAllPosts= (data) => {
+    return (dispatch, getState) => {        
+        dispatch({ type: SHOW_ALL_POSTS })
+    };
+}
+
+export const filterKd = (data) => {
+    return (dispatch, getState) => {        
+        dispatch({ type: FILTER_KD, payload: data })
+    };
+}
 
 export const getLfgPosts = () => {
-
     return (dispatch, getState) => {
         dispatch({ type: FETCH_POSTS_START })
         axios.get(`${API_URL}/v1/lfg_posts`).then(response => {

@@ -45,3 +45,8 @@ export const raidOptions = [
     { key: "16", text: "Prestige - Calus", value: 16 },
     { key: "102", text: "Other", value: 102 }
 ]
+
+export const micOptions = [
+    { key: "Yes", text: "Yes", value: 1 },
+    { key: "No", text: "No", value: 0 }
+];

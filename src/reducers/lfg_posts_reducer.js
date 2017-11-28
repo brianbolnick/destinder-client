@@ -5,7 +5,13 @@ import {
     FETCH_POSTS_START,
     CREATE_LFG_POST,
     CREATE_POST_START,
-    DELETE_LFG_POST
+    DELETE_LFG_POST,
+    SHOW_ALL_POSTS,
+    FILTER_ELO,
+    FILTER_KD,
+    FILTER_LOOKING_FOR,
+    FILTER_MIC,
+    FILTER_MODE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -38,7 +44,37 @@ export default function (state = INITIAL_STATE, action) {
         case CREATE_POST_START:
             return { ...state, fetchingNewPost: true }
         case DELETE_LFG_POST:
-            return {...state, all: state.all.filter(post => post.id !== action.payload.id)}
+            return { ...state, all: state.all.filter(post => post.id !== action.payload.id) }
+        case SHOW_ALL_POSTS:
+            return { ...state, all: state.all }
+        case FILTER_ELO:
+            return { 
+                ...state, 
+               all: state.all.filter(post => 
+                   JSON.parse(post.player_data).elo >= action.payload[0] && 
+                   JSON.parse(post.player_data).elo <= action.payload[1]
+               ) 
+           }
+        case FILTER_KD:
+             return { 
+                 ...state, 
+                all: state.all.filter(post => 
+                    JSON.parse(post.player_data).kd_ratio >= action.payload[0] && 
+                    JSON.parse(post.player_data).kd_ratio <= action.payload[1]
+                ) 
+            }
+            // return { ...state, all: state.all.filter(post => post.id !== action.payload.id) }
+        case FILTER_MODE:
+            // eslint-disable-next-line
+            return { ...state, all: state.all.filter(post => post.game_type == action.payload) }
+        case FILTER_MIC:
+            if (action.payload === 1) {
+                return { ...state, all: state.all.filter(post => post.has_mic === true) }
+            }else {
+                return {...state, all: state.all};
+            }
+        case FILTER_LOOKING_FOR:
+            return { ...state, all: state.all.filter(post => post.looking_for === action.payload) }
         default:
             return state;
     }
