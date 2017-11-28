@@ -231,6 +231,18 @@ textarea {
     }
 }
 
+@media only screen and (min-width: 1300px) and (max-width: 1799px) {
+    .ui.column.grid>[class*="five wide computer"].column, .ui.grid>.column.row>[class*="five wide computer"].column, .ui.grid>.row>[class*="five wide computer"].column, .ui.grid>[class*="five wide computer"].column {
+        width: 25%!important;
+    }
+}
+
+@media only screen and (min-width: 1800px)  {
+    .ui.column.grid>[class*="five wide computer"].column, .ui.grid>.column.row>[class*="five wide computer"].column, .ui.grid>.row>[class*="five wide computer"].column, .ui.grid>[class*="five wide computer"].column {
+        width: 20%!important;
+    }
+}
+
 
 /* 
 .ui.styled.accordion .active.title {
