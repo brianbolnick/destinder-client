@@ -30,6 +30,27 @@ export const pvpOptions = [
     { key: "101", text: "Other", value: 101 }
 ]
 
+export const allModeOptions = [
+    { key: "7", text: "PVE - Any", value: 7 },
+    { key: "4", text: "Raid - Leviathan", value: 4 },
+    { key: "16", text: "Nightfall", value: 16 },
+    { key: "17", text: "Nightfall - Heroic", value: 17 },
+    { key: "2", text: "Story", value: 2 },
+    { key: "3", text: "Strike", value: 3 },
+    { key: "6", text: "Patrol", value: 6 },
+    { key: "18", text: "Strikes", value: 18 },
+    { key: "100", text: "PVE - Other", value: 100 },
+    { key: "5", text: "PVP - Any", value: 5 },
+    { key: "39", text: "Trials of the Nine", value: 39 },
+    { key: "19", text: "Iron Banner", value: 19 },
+    { key: "10", text: "Control", value: 10 },
+    { key: "12", text: "Clash", value: 12 },
+    { key: "31", text: "Supremacy", value: 31 },
+    { key: "37", text: "Survival", value: 37 },
+    { key: "38", text: "Countdown", value: 38 },
+    { key: "101", text: "PVP - Other", value: 101 }
+]
+
 export const raidOptions = [
     { key: "1", text: "Normal - Full Raid", value: 1 },
     { key: "2", text: "Normal - Castellum", value: 2 },

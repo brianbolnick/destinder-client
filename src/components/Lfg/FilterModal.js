@@ -4,16 +4,21 @@ import {
     Button,
     Modal,
     Dropdown,
-    Form,
-    Radio
+    Form
 } from "semantic-ui-react";
 import { Slider } from 'antd';
-// eslint-disable-next-line
-import { pveOptions, pvpOptions, raidOptions, teamOptions, micOptions } from '../../data/DropdownOptions';
+import { raidOptions, teamOptions, micOptions, allModeOptions } from '../../data/DropdownOptions';
 
 class FilterModal extends Component {
 
+    state = {sliderDisabled: true, checkpointDisabled: true}
+
     handleModeChange = (e, { value }) => {
+        if (value === 39) {
+            this.setState({sliderDisabled: false});
+        }else if (value === 4) {
+            this.setState({checkpointDisabled: false});
+        }
         this.props.onModeChange(value)
     }
     handleLookingForChange = (e, { value }) => {
@@ -21,6 +26,11 @@ class FilterModal extends Component {
     }
     handleMicChange = (e, { value }) => {
         this.props.onMicChange(value)
+    }
+
+    handleCheckpointChange= (e, {value}) => {
+        // this.props.onResetClick();
+        alert("We're still working on this one!");
     }
 
     handleEloChange = (value) => {
@@ -35,13 +45,15 @@ class FilterModal extends Component {
         this.props.onResetClick();
     }
 
+
+
     render() {
         const eloMarks = {
-            600: '600',
-            3300: '3300'
+            0: '0',
+            3300: '3300+'
         };
         const kdMarks = {
-            0.1: '0.1',
+            0: '0',
             3.5: '3.5+'
         };
 
@@ -51,25 +63,10 @@ class FilterModal extends Component {
                 <Modal.Content >
                     <Modal.Description>
                         <Form>
-                            <Form.Group>
-                                <Form.Field width={3}>
-                                    <label className="form-label">Mode</label>
-                                    <div style={{ display: "inline-flex", marginTop: "3%" }}>
-                                        <span style={{ color: "#f5f5f5", marginRight: "10%" }}>
-                                            PVE
-                                        </span>{" "}
-                                        <Radio
-                                            toggle
-                                            label='PVP'
-                                            width={8}
-                                        />
-                                    </div>
-                                </Form.Field>
-                            </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label className="form-label">Mode</label>
-                                    <Dropdown placeholder='Select Country' fluid search selection options={pvpOptions}
+                                    <Dropdown scrolling placeholder='Game Mode' fluid search selection options={allModeOptions}
                                         onChange={this.handleModeChange}
                                     />
                                 </Form.Field>
@@ -84,15 +81,27 @@ class FilterModal extends Component {
                                         onChange={this.handleMicChange} />
                                 </Form.Field>
                             </Form.Group>
+                            <Form.Group widths='equal'>
+                                <Form.Field>
+                                    <label className="form-label">Checkpoint</label>
+                                    <Dropdown scrolling placeholder='Any' fluid search selection options={raidOptions}
+                                        onChange={this.handleCheckpointChange}
+                                        disabled={this.state.checkpointDisabled}
+                                    />
+                                </Form.Field>
+                            </Form.Group>
 
                             <Divider />
+                            <Modal.Header style={{color: '#f5f5f5'}}>Trials of the Nine Filters</Modal.Header>
+                            <Divider hidden />
                             <label className="form-label">ELO</label>
                             <Slider
+                                disabled={this.state.sliderDisabled}
                                 onChange={this.handleEloChange}
                                 range
-                                min={600}
+                                min={0}
                                 max={3300}
-                                defaultValue={[600, 3300]}
+                                defaultValue={[0, 3300]}
                                 step={100}
                                 included
                                 marks={eloMarks}
@@ -100,11 +109,12 @@ class FilterModal extends Component {
 
                             <label className="form-label">K/D Ratio</label>
                             <Slider
+                                disabled={this.state.sliderDisabled}
                                 onChange={this.handleKdChange}
                                 included
                                 range
-                                min={0.1} max={3.5}
-                                defaultValue={[0.1, 3.5]}
+                                min={0.0} max={3.5}
+                                defaultValue={[0.0, 3.5]}
                                 step={0.1}
                                 marks={kdMarks}
                                 tipFormatter={(value) => {
