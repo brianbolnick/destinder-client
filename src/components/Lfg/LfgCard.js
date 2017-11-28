@@ -204,7 +204,7 @@ class LfgCard extends Component {
                                             />
                                         </Grid.Row> */}
                                         <Divider fitted style={{fontSize: '0.8rem'}} horizontal>MESSAGE</Divider>
-                                    <Grid.Row style={{marginTop: '-50px' }}>
+                                    <Grid.Row className='post-message' style={{marginTop: '-50px' }}>
                                         <p>
                                             {data.message}
                                         </p>
