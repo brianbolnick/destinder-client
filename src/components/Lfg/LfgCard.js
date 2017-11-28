@@ -13,7 +13,7 @@ import { connect } from 'react-redux'
 import { jwt } from '../../tools/jwt';
 import { GAME_TYPES, BADGES } from '../../data/common_constants'
 import "../../css/steps.css";
-import { Steps } from 'antd';
+import { Steps, Carousel } from 'antd';
 import { TrialsData, PveData, PvpData } from './LfgStatDisplay';
 const Step = Steps.Step;
 
@@ -56,9 +56,9 @@ class LfgCard extends Component {
 
 
     render() {
-        const { data } = this.props;
-        const character_data = JSON.parse(data.character_data);
-        const player_data = JSON.parse(data.player_data);
+        const { data, character_data, playerData } = this.props;
+
+        const player_data = JSON.parse(playerData);
 
         const badges = player_data.player_badges.map((badge) => {
             return (
@@ -152,64 +152,44 @@ class LfgCard extends Component {
         }
 
         return (
-            <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
-                <Card className="lfg-post-card">
+            <Card className="lfg-post-card">                
+                <Card.Content
+                    header={<HeaderData player_data={player_data} character_data={character_data} />}
+                    style={{
+                        backgroundImage: `url(${character_data.emblem_background})`,
+                        height: "50px",
+                        backgroundSize: 'cover',
+                        textAlign: 'center'
+                    }}
+                />
 
-                    <Card.Content
-                        header={<HeaderData player_data={player_data} character_data={character_data} />}
-                        style={{
-                            backgroundImage: `url(${character_data.emblem_background})`,
-                            height: "50px",
-                            backgroundSize: 'cover',
-                            textAlign: 'center'
-                        }}
-                    />
+                <Card.Content style={{ paddingTop: '0' }}>
+                    <div style={{
+                        textTransform: 'uppercase',
+                        textAlign: 'center',
+                        letterSpacing: '4px',
+                        fontSize: '0.8em'
+                    }}>{GAME_TYPES[data.game_type]}</div>
+                    <div style={{
+                        textTransform: 'uppercase',
+                        textAlign: 'center',
+                        letterSpacing: '3px',
+                        fontSize: '0.6em'
+                    }}>{ta.ago(data.created_at)}</div>
 
-                    <Card.Content style={{ paddingTop: '0' }}>
-                        <div style={{
-                            textTransform: 'uppercase',
-                            textAlign: 'center',
-                            letterSpacing: '4px',
-                            fontSize: '0.8em'
-                        }}>{GAME_TYPES[data.game_type]}</div>
-                        <div style={{
-                            textTransform: 'uppercase',
-                            textAlign: 'center',
-                            letterSpacing: '3px',
-                            fontSize: '0.6em'
-                        }}>{ta.ago(data.created_at)}</div>
+                    <div>
+                        <Divider hidden />
 
-                        <div>
-                            <Divider hidden />
-
-                            <Grid columns={2} >
-                                <Grid.Row stretched style={{padding: '0' }}>
-                                    <Grid.Column width={12}>
-                                        {/* <Grid.Row style={{height: '0' }}>
-                                            <Popup
-                                                trigger={<div style={{
-                                                    fontSize: '1em',
-                                                    fontWeight: '400',
-                                                    marginBottom: '5%',
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: '1px'
-                                                }}><Image 
-                                                    src={SUBCLASS_ICONS[character_data.subclass]} 
-                                                    avatar 
-                                                    size='mini' 
-                                                    style={{marginRight: '10px', width: '2.5em', height: '2.5em'}}
-                                                    />{character_data.subclass}</div>}
-                                                content='Subclass stats!'
-                                                position='bottom center'
-                                            />
-                                        </Grid.Row> */}
-                                        <Divider fitted style={{fontSize: '0.8rem'}} horizontal>MESSAGE</Divider>
-                                    <Grid.Row className='post-message' style={{marginTop: '-50px' }}>
+                        <Grid columns={2} >
+                            <Grid.Row stretched style={{ padding: '0' }}>
+                                <Grid.Column width={12}>
+                                    <Divider fitted style={{ fontSize: '0.8rem' }} horizontal>MESSAGE</Divider>
+                                    <Grid.Row className='post-message' style={{ marginTop: '-50px' }}>
                                         <p>
                                             {data.message}
                                         </p>
                                     </Grid.Row>
-                                    </Grid.Column>
+                                </Grid.Column>
                                 <Grid.Column width={4} style={{ paddingRight: "0" }}>
                                     <Steps direction="vertical" style={{ marginLeft: 'auto' }}>
                                         <Step status="wait" icon={micIcon} />
@@ -231,11 +211,11 @@ class LfgCard extends Component {
                                         />
                                     </Steps>
                                 </Grid.Column>
-                                </Grid.Row>
-                            </Grid>
+                            </Grid.Row>
+                        </Grid>
                         <Divider hidden />
                         {statData}
-                        </div>
+                    </div>
                     <Divider />
                     <Grid textAlign='center' columns='equal'>
                         <Grid.Row>
@@ -251,11 +231,47 @@ class LfgCard extends Component {
                         </Grid.Row>
                     </Grid>
 
-                    </Card.Content>
-                </Card>
-            </Grid.Column >
+                </Card.Content>
+            </Card>
         )
     }
 }
 
-export default connect(null, { deleteLfgPost })(LfgCard)
+
+class Container extends Component {
+
+    renderCards = (data) => {
+        let character_data;
+        return data.fireteam_data.map((player, index) => {
+            character_data = JSON.parse(player).character_data
+            return <div><LfgCard key={`${JSON.parse(player).user_id}${index}`} data={data} playerData={JSON.parse(player).player_data} character_data={JSON.parse(character_data)[1]} /></div>
+        })
+    }
+
+
+    render() {
+        const { data } = this.props;
+        // console.log(JSON.parse(data.fireteam_data[0]));
+
+        return (
+            data.is_fireteam_post
+                ?
+                <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>                
+                    <Carousel
+                        swipeToSlide={true}
+                        draggable
+                    >                    
+                        <div><LfgCard key={data.user_id} data={data} playerData={data.player_data} character_data={JSON.parse(data.character_data)} /></div>
+                        {this.renderCards(data)}
+                    </Carousel>
+                </Grid.Column>
+
+                :
+                <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
+                    <div><LfgCard key={data.user_id} data={data} playerData={data.player_data} character_data={JSON.parse(data.character_data)} /></div>
+                </Grid.Column>
+        )
+    }
+}
+
+export default connect(null, { deleteLfgPost })(Container)

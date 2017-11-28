@@ -41,6 +41,7 @@ class FormContainer extends Component {
     handleChange = (e, { value }) => this.setState({ value });
 
     //creates an object for the characters option of the form, based on api response
+    //TODO: Need to handle method for players who do not have any characters
     renderCharacters() {
         return Object.keys(this.props.characters).map((character, index) => {
             return {
