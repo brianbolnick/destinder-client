@@ -134,6 +134,18 @@ class LfgCard extends Component {
 
         }
 
+
+        const repValue = Math.round(player_data.reputation * 5) / 100
+        console.log(repValue)
+
+        const repDisplay = (
+            <Popup
+                trigger={<Rating size='mini' defaultRating={repValue} maxRating={5} icon='star' disabled />}
+                content={`Reputation: ${player_data.reputation}% (${player_data.total_votes} votes)`}
+            />
+            
+        )
+
         let statData;
         switch (data.game_type) {
             case '2':
@@ -226,7 +238,7 @@ class LfgCard extends Component {
                                 {deleteButton}
                             </Grid.Column>
                             <Grid.Column width={6} style={{}}>
-                                <Rating size='mini' defaultRating={3.5} maxRating={5} icon='star' disabled />
+                                {repDisplay}
                             </Grid.Column>
                             <Grid.Column style={{}}>
                                 {mailButton}
