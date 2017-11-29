@@ -45,8 +45,11 @@ class HeaderData extends Component {
 
 
 class LfgCard extends Component {
-    deletePostClick() {
-        this.props.deleteLfgPost(this.props.data.id);
+    // deletePostClick() {
+    //     this.props.deleteLfgPost(this.props.data.id);
+    // }
+    handleDelete = () => {
+        this.props.onDeleteClick(this.props.data.id);
     }
 
     isUser() {
@@ -75,7 +78,7 @@ class LfgCard extends Component {
         let deleteButton = null;
 
         if (this.isUser()) {
-            deleteButton = <Icon onClick={this.deletePostClick.bind(this)} link name='trash outline' />;
+            deleteButton = <Icon onClick={this.handleDelete.bind(this)} link name='trash outline' />;
         }
 
         const mailButton = membershipType === "1"
@@ -152,7 +155,7 @@ class LfgCard extends Component {
         }
 
         return (
-            <Card className="lfg-post-card">                
+            <Card className="lfg-post-card">
                 <Card.Content
                     header={<HeaderData player_data={player_data} character_data={character_data} />}
                     style={{
@@ -240,35 +243,63 @@ class LfgCard extends Component {
 
 class Container extends Component {
 
+    handleDeleteButtonClick = (data) => {
+        this.props.deleteLfgPost(data);
+    }
+
     renderCards = (data) => {
         let character_data;
         return data.fireteam_data.map((player, index) => {
             character_data = JSON.parse(player).character_data
-            return <div><LfgCard key={`${JSON.parse(player).user_id}${index}`} data={data} playerData={JSON.parse(player).player_data} character_data={JSON.parse(character_data)[1]} /></div>
+            return (
+                <div>
+                    <LfgCard
+                        key={`${JSON.parse(player).user_id}${index}`}
+                        data={data} playerData={JSON.parse(player).player_data}
+                        character_data={JSON.parse(character_data)[1]}
+                        onDeleteClick={this.handleDeleteButtonClick}
+                    />
+                </div>
+            )
         })
     }
 
 
     render() {
         const { data } = this.props;
-        // console.log(JSON.parse(data.fireteam_data[0]));
 
         return (
             data.is_fireteam_post
                 ?
-                <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>                
+                <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
                     <Carousel
                         swipeToSlide={true}
                         draggable
-                    >                    
-                        <div><LfgCard key={data.user_id} data={data} playerData={data.player_data} character_data={JSON.parse(data.character_data)} /></div>
+                    >
+                        <div>
+                            <LfgCard
+                                key={data.user_id}
+                                data={data}
+                                playerData={data.player_data}
+                                character_data={JSON.parse(data.character_data)}
+                                onDeleteClick={this.handleDeleteButtonClick.bind(this)}
+                            />
+                        </div>
                         {this.renderCards(data)}
                     </Carousel>
                 </Grid.Column>
 
                 :
                 <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
-                    <div><LfgCard key={data.user_id} data={data} playerData={data.player_data} character_data={JSON.parse(data.character_data)} /></div>
+                    <div>
+                        <LfgCard
+                            key={data.user_id}
+                            data={data}
+                            playerData={data.player_data}
+                            character_data={JSON.parse(data.character_data)}
+                            onDeleteClick={this.handleDeleteButtonClick.bind(this)}
+                        />
+                    </div>
                 </Grid.Column>
         )
     }
