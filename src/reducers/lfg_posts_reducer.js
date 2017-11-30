@@ -11,7 +11,9 @@ import {
     FILTER_KD,
     FILTER_LOOKING_FOR,
     FILTER_MIC,
-    FILTER_MODE
+    FILTER_MODE,
+    SET_ERRORS,
+    SET_FETCH_POST_ERRORS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -21,7 +23,8 @@ const INITIAL_STATE = {
     characters: [],
     fetching: false,
     fetched: false,
-    fetchingNewPost: false
+    fetchingNewPost: false,
+    error:  null
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -48,33 +51,36 @@ export default function (state = INITIAL_STATE, action) {
         case SHOW_ALL_POSTS:
             return { ...state, all: state.all }
         case FILTER_ELO:
-            return { 
-                ...state, 
-               all: state.all.filter(post => 
-                   JSON.parse(post.player_data).elo >= action.payload[0] && 
-                   JSON.parse(post.player_data).elo <= action.payload[1]
-               ) 
-           }
-        case FILTER_KD:
-             return { 
-                 ...state, 
-                all: state.all.filter(post => 
-                    JSON.parse(post.player_data).kd_ratio >= action.payload[0] && 
-                    JSON.parse(post.player_data).kd_ratio <= action.payload[1]
-                ) 
+            return {
+                ...state,
+                all: state.all.filter(post =>
+                    JSON.parse(post.player_data).elo >= action.payload[0] &&
+                    JSON.parse(post.player_data).elo <= action.payload[1]
+                )
             }
-            // return { ...state, all: state.all.filter(post => post.id !== action.payload.id) }
+        case FILTER_KD:
+            return {
+                ...state,
+                all: state.all.filter(post =>
+                    JSON.parse(post.player_data).kd_ratio >= action.payload[0] &&
+                    JSON.parse(post.player_data).kd_ratio <= action.payload[1]
+                )
+            }
         case FILTER_MODE:
             // eslint-disable-next-line
             return { ...state, all: state.all.filter(post => post.game_type == action.payload) }
         case FILTER_MIC:
             if (action.payload === 1) {
                 return { ...state, all: state.all.filter(post => post.has_mic === true) }
-            }else {
-                return {...state, all: state.all};
+            } else {
+                return { ...state, all: state.all };
             }
         case FILTER_LOOKING_FOR:
             return { ...state, all: state.all.filter(post => post.looking_for === action.payload) }
+        case SET_ERRORS:
+            return { ...state, error: action.message }
+        case SET_FETCH_POST_ERRORS:
+            return { ...state, error: action.message, fetching: false, fetched: true }
         default:
             return state;
     }

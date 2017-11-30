@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getLfgPosts, deleteLfgPost, filterMode, filterLookingFor, filterMic, filterElo, filterKd } from '../../actions/index';
+import { getLfgPosts, deleteLfgPost, filterMode, filterLookingFor, filterMic, filterElo, filterKd } from '../../actions/lfg_index';
 import {
   Container,
   Divider,
   Grid,
-  Button
+  Button,
+  Message
 } from "semantic-ui-react";
 import Layout from "../Layout.js";
 import "../../css/Content.css";
@@ -17,6 +18,26 @@ import LeaderboardAd from '../LeaderboardAd';
 import FilterModal from './FilterModal';
 import PlatformSelectModal from './PlatformSelectModal';
 
+class ErrorMessage extends Component {
+ 
+  render() {
+    const content = (
+      <div>
+        {this.props.error} Please <a href="mailto:help@destinder.com">Contact Us</a> and let us know what happened!
+      </div>
+    )
+
+    return (
+      <Message 
+        icon='frown' 
+        error
+        header='Whoops! Something went wrong!'
+        content={content}
+        />
+      
+    )
+  }
+}
 
 class LoadingPost extends Component {
   render() {
@@ -110,6 +131,11 @@ class LfgPage extends Component {
       )
     })
 
+    const errors = this.props.error != null ?
+      <ErrorMessage error={this.props.error} />
+      :
+      null
+
     return (
       <Layout>
         <div className="lfg-page" style={{ minHeight: '100vh' }}>
@@ -118,15 +144,16 @@ class LfgPage extends Component {
               filterSelect={this.state.filterSelect}
               setPlatform={this.setPlatform.bind(this)}
             />
+            {errors}
             <div style={{ height: "50px" }} >
               <Button
-                floated='right' 
-                basic 
-                size='large' 
-                inverted 
-                onClick={() => this.handleRefreshButtonClick()} 
-                circular 
-                icon='refresh' 
+                floated='right'
+                basic
+                size='large'
+                inverted
+                onClick={() => this.handleRefreshButtonClick()}
+                circular
+                icon='refresh'
               />
               <FilterModal
                 onModeChange={this.handleFilterModeChange.bind(this)}
@@ -163,7 +190,8 @@ function mapStateToProps(state) {
     lfgPosts: state.lfgPosts.all,
     fetched: state.lfgPosts.fetched,
     fetching: state.lfgPosts.fetching,
-    fetchingNewPost: state.lfgPosts.fetchingNewPost
+    fetchingNewPost: state.lfgPosts.fetchingNewPost,
+    error: state.lfgPosts.error
   }
 }
 

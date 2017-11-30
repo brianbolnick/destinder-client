@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { getPlayerCharacters, createLfgPost } from '../../actions/index';
+import { getPlayerCharacters, createLfgPost } from '../../actions/lfg_index';
 import {
     Accordion,
     Icon,

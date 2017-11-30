@@ -11,7 +11,9 @@ import {
     FILTER_KD,
     FILTER_LOOKING_FOR,
     FILTER_MIC,
-    FILTER_MODE
+    FILTER_MODE,
+    SET_ERRORS,
+    SET_FETCH_POST_ERRORS
 } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
@@ -23,37 +25,37 @@ export function getPostsSuccess(posts) {
 }
 
 export const filterMode = (data) => {
-    return (dispatch, getState) => {        
+    return (dispatch, getState) => {
         dispatch({ type: FILTER_MODE, payload: data })
     };
 }
 
 export const filterMic = (data) => {
-    return (dispatch, getState) => {        
+    return (dispatch, getState) => {
         dispatch({ type: FILTER_MIC, payload: data })
     };
 }
 
 export const filterLookingFor = (data) => {
-    return (dispatch, getState) => {  
+    return (dispatch, getState) => {
         dispatch({ type: FILTER_LOOKING_FOR, payload: data })
     };
 }
 
 export const filterElo = (data) => {
-    return (dispatch, getState) => {        
+    return (dispatch, getState) => {
         dispatch({ type: FILTER_ELO, payload: data })
     };
 }
 
-export const showAllPosts= (data) => {
-    return (dispatch, getState) => {        
+export const showAllPosts = (data) => {
+    return (dispatch, getState) => {
         dispatch({ type: SHOW_ALL_POSTS })
     };
 }
 
 export const filterKd = (data) => {
-    return (dispatch, getState) => {        
+    return (dispatch, getState) => {
         dispatch({ type: FILTER_KD, payload: data })
     };
 }
@@ -65,17 +67,31 @@ export const getLfgPosts = (platform) => {
             dispatch({ type: FETCH_POSTS_START })
             axios.get(`${API_URL}/v1/lfg_posts`, config).then(response => {
                 dispatch({ type: GET_LFG_POSTS, payload: response.data })
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                console.log(error)
+                dispatch({
+                    type: SET_FETCH_POST_ERRORS,
+                    payload: error,
+                    message: "There was a problem retrieving posts."
+                })
+            })
         };
     } else {
         return (dispatch, getState) => {
             dispatch({ type: FETCH_POSTS_START })
             axios.get(`${API_URL}/v1/lfg_posts?platform=${platform}`).then(response => {
                 dispatch({ type: GET_LFG_POSTS, payload: response.data })
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                console.log(error)
+                dispatch({
+                    type: SET_FETCH_POST_ERRORS,
+                    payload: error,
+                    message: "There was a problem retrieving posts."
+                })
+            })
         };
     }
-    
+
 }
 
 export const getMatchingUsers = (name) => {
@@ -85,7 +101,14 @@ export const getMatchingUsers = (name) => {
         } else {
             axios.get(`${API_URL}/v1/users/find/?data=${name}`, config).then(response => {
                 dispatch({ type: GET_MATCHING_USERS, payload: response.data })
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                console.log(error)
+                dispatch({
+                    type: SET_ERRORS,
+                    payload: error,
+                    message: "There was a problem searching for fireteam members."
+                })
+            })
         }
     };
 }
@@ -94,25 +117,39 @@ export const getPlayerCharacters = (user_id) => {
     return (dispatch, getState) => {
         axios.get(`${API_URL}/v1/users/${user_id}/characters`).then(response => {
             dispatch({ type: GET_PLAYER_CHARACTERS, payload: response.data })
-        }).catch(error => console.log(error))
+        }).catch(error => {
+            console.log(error)
+            dispatch({
+                type: SET_ERRORS,
+                payload: error,
+                message: "There was a problem retrieving your characters."
+            })
+        })
     };
 }
 
 
 export const createLfgPost = (props) => {
-    return (dispatch, getState) => {        
-        dispatch({ type: CREATE_POST_START})        
+    return (dispatch, getState) => {
+        dispatch({ type: CREATE_POST_START })
         axios.post(`${API_URL}/v1/lfg_posts`,
             props,
             config
         )
-            .then(response => {                
-                dispatch({ 
-                    type: CREATE_LFG_POST, 
+            .then(response => {
+                dispatch({
+                    type: CREATE_LFG_POST,
                     payload: response.data
                 })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                dispatch({
+                    type: SET_ERRORS,
+                    payload: error,
+                    message: "There was a problem creating your post."
+                })
+            })
     };
 
 }
@@ -126,7 +163,14 @@ export const deleteLfgPost = (id) => {
             .then(response => {
                 dispatch({ type: DELETE_LFG_POST, payload: response.data })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                dispatch({
+                    type: SET_ERRORS,
+                    payload: error,
+                    message: "There was a problem deleting your post."
+                })
+            })
     };
 
 }

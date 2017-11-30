@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMatchingUsers } from '../../actions/index';
+import { getMatchingUsers } from '../../actions/lfg_index';
 import {
     Form,
     Button,

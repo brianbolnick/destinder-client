@@ -12,6 +12,8 @@ export const FILTER_LOOKING_FOR = 'FILTER_LOOKING_FOR';
 export const FILTER_MIC = 'FILTER_MIC';
 export const FILTER_ELO = 'FILTER_ELO';
 export const FILTER_KD = 'FILTER_KD';
+export const SET_ERRORS = 'SET_ERRORS';
+export const SET_FETCH_POST_ERRORS = 'SET_FETCH_POST_ERRORS';
 
 
 

@@ -8,7 +8,7 @@ import {
     Popup,
     Label,
 } from "semantic-ui-react";
-import { deleteLfgPost } from '../../actions/index';
+import { deleteLfgPost } from '../../actions/lfg_index';
 import { connect } from 'react-redux'
 import { jwt } from '../../tools/jwt';
 import { GAME_TYPES, BADGES } from '../../data/common_constants'
