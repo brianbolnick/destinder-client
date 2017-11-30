@@ -15,7 +15,9 @@ import { GAME_TYPES, BADGES } from '../../data/common_constants'
 import "../../css/steps.css";
 import { Steps, Carousel } from 'antd';
 import { TrialsData, PveData, PvpData } from './LfgStatDisplay';
+import Filter from 'bad-words';
 const Step = Steps.Step;
+const filter = new Filter();
 
 var ta = require("time-ago")();
 
@@ -52,8 +54,6 @@ class LfgCard extends Component {
     isUser() {
         return (user_id === this.props.data.user_id && user_id != null);
     }
-
-
 
     render() {
         const { data, character_data, playerData } = this.props;
@@ -196,7 +196,7 @@ class LfgCard extends Component {
                                     <Divider fitted style={{ fontSize: '0.8rem' }} horizontal>MESSAGE</Divider>
                                     <Grid.Row className='post-message' style={{ marginTop: '-50px' }}>
                                         <p>
-                                            {data.message}
+                                            {filter.clean(data.message)}
                                         </p>
                                     </Grid.Row>
                                 </Grid.Column>
