@@ -15,6 +15,8 @@ import LfgCard from './LfgCard';
 import { jwt } from '../../tools/jwt';
 import LeaderboardAd from '../LeaderboardAd';
 import FilterModal from './FilterModal';
+import PlatformSelectModal from './PlatformSelectModal';
+
 
 class LoadingPost extends Component {
   render() {
@@ -30,7 +32,6 @@ class LoadingPost extends Component {
     )
   }
 }
-
 
 class PostData extends Component {
   render() {
@@ -49,8 +50,19 @@ class PostData extends Component {
 }
 
 class LfgPage extends Component {
+  state = { filterSelect: false, platform: null }
+
   componentWillMount() {
-    this.props.getLfgPosts();
+    if (this.isLoggedIn()) {
+      this.props.getLfgPosts();
+    } else {
+      this.setState({ filterSelect: true })
+    }
+  }
+
+  setPlatform(value) {
+    this.setState({ filterSelect: false, platform: value })
+    this.props.getLfgPosts(value);
   }
 
   isLoggedIn() {
@@ -61,7 +73,11 @@ class LfgPage extends Component {
   }
 
   handleRefreshButtonClick() {
-    this.props.getLfgPosts();
+    if (this.isLoggedIn()) {
+      this.props.getLfgPosts();
+    } else {
+      this.props.getLfgPosts(this.state.platform);
+    }
   }
 
   handleFilterModeChange = (data) => {
@@ -77,7 +93,7 @@ class LfgPage extends Component {
   }
 
   handleEloFilterChange = (data) => {
-    console.log(data)    
+    console.log(data)
     this.props.filterElo(data);
   }
 
@@ -98,15 +114,27 @@ class LfgPage extends Component {
       <Layout>
         <div className="lfg-page" style={{ minHeight: '100vh' }}>
           <Container style={{ width: '80%' }}>
+            <PlatformSelectModal
+              filterSelect={this.state.filterSelect}
+              setPlatform={this.setPlatform.bind(this)}
+            />
             <div style={{ height: "50px" }} >
-              <Button floated='right' basic size='large' inverted onClick={() => this.handleRefreshButtonClick()} circular icon='refresh' />
-              <FilterModal     
-                onModeChange={this.handleFilterModeChange.bind(this)}         
-                onLookingForChange={this.handleLookingForFilterChange.bind(this)}         
-                onMicChange={this.handleMicFilterChange.bind(this)}         
-                onEloChange={this.handleEloFilterChange.bind(this)}         
-                onKdChange={this.handleKdFilterChange.bind(this)}         
-                onResetClick={this.handleRefreshButtonClick.bind(this)}         
+              <Button
+                floated='right' 
+                basic 
+                size='large' 
+                inverted 
+                onClick={() => this.handleRefreshButtonClick()} 
+                circular 
+                icon='refresh' 
+              />
+              <FilterModal
+                onModeChange={this.handleFilterModeChange.bind(this)}
+                onLookingForChange={this.handleLookingForFilterChange.bind(this)}
+                onMicChange={this.handleMicFilterChange.bind(this)}
+                onEloChange={this.handleEloFilterChange.bind(this)}
+                onKdChange={this.handleKdFilterChange.bind(this)}
+                onResetClick={this.handleRefreshButtonClick.bind(this)}
               />
             </div>
             <div style={{ margin: "0 auto" }}>

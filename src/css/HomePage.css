@@ -164,7 +164,8 @@ i.massive.icon, i.massive.icons {
 
 
 .first-layer-home {
-    background-image: url(../img/voidwalker.png);
+    /* background-image: url(../img/voidwalker.png); */
+    background-image: url(../img/voidwalker-low.jpg);
     background-size: cover !important;
 }
 
@@ -301,7 +302,8 @@ i.massive.icon, i.massive.icons {
     }
 
     .first-layer-home {
-        background-image: url(../img/striker.png);        
+        /* background-image: url(../img/striker.png);         */
+        background-image: url(../img/striker-low.jpg);        
         background-size: cover !important;
         background-position-x: -585px;
     }

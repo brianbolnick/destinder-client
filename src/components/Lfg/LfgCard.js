@@ -29,7 +29,7 @@ class HeaderData extends Component {
                 <Grid.Row style={{ height: '50px', padding: '0' }}>
                     <Grid.Column>
                     </Grid.Column>
-                    <Grid.Column width={6} style={{ paddingTop: '15px', fontSize: '1.2em', color: '#f5f5f5' }}>
+                    <Grid.Column width={6} style={{ padding: '0', paddingTop: '15px', fontSize: '1.2em', color: '#f5f5f5' }}>
                         {this.props.player_data.player_name}
                     </Grid.Column>
                     <Grid.Column style={{ paddingTop: '5px' }}>
@@ -45,9 +45,6 @@ class HeaderData extends Component {
 
 
 class LfgCard extends Component {
-    // deletePostClick() {
-    //     this.props.deleteLfgPost(this.props.data.id);
-    // }
     handleDelete = () => {
         this.props.onDeleteClick(this.props.data.id);
     }
@@ -134,16 +131,14 @@ class LfgCard extends Component {
 
         }
 
-
         const repValue = Math.round(player_data.reputation * 5) / 100
-        console.log(repValue)
 
         const repDisplay = (
             <Popup
                 trigger={<Rating size='mini' defaultRating={repValue} maxRating={5} icon='star' disabled />}
                 content={`Reputation: ${player_data.reputation}% (${player_data.total_votes} votes)`}
             />
-            
+
         )
 
         let statData;

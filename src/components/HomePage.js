@@ -115,18 +115,18 @@ class HomeFirst extends Component {
             <Divider />
             <p>We appreciate your patience as we're working to get everything up to date!
               Be sure to follow us on social media to get important updates on our progress: </p>
-            <div style={{textAlign: 'center' }}>
-              <Icon name='twitter' size='large' link onClick={() => {window.location.replace('https://twitter.com/Destinderdotcom')} }/>
-              <Icon name='instagram' size='large' link onClick={() => {window.location.replace('https://www.instagram.com/destinderdotcom/')} }/>
-              <Icon name='reddit' size='large' link onClick={() => {window.location.replace('https://www.reddit.com/r/destinder/')} }/>
+            <div style={{ textAlign: 'center' }}>
+              <Icon name='twitter' size='large' link onClick={() => { window.location.replace('https://twitter.com/Destinderdotcom') }} />
+              <Icon name='instagram' size='large' link onClick={() => { window.location.replace('https://www.instagram.com/destinderdotcom/') }} />
+              <Icon name='reddit' size='large' link onClick={() => { window.location.replace('https://www.reddit.com/r/destinder/') }} />
             </div>
 
           </Modal.Content>
           <Modal.Actions>
-            <Button floated='left' basic inverted onClick={() => {window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"')} } >
+            <Button floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
               <Icon name='paypal' /> Help Run the site, donate now!
             </Button>
-            <Button floated='right'inverted basic color='teal' onClick={this.handleDismissClick.bind(this)} >
+            <Button floated='right' inverted basic color='teal' onClick={this.handleDismissClick.bind(this)} >
               <Icon name='checkmark' /> Don't show again
             </Button>
           </Modal.Actions>
@@ -251,7 +251,7 @@ class HomeSecond extends Component {
         <Grid columns={4}>
           <Grid.Row>
             <Grid.Column width={4}>
-              <div style={{ textAlign: "center", height: '60vh'}}>
+              <div style={{ textAlign: "center", height: '60vh' }}>
                 {/* <AnnouncementCard /> */}
               </div>
             </Grid.Column>

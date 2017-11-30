@@ -15,7 +15,8 @@ import {
 } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
-const config = { headers: { 'AUTHORIZATION': `Bearer ${localStorage.getItem('auth_token')}` } }
+const token = localStorage.getItem('auth_token');
+const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 
 export function getPostsSuccess(posts) {
     return { type: GET_LFG_POSTS, payload: posts };
@@ -57,13 +58,24 @@ export const filterKd = (data) => {
     };
 }
 
-export const getLfgPosts = () => {
-    return (dispatch, getState) => {
-        dispatch({ type: FETCH_POSTS_START })
-        axios.get(`${API_URL}/v1/lfg_posts`).then(response => {
-            dispatch({ type: GET_LFG_POSTS, payload: response.data })
-        }).catch(error => console.log(error))
-    };
+export const getLfgPosts = (platform) => {
+    platform = platform || null
+    if (token != null) {
+        return (dispatch, getState) => {
+            dispatch({ type: FETCH_POSTS_START })
+            axios.get(`${API_URL}/v1/lfg_posts`, config).then(response => {
+                dispatch({ type: GET_LFG_POSTS, payload: response.data })
+            }).catch(error => console.log(error))
+        };
+    } else {
+        return (dispatch, getState) => {
+            dispatch({ type: FETCH_POSTS_START })
+            axios.get(`${API_URL}/v1/lfg_posts?platform=${platform}`).then(response => {
+                dispatch({ type: GET_LFG_POSTS, payload: response.data })
+            }).catch(error => console.log(error))
+        };
+    }
+    
 }
 
 export const getMatchingUsers = (name) => {
@@ -71,7 +83,7 @@ export const getMatchingUsers = (name) => {
         if (name === "") {
             dispatch({ type: GET_MATCHING_USERS, payload: name })
         } else {
-            axios.get(`${API_URL}/v1/users/find/?data=${name}`).then(response => {
+            axios.get(`${API_URL}/v1/users/find/?data=${name}`, config).then(response => {
                 dispatch({ type: GET_MATCHING_USERS, payload: response.data })
             }).catch(error => console.log(error))
         }
