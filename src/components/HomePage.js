@@ -178,7 +178,7 @@ class HomeFirst extends Component {
             <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
-                to="/team-search"
+                to="/fireteams"
                 className="home-tile-card row2-2"
 
               >

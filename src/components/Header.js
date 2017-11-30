@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Button, Header, Icon, Modal, Card
+  Button, Header, Icon, Modal, Card, Grid
 } from "semantic-ui-react";
 import '../css/Content.css';
 import { Link } from "react-router-dom";
@@ -181,12 +181,26 @@ class NavLinks extends Component {
   render() {
     return (
       <div>
-        <Card.Group itemsPerRow={4}>
+        <Grid >
+          <Grid.Column mobile={16} tablet={8} computer={4}>
+            <ProfileCard currentLocation={this.state.currentLocation} />
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={8} computer={4}>
+            <LfgCard currentLocation={this.state.currentLocation} />
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={8} computer={4}>
+            <FireteamsCard currentLocation={this.state.currentLocation} />
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={8} computer={4}>
+            <PlayerCard currentLocation={this.state.currentLocation} />
+          </Grid.Column>
+        </Grid>
+        {/* <Card.Group itemsPerRow={4}>
           <ProfileCard currentLocation={this.state.currentLocation} />
           <LfgCard currentLocation={this.state.currentLocation} />
           <FireteamsCard currentLocation={this.state.currentLocation} />
           <PlayerCard currentLocation={this.state.currentLocation} />
-        </Card.Group>
+        </Card.Group> */}
       </div>
     )
   }
