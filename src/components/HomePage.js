@@ -5,10 +5,18 @@ import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
+import ModalContent from './ModalContent';
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
 
-
+const FaqButton = () => {
+  return (
+    <Modal closeIcon trigger={<span style={{ color: '#f5f5f5', letterSpacing: '1px', fontSize: '1.1em' }}>FAQ</span>}>
+      <Modal.Header>FAQ</Modal.Header>
+      <ModalContent />
+    </Modal>
+  )
+}
 
 class LoginButton extends Component {
   isLoggedIn() {
@@ -33,7 +41,7 @@ class LoginButton extends Component {
         ?
         <Dropdown
           trigger={
-            <span>
+            <span style={{ letterSpacing: '1px', fontSize: '1.1em' }}>
               <Image
                 avatar
                 src={jwt.profile_picture}
@@ -46,6 +54,10 @@ class LoginButton extends Component {
           style={{ color: "#f5f5f5" }}
         >
           <Dropdown.Menu>
+            <Modal closeIcon trigger={<Dropdown.Item className='hide-on-med-and-up'>FAQ</Dropdown.Item>}>
+              <Modal.Header>FAQ</Modal.Header>
+              <ModalContent />
+            </Modal>
             <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -69,10 +81,13 @@ class HomeNav extends Component {
           <Image src={Logo} size="small" />
         </Menu.Item>
         <Menu.Menu position="right">
-          <Menu.Item>
+          <Menu.Item >
             <div>
               <LoginButton />
             </div>
+          </Menu.Item>
+          <Menu.Item link className='hide-on-mobile'>
+            <FaqButton />
           </Menu.Item>
         </Menu.Menu>
       </Menu>

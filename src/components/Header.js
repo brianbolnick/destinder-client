@@ -22,7 +22,7 @@ class ProfileCard extends Component {
               <Icon name='marker' />
               Profile
                 </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               Visit your personal profile page.
                 </Card.Description>
           </Card.Content>
@@ -39,7 +39,7 @@ class ProfileCard extends Component {
             <Card.Header>
               Profile
           </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               Visit your personal profile page.
           </Card.Description>
           </Card.Content>
@@ -63,7 +63,7 @@ class LfgCard extends Component {
               <Icon name='marker' />
               LFG Boards
             </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               Find a fireteam to play with.
             </Card.Description>
           </Card.Content>
@@ -80,7 +80,7 @@ class LfgCard extends Component {
             <Card.Header>
               LFG Boards
           </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               Find a fireteam to play with.
           </Card.Description>
           </Card.Content>
@@ -104,7 +104,7 @@ class FireteamsCard extends Component {
               <Icon name='marker' />
               Fireteam Search
             </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               Lookup stats for an opposing fireteam.
             </Card.Description>
           </Card.Content>
@@ -121,7 +121,7 @@ class FireteamsCard extends Component {
             <Card.Header>
               Fireteam Search
           </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               Lookup stats for an opposing fireteam.
           </Card.Description>
           </Card.Content>
@@ -145,7 +145,7 @@ class PlayerCard extends Component {
               <Icon name='marker' />
               Player Search
             </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               View the profile of another player.
             </Card.Description>
           </Card.Content>
@@ -162,7 +162,7 @@ class PlayerCard extends Component {
             <Card.Header>
               Player Search
           </Card.Header>
-            <Card.Description>
+            <Card.Description className='hide-on-mobile'>
               View the profile of another player.
           </Card.Description>
           </Card.Content>
@@ -211,31 +211,28 @@ class HeaderComponent extends Component {
   render() {
     return (
       <div>
-        <Modal basic trigger={
-          <Icon.Group size='big'>
-            <Icon loading size='huge' name='sun' inverted color='yellow' />
-            <Icon className='header-button' link name='world' />
-          </Icon.Group>
-        }
-          closeIcon
-          dimmer={'blurring'}
-        >
-          <Header icon='location arrow' content='Orbit' />
-          <Modal.Content>
-            <NavLinks />
-          </Modal.Content>
-          <Modal.Actions style={{ textAlign: 'center' }}>
-            <Button className='hide-on-mobile' floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
-              <Icon name='paypal' /> Help Run the site, donate now!
-            </Button>
-            <Button className='hide-on-med-and-up' floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
-              <Icon name='paypal' /> Donate
-            </Button>
-            <Button floated='right' as={Link} to='/' color='teal' inverted>
-              <Icon name='home' /> Home
-            </Button>
-          </Modal.Actions>
-        </Modal>
+          <Modal basic trigger={
+            <Icon.Group size='big'>
+              <Icon loading size='huge' name='sun' inverted color='yellow' />
+              <Icon className='header-button' link name='world' />
+            </Icon.Group>
+            }
+            closeIcon
+            dimmer={'blurring'}
+          >
+            <Header icon='location arrow' content='Orbit' />
+            <Modal.Content style={{textAlign: '-webkit-center'}}>
+              <NavLinks />
+            </Modal.Content>
+            <Modal.Actions style={{ textAlign: 'center' }}>
+              <Button className='hide-on-mobile' floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
+                <Icon name='paypal' /> Help Run the site, donate now!
+              </Button>
+              <Button floated='right' as={Link} to='/' color='teal' inverted>
+                <Icon name='home' /> Home
+              </Button>
+            </Modal.Actions>
+          </Modal>
         {this.props.children}
       </div>
     )

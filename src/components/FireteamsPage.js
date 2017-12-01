@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Menu, Card, Tab, Image, Grid, Transition, Message, Icon } from 'semantic-ui-react';
+import { Container, Menu, Card, Tab, Image, Grid, Transition, Message } from 'semantic-ui-react';
 import Layout from './Layout.js';
 import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';

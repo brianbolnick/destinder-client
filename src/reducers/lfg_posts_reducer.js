@@ -43,6 +43,7 @@ export default function (state = INITIAL_STATE, action) {
         case GET_MATCHING_USERS:
             return { ...state, users: action.payload };
         case CREATE_LFG_POST:
+        // eslint-disable-next-line
             const posts = state.all.filter(post => post.user_id !== action.payload.user_id && post.id !== action.payload.id)
             return { 
                 ...state, 
