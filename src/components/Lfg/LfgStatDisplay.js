@@ -64,7 +64,7 @@ export class PvpData extends Component {
 
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value className='long-stat' style={{ fontSize: '1.1em' }} >{this.props.player_data.average_lifespan}</Statistic.Value>
+                            <Statistic.Value className='extra-long-stat' style={{ fontSize: '1.1em' }} >{this.props.player_data.average_lifespan}</Statistic.Value>
                             <Statistic.Label style={{ fontSize: '0.8em' }}>AVG LIFESPAN</Statistic.Label>
                         </Statistic>
                     </Grid.Column>

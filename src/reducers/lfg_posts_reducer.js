@@ -43,7 +43,11 @@ export default function (state = INITIAL_STATE, action) {
         case GET_MATCHING_USERS:
             return { ...state, users: action.payload };
         case CREATE_LFG_POST:
-            return { ...state, fetchingNewPost: false, all: [...state.all, action.payload] }
+            const posts = state.all.filter(post => post.user_id !== action.payload.user_id && post.id !== action.payload.id)
+            return { 
+                ...state, 
+                fetchingNewPost: false, 
+                all: [...state, action.payload] }
         case CREATE_POST_START:
             return { ...state, fetchingNewPost: true }
         case DELETE_LFG_POST:
