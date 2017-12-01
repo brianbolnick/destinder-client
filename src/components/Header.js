@@ -225,8 +225,11 @@ class HeaderComponent extends Component {
             <NavLinks />
           </Modal.Content>
           <Modal.Actions style={{ textAlign: 'center' }}>
-            <Button floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
+            <Button className='hide-on-mobile' floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
               <Icon name='paypal' /> Help Run the site, donate now!
+            </Button>
+            <Button className='hide-on-med-and-up' floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
+              <Icon name='paypal' /> Donate
             </Button>
             <Button floated='right' as={Link} to='/' color='teal' inverted>
               <Icon name='home' /> Home
