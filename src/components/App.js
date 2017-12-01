@@ -3,8 +3,9 @@ import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./Lfg/LfgPage.js";
 import Profile from "./ProfilePage.js";
-import Fireteams from "./FireteamsPage.js";
+import Fireteams from "./Fireteams/FireteamsPage.js";
 import Admin from "./AdminPage.js";
+import Players from './Players.js'
 // import TeamSearch from './TeamSearch.js';
 import NotFound from "./NotFound.js";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -67,6 +68,7 @@ class App extends Component  {
             <Route path="/lfg" component={Lfg} />
             <Route path="/profile" component={Profile} />
             <Route path="/fireteams" component={Fireteams} />
+            <Route path="/players" component={Players} />
             <Route path="/admin" component={Admin} />
             <Route
               path="/donate"

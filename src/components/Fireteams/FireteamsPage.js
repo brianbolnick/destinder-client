@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Menu, Card, Tab, Image, Grid, Transition, Message } from 'semantic-ui-react';
-import Layout from './Layout.js';
+import Layout from '../Layout.js';
 import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';
-import playerData from '../data/TempPlayerData.js';
+import playerData from '../../data/TempPlayerData.js';
 import Carousel from 'nuka-carousel';
 import PlayerOverview from './PlayerOverview.js';
-import CardBackground from '../img/abstract-background.png';
+import CardBackground from '../../img/abstract-background.png';
 
 class BetaMessage extends Component {
     

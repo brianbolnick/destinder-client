@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Image, Message, Icon } from "semantic-ui-react";
 import Layout from "./Layout.js";
 
-class ProfilePage extends Component {
+class PlayersPage extends Component {
     render() {
         return (
             <Layout>
@@ -12,7 +12,7 @@ class ProfilePage extends Component {
                             <Icon name='circle notched' loading />
                             <Message.Content>
                                 <Message.Header>Nothing here yet!</Message.Header>
-                                Don't worry. We're working on it. Soon you'll be able to see a full breakdown of your character stats across multiple game types including Raids, Trials, and more!
+                                Don't worry. We're working on it. Soon you'll be able to view other players specific stats for various game modes. Stay Tuned!!
                             </Message.Content>
                         </Message>
                         <Image size='big' centered fluid src='http://i.imgur.com/7rlgPZQ.gif' />
@@ -23,4 +23,4 @@ class ProfilePage extends Component {
     }
 }
 
-export default ProfilePage;
+export default PlayersPage;
