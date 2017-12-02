@@ -43,19 +43,19 @@ export const GAME_TYPES = {
 }
 
 export const CHECKPOINTS = {
-  1: "Normal - Full Raid",
-  2: "Normal - Castellum",
-  3: "Normal - Royal Pools",
-  4: "Normal - Pleasure Gardens",
-  5: "Normal - Gauntlet",
-  6: "Normal - Calus", 
-  11: "Prestige - Full Raid",
-  12: "Prestige - Castellum",
-  13: "Prestige - Royal Pools",
-  14: "Prestige - Pleasure Gardens",
-  15: "Prestige - Gauntlet",
-  16: "Prestige - Calus",
-  102: "Other"
+  1: "Leviathan - Full Raid",
+  2: "Leviathan - Castellum",
+  3: "Leviathan - Royal Pools",
+  4: "Leviathan - Pleasure Gardens",
+  5: "Leviathan - Gauntlet",
+  6: "Leviathan - Calus", 
+  11: "Leviathan - Full Raid",
+  12: "Leviathan - Castellum",
+  13: "Leviathan - Royal Pools",
+  14: "Leviathan - Pleasure Gardens",
+  15: "Leviathan - Gauntlet",
+  16: "Leviathan - Calus",
+  102: "Leviathan - Other"
 }
 
 export const BADGES = {

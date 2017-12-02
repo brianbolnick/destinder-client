@@ -178,8 +178,11 @@ class LfgCard extends Component {
                         textTransform: 'uppercase',
                         textAlign: 'center',
                         letterSpacing: '4px',
-                        fontSize: '0.8em'
-                    }}>{ data.checkpoint != null ? `${GAME_TYPES[data.game_type]} - ${CHECKPOINTS[data.checkpoint]}` : GAME_TYPES[data.game_type]}</div>
+                        fontSize: '0.8em',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>{ data.checkpoint != null ? CHECKPOINTS[data.checkpoint] : GAME_TYPES[data.game_type]}</div>
                     <div style={{
                         textTransform: 'uppercase',
                         textAlign: 'center',
