@@ -42,6 +42,22 @@ export const GAME_TYPES = {
   102: 'Other',
 }
 
+export const CHECKPOINTS = {
+  1: "Normal - Full Raid",
+  2: "Normal - Castellum",
+  3: "Normal - Royal Pools",
+  4: "Normal - Pleasure Gardens",
+  5: "Normal - Gauntlet",
+  6: "Normal - Calus", 
+  11: "Prestige - Full Raid",
+  12: "Prestige - Castellum",
+  13: "Prestige - Royal Pools",
+  14: "Prestige - Pleasure Gardens",
+  15: "Prestige - Gauntlet",
+  16: "Prestige - Calus",
+  102: "Other"
+}
+
 export const BADGES = {
   1: <Donator />,
   2: <Architect />,

@@ -11,7 +11,7 @@ import {
 import { deleteLfgPost } from '../../actions/lfg_index';
 import { connect } from 'react-redux'
 import { jwt } from '../../tools/jwt';
-import { GAME_TYPES, BADGES } from '../../data/common_constants'
+import { GAME_TYPES, BADGES, CHECKPOINTS } from '../../data/common_constants'
 import "../../css/steps.css";
 import { Steps, Carousel } from 'antd';
 import { TrialsData, PveData, PvpData } from './LfgStatDisplay';
@@ -179,7 +179,7 @@ class LfgCard extends Component {
                         textAlign: 'center',
                         letterSpacing: '4px',
                         fontSize: '0.8em'
-                    }}>{GAME_TYPES[data.game_type]}</div>
+                    }}>{ data.checkpoint != null ? `${GAME_TYPES[data.game_type]} - ${CHECKPOINTS[data.checkpoint]}` : GAME_TYPES[data.game_type]}</div>
                     <div style={{
                         textTransform: 'uppercase',
                         textAlign: 'center',
