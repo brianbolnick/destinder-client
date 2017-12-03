@@ -3,7 +3,7 @@ import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./Lfg/LfgPage.js";
 import Profile from "./ProfilePage.js";
-import Fireteams from "./Fireteams/FireteamsPage.js";
+import Fireteams from "./Fireteams/FireteamsFormPage.js";
 import Admin from "./AdminPage.js";
 import Players from './Players.js'
 // import TeamSearch from './TeamSearch.js';
