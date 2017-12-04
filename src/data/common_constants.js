@@ -81,3 +81,9 @@ export const SUBCLASS_ICONS = {
   'Stormcaller': Stormcaller,
   'Lost Light': Sentinel
 }
+
+export const PLATFORMS = {
+  1: "Xbox",
+  2: "Playstation",
+  3: "PC"
+}

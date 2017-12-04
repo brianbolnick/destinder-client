@@ -3,7 +3,8 @@ import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./Lfg/LfgPage.js";
 import Profile from "./ProfilePage.js";
-import Fireteams from "./Fireteams/FireteamsFormPage.js";
+import FireteamsForm from "./Fireteams/FireteamsFormPage.js";
+import Fireteams from "./Fireteams/FireteamsPage.js";
 import Admin from "./AdminPage.js";
 import Players from './Players.js'
 // import TeamSearch from './TeamSearch.js';
@@ -67,7 +68,11 @@ class App extends Component  {
             <Route path="/" exact component={Home} />
             <Route path="/lfg" component={Lfg} />
             <Route path="/profile" component={Profile} />
-            <Route path="/fireteams" component={Fireteams} />
+            <Route exact path="/fireteams" component={FireteamsForm} />
+            {/* <Route path="/fireteams/pc/:gamertag" component={Fireteams} /> */}
+            <Route path="/fireteams/:platform/:gamertag" component={Fireteams} />
+            {/* <Route path="/fireteams/xbox/:gamertag" component={Fireteams} /> */}
+            {/* <Route path="/fireteams/ps4/:gamertag" component={Fireteams} /> */}
             <Route path="/players" component={Players} />
             <Route path="/admin" component={Admin} />
             <Route

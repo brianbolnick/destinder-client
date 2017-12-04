@@ -7,6 +7,8 @@ import playerData from '../../data/TempPlayerData.js';
 import Carousel from 'nuka-carousel';
 import PlayerOverview from './PlayerOverview.js';
 import CardBackground from '../../img/abstract-background.png';
+import { PLATFORMS } from '../../data/common_constants';
+import '../../css/fireteams.css';
 
 class BetaMessage extends Component {
     
@@ -14,6 +16,8 @@ class BetaMessage extends Component {
        const content = (
          <div>
            This is just a demo of what we're working on. Soon you'll be able to look up any player and find their current fireteam, similar to below.
+           <br />
+           You searched for: {this.props.gamertag} on {PLATFORMS[this.props.platform]}.
          </div>
        )
    
@@ -81,6 +85,7 @@ class ProfilePage extends Component {
     
     changePlayer = (e, { name }) => this.setState({ activeItem: name })
     render() {
+
         // const { activeItem } = this.state
         function getPlayerCharacters(props) {            
             var chars = [];
@@ -114,7 +119,7 @@ class ProfilePage extends Component {
             <Layout>
                 <div className="profile-page" style={{height: '100vh' }}>
                     <Container>
-                        <BetaMessage />
+                        <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} />
                         {/* <div className='hide-on-mobile' style={{ height: '50px' }} /> */}
                         <div> 
                             <Card className='hide-on-mobile' fluid style={{height: '85vh', background: 'transparent', boxShadow: 'none'}}>
