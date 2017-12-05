@@ -12,7 +12,7 @@ import '../../css/fireteams.css';
 const validate = values => {
     const errors = {}
     if (!values.gamertag) {
-        errors.gamertag = 'Please enter a gamerteag.'
+        errors.gamertag = 'Please enter a gamertag.'
     }
     if (!values.console) {
         errors.console = 'Please select a console.'

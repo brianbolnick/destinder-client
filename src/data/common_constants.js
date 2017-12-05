@@ -85,5 +85,5 @@ export const SUBCLASS_ICONS = {
 export const PLATFORMS = {
   1: "Xbox",
   2: "Playstation",
-  3: "PC"
+  4: "PC"
 }

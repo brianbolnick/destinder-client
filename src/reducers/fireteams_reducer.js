@@ -1,11 +1,13 @@
-import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA } from '../actions/types';
+// eslint-disable-next-line
+import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS } from '../actions/types';
 
 const INITIAL_STATE = {
     fireteam: [],
     fetching: false,
     fetched: false,
     fetchingPlayer: false,
-    error:  null
+    error:  null,
+    userValid: true
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -18,6 +20,8 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, fetchingPlayer: true, fetching: false }
         case SET_FIRETEAM_ERRORS:
             return { ...state, error: action.message, fetching: false, fetched: true }
+        case SET_USER_ERRORS:
+            return { ...state, userValid: false, error: action.payload }
         default:
             return state;
     }

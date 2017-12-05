@@ -1,34 +1,42 @@
 import React, { Component } from 'react';
-import { Container, Segment } from 'semantic-ui-react';
+import { Container, Segment, Message } from 'semantic-ui-react';
 import Layout from '../Layout.js';
 import FireteamsForm from './FireteamsForm';
-import TrialsBackground from '../../img/trials-bg4.jpg';
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { validateUser, resetErrors } from '../../actions/fireteams_index';
+
 
 class FireteamsFormPage extends Component {
-    static contextTypes = {
-        router: PropTypes.object
-      }
 
     handleFormSubmit = values => {
-        this.context.router.history.push(`/fireteams/${values.console}/${values.gamertag}`);
-        //merge user id with form props
-        // values = { ...values, user_id: JSON.parse(localStorage.getItem('jwt')).user_id }
-        // this.props.createLfgPost(values);
+        this.props.validateUser(values)
     }
-    render() {
 
+    handleDismiss = () => {
+        this.props.resetErrors();
+    }
+
+    render() {
         return (
             <Layout>
                 <div className="fireteam-form" style={{ minHeight: '100vh' }}>
-                    <div className='spacer'></div>
                     <Container style={{ width: '80%' }}>
+
                         <Segment
                             padded='very'
                             color='teal'
                             textAlign='center'
                             className="fireteam-form-container"
                         >
+                            {this.props.error ?
+                                <Message
+                                    negative
+                                    attached
+                                    onDismiss={this.handleDismiss}
+                                    header={`Sorry! ${this.props.error}`}
+                                />
+                                : null
+                            }
                             <div className='fireteam-form'>
                                 <FireteamsForm onSubmit={this.handleFormSubmit} />
                                 <Segment className='fireteam-form-description' basic>
@@ -44,4 +52,11 @@ class FireteamsFormPage extends Component {
     }
 }
 
-export default FireteamsFormPage
+function mapStateToProps(state) {
+    return {
+        error: state.fireteam.error
+    }
+}
+
+export default connect(mapStateToProps, { validateUser, resetErrors })(FireteamsFormPage)
+
