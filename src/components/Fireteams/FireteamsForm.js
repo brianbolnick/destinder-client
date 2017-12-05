@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import {
     Form,
     Button,
+    Divider
 } from "semantic-ui-react";
-import { SelectField,  InputField } from 'react-semantic-redux-form';
+import { SelectField, InputField } from 'react-semantic-redux-form';
 import { Field, reduxForm } from 'redux-form';
 import { consoleOptions } from '../../data/DropdownOptions';
 import '../../css/fireteams.css';
@@ -30,10 +31,10 @@ class NewFireteamSearch extends Component {
         return (
             <Form
                 onSubmit={handleSubmit}
-                inverted                
+                inverted
             >
-
                 <Field
+                    className='hide-on-mobile'
                     component={InputField}
                     name='gamertag'
                     action={<Field
@@ -41,11 +42,37 @@ class NewFireteamSearch extends Component {
                         name='console'
                         options={consoleOptions}
                         placeholder="Console"
+                        
                     />}
                     icon='search'
                     iconPosition='left'
                     placeholder='Gamertag...'
-                    style={{background: '#050B17', border: 'solid 3px #47D5CF', borderRadius: '5px'}}
+                    style={{ background: '#050B17', border: 'solid 3px #47D5CF', borderRadius: '5px' }}
+                />
+
+                <Field
+                    className='hide-on-med-and-up'
+                    component={InputField}
+                    name='gamertag'
+                    icon='search'
+                    iconPosition='left'
+                    placeholder='Gamertag...'
+                    style={{ background: '#050B17', border: 'solid 3px #47D5CF', borderRadius: '5px' }}
+                />
+                <Divider 
+                    className='hide-on-med-and-up' 
+                    horizontal
+                    style={{ color: '#f5f5f5', fontSize: ''}}
+                >
+                    SELECT PLATFORM
+                </Divider>
+                <Field
+                    className='hide-on-med-and-up'
+                    component={SelectField}
+                    name='console'
+                    options={consoleOptions}
+                    placeholder="Console"                    
+                    style={{ background: '#050B17', border: 'solid 3px #47D5CF', borderRadius: '5px' }}
                 />
 
                 <Form.Field

@@ -21,24 +21,17 @@ class FireteamsFormPage extends Component {
         return (
             <Layout>
                 <div className="fireteam-form" style={{ minHeight: '100vh' }}>
-                    <div style={{ height: '100px' }}></div>
+                    <div className='spacer'></div>
                     <Container style={{ width: '80%' }}>
                         <Segment
                             padded='very'
                             color='teal'
                             textAlign='center'
-                            style={{
-                                background: '#191919',
-                                backgroundImage: `url(${TrialsBackground})`,
-                                height: '450px',
-                                backgroundSize: 'contain',
-                                backgroundPositionY: '-35px',
-                                backgroundRepeat: 'no-repeat'
-                            }}
+                            className="fireteam-form-container"
                         >
-                            <div style={{ position: 'relative', top: '235px' }}>
+                            <div className='fireteam-form'>
                                 <FireteamsForm onSubmit={this.handleFormSubmit} />
-                                <Segment basic style={{color: "#f5f5f5", fontSize: '1.3em', letterSpacing: '5px'}}>
+                                <Segment className='fireteam-form-description' basic>
                                     TRIALS OF THE NINE - FIRETEAM SEARCH
                                 </Segment>
                             </div>
