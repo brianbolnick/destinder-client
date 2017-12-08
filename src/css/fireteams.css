@@ -17,12 +17,19 @@ input[type="text"] {
     color: #E31D3B !important;
 }
 
-.ui.search.selection.dropdown {
+/* .ui.search.selection.dropdown {
     background: transparent;
     border: none;
-}
+} */
 
-.ui.search.selection.dropdown>input.search {
+/* .ui.search.selection.dropdown>input.search {
+    border-left: #47D5CF 1px solid !important;
+    border-radius: 0px;
+} */
+
+.ui.search.selection.dropdown.fireteam-console-select {
+    background: transparent;
+    border: none;
     border-left: #47D5CF 1px solid !important;
     border-radius: 0px;
 }

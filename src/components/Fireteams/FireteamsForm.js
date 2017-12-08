@@ -7,7 +7,6 @@ import {
 import { SelectField, InputField } from 'react-semantic-redux-form';
 import { Field, reduxForm } from 'redux-form';
 import { consoleOptions } from '../../data/DropdownOptions';
-import '../../css/fireteams.css';
 
 const validate = values => {
     const errors = {}
@@ -42,6 +41,7 @@ class NewFireteamSearch extends Component {
                         name='console'
                         options={consoleOptions}
                         placeholder="Console"
+                        className='fireteam-console-select'
                         
                     />}
                     icon='search'

@@ -4,6 +4,8 @@ import Layout from '../Layout.js';
 import FireteamsForm from './FireteamsForm';
 import { connect } from 'react-redux';
 import { validateUser, resetErrors } from '../../actions/fireteams_index';
+import '../../css/fireteams.css';
+
 
 
 class FireteamsFormPage extends Component {

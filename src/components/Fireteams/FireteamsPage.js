@@ -8,8 +8,9 @@ import Carousel from 'nuka-carousel';
 import PlayerOverview from './PlayerOverview.js';
 import CardBackground from '../../img/abstract-background.png';
 import { PLATFORMS } from '../../data/common_constants';
-import '../../css/fireteams.css';
 import { Link } from "react-router-dom";
+import { SyncLoader, ScaleLoader, PulseLoader, RingLoader, ClipLoader } from 'react-spinners';
+
 
 class BetaMessage extends Component {
     state = { visible: true }
@@ -39,8 +40,8 @@ class BetaMessage extends Component {
             )
         }
         return (
-            <div />            
-          )
+            <div />
+        )
     }
 }
 
@@ -70,7 +71,10 @@ const FireteamOverview = (props) => {
         return (
             <Transition key={i} animation='fly down' duration={1000 + (i * 1000)} transitionOnMount={true}>
                 <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
-                    <PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} />
+                    <div style={{ textAlign: '-webkit-center', height: ' 100%', paddingTop: '50%' }}>
+                        <ClipLoader color={'#3dd6d0'} />
+                    </div>
+                    {/* <PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} /> */}
                 </Grid.Column>
             </Transition>
 
@@ -111,19 +115,32 @@ class ProfilePage extends Component {
         ]
 
         // const sideTabs = [{ menuItem:  <Menu.Item style={{ textAlign: 'center', padding: '0', height: '16%', backgroundImage: `url(${TrialsLogo})`, backgroundSize: 'cover', backgroundPosition: 'center'}} key='overview'></Menu.Item>, render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane> }];
-        const sideTabs = [{ menuItem: <Menu.Item style={{ textAlign: 'center', padding: '0', height: '16%', backgroundImage: 'url("https://www.bungie.net/img/theme/destiny/icons/game_modes/allmodes.png")', backgroundSize: 'cover', backgroundPosition: 'center' }} key='overview'></Menu.Item>, render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane> }];
+        const sideTabs = [{
+            menuItem:
+                <Menu.Item
+                    style={{
+                        textAlign: 'center',
+                        padding: '0',
+                        height: '16%',
+                        backgroundImage: 'url("https://www.bungie.net/img/theme/destiny/icons/game_modes/allmodes.png")',
+                        backgroundSize: 'cover', backgroundPosition: 'center'
+                    }}
+                    key='overview'>
+                </Menu.Item>,
+            render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane>
+        }];
         const slides = [];
         // eslint-disable-next-line
-        playerData.map(function (object, i) {
-            sideTabs.push({ menuItem: <Menu.Item style={{ textAlign: 'center' }} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab className='player-tabs' panes={getPlayerCharacters(object)} /></Tab.Pane> })
-            slides.push(
-                <Transition key={i} animation='fly down' duration={3000} transitionOnMount={true}>
-                    <div>
-                        {<PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} />}
-                    </div>
-                </Transition>
-            );
-        });
+        // playerData.map(function (object, i) {
+        //     sideTabs.push({ menuItem: <Menu.Item style={{ textAlign: 'center' }} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab className='player-tabs' panes={getPlayerCharacters(object)} /></Tab.Pane> })
+        //     slides.push(
+        //         <Transition key={i} animation='fly down' duration={3000} transitionOnMount={true}>
+        //             <div>
+        //                 {<PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} />}
+        //             </div>
+        //         </Transition>
+        //     );
+        // });
 
         return (
             <Layout>
@@ -133,12 +150,16 @@ class ProfilePage extends Component {
                         <Button as={Link} to='/fireteams' basic inverted icon className='fireteam-back-btn'>
                             <Icon name='arrow left' size='huge' />
                         </Button>
-                        <Divider />
+                        <Divider fitted />
                         {/* <div className='hide-on-mobile' style={{ height: '50px' }} /> */}
                         <div>
-                            <Card className='hide-on-mobile' fluid style={{ height: '85vh', background: 'transparent', boxShadow: 'none' }}>
+                            <Card className='hide-on-mobile' fluid style={{ minHeight: '85vh', background: 'transparent', boxShadow: 'none' }}>
                                 <Card.Content style={{ padding: '0', backgroundImage: `url(${CardBackground}`, backgroundSize: 'cover' }}>
-                                    <Tab grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2 }} menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }} panes={sideTabs} />
+                                    <Tab
+                                        grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2 }}
+                                        menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }}
+                                        panes={sideTabs}
+                                    />
                                 </Card.Content>
                             </Card>
                             <div style={{ paddingLeft: '9%' }} className='hide-on-med-and-up' >
