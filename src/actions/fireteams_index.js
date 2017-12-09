@@ -21,6 +21,11 @@ const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 // Send request to server to get player data 
 // Dispatch FETCHING_PLAYER_END on retrieval, set fetchingPlayer to false and respond with player stats
 
+
+//fireteams page mount: get player recent fireteam
+// map through fireteam and create player card 
+// in player card mount, get trials stats
+
 export const validateUser = (data) => {
     return (dispatch, getState) => {
         const gamertag = encodeURIComponent(data.gamertag.trim())
@@ -37,9 +42,49 @@ export const validateUser = (data) => {
             dispatch({
                 type: SET_USER_ERRORS,
                 payload: "There was an issue searching for that user."
-            })           
+            })
         })
-        
+
+    };
+}
+
+export const fetchFireteamMembers = (data) => {
+    return (dispatch, getState) => {
+        dispatch({ type: FETCH_FIRETEAM_START })
+        axios.get(`${API_URL}/v1/fireteams/${data.platform}/${data.gamertag}`).then(response => {
+            dispatch({
+                type: FETCH_FIRETEAM_END,
+                payload: response.data
+            })
+        }).catch(error => {
+            console.log(error)
+            dispatch({
+                type: SET_FIRETEAM_ERRORS,
+                payload: "There was an issue pulling stats for that player."
+            })
+        })
+    }
+}
+
+export const validateUserDirectPath = (data) => {
+    return (dispatch, getState) => {
+        const gamertag = encodeURIComponent(data.gamertag.trim())
+        axios.get(`${API_URL}/v1/validate_player?user=${gamertag}&platform=${data.platform}`, config).then(response => {
+            if (response.data.valid === 0) {
+                dispatch({
+                    type: SET_USER_ERRORS,
+                    payload: "User not found. Please go back and search again."
+                })
+            } else {
+                console.log("found user, getting fireteam.");
+            }
+        }).catch(error => {
+            dispatch({
+                type: SET_USER_ERRORS,
+                payload: "There was an issue searching for that user."
+            })
+        })
+
     };
 }
 
@@ -48,6 +93,6 @@ export const resetErrors = () => {
         dispatch({
             type: SET_USER_ERRORS,
             payload: null
-        })    
+        })
     }
 }

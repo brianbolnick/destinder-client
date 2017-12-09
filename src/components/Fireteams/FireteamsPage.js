@@ -10,6 +10,8 @@ import CardBackground from '../../img/abstract-background.png';
 import { PLATFORMS } from '../../data/common_constants';
 import { Link } from "react-router-dom";
 import { SyncLoader, ScaleLoader, PulseLoader, RingLoader, ClipLoader } from 'react-spinners';
+import { connect } from 'react-redux';
+import {  resetErrors, validateUserDirectPath, fetchFireteamMembers } from '../../actions/fireteams_index';
 
 
 class BetaMessage extends Component {
@@ -66,18 +68,12 @@ const OverviewSlides = (props) => {
 }
 
 const FireteamOverview = (props) => {
+    // console.log(this.props)
+    // console.log(props)
     const columns = props.data.map(function (object, i) {
-        // console.log(object);
+        console.log(object);
         return (
-            <Transition key={i} animation='fly down' duration={1000 + (i * 1000)} transitionOnMount={true}>
-                <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
-                    <div style={{ textAlign: '-webkit-center', height: ' 100%', paddingTop: '50%' }}>
-                        <ClipLoader color={'#3dd6d0'} />
-                    </div>
-                    {/* <PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} /> */}
-                </Grid.Column>
-            </Transition>
-
+            <PlayerStatCard key={i} data={object} /> 
         )
     });
 
@@ -97,6 +93,22 @@ class ProfilePage extends Component {
 
     state = { activeItem: 'home' }
 
+    componentWillMount() {
+        this.props.validateUserDirectPath(this.props.match.params)
+        setTimeout(() => {  
+            // console.log(this.props) 
+            if (!this.props.error) {
+                this.props.fetchFireteamMembers(this.props.match.params)
+            }else {
+                console.log("There's something wrong here.... I'm done working for now..")
+            }
+        },1);
+    }
+
+    handleDismiss = () => {
+        this.props.resetErrors();
+    }
+
     changePlayer = (e, { name }) => this.setState({ activeItem: name })
     render() {
 
@@ -111,7 +123,7 @@ class ProfilePage extends Component {
         };
 
         const teamPanes = [
-            { menuItem: 'Fireteam', render: () => <Tab.Pane><FireteamOverview data={playerData} /></Tab.Pane> }
+            { menuItem: 'Fireteam', render: () => <Tab.Pane><FireteamOverview data={this.props.fireteam} /></Tab.Pane> }
         ]
 
         // const sideTabs = [{ menuItem:  <Menu.Item style={{ textAlign: 'center', padding: '0', height: '16%', backgroundImage: `url(${TrialsLogo})`, backgroundSize: 'cover', backgroundPosition: 'center'}} key='overview'></Menu.Item>, render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane> }];
@@ -147,6 +159,15 @@ class ProfilePage extends Component {
                 <div className="profile-page" style={{ height: '100vh' }}>
                     <Container>
                         <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} />
+                        {this.props.error ?
+                                <Message
+                                    negative
+                                    attached
+                                    onDismiss={this.handleDismiss}
+                                    header={`Sorry! ${this.props.error}`}
+                                />
+                                : null
+                            }
                         <Button as={Link} to='/fireteams' basic inverted icon className='fireteam-back-btn'>
                             <Icon name='arrow left' size='huge' />
                         </Button>
@@ -173,4 +194,13 @@ class ProfilePage extends Component {
     }
 }
 
-export default ProfilePage;
+
+function mapStateToProps(state) {
+    return {
+        error: state.fireteam.error,
+        fetchingFireteam: state.fireteam.fetchingFireteam,
+        fireteam: state.fireteam.fireteam
+    }
+}
+
+export default connect(mapStateToProps, { validateUserDirectPath, resetErrors, fetchFireteamMembers })(ProfilePage)
