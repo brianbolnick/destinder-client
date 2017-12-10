@@ -11,7 +11,7 @@ import { PLATFORMS } from '../../data/common_constants';
 import { Link } from "react-router-dom";
 import { SyncLoader, ScaleLoader, PulseLoader, RingLoader, ClipLoader } from 'react-spinners';
 import { connect } from 'react-redux';
-import {  resetErrors, validateUserDirectPath, fetchFireteamMembers } from '../../actions/fireteams_index';
+import { resetErrors, validateUserDirectPath, fetchFireteamMembers } from '../../actions/fireteams_index';
 
 
 class BetaMessage extends Component {
@@ -71,9 +71,9 @@ const FireteamOverview = (props) => {
     // console.log(this.props)
     // console.log(props)
     const columns = props.data.map(function (object, i) {
-        console.log(object);
+        // console.log(object);
         return (
-            <PlayerStatCard key={i} data={object} /> 
+            <PlayerStatCard key={i} data={object} />
         )
     });
 
@@ -89,20 +89,19 @@ const FireteamOverview = (props) => {
 }
 
 
-class ProfilePage extends Component {
+class FireteamPage extends Component {
 
     state = { activeItem: 'home' }
 
     componentWillMount() {
         this.props.validateUserDirectPath(this.props.match.params)
-        setTimeout(() => {  
-            // console.log(this.props) 
+        setTimeout(() => {             
             if (!this.props.error) {
                 this.props.fetchFireteamMembers(this.props.match.params)
-            }else {
+            } else {
                 console.log("There's something wrong here.... I'm done working for now..")
             }
-        },1);
+        }, 1);
     }
 
     handleDismiss = () => {
@@ -110,8 +109,8 @@ class ProfilePage extends Component {
     }
 
     changePlayer = (e, { name }) => this.setState({ activeItem: name })
-    render() {
 
+    render() {
         // const { activeItem } = this.state
         function getPlayerCharacters(props) {
             var chars = [];
@@ -141,6 +140,7 @@ class ProfilePage extends Component {
                 </Menu.Item>,
             render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane>
         }];
+
         const slides = [];
         // eslint-disable-next-line
         // playerData.map(function (object, i) {
@@ -154,20 +154,21 @@ class ProfilePage extends Component {
         //     );
         // });
 
+        console.log(this.props.error)
         return (
             <Layout>
                 <div className="profile-page" style={{ height: '100vh' }}>
                     <Container>
                         {/* <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} /> */}
                         {this.props.error ?
-                                <Message
-                                    negative
-                                    attached
-                                    onDismiss={this.handleDismiss}
-                                    header={`Sorry! ${this.props.error}`}
-                                />
-                                : null
-                            }
+                            <Message
+                                negative
+                                attached
+                                onDismiss={this.handleDismiss}
+                                header={`Sorry! ${this.props.error}`}
+                            />
+                            : null
+                        }
                         <Button as={Link} to='/fireteams' basic inverted icon className='fireteam-back-btn'>
                             <Icon name='arrow left' size='huge' />
                         </Button>
@@ -176,15 +177,22 @@ class ProfilePage extends Component {
                         <div>
                             <Card className='hide-on-mobile' fluid style={{ minHeight: '85vh', background: 'transparent', boxShadow: 'none' }}>
                                 <Card.Content style={{ padding: '0', backgroundImage: `url(${CardBackground}`, backgroundSize: 'cover' }}>
-                                    <Tab
-                                        grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2 }}
-                                        menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }}
-                                        panes={sideTabs}
-                                    />
+                                    {!this.props.error ?
+                                        <Tab
+                                            grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2 }}
+                                            menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }}
+                                            panes={sideTabs}
+                                        />
+                                        : null
+                                    }
                                 </Card.Content>
                             </Card>
                             <div style={{ paddingLeft: '9%' }} className='hide-on-med-and-up' >
-                                <OverviewSlides slides={slides} />
+                                {this.props.error ?
+                                    null
+                                    : <OverviewSlides slides={slides} />
+                                }
+
                             </div>
                         </div>
                     </Container>
@@ -203,4 +211,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { validateUserDirectPath, resetErrors, fetchFireteamMembers })(ProfilePage)
+export default connect(mapStateToProps, { validateUserDirectPath, resetErrors, fetchFireteamMembers })(FireteamPage)

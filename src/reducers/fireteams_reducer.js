@@ -19,6 +19,7 @@ export default function (state = INITIAL_STATE, action) {
         case FETCH_PLAYER_DATA: 
             return { ...state, fetchingPlayer: true, fetching: false }
         case SET_FIRETEAM_ERRORS:
+            console.log("setting error in reducer", action.message)
             return { ...state, error: action.message, fetchingFireteam: false }
         case SET_USER_ERRORS:
             return { ...state, userValid: false, error: action.payload }

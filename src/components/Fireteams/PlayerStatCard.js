@@ -32,7 +32,7 @@ class CardContainer extends Component {
         const stats = this.state.stats;
 
         return (
-            this.state.fetching ?
+            this.state.fetching || this.state.error ?
                 <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
                     <div style={{ textAlign: '-webkit-center', height: ' 100%', paddingTop: '50%' }}>
                         <ClipLoader color="#47D5CF" />

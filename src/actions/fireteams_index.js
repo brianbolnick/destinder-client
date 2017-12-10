@@ -51,16 +51,24 @@ export const validateUser = (data) => {
 export const fetchFireteamMembers = (data) => {
     return (dispatch, getState) => {
         dispatch({ type: FETCH_FIRETEAM_START })
-        axios.get(`${API_URL}/v1/fireteams/${data.platform}/${data.gamertag}`).then(response => {
-            dispatch({
-                type: FETCH_FIRETEAM_END,
-                payload: response.data
-            })
+        axios.get(`${API_URL}/v1/fireteams/${data.platform}/${data.gamertag}`).then(response => {            
+            if (response.data.error) {
+                console.log("found error gettingn fireteam: ",  response.data.error)
+                dispatch({
+                    type: SET_FIRETEAM_ERRORS,
+                    message: "There was an issue pulling stats for that player."
+                })
+            } else {
+                dispatch({
+                    type: FETCH_FIRETEAM_END,
+                    payload: response.data
+                })
+            }
         }).catch(error => {
             console.log(error)
             dispatch({
                 type: SET_FIRETEAM_ERRORS,
-                payload: "There was an issue pulling stats for that player."
+                message: "There was an issue pulling stats for that player."
             })
         })
     }
