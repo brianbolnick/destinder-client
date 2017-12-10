@@ -34,14 +34,14 @@ class CardContainer extends Component {
         return (
             this.state.fetching || this.state.error ?
                 <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
-                    <div style={{ textAlign: '-webkit-center', height: ' 100%', paddingTop: '50%' }}>
+                    <div style={{ textAlign: '-webkit-center', height: ' 100%' }}>
                         <ClipLoader color="#47D5CF" />
                     </div>
                 </Grid.Column>
                 :
                 <Transition key={this.props.data.membership_id} animation='fly down' duration={1000} transitionOnMount={true}>
                     <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
-                        <div style={{ textAlign: '-webkit-center', height: ' 100%', paddingTop: '50%' }}>
+                        <div style={{ textAlign: '-webkit-center', height: ' 100%' }}>
                             <PlayerStatCard 
                                 stats={stats} 
                                 player_name={this.props.data.player_name} 

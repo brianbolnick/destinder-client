@@ -95,7 +95,7 @@ class FireteamPage extends Component {
 
     componentWillMount() {
         this.props.validateUserDirectPath(this.props.match.params)
-        setTimeout(() => {             
+        setTimeout(() => {
             if (!this.props.error) {
                 this.props.fetchFireteamMembers(this.props.match.params)
             } else {
@@ -143,21 +143,19 @@ class FireteamPage extends Component {
 
         const slides = [];
         // eslint-disable-next-line
-        // playerData.map(function (object, i) {
-        //     sideTabs.push({ menuItem: <Menu.Item style={{ textAlign: 'center' }} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab className='player-tabs' panes={getPlayerCharacters(object)} /></Tab.Pane> })
-        //     slides.push(
-        //         <Transition key={i} animation='fly down' duration={3000} transitionOnMount={true}>
-        //             <div>
-        //                 {<PlayerStatCard key={i} player_name={object.player_name} data={object.characters[0]} />}
-        //             </div>
-        //         </Transition>
-        //     );
-        // });
+        this.props.fireteam.map(function (object, i) {
+            // sideTabs.push({ menuItem: <Menu.Item style={{ textAlign: 'center' }} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab className='player-tabs' panes={getPlayerCharacters(object)} /></Tab.Pane> })
+            slides.push(
+                    <div>
+                        {<PlayerStatCard key={i} data={object} />}
+                    </div>
+            );
+        });
 
-        console.log(this.props.error)
+        // console.log(this.props.error)
         return (
             <Layout>
-                <div className="profile-page" style={{ height: '100vh' }}>
+                <div className="profile-page" style={{ minHeight: '100vh' }}>
                     <Container>
                         {/* <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} /> */}
                         {this.props.error ?
@@ -187,7 +185,7 @@ class FireteamPage extends Component {
                                     }
                                 </Card.Content>
                             </Card>
-                            <div style={{ paddingLeft: '9%' }} className='hide-on-med-and-up' >
+                            <div style={{ paddingLeft: '9%', minHeight: '400px' }} className='hide-on-med-and-up' >
                                 {this.props.error ?
                                     null
                                     : <OverviewSlides slides={slides} />

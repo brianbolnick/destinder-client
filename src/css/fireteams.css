@@ -17,6 +17,10 @@ input[type="text"] {
     color: #E31D3B !important;
 }
 
+.slider-frame {
+    min-height: 500px;
+}
+
 /* .ui.search.selection.dropdown {
     background: transparent;
     border: none;
