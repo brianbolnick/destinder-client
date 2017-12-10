@@ -158,7 +158,7 @@ class ProfilePage extends Component {
             <Layout>
                 <div className="profile-page" style={{ height: '100vh' }}>
                     <Container>
-                        <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} />
+                        {/* <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} /> */}
                         {this.props.error ?
                                 <Message
                                     negative
