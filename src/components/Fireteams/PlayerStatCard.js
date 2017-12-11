@@ -163,13 +163,15 @@ class PlayerStatCard extends Component {
                             />
 
                             <div style={{ padding: '15px' }}>
-                                {/* {<KillChart key={`${props.data.player_name}${props.data.character_type}`} data={props.data.recent_games} />}
+                                {stats[0].recent_games === null ? 
+                                    null
+                                    :
+                                    <KillChart key={`${player_name}${stats[0].character_data.subclass}`} data={stats[0].recent_games} />}
                                     <div style={{
                                         textAlign: 'center',
                                         fontSize: '0.8em',
                                         fontWeight: '400',
-                                    }}>Recent Games K/D Spread</div> */}
-                                chart
+                                    }}>Recent Games K/D Spread</div>                                
                                 </div>
                             <Grid textAlign='center' columns='equal' divided style={{ marginTop: '20px', marginBottom: '10px' }}>
                                 <Grid.Row>
