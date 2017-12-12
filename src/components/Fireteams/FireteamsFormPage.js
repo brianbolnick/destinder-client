@@ -40,7 +40,7 @@ class FireteamsFormPage extends Component {
                                 : null
                             }
                             <div className='fireteam-form'>
-                                <FireteamsForm onSubmit={this.handleFormSubmit} />
+                                <FireteamsForm onSubmit={this.handleFormSubmit} fetching={this.props.validatingUser}/>
                                 <Segment className='fireteam-form-description' basic>
                                     TRIALS OF THE NINE - FIRETEAM SEARCH
                                 </Segment>
@@ -56,7 +56,8 @@ class FireteamsFormPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        error: state.fireteam.error
+        error: state.fireteam.error,
+        validatingUser: state.fireteam.validatingUser
     }
 }
 

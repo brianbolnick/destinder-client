@@ -168,12 +168,12 @@ class FireteamPage extends Component {
                             : null
                         }
                         <Button as={Link} to='/fireteams' basic inverted icon className='fireteam-back-btn'>
-                            <Icon name='arrow left' size='huge' />
+                            <Icon name='search' size='huge' />
                         </Button>
-                        <Divider fitted />
+                        {/* <Divider fitted /> */}
                         {/* <div className='hide-on-mobile' style={{ height: '50px' }} /> */}
                         <div>
-                            <Card className='hide-on-mobile' fluid style={{ minHeight: '85vh', background: 'transparent', boxShadow: 'none' }}>
+                            <Card className='hide-on-mobile' fluid style={{marginTop: '20px', background: 'transparent', boxShadow: 'none' }}>
                                 <Card.Content style={{ padding: '0', backgroundImage: `url(${CardBackground}`, backgroundSize: 'cover' }}>
                                     {!this.props.error ?
                                         <Tab
@@ -185,7 +185,7 @@ class FireteamPage extends Component {
                                     }
                                 </Card.Content>
                             </Card>
-                            <div style={{ paddingLeft: '9%', minHeight: '400px' }} className='hide-on-med-and-up' >
+                            <div style={{ paddingLeft: '4%', paddingTop: '2%', minHeight: '550px' }} className='hide-on-med-and-up' >
                                 {this.props.error ?
                                     null
                                     : <OverviewSlides slides={slides} />
@@ -204,7 +204,6 @@ class FireteamPage extends Component {
 function mapStateToProps(state) {
     return {
         error: state.fireteam.error,
-        fetchingFireteam: state.fireteam.fetchingFireteam,
         fireteam: state.fireteam.fireteam
     }
 }

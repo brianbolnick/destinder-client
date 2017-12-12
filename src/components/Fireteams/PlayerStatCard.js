@@ -58,15 +58,17 @@ class CardContainer extends Component {
 class PlayerStatCard extends Component {
     render() {
 
-        const { stats, player_name } = this.props
+        const { stats, player_name, has_account } = this.props
         const items = stats[0].character_data.items === null ? null : stats[0].character_data.items
 
         var exotic = (items === null || items.helmet === undefined) ? null : items.helmet
         for (var key in items) {
-            if (items[key].item_tier === "Exotic") {
+            if (items[key].item_tier === "Exotic" && items[key].item_type.match(/^(Helmet|Gauntlets|Leg Armor|Chest Armor)$/)) {
                 exotic = items[key];
             }
         }
+
+        // exotic = items.filter(item => item)
 
         const profileContent = (
             <div>
@@ -106,7 +108,7 @@ class PlayerStatCard extends Component {
             <div>
                 <Card style={{ boxShadow: 'none' }}>
                     <Card.Content style={{ padding: '0' }}>
-                        {this.props.has_account ?
+                        {has_account ?
                             <Popup
                                 trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{ margin: '0' }} /></Label>}
                                 content={profileContent}

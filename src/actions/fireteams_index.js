@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS } from './types';
+import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
 import { push } from 'react-router-redux'
@@ -28,6 +28,7 @@ const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 
 export const validateUser = (data) => {
     return (dispatch, getState) => {
+        dispatch({ type: VALIDATE_PLAYER_START })        
         const gamertag = encodeURIComponent(data.gamertag.trim())
         axios.get(`${API_URL}/v1/validate_player?user=${gamertag}&platform=${data.console}`, config).then(response => {
             if (response.data.valid === 0) {
@@ -36,6 +37,9 @@ export const validateUser = (data) => {
                     payload: "User not found."
                 })
             } else {
+                dispatch({
+                    type: VALIDATE_PLAYER_START
+                })
                 dispatch(push(`/fireteams/${data.console}/${gamertag}`))
             }
         }).catch(error => {

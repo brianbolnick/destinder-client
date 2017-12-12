@@ -26,7 +26,6 @@ class NewFireteamSearch extends Component {
 
         const { handleSubmit } = this.props;
 
-
         return (
             <Form
                 onSubmit={handleSubmit}
@@ -42,7 +41,7 @@ class NewFireteamSearch extends Component {
                         options={consoleOptions}
                         placeholder="Console"
                         className='fireteam-console-select'
-                        
+
                     />}
                     icon='search'
                     iconPosition='left'
@@ -59,10 +58,10 @@ class NewFireteamSearch extends Component {
                     placeholder='Gamertag...'
                     style={{ background: '#050B17', border: 'solid 3px #47D5CF', borderRadius: '5px' }}
                 />
-                <Divider 
-                    className='hide-on-med-and-up' 
+                <Divider
+                    className='hide-on-med-and-up'
                     horizontal
-                    style={{ color: '#f5f5f5', fontSize: ''}}
+                    style={{ color: '#f5f5f5', fontSize: '' }}
                 >
                     SELECT PLATFORM
                 </Divider>
@@ -71,7 +70,7 @@ class NewFireteamSearch extends Component {
                     component={SelectField}
                     name='console'
                     options={consoleOptions}
-                    placeholder="Console"                    
+                    placeholder="Console"
                     style={{ background: '#050B17', border: 'solid 3px #47D5CF', borderRadius: '5px' }}
                 />
 
@@ -80,6 +79,7 @@ class NewFireteamSearch extends Component {
                     basic
                     inverted
                     className='submit-btn'
+                    loading={this.props.fetching}
                     type='submit'>
                     Search
                 </Form.Field>

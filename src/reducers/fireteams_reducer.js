@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS } from '../actions/types';
+import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START } from '../actions/types';
 
 const INITIAL_STATE = {
     fireteam: [],
@@ -7,13 +7,19 @@ const INITIAL_STATE = {
     fetched: false,
     fetchingPlayer: false,
     error:  null,
-    userValid: true
+    userValid: true,
+    validatingUser: false
 };
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case FETCH_FIRETEAM_START:            
-            return { ...state, fetchingTeam: true };
+            console.log("in reducer")
+            return { ...state, fetchingTeam: true };        
+        case VALIDATE_PLAYER_START:            
+            return { ...state, validatingUser: true };        
+        case VALIDATE_PLAYER_END:            
+            return { ...state, validatingUser: false };        
         case FETCH_FIRETEAM_END:
             return { ...state, fetchingTeam: false, fireteam: action.payload }
         case FETCH_PLAYER_DATA: 
@@ -22,7 +28,7 @@ export default function (state = INITIAL_STATE, action) {
             console.log("setting error in reducer", action.message)
             return { ...state, error: action.message, fetchingFireteam: false }
         case SET_USER_ERRORS:
-            return { ...state, userValid: false, error: action.payload }
+            return { ...state, userValid: false, validatingUser: false, error: action.payload }
         default:
             return state;
     }
