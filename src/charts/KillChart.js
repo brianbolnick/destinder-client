@@ -33,7 +33,7 @@ const KillChart = props => {
       {
         label: "Win/Loss",
         type: "line",
-        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         fill: false,
         borderColor: "#eee",
         borderWidth: 1,
@@ -64,7 +64,7 @@ const KillChart = props => {
   };
   // eslint-disable-next-line
   const data = {
-    labels: ["", "", "", "", "", "", "", "", "", ""],
+    labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     datasets: [
       {
         type: "line",
@@ -82,7 +82,7 @@ const KillChart = props => {
       {
         type: "line",
         fill: false,
-        data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         backgroundColor: "#EEEEEE",
         label: "",
         borderColor: "black",
