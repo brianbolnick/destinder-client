@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Segment, Message } from 'semantic-ui-react';
+import { Container, Segment, Message, Divider } from 'semantic-ui-react';
 import Layout from '../Layout.js';
 import FireteamsForm from './FireteamsForm';
 import { connect } from 'react-redux';
 import { validateUser, resetErrors } from '../../actions/fireteams_index';
+import { LeaderboardAd, FireteamsMobileAd } from '../Advertisements';
 import '../../css/fireteams.css';
 
 
@@ -40,7 +41,7 @@ class FireteamsFormPage extends Component {
                                 : null
                             }
                             <div className='fireteam-form'>
-                                <FireteamsForm onSubmit={this.handleFormSubmit} fetching={this.props.validatingUser}/>
+                                <FireteamsForm onSubmit={this.handleFormSubmit} fetching={this.props.validatingUser} />
                                 <Segment className='fireteam-form-description' basic>
                                     TRIALS OF THE NINE - FIRETEAM SEARCH
                                 </Segment>
@@ -48,6 +49,10 @@ class FireteamsFormPage extends Component {
                         </Segment>
 
                     </Container>
+                    
+                    <div className='hide-on-mobile'>
+                        <LeaderboardAd />
+                    </div>
                 </div>
             </Layout >
         );

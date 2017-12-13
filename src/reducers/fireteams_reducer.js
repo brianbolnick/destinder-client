@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case FETCH_FIRETEAM_START:            
-            console.log("in reducer")
             return { ...state, fetchingTeam: true };        
         case VALIDATE_PLAYER_START:            
             return { ...state, validatingUser: true };        

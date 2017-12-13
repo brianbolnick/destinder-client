@@ -235,11 +235,31 @@ textarea {
     .ui.column.grid>[class*="five wide computer"].column, .ui.grid>.column.row>[class*="five wide computer"].column, .ui.grid>.row>[class*="five wide computer"].column, .ui.grid>[class*="five wide computer"].column {
         width: 25%!important;
     }
+
+    .ui.container {
+        width: 1444px;
+        margin-left: auto!important;
+        margin-right: auto!important;
+    }
+
+    a.ui.basic.icon.inverted.button.fireteam-back-btn {
+        left: -2% !important;
+    }
 }
 
 @media only screen and (min-width: 1800px)  {
     .ui.column.grid>[class*="five wide computer"].column, .ui.grid>.column.row>[class*="five wide computer"].column, .ui.grid>.row>[class*="five wide computer"].column, .ui.grid>[class*="five wide computer"].column {
         width: 20%!important;
+    }
+
+    .ui.container {
+        width: 1444px;
+        margin-left: auto!important;
+        margin-right: auto!important;
+    }
+
+    a.ui.basic.icon.inverted.button.fireteam-back-btn {
+        left: -2% !important;
     }
 }
 

@@ -12,36 +12,6 @@ import { Link } from "react-router-dom";
 import { SyncLoader, ScaleLoader, PulseLoader, RingLoader, ClipLoader } from 'react-spinners';
 import { connect } from 'react-redux';
 import { resetErrors, validateUserDirectPath, fetchFireteamMembers } from '../../actions/fireteams_index';
-import { Tabs } from 'antd';
-
-const TabPane = Tabs.TabPane;
-
-class SlidingTabsDemo extends Component {
-    render() {
-        return (
-
-            <Tabs
-                defaultActiveKey="1"
-                tabPosition='left'
-            >
-                <TabPane tab={<Image src="https://www.bungie.net/img/theme/destiny/icons/game_modes/allmodes.png" size='tiny' centered />} key="1">
-                    <Tabs
-                        defaultActiveKey="1"
-                        tabPosition='top'
-                    >
-                        <TabPane tab='Fireteam' key="11">Overview</TabPane>
-                        <TabPane tab="Team Stats" key="21">Player 1</TabPane>
-                    </Tabs>
-                </TabPane>
-                <TabPane tab="Player 1" key="2">Player 1</TabPane>
-                <TabPane tab="Player 2" key="3">Player 2</TabPane>
-                <TabPane tab="Player 3" key="4">Player 3</TabPane>
-                <TabPane tab="Player 4" key="5">Player 4</TabPane>
-            </Tabs>
-
-        );
-    }
-}
 
 
 class BetaMessage extends Component {
@@ -102,6 +72,7 @@ const FireteamOverview = (props) => {
     let columns;
     if (props.data[0] !== undefined) {
         columns = props.data[0].map(function (object, i) {
+            // console.log(object);
             return (
                 <PlayerStatCard key={i + 5} data={object} />
             )
@@ -119,24 +90,6 @@ const FireteamOverview = (props) => {
     )
 }
 
-const FireteamStatsView = (props) => {
-
-    return (
-        <div style={{ padding: '15px', color: '#f5f5f5' }} >
-
-            average kd: {props.data[1].average_kd} <br />
-            deaths: {props.data[1].deaths} <br />
-            games_played: {props.data[1].games_played}<br />
-            kills: {props.data[1].kills}<br />
-            longest_stream: {props.data[1].longest_streak}<br />
-            losses: {props.data[1].losses}<br />
-            win rate: {props.data[1].win_rate} %<br />
-            wins: {props.data[1].wins}<br />
-
-        </div>
-
-    )
-}
 
 class FireteamPage extends Component {
 
@@ -170,7 +123,7 @@ class FireteamPage extends Component {
             return chars;
         };
 
-
+                
         const teamPanes = [
             { menuItem: 'Fireteam', render: () => <Tab.Pane><FireteamOverview data={this.props.fireteam} /></Tab.Pane> },
             {
@@ -185,7 +138,7 @@ class FireteamPage extends Component {
                                 longest_stream: {this.props.fireteam[1].longest_streak}
                                 losses: {this.props.fireteam[1].losses}
                                 win rate: {this.props.fireteam[1].win_rate} %
-                                wins: {this.props.fireteam[1].wins}
+                                wins: {this.props.fireteam[1].wins} 
                             </code>
                         </pre>
                     </Tab.Pane>
@@ -208,59 +161,31 @@ class FireteamPage extends Component {
             render: () => <Tab.Pane><Tab className='overview-tabs' panes={teamPanes} /></Tab.Pane>
         }];
 
-
-
         const slides = [];
-        let players = this.props.fireteam
-        let playerPanes = [];
+        // eslint-disable-next-line
+        // console.log(this.props.fireteam[0])
 
+        console.log(this.props.fireteam)
+        let players = this.props.fireteam
         if (players[0] !== undefined) {
-            playerPanes = players[0].map(function (object, i) {
-                console.log(object)
+            players[0].map(function (object, i) {
                 // sideTabs.push({ menuItem: <Menu.Item style={{ textAlign: 'center' }} key={`player${i + 1}`}><Image className='trials-player-icon' src={object.characters[0].emblem} /></Menu.Item>, render: () => <Tab.Pane><Tab className='player-tabs' panes={getPlayerCharacters(object)} /></Tab.Pane> })
                 slides.push(
                     <div>
                         {<PlayerStatCard key={`slides${i}`} data={object} />}
                     </div>
                 );
-                return (
-                    <TabPane
-                        tab={object.player_name}
-                        key={`tabs${i}`}
-                    >
-                        <Tabs
-                            defaultActiveKey={`${object.player_name}${i}hunter`}
-                            tabPosition='top'
-                            size='large'
-                            type='card'
-                            style={{ backgroundColor: '#212121', minHeight: '85vh' }}
-                        >
-                            <TabPane tab='Hunter' key={`${object.player_name}${i}hunter`}>
-                                <div style={{ padding: '15px', color: '#f5f5f5' }}>
-                                    Hang tight! Soon you'll be able to look at specific stats for each character for this player!
-                                </div>
-                            </TabPane>
-                            <TabPane tab="Warlock" key={`${object.player_name}${i}warlock`}>
-                                <div style={{ padding: '15px', color: '#f5f5f5' }}>
-                                    Hang tight! Soon you'll be able to look at specific stats for each character for this player!
-                                </div>
-                            </TabPane>
-                            <TabPane tab="Titan" key={`${object.player_name}${i}titan`}>
-                                <div style={{ padding: '15px', color: '#f5f5f5' }}>
-                                    Hang tight! Soon you'll be able to look at specific stats for each character for this player!
-                                </div>
-                            </TabPane>
-                        </Tabs>
-
-                    </TabPane>
-                )
             });
         }
 
+
+
+        // console.log(this.props.error)
         return (
             <Layout>
                 <div className="profile-page" style={{ minHeight: '100vh' }}>
-                    <Container style={{ width: '90%' }}>
+                    <Container>
+                        {/* <BetaMessage gamertag={this.props.match.params.gamertag} platform={this.props.match.params.platform} /> */}
                         {this.props.error ?
                             <Message
                                 negative
@@ -273,49 +198,29 @@ class FireteamPage extends Component {
                         <Button as={Link} to='/fireteams' basic inverted icon className='fireteam-back-btn'>
                             <Icon name='search' size='huge' />
                         </Button>
-
-                        <Card className='hide-on-mobile' fluid style={{ marginTop: '20px', backgroundColor: '#212121', boxShadow: 'none' }}>
-                            <Card.Content style={{ padding: '0' }}>
-                                {!this.props.error ?
-                                    <Tabs
-                                        defaultActiveKey="1"
-                                        tabPosition='left'
-                                        style={{ minHeight: '85vh' }}
-                                    >
-                                        <TabPane
-                                            tab={<Image src="https://www.bungie.net/img/theme/destiny/icons/game_modes/allmodes.png"
-                                                style={{ width: '60px' }}
-                                                centered />
-                                            }
-                                            key="1"
-                                        >
-                                            <Tabs
-                                                defaultActiveKey="1"
-                                                tabPosition='top'
-                                                size='large'
-                                                type='card'
-                                                style={{ backgroundColor: '#212121', minHeight: '85vh' }}
-                                            >
-                                                <TabPane tab='Fireteam' key="11"><FireteamOverview data={this.props.fireteam} /></TabPane>
-                                                <TabPane tab="Team Stats" key="21"><FireteamStatsView data={this.props.fireteam} /></TabPane>
-                                            </Tabs>
-                                        </TabPane>
-                                        {playerPanes}
-
-                                    </Tabs>
-                                    :
+                        {/* <Divider fitted /> */}
+                        {/* <div className='hide-on-mobile' style={{ height: '50px' }} /> */}
+                        <div>
+                            <Card className='hide-on-mobile' fluid style={{ marginTop: '20px', background: 'transparent', boxShadow: 'none' }}>
+                                <Card.Content style={{ padding: '0', backgroundImage: `url(${CardBackground}`, backgroundSize: 'cover' }}>
+                                    {!this.props.error ?
+                                        <Tab
+                                            grid={{ className: 'profile-panels', paneWidth: 14, tabWidth: 2 }}
+                                            menu={{ attached: 'left', borderless: true, vertical: true, tabular: 'left' }}
+                                            panes={sideTabs}
+                                        />
+                                        : null
+                                    }
+                                </Card.Content>
+                            </Card>
+                            <div style={{ paddingLeft: '4%', paddingTop: '2%', minHeight: '550px' }} className='hide-on-med-and-up' >
+                                {this.props.error ?
                                     null
+                                    : <OverviewSlides slides={slides} />
                                 }
-                            </Card.Content>
-                        </Card>
-                        <div style={{ paddingLeft: '4%', paddingTop: '2%', minHeight: '550px' }} className='hide-on-med-and-up' >
-                            {this.props.error ?
-                                null
-                                : <OverviewSlides slides={slides} />
-                            }
 
+                            </div>
                         </div>
-
                     </Container>
                 </div>
             </Layout>

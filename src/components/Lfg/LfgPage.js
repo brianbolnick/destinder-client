@@ -14,7 +14,7 @@ import LfgFormContainer from './LfgFormContainer';
 import { BounceLoader, ScaleLoader } from 'react-spinners';
 import LfgCard from './LfgCard';
 import { jwt } from '../../tools/jwt';
-import LeaderboardAd from '../LeaderboardAd';
+import { LeaderboardAd } from '../Advertisements';
 import FilterModal from './FilterModal';
 import PlatformSelectModal from './PlatformSelectModal';
 

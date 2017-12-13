@@ -57,7 +57,7 @@ export const fetchFireteamMembers = (data) => {
         dispatch({ type: FETCH_FIRETEAM_START })
         axios.get(`${API_URL}/v1/fireteams/${data.platform}/${data.gamertag}`).then(response => {            
             if (response.data.error) {
-                console.log("found error gettingn fireteam: ",  response.data.error)
+                console.log("found error getting fireteam: ",  response.data.error)
                 dispatch({
                     type: SET_FIRETEAM_ERRORS,
                     message: "There was an issue pulling stats for that player."
