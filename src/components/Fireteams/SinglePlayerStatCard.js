@@ -1,58 +1,24 @@
 import React, { Component } from 'react';
-import { Header, Card, Segment, Icon, Image, Grid, Label, Popup, Button, Rating, Divider, Transition } from 'semantic-ui-react';
+import { Header, Card, Segment, Icon, Image, Grid, Label, Popup, Button, Rating, Divider } from 'semantic-ui-react';
 import KillChart from '../../charts/KillChart.js';
-import { ClipLoader } from 'react-spinners';
-import axios from 'axios';
-import { API_URL } from '../../tools/api-config';
 import { SUBCLASS_ICONS } from '../../data/common_constants'
 import NoItem from '../../img/no-item-found.jpg';
 
 class CardContainer extends Component {
 
-    state = { fetching: true, error: null }
-    componentWillMount() {
-        let data = {}
-        data.platform = this.props.data.membership_type
-        data.membership_id = this.props.data.membership_id
-        this.fetchPlayerStats(data)
-    }
-
-    fetchPlayerStats = (data) => {
-        axios.get(`${API_URL}/v1/fireteams/stats/${data.platform}/${data.membership_id}`).then(response => {
-            this.setState({ fetching: false, stats: response.data })
-            if (this.props.action) {
-                this.props.action(this.props.data.player_name, response.data);
-            }
-        }).catch(error => {
-            console.log(error)
-            this.setState({ error: error, fetching: false })
-        })
-    }
-
     render() {
-        const stats = this.state.stats;
-
+        const {stats, player_name, has_account}  = this.props;
         return (
-            this.state.fetching || this.state.error ?
-                <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
-                    <div style={{ textAlign: '-webkit-center', height: ' 100%' }}>
-                        <ClipLoader color="#47D5CF" size={70}/>
-                    </div>
-                </Grid.Column>
-                :
-                <Transition key={this.props.data.membership_id} animation='fly down' duration={1000} transitionOnMount={true}>
-                    <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
-                        <div style={{ textAlign: '-webkit-center', height: ' 100%' }}>
-                            <PlayerStatCard 
-                                stats={stats} 
-                                player_name={this.props.data.player_name} 
-                                has_account={this.props.data.has_account} 
-                            />
-                        </div>
-                    </Grid.Column>
-                </Transition>
+            <Grid.Column >
+                <div style={{ textAlign: '-webkit-center' }}>
+                    <PlayerStatCard
+                        stats={stats}
+                        player_name={player_name}
+                        has_account={has_account}
+                    />
+                </div>
+            </Grid.Column>
         )
-
     }
 }
 
@@ -60,7 +26,7 @@ class PlayerStatCard extends Component {
     render() {
 
         const { stats, player_name, has_account } = this.props
-        const items = stats[0].character_data.items === null ? null : stats[0].character_data.items
+        const items = stats.character_data.items === null ? null : stats.character_data.items
 
         var exotic = (items === null || items.helmet === undefined) ? null : items.helmet
         for (var key in items) {
@@ -68,8 +34,6 @@ class PlayerStatCard extends Component {
                 exotic = items[key];
             }
         }
-
-        // exotic = items.filter(item => item)
 
         const profileContent = (
             <div>
@@ -99,14 +63,14 @@ class PlayerStatCard extends Component {
                         <Header as='h6'>REPUTATION</Header>
                         <Rating icon='star' defaultRating={3.5} maxRating={5} />
                         <Divider hidden style={{ margin: '0' }} />
-                        <Button>Go to Profile</Button>
+                        <Button disabled>Go to Profile</Button>
                     </Grid.Column>
                 </Grid>
             </div>
         )
 
         return (
-            <div>
+            <div style={{padding: '5%' }}>
                 <Card style={{ boxShadow: 'none' }}>
                     <Card.Content style={{ padding: '0' }}>
                         {has_account ?
@@ -121,17 +85,17 @@ class PlayerStatCard extends Component {
                             null
                         }
                         <Card.Header style={{ display: 'none' }}>
-                            <Segment className='stat-card-header' style={{ backgroundImage: `url(${stats[0].character_data.emblem_background})` }}>
+                            <Segment className='stat-card-header' style={{ backgroundImage: `url(${stats.character_data.emblem_background})` }}>
                                 {player_name}
                             </Segment>
                         </Card.Header>
                         <Card.Meta style={{ height: '150px', marginBottom: '-20px' }}>
-                            <Segment style={{ backgroundImage: `url(${stats[0].character_data.emblem_background})`, backgroundSize: 'cover' }} className='stat-card-subheader' />
+                            <Segment style={{ backgroundImage: `url(${stats.character_data.emblem_background})`, backgroundSize: 'cover' }} className='stat-card-subheader' />
 
                             <div style={{ textAlign: '-webkit-center', position: 'relative', bottom: '43px' }}>
                                 <Segment circular style={{ width: 50, height: 50 }} >
                                     <Header as='h2' style={{ color: '#212121' }}>
-                                        {stats[0].player_data.stats.kd_ratio}
+                                        {stats.player_data.stats.kd_ratio}
                                         <Header.Subheader>
                                             K/D
                                     </Header.Subheader>
@@ -159,28 +123,28 @@ class PlayerStatCard extends Component {
                                     marginBottom: '5%'
                                 }}>
                                     {/* subclass */}
-                                    <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' />{stats[0].character_data.subclass}
+                                    <Image src={SUBCLASS_ICONS[stats.character_data.subclass]} avatar size='mini' />{stats.character_data.subclass}
                                 </div>}
                                 content='Subclass Stats Coming Soon...'
                                 position='bottom center'
                             />
 
                             <div style={{ padding: '15px' }}>
-                                {stats[0].recent_games === null ? 
+                                {stats.recent_games === null ?
                                     null
                                     :
-                                    <KillChart key={`${player_name}${stats[0].character_data.subclass}`} data={stats[0].recent_games} />}
-                                    <div style={{
-                                        textAlign: 'center',
-                                        fontSize: '0.8em',
-                                        fontWeight: '400',
-                                    }}>Recent Games K/D Spread</div>                                
-                                </div>
+                                    <KillChart key={`${player_name}${stats.character_data.subclass}`} data={stats.recent_games} />}
+                                <div style={{
+                                    textAlign: 'center',
+                                    fontSize: '0.8em',
+                                    fontWeight: '400',
+                                }}>Recent Games K/D Spread</div>
+                            </div>
                             <Grid textAlign='center' columns='equal' divided style={{ marginTop: '20px', marginBottom: '10px' }}>
                                 <Grid.Row>
                                     <Grid.Column>
                                         <Header as='h4' style={{ color: '#212121' }}>
-                                            {stats[0].player_data.stats.kad_ratio}
+                                            {stats.player_data.stats.kad_ratio}
                                             <Header.Subheader>
                                                 KA/D
                                         </Header.Subheader>
@@ -188,7 +152,7 @@ class PlayerStatCard extends Component {
                                     </Grid.Column>
                                     <Grid.Column>
                                         <Header as='h4' style={{ color: '#7198B7' }}>
-                                            {stats[0].player_data.stats.elo.elo}
+                                            {stats.player_data.stats.elo.elo}
                                             <Header.Subheader>
                                                 ELO
                                         </Header.Subheader>
@@ -196,7 +160,7 @@ class PlayerStatCard extends Component {
                                     </Grid.Column>
                                     <Grid.Column>
                                         <Header as='h4' style={{ color: '#212121' }}>
-                                            {stats[0].player_data.stats.win_rate}
+                                            {stats.player_data.stats.win_rate}
                                             <Header.Subheader>
                                                 WIN %
                                         </Header.Subheader>

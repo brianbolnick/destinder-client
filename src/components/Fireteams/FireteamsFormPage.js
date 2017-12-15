@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Segment, Message, Divider } from 'semantic-ui-react';
+import { Container, Segment, Message} from 'semantic-ui-react';
 import Layout from '../Layout.js';
 import FireteamsForm from './FireteamsForm';
 import { connect } from 'react-redux';
 import { validateUser, resetErrors } from '../../actions/fireteams_index';
-import { LeaderboardAd, FireteamsMobileAd } from '../Advertisements';
+import { LeaderboardAd } from '../Advertisements';
 import '../../css/fireteams.css';
 
 

@@ -1,11 +1,9 @@
 import React from 'react';
-import { Container,  Card,  Grid, Transition, Divider } from 'semantic-ui-react';
-import PlayerStatCard from './PlayerStatCard.js';
-
+import { Container,  Card,  Grid, Divider } from 'semantic-ui-react';
 
 const StatsCard = (props) => {
     return (
-        <Card style={{ width: '100%'}}>
+        <Card style={{ width: '100%', color: '#212121'}}>
             <Container text>
                 <Grid centered stretched verticalAlign='middle' style={{ height: '77vh' }}>
                     <Grid.Row>
@@ -69,26 +67,4 @@ const StatsCard = (props) => {
     )
 }
 
-const PlayerOverview = (props) => {
-    // console.log(props);
-    return (
-        // <div>
-        //     {props.data.player_name}
-        // </div>
-        <Transition animation='fly right' duration={1500} transitionOnMount={true}>
-            <div style={{ marginLeft: '2%', marginRight: '2%' }}>
-                <Grid centered stretched verticalAlign='middle' columns={2} style={{ height: '80vh' }}>
-                    <Grid.Column width={4}>
-                        <PlayerStatCard player_name={props.player_name} data={props.data} />
-                    </Grid.Column>
-                    <Grid.Column width={12} style={{ height: '77vh', width: '100%' }}>
-                        <StatsCard data={props.data} />
-                    </Grid.Column>
-                </Grid>
-            </div>
-        </Transition>
-
-    )
-}
-
-export default PlayerOverview;
+export default StatsCard;

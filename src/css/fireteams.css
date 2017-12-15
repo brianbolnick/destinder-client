@@ -36,6 +36,11 @@ input[type="text"]:focus {
     border-radius: 0px;
 } */
 
+.ui.large.statistic>.value, .ui.large.statistics .statistic>.value {
+    font-size: 5rem!important;
+    color: #f5f5f5;
+}
+
 .ui.search.selection.dropdown.fireteam-console-select {
     background: transparent;
     border: none;
