@@ -11,7 +11,7 @@ export class Architect extends Component {
     render() {
         return (
             <Label style={{ backgroundColor: '#212121', color: '#f5f5f5' }}>
-                <Icon name='wizard' /> ARCHITECT
+                <Icon name='rebel' /> ARCHITECT
             </Label>
         )
     }
@@ -55,7 +55,7 @@ export class Veteran extends Component {
     render() {
         return (
             <Label style={{ backgroundColor: '#026670', color: '#f5f5f5' }}>
-                <Icon name='users' /> VETERAN
+                <Icon name='first order' /> VETERAN
             </Label>
         )
     }

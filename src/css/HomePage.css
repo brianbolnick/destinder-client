@@ -137,8 +137,10 @@ a.ui.card.home-tile-card:hover {
     text-align: center;
     font-weight: 300;
     font-size: 1.5em;
-    
+    text-transform: uppercase;
+    letter-spacing: 4px;
 }
+
 
 .description.home-tile-text-body {
     color: #c1c1c1 !important;
@@ -379,7 +381,9 @@ i.massive.icon, i.massive.icons {
         color: #f5f5f5 !important;
         text-align: center;
         font-weight: 300;
-        font-size: 1.5em;       
+        font-size: 1.5em;   
+        text-transform: uppercase;
+        letter-spacing: 4px;    
     }
 
     .description.home-tile-text-body {

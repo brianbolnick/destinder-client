@@ -5,6 +5,8 @@ import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
+import TrialsIcon from '../img/fireteams-icon.png';
+import ClansIcon from '../img/clans-icon.png';
 import ModalContent from './ModalContent';
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
@@ -139,7 +141,7 @@ class HomeFirst extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
-              <Icon name='paypal' /> Help Run the site, donate now!
+              <Icon name='paypal' /> Help run the site, donate now!
             </Button>
             <Button floated='right' inverted basic color='teal' onClick={this.handleDismissClick.bind(this)} >
               <Icon name='checkmark' /> Don't show again
@@ -158,7 +160,8 @@ class HomeFirst extends Component {
               >
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
-                    <Icon name="user outline" size="massive" />
+                    {/* <Icon name="user outline" size="massive" />    */}
+                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/free_roam.png" centered size='tiny' style={{ width: '90px'}}/>                                     
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
@@ -200,13 +203,15 @@ class HomeFirst extends Component {
                 <div className="home-tile-content row2">
                   <div className="home-tile-icon">
                     <Icon.Group size="massive">
-                      <Icon name="users" />
+                      {/* <Icon name="users" /> */}
+                      {/* <Image src={TrialsIcon} style={{marginTop: '20px'}}/> */}
+                      <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/trials_of_the_nine.png" centered size='tiny' style={{ width: '130px'}}/>
                       {/* <Icon corner color='grey' name='search' /> */}
                     </Icon.Group>
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
-                      Team Search
+                      Fireteams
                     </Card.Header>
                   </Card.Content>
                 </div>
@@ -221,11 +226,13 @@ class HomeFirst extends Component {
               >
                 <div className="home-tile-content row2">
                   <div className="home-tile-icon">
-                    <Icon name="search" size="massive" />
+                    {/* <Icon name="search" size="massive" /> */}
+                    {/* <Image src={ClansIcon} centered size='tiny' style={{width: '100px'}}/> */}
+                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' style={{ width: '100px'}}/>                 
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
-                      Player Search
+                      Clans
                     </Card.Header>
                   </Card.Content>
                 </div>
