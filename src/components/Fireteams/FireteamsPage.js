@@ -148,7 +148,7 @@ class FireteamPage extends Component {
                                             <SinglePlayerStatCard stats={char} player_name={object.player_name} has_account={object.has_account} />
                                         </Grid.Column>
                                         <Grid.Column width={11} style={{ minHeight: '77vh', width: '100%' }}>
-                                            <StatsCard data={char} />
+                                            <StatsCard data={char} account_info={object.account_info}/>
                                         </Grid.Column>
                                     </Grid>
                                 </div>

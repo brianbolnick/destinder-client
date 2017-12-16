@@ -8,7 +8,7 @@ import { WEAPONS } from '../../data/common_constants'
 class StatsCard extends Component {
     render() {
         console.log(this.props)
-        const { data } = this.props
+        const { data, account_info } = this.props
         return (
             <Card style={{ width: '100%', color: '#f5f5f5', backgroundColor: 'transparent' }}>
                 <Container text style={{ padding: '2%' }}>
@@ -79,7 +79,7 @@ class StatsCard extends Component {
                                         Analysis
                                 </Grid.Column>
                                     <Grid.Column>
-                                        Reputation
+                                        {JSON.stringify(account_info)}
                                 </Grid.Column>
                                 </Grid>
                             </Grid.Column>
