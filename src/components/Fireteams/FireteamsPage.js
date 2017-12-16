@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Image, Grid, Message, Button, Icon, Statistic } from 'semantic-ui-react';
+import { Container, Card, Image, Grid, Message, Button, Icon, Statistic, Menu } from 'semantic-ui-react';
 import Layout from '../Layout.js';
 import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';
@@ -12,6 +12,24 @@ import { resetErrors, validateUserDirectPath, fetchFireteamMembers, addPlayerSta
 import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
+
+class HomeNav extends Component {
+    render() {
+        return (
+            <Menu text className="fireteams-nav">
+                <Menu.Menu position="right">
+                    <Menu.Item >
+                        <div>
+                            <Button as={Link} to='/fireteams' basic inverted icon >
+                                <Icon name='search' /> New Search
+                            </Button>
+                        </div>
+                    </Menu.Item>
+                </Menu.Menu>
+            </Menu>
+        )
+    }
+}
 
 const OverviewSlides = (props) => {
     var Decorators = [{
@@ -112,7 +130,7 @@ class FireteamPage extends Component {
         let tabs;
 
         if (players[0] !== undefined) {
-            
+
             playerPanes = players[0].map(function (object, i) {
                 slides.push(
                     <div>
@@ -164,6 +182,7 @@ class FireteamPage extends Component {
             <Layout>
                 <div className="profile-page" style={{ minHeight: '100vh' }}>
                     <Container style={{ width: '90%' }}>
+                        <HomeNav />
                         {this.props.error ?
                             <Message
                                 negative
@@ -173,9 +192,7 @@ class FireteamPage extends Component {
                             />
                             : null
                         }
-                        <Button as={Link} to='/fireteams' basic inverted icon className='fireteam-back-btn'>
-                            <Icon name='search' size='huge' />
-                        </Button>
+
 
                         <Card className='hide-on-mobile' fluid style={{ marginTop: '20px', backgroundColor: '#212121', boxShadow: 'none' }}>
                             <Card.Content style={{ padding: '0' }}>

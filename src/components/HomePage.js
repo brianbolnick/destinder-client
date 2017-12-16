@@ -121,7 +121,7 @@ class HomeFirst extends Component {
     return (
       <Container className="home-first-container">
         <HomeNav />
-        <Modal basic size='small' open={this.state.showIntro} dimmer='blurring'>
+        <Modal basic size='small' open={this.state.showIntro}>
           <Modal.Header style={{ fontSize: '1.7em', color: '#FDD66F' }}>
             Welcome to Destinder!
           </Modal.Header>

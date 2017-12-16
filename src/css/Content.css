@@ -18,6 +18,10 @@ i.world.link.icon.header-button:hover {
     color: #f5f5f5;
 }
 
+.ui.header>.icon+.content {
+    color: #f5f5f5;
+}
+
 .ui.mini.statistic>.value.long-stat, .ui.mini.statistics .statistic>.value.long-stat {
     font-size: 1.1em !important;
 }
@@ -81,8 +85,8 @@ i.green.icon {
 i.icon.loading {
     height: 1em;
     line-height: 1;
-    -webkit-animation: icon-loading 2s linear infinite;
-    animation: icon-loading 8s linear infinite;
+    -webkit-animation: icon-loading 25s linear infinite;
+    animation: icon-loading 25s linear infinite;
 }
 
 i.huge.icon, i.huge.icons {

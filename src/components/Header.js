@@ -33,7 +33,7 @@ class ProfileCard extends Component {
           className="nav-card"
           to='/profile'
           raised
-          style={{ border: 'solid 3px #71f79f' }}
+          style={{ border: 'solid 3px #47D5CF' }}
         >
           <Card.Content className="nav-card-content">
             <Card.Header>
@@ -74,7 +74,7 @@ class LfgCard extends Component {
           as={Link}
           to='/lfg'
           raised
-          style={{ border: 'solid 3px #71f79f' }}
+          style={{ border: 'solid 3px #47D5CF' }}
         >
           <Card.Content className="nav-card-content">
             <Card.Header>
@@ -115,7 +115,7 @@ class FireteamsCard extends Component {
           as={Link}
           to='/fireteams'
           raised
-          style={{ border: 'solid 3px #71f79f' }}
+          style={{ border: 'solid 3px #47D5CF' }}
         >
           <Card.Content className="nav-card-content">
             <Card.Header>
@@ -156,7 +156,7 @@ class PlayerCard extends Component {
           as={Link}
           to='/players'
           raised
-          style={{ border: 'solid 3px #71f79f' }}
+          style={{ border: 'solid 3px #47D5CF' }}
         >
           <Card.Content className="nav-card-content">
             <Card.Header>
@@ -217,10 +217,9 @@ class HeaderComponent extends Component {
               <Icon className='header-button' link name='world' />
             </Icon.Group>
             }
-            closeIcon
-            dimmer={'blurring'}
+            closeIcon            
           >
-            <Header icon='location arrow' content='Orbit' />
+            <Header style={{color: '#f5f5f5' }} icon='location arrow' content='Orbit' />
             <Modal.Content style={{textAlign: '-webkit-center'}}>
               <NavLinks />
             </Modal.Content>

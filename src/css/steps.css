@@ -943,6 +943,18 @@
   color: #47D5CF;
   padding-bottom: 5px;
 }
+
+.ant-tabs-nav-wrap {
+  text-align: -webkit-right;
+}
+
+/* .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+  background: transparent;
+  border: solid 1px #47D5CF;
+  color: #47D5CF;
+  padding-bottom: 4px;
+} */
+
 .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-inactive {
   padding: 0;
 }
