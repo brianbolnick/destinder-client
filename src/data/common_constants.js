@@ -20,6 +20,19 @@ import Voidwalker from "../img/voidwalker-icon.png";
 import Dawnblade from "../img/dawnblade-icon.png";
 import Stormcaller from "../img/stormcaller-icon.png";
 
+import Auto from '../img/auto3.png';
+import Fusion from '../img/fusion2.png';
+import HandCannon from '../img/handcannon2.png';
+// eslint-disable-next-line 
+import Heavy from '../img/heavy2.png';
+import MachineGun from '../img/machine_gun2.png';
+import Pulse from '../img/pulse2.png';
+import Scout from '../img/scout.png';
+import Shotgun from '../img/shotgun2.png';
+import Sidearm from '../img/sidearm.png';
+import Sniper from '../img/sniper2.png';
+
+
 export const GAME_TYPES = {
   2: 'Story',
   3: 'Strikes Playlist',
@@ -86,4 +99,16 @@ export const PLATFORMS = {
   1: "Xbox",
   2: "Playstation",
   4: "PC"
+}
+
+export const WEAPONS = {
+  "Auto Rifle": Auto,
+  "Fusion Rifle": Fusion,
+  "Hand Cannon": HandCannon,
+  "Machine Gun": MachineGun,
+  "Pulse Rifle": Pulse,
+  "Scout Rifle": Scout,
+  "Shotgun": Shotgun,
+  "Sidearm": Sidearm,
+  "Sniper Rifle": Sniper
 }
