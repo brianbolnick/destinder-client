@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Card, Grid, Divider, Statistic, Image, Popup } from 'semantic-ui-react';
+import WeaponChart from '../../charts/WeaponChart.js';
+
 import { WEAPONS } from '../../data/common_constants'
 
 
@@ -22,7 +24,7 @@ class StatsCard extends Component {
                                                         {/* <Statistic.Value>{data.player_data.stats.kill_stats.best_weapon_type}</Statistic.Value> */}
                                                         <Statistic.Value>
                                                             <Popup
-                                                                trigger={<Image src={WEAPONS[data.player_data.stats.kill_stats.best_weapon_type]} size='small' />}
+                                                                trigger={<Image src={WEAPONS[data.player_data.stats.kill_stats.best_weapon_type]} size='tiny' />}
                                                                 content={data.player_data.stats.kill_stats.best_weapon_type}
                                                                 position="bottom center"
                                                             />
@@ -64,7 +66,7 @@ class StatsCard extends Component {
                                         </Grid>
                                     </Grid.Column>
                                     <Grid.Column>
-                                        Weapon Kill Breakdown Chart
+                                        <WeaponChart data={data}/>
                                 </Grid.Column>
                                 </Grid>
                             </Grid.Column>

@@ -36,17 +36,17 @@ class CardContainer extends Component {
             this.state.fetching || this.state.error ?
                 <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
                     <div style={{ textAlign: '-webkit-center', height: ' 100%' }}>
-                        <ClipLoader color="#47D5CF" size={70}/>
+                        <ClipLoader color="#47D5CF" size={70} />
                     </div>
                 </Grid.Column>
                 :
                 <Transition key={this.props.data.membership_id} animation='fly down' duration={1000} transitionOnMount={true}>
                     <Grid.Column style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem' }}>
                         <div style={{ textAlign: '-webkit-center', height: ' 100%' }}>
-                            <PlayerStatCard 
-                                stats={stats} 
-                                player_name={this.props.data.player_name} 
-                                has_account={this.props.data.has_account} 
+                            <PlayerStatCard
+                                stats={stats}
+                                player_name={this.props.data.player_name}
+                                has_account={this.props.data.has_account}
                             />
                         </div>
                     </Grid.Column>
@@ -104,6 +104,20 @@ class PlayerStatCard extends Component {
                 </Grid>
             </div>
         )
+
+        // const repValue = Math.round(player_data.reputation * 5) / 100
+
+        const repDisplay = has_account ? 
+            <Popup
+                trigger={<Rating size='mini' defaultRating={3} maxRating={5} icon='star' disabled />}
+                content={`Reputation: 67% (21 votes)`}
+            />
+            : 
+            <Popup
+                trigger={<Rating size='mini' defaultRating={0} maxRating={5} icon='star' disabled />}
+                content={"This player does not have a Destinder account."}
+            />
+        
 
         return (
             <div>
@@ -166,16 +180,17 @@ class PlayerStatCard extends Component {
                             />
 
                             <div style={{ padding: '15px' }}>
-                                {stats[0].recent_games === null ? 
+                                {stats[0].recent_games === null ?
                                     null
                                     :
                                     <KillChart key={`${player_name}${stats[0].character_data.subclass}`} data={stats[0].recent_games} />}
-                                    <div style={{
-                                        textAlign: 'center',
-                                        fontSize: '0.8em',
-                                        fontWeight: '400',
-                                    }}>Recent Games K/D Spread</div>                                
-                                </div>
+                                <div style={{
+                                    textAlign: 'center',
+                                    fontSize: '0.8em',
+                                    fontWeight: '400',
+                                }}>Recent Games K/D Spread</div>
+                            </div>
+                            {/* {repDisplay} */}
                             <Grid textAlign='center' columns='equal' divided style={{ marginTop: '20px', marginBottom: '10px' }}>
                                 <Grid.Row>
                                     <Grid.Column>
