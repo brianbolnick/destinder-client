@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Grid, Divider, Statistic, Image, Popup } from 'semantic-ui-react';
+import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
 
 import { WEAPONS } from '../../data/common_constants'
@@ -9,6 +9,19 @@ class StatsCard extends Component {
     render() {
         console.log(this.props)
         const { data, account_info } = this.props
+
+        const repValue = account_info.reputation  ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
+
+        const repDisplay = account_info.reputation  ?
+            <Popup
+                trigger={<Rating size='mini' defaultRating={repValue} maxRating={5} icon='star' disabled />}
+                content={`Reputation: ${account_info.reputation.reputation_score}% (${account_info.reputation.total_votes} votes)`}
+            />
+            :
+            <Popup
+                trigger={<Rating size='mini' defaultRating={0} maxRating={5} icon='star' disabled />}
+                content={"This player does not have a Destinder account."}
+            />
         return (
             <Card style={{ width: '100%', color: '#f5f5f5', backgroundColor: 'transparent' }}>
                 <Container text style={{ padding: '2%' }}>
@@ -66,8 +79,8 @@ class StatsCard extends Component {
                                         </Grid>
                                     </Grid.Column>
                                     <Grid.Column>
-                                        <WeaponChart data={data}/>
-                                </Grid.Column>
+                                        <WeaponChart data={data} />
+                                    </Grid.Column>
                                 </Grid>
                             </Grid.Column>
                         </Grid.Row>
@@ -77,10 +90,21 @@ class StatsCard extends Component {
                                 <Grid centered stretched verticalAlign='middle' columns={2} >
                                     <Grid.Column>
                                         Analysis
-                                </Grid.Column>
-                                    <Grid.Column>
-                                        {JSON.stringify(account_info)}
-                                </Grid.Column>
+                                    </Grid.Column>
+                                    <Grid.Column >
+                                        <h4>Player Reputation</h4>
+                                        <Grid centered stretched verticalAlign='middle'>
+                                            <Grid.Column width={3} style={{ alignItems: 'center' }}>
+                                                <Icon name="thumbs outline up" link size='big' />
+                                            </Grid.Column>
+                                            <Grid.Column width={5}>
+                                                {repDisplay}
+                                            </Grid.Column>
+                                            <Grid.Column width={3} style={{ alignItems: 'center' }}>
+                                                <Icon name="thumbs outline down" link size='big' />
+                                            </Grid.Column>
+                                        </Grid>
+                                    </Grid.Column>
                                 </Grid>
                             </Grid.Column>
                         </Grid.Row>
@@ -99,7 +123,7 @@ class StatsCard extends Component {
                         </Grid.Row>
                     </Grid>
                 </Container>
-            </Card>
+            </Card >
         )
     }
 }

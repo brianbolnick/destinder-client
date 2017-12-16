@@ -47,6 +47,7 @@ class CardContainer extends Component {
                                 stats={stats}
                                 player_name={this.props.data.player_name}
                                 has_account={this.props.data.has_account}
+                                account_info={this.props.data.account_info}
                             />
                         </div>
                     </Grid.Column>
@@ -59,7 +60,7 @@ class CardContainer extends Component {
 class PlayerStatCard extends Component {
     render() {
 
-        const { stats, player_name, has_account } = this.props
+        const { stats, player_name, has_account, account_info } = this.props
         const items = stats[0].character_data.items === null ? null : stats[0].character_data.items
 
         var exotic = (items === null || items.helmet === undefined) ? null : items.helmet
@@ -107,17 +108,28 @@ class PlayerStatCard extends Component {
 
         // const repValue = Math.round(player_data.reputation * 5) / 100
 
-        const repDisplay = has_account ? 
+        // const repDisplay = has_account ?
+        //     <Popup
+        //         trigger={<Rating size='large' defaultRating={3} maxRating={5} icon='star' disabled />}
+        //         content={`Reputation: 67% (21 votes)`}
+        //     />
+        //     :
+        //     <Popup
+        //         trigger={<Rating size='large' defaultRating={0} maxRating={5} icon='star' disabled />}
+        //         content={"This player does not have a Destinder account."}
+        //     />
+        const repValue = account_info !== null && has_account ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
+
+        const repDisplay = account_info !== null && has_account ?
             <Popup
-                trigger={<Rating size='mini' defaultRating={3} maxRating={5} icon='star' disabled />}
-                content={`Reputation: 67% (21 votes)`}
+                trigger={<Rating size='large' defaultRating={repValue} maxRating={5} icon='star' disabled />}
+                content={`Reputation: ${account_info.reputation.reputation_score}% (${account_info.reputation.total_votes} votes)`}
             />
-            : 
+            :
             <Popup
-                trigger={<Rating size='mini' defaultRating={0} maxRating={5} icon='star' disabled />}
+                trigger={<Rating size='large' defaultRating={0} maxRating={5} icon='star' disabled />}
                 content={"This player does not have a Destinder account."}
             />
-        
 
         return (
             <div>
@@ -172,7 +184,6 @@ class PlayerStatCard extends Component {
                                     fontWeight: '400',
                                     marginBottom: '5%'
                                 }}>
-                                    {/* subclass */}
                                     <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' />{stats[0].character_data.subclass}
                                 </div>}
                                 content='Subclass Stats Coming Soon...'
@@ -190,7 +201,7 @@ class PlayerStatCard extends Component {
                                     fontWeight: '400',
                                 }}>Recent Games K/D Spread</div>
                             </div>
-                            {/* {repDisplay} */}
+                            {repDisplay}
                             <Grid textAlign='center' columns='equal' divided style={{ marginTop: '20px', marginBottom: '10px' }}>
                                 <Grid.Row>
                                     <Grid.Column>

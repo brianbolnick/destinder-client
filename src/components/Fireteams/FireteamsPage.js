@@ -56,7 +56,7 @@ const FireteamOverview = (props) => {
     if (props.data[0] !== undefined) {
         columns = props.data[0].map(function (object, i) {
             return (
-                <PlayerStatCard key={i + 5} data={object} action={props.action} />
+                <PlayerStatCard key={i + 5} data={object} action={props.action} account_info={object.account_info}/>
             )
         });
     }
@@ -134,7 +134,7 @@ class FireteamPage extends Component {
             playerPanes = players[0].map(function (object, i) {
                 slides.push(
                     <div>
-                        {<PlayerStatCard key={`slides${i}`} data={object} />}
+                        {<PlayerStatCard key={`slides${i}`} data={object}/>}
                     </div>
                 );
 
@@ -145,10 +145,10 @@ class FireteamPage extends Component {
                                 <div style={{ marginLeft: '2%', marginRight: '2%' }}>
                                     <Grid centered stretched verticalAlign='middle' columns={2} style={{ height: '80vh' }}>
                                         <Grid.Column width={5}>
-                                            <SinglePlayerStatCard stats={char} player_name={object.player_name} has_account={object.has_account} />
+                                            <SinglePlayerStatCard stats={char} player_name={object.player_name} has_account={object.has_account} account_info={object.account_info}/>
                                         </Grid.Column>
                                         <Grid.Column width={11} style={{ minHeight: '77vh', width: '100%' }}>
-                                            <StatsCard data={char} account_info={object.account_info}/>
+                                            <StatsCard data={char} account_info={object.account_info} />
                                         </Grid.Column>
                                     </Grid>
                                 </div>
@@ -158,7 +158,6 @@ class FireteamPage extends Component {
                 }
 
                 return (
-
                     <TabPane
                         tab={object.player_name}
                         key={`tabs${object.player_name}`}
@@ -174,6 +173,8 @@ class FireteamPage extends Component {
                         </Tabs>
 
                     </TabPane >
+
+
                 )
             });
         }
@@ -197,6 +198,7 @@ class FireteamPage extends Component {
                         <Card className='hide-on-mobile' fluid style={{ marginTop: '20px', backgroundColor: '#212121', boxShadow: 'none' }}>
                             <Card.Content style={{ padding: '0' }}>
                                 {!this.props.error ?
+
                                     <Tabs
                                         defaultActiveKey="1"
                                         tabPosition='left'
@@ -220,9 +222,10 @@ class FireteamPage extends Component {
                                                 <TabPane tab="Team Stats" key="21"><FireteamStatsView data={this.props.fireteam} /></TabPane>
                                             </Tabs>
                                         </TabPane>
-                                        {playerPanes}
+                                            {playerPanes}
 
                                     </Tabs>
+                                    
                                     :
                                     null
                                 }
