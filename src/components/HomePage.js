@@ -11,7 +11,7 @@ import { jwt } from '../tools/jwt';
 
 const FaqButton = () => {
   return (
-    <Modal closeIcon trigger={<span style={{ color: '#f5f5f5', letterSpacing: '1px', fontSize: '1.1em' }}>FAQ</span>}>
+    <Modal closeIcon trigger={<span className="home-nav-link">FAQ</span>}>
       <Modal.Header>FAQ</Modal.Header>
       <ModalContent />
     </Modal>
@@ -62,9 +62,9 @@ class LoginButton extends Component {
           </Dropdown.Menu>
         </Dropdown>
         :
-        <Button animated as='a' href={`${API_URL}/login`}>
-          <Button.Content visible>Login</Button.Content>
-          <Button.Content hidden>
+        <Button basic inverted color='teal' animated as='a' href={`${API_URL}/login`}>
+          <Button.Content style={{color: '#f5f5f5' }} visible>Login</Button.Content>
+          <Button.Content style={{color: '#f5f5f5' }} hidden>
             <Icon name='right arrow' />
           </Button.Content>
         </Button>
@@ -81,13 +81,13 @@ class HomeNav extends Component {
           <Image src={Logo} size="small" />
         </Menu.Item>
         <Menu.Menu position="right">
+          <Menu.Item link className='hide-on-mobile'>
+            <FaqButton />
+          </Menu.Item>
           <Menu.Item >
             <div>
               <LoginButton />
             </div>
-          </Menu.Item>
-          <Menu.Item link className='hide-on-mobile'>
-            <FaqButton />
           </Menu.Item>
         </Menu.Menu>
       </Menu>

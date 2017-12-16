@@ -8,6 +8,17 @@
     display: none; 
 }
 
+
+span.home-nav-link {    
+    color: #f5f5f5;
+    letter-spacing: 1px;
+    font-size: 1.1em;
+}
+
+span.home-nav-link:hover {
+    color: #6dffff!important
+}
+
 .header-link {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);

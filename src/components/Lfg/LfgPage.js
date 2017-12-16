@@ -23,7 +23,7 @@ class ErrorMessage extends Component {
   render() {
     const content = (
       <div>
-        {this.props.error} Please <a href="mailto:help@destinder.com">Contact Us</a> and let us know what happened!
+        {this.props.error} If you are seeing this by mistake, please <a href="mailto:help@destinder.com">Contact Us</a> and let us know what happened!
       </div>
     )
 

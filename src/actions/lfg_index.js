@@ -65,8 +65,26 @@ export const getLfgPosts = (platform) => {
     if (token != null) {
         return (dispatch, getState) => {
             dispatch({ type: FETCH_POSTS_START })
-            axios.get(`${API_URL}/v1/lfg_posts`, config).then(response => {
-                dispatch({ type: GET_LFG_POSTS, payload: response.data })
+            axios.get(`${API_URL}/v1/lfg_posts`, config).then(response => {                
+                if (response.data.error) {
+                    console.log(response.data.error)
+                    if (response.data.error === "Signature has expired") {
+                        dispatch({
+                            type: SET_FETCH_POST_ERRORS,
+                            payload: response.data.error,
+                            message: "Your session has expired, please login again."
+                        })
+                    } else {
+                        dispatch({
+                            type: SET_FETCH_POST_ERRORS,
+                            payload: response.data.error,
+                            message: `There was a problem retrieving posts: ${response.data.error}.`
+                        })
+                    }
+                } else {
+                    dispatch({ type: GET_LFG_POSTS, payload: response.data })
+                }
+                
             }).catch(error => {
                 console.log(error)
                 dispatch({
