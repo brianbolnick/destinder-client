@@ -186,6 +186,24 @@ i.massive.icon, i.massive.icons {
     width: 223px !important;
 }
 
+
+img.ui.tiny.centered.image.home-profile-icon {
+    width: 90px;
+}
+
+img.ui.tiny.centered.image.home-lfg-icon {
+    position: relative;
+    top: 16px;
+}
+
+img.ui.tiny.centered.image.home-fireteams-icon {
+    width: 130px;
+}
+
+img.ui.tiny.centered.image.home-clans-icon {
+    width: 100px;
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .ui.text.menu {
         margin-top: 0;
@@ -208,6 +226,10 @@ i.massive.icon, i.massive.icons {
         max-height: 130px;
         margin-top: 10%;
         margin-left: 10%;
+    } */
+
+    /* img.ui.tiny.centered.image.home-profile-icon {
+        width: 60px;
     } */
 
     .first-layer-home {
@@ -240,7 +262,7 @@ i.massive.icon, i.massive.icons {
 
     .ui.text.menu {
         position: relative;
-        bottom: 100px;
+        bottom: 100px !important;
         margin-top: 0;
         margin-bottom: 16%;
     }
@@ -386,6 +408,24 @@ i.massive.icon, i.massive.icons {
         letter-spacing: 4px;    
     }
 
+    img.ui.tiny.centered.image.home-profile-icon {
+        width: 60px;
+    }
+
+    img.ui.tiny.centered.image.home-lfg-icon {
+        width: 50px;
+        position: relative;
+        top: 16px;
+    }
+
+    img.ui.tiny.centered.image.home-fireteams-icon {
+         width: 80px;
+    }
+
+    img.ui.tiny.centered.image.home-clans-icon {
+         width: 65px;
+    }
+
     .description.home-tile-text-body {
         color: #c1c1c1 !important;
         text-align: center;
@@ -427,3 +467,4 @@ input[type=text]:focus {
 .ui.compact.inverted.vertical.labeled.icon.ui.slide.along.left.very.thin.visible.sidebar.content-sidebar.menu {
     width: 58px !important;
 }
+

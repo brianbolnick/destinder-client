@@ -7,6 +7,7 @@ import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 import TrialsIcon from '../img/fireteams-icon.png';
 import ClansIcon from '../img/clans-icon.png';
+import LfgIcon from '../img/lfg-icon.png';
 import ModalContent from './ModalContent';
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
@@ -65,8 +66,8 @@ class LoginButton extends Component {
         </Dropdown>
         :
         <Button basic inverted color='teal' animated as='a' href={`${API_URL}/login`}>
-          <Button.Content style={{color: '#f5f5f5' }} visible>Login</Button.Content>
-          <Button.Content style={{color: '#f5f5f5' }} hidden>
+          <Button.Content style={{ color: '#f5f5f5' }} visible>Login</Button.Content>
+          <Button.Content style={{ color: '#f5f5f5' }} hidden>
             <Icon name='right arrow' />
           </Button.Content>
         </Button>
@@ -161,7 +162,7 @@ class HomeFirst extends Component {
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
                     {/* <Icon name="user outline" size="massive" />    */}
-                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/free_roam.png" centered size='tiny' style={{ width: '90px'}}/>                                     
+                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/free_roam.png" centered size='tiny' className='home-profile-icon' />
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
@@ -181,7 +182,8 @@ class HomeFirst extends Component {
               >
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
-                    <Icon name="comments" size="massive" />
+                    {/* <Icon name="comment outline" size="massive" style={{marginTop: '12px'}}/> */}
+                    <Image src={LfgIcon} centered size='tiny' className='home-lfg-icon'  />
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
@@ -205,7 +207,7 @@ class HomeFirst extends Component {
                     <Icon.Group size="massive">
                       {/* <Icon name="users" /> */}
                       {/* <Image src={TrialsIcon} style={{marginTop: '20px'}}/> */}
-                      <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/trials_of_the_nine.png" centered size='tiny' style={{ width: '130px'}}/>
+                      <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/trials_of_the_nine.png" centered size='tiny' className='home-fireteams-icon' />
                       {/* <Icon corner color='grey' name='search' /> */}
                     </Icon.Group>
                   </div>
@@ -228,7 +230,7 @@ class HomeFirst extends Component {
                   <div className="home-tile-icon">
                     {/* <Icon name="search" size="massive" /> */}
                     {/* <Image src={ClansIcon} centered size='tiny' style={{width: '100px'}}/> */}
-                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' style={{ width: '100px'}}/>                 
+                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' className='home-clans-icon'/>
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
