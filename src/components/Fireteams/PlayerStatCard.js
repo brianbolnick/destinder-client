@@ -4,7 +4,7 @@ import KillChart from '../../charts/KillChart.js';
 import { ClipLoader } from 'react-spinners';
 import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
-import { SUBCLASS_ICONS } from '../../data/common_constants'
+import { SUBCLASS_ICONS, BADGES } from '../../data/common_constants'
 import NoItem from '../../img/no-item-found.jpg';
 
 class CardContainer extends Component {
@@ -72,6 +72,24 @@ class PlayerStatCard extends Component {
 
         // exotic = items.filter(item => item)
 
+        // console.log(account_info)
+        let badges = null;
+        if (account_info.badges) {
+            badges = account_info.badges.map(function (badge) {
+                return (
+                    <Popup
+                        key={badge.id}
+                        position='top center'
+                        hoverable
+                        trigger={BADGES[badge.id]}
+                        content={badge.description}
+                    />
+                )
+
+            })
+        }
+
+
         const profileContent = (
             <div>
                 <Grid centered divided columns={2}>
@@ -79,45 +97,19 @@ class PlayerStatCard extends Component {
                         <div>
                             <Header as='h6' style={{ color: '#212121' }}>
                                 ACCOUNT BADGES
-                                    </Header>
+                            </Header>
                             <Label.Group>
-                                <Label style={{ backgroundColor: '#212121', color: '#f5f5f5' }}>
-                                    <Icon name='wizard' /> ARCHITECT
-                                        </Label>
-                                <Label style={{ backgroundColor: '#2ecc71', color: '#f5f5f5' }}>
-                                    <Icon name='dollar' /> DONATOR
-                                        </Label>
-                                <Label style={{ backgroundColor: '#1DA1F2', color: '#f5f5f5' }}>
-                                    <Icon name='users' /> FOLLOWER
-                                        </Label>
-                                <Label style={{ backgroundColor: '#026670', color: '#f5f5f5' }}>
-                                    <Icon name='dollar' /> VETERAN
-                                        </Label>
+                                {badges}
                             </Label.Group>
                         </div>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Header as='h6'>REPUTATION</Header>
-                        <Rating icon='star' defaultRating={3.5} maxRating={5} />
-                        <Divider hidden style={{ margin: '0' }} />
-                        <Button>Go to Profile</Button>
+                        <Button disabled>Go to Profile</Button>
                     </Grid.Column>
                 </Grid>
             </div>
         )
 
-        // const repValue = Math.round(player_data.reputation * 5) / 100
-
-        // const repDisplay = has_account ?
-        //     <Popup
-        //         trigger={<Rating size='large' defaultRating={3} maxRating={5} icon='star' disabled />}
-        //         content={`Reputation: 67% (21 votes)`}
-        //     />
-        //     :
-        //     <Popup
-        //         trigger={<Rating size='large' defaultRating={0} maxRating={5} icon='star' disabled />}
-        //         content={"This player does not have a Destinder account."}
-        //     />
         const repValue = account_info !== null && has_account ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
 
         const repDisplay = account_info !== null && has_account ?

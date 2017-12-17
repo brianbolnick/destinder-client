@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button } from 'semantic-ui-react';
+import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
-import { WEAPONS } from '../../data/common_constants'
+import { WEAPONS, BADGES } from '../../data/common_constants'
 import { jwt } from '../../tools/jwt';
 import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
@@ -94,7 +94,22 @@ class StatsCard extends Component {
         let downvote = null;
         const repValue = account_info.reputation ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
 
-        console.log(this.state);
+        let badges = null;
+        if (account_info.badges) {
+            badges = account_info.badges.map(function (badge) {
+                return (
+                    <Popup
+                        key={badge.id}
+                        position='top center'
+                        hoverable
+                        trigger={BADGES[badge.id]}
+                        content={badge.description}
+                    />
+                )
+
+            })
+        }
+
         if (this.state.loggedIn) {
             upvote = this.state.voted_for
                 ?
@@ -106,14 +121,6 @@ class StatsCard extends Component {
 
             downvote = this.state.voted_for ? null : <Icon name="thumbs outline down" link size='big' onClick={() => this.handleDownvoteClick()} />
         }
-        // const upvote = this.state.voted_for
-        //     ?
-        //     <Button basic inverted size='mini' onClick={() => this.handleUnvoteClick()} >
-        //         Unvote
-        // </Button>
-        //     :
-        //     <Icon name="thumbs outline up" link size='big' onClick={() => this.handleUpvoteClick()} />
-        // const downvote = this.state.voted_for ? null : <Icon name="thumbs outline down" link size='big' onClick={() => this.handleDownvoteClick()} />
 
         const repDisplay = account_info.reputation ?
             <Popup
@@ -191,7 +198,10 @@ class StatsCard extends Component {
                             <Grid.Column>
                                 <Grid centered stretched verticalAlign='middle' columns={2} >
                                     <Grid.Column>
-                                        Analysis
+                                        <h4>Player Badges</h4>
+                                        <Label.Group>
+                                            {badges}
+                                        </Label.Group>
                                     </Grid.Column>
                                     <Grid.Column >
                                         <h4>Player Reputation</h4>

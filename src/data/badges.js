@@ -10,8 +10,19 @@ import '../css/Content.css'
 export class Architect extends Component {
     render() {
         return (
-            <Label style={{ backgroundColor: '#212121', color: '#f5f5f5' }}>
+            <Label className="architect-badge">
                 <Icon name='rebel' /> ARCHITECT
+            </Label>
+        )
+    }
+
+}
+
+export class Rainbow extends Component {
+    render() {
+        return (
+            <Label className="rainbow-badge">
+                <Icon name='spy' /> RAINBOW
             </Label>
         )
     }

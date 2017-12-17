@@ -35,55 +35,11 @@ class PlayerStatCard extends Component {
             }
         }
 
-        const profileContent = (
-            <div>
-                <Grid centered divided columns={2}>
-                    <Grid.Column textAlign='center'>
-                        <div>
-                            <Header as='h6' style={{ color: '#212121' }}>
-                                ACCOUNT BADGES
-                                    </Header>
-                            <Label.Group>
-                                <Label style={{ backgroundColor: '#212121', color: '#f5f5f5' }}>
-                                    <Icon name='wizard' /> ARCHITECT
-                                        </Label>
-                                <Label style={{ backgroundColor: '#2ecc71', color: '#f5f5f5' }}>
-                                    <Icon name='dollar' /> DONATOR
-                                        </Label>
-                                <Label style={{ backgroundColor: '#1DA1F2', color: '#f5f5f5' }}>
-                                    <Icon name='users' /> FOLLOWER
-                                        </Label>
-                                <Label style={{ backgroundColor: '#026670', color: '#f5f5f5' }}>
-                                    <Icon name='dollar' /> VETERAN
-                                        </Label>
-                            </Label.Group>
-                        </div>
-                    </Grid.Column>
-                    <Grid.Column textAlign='center'>
-                        <Header as='h6'>REPUTATION</Header>
-                        <Rating icon='star' defaultRating={3.5} maxRating={5} />
-                        <Divider hidden style={{ margin: '0' }} />
-                        <Button disabled>Go to Profile</Button>
-                    </Grid.Column>
-                </Grid>
-            </div>
-        )
 
         return (
             <div style={{padding: '5%' }}>
                 <Card style={{ boxShadow: 'none' }}>
                     <Card.Content style={{ padding: '0' }}>
-                        {has_account ?
-                            <Popup
-                                trigger={<Label as='a' color='teal' corner='right'><Icon name="user circle" style={{ margin: '0' }} /></Label>}
-                                content={profileContent}
-                                position='bottom center'
-                                hoverable
-                                flowing
-                            />
-                            :
-                            null
-                        }
                         <Card.Header style={{ display: 'none' }}>
                             <Segment className='stat-card-header' style={{ backgroundImage: `url(${stats.character_data.emblem_background})` }}>
                                 {player_name}
