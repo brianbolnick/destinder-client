@@ -18,11 +18,11 @@ export class Architect extends Component {
 
 }
 
-export class Rainbow extends Component {
+export class Dedicated extends Component {
     render() {
         return (
             <Label className="rainbow-badge">
-                <Icon name='spy' /> RAINBOW
+                <Icon name='heart' /> DEDICATED
             </Label>
         )
     }
@@ -32,7 +32,7 @@ export class Rainbow extends Component {
 export class Donator extends Component {
     render() {
         return (
-            <Label style={{ backgroundColor: '#2ecc71', color: '#f5f5f5' }}>
+            <Label className="donator-badge">
                 <Icon name='dollar' /> DONATOR
             </Label>
         )

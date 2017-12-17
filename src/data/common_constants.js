@@ -8,7 +8,7 @@ import {
   CakeBoss,
   Donator,
   BigDonator,
-  Rainbow
+  Dedicated
 } from './badges';
 
 import Sentinel from "../img/sentinel-icon.png";
@@ -81,7 +81,7 @@ export const BADGES = {
   6: <CakeBoss />,
   7: <LittleHelper />,
   8: <Follower />,
-  9: <Rainbow />
+  9: <Dedicated />
 }
 
 export const SUBCLASS_ICONS = {
