@@ -1,6 +1,7 @@
 # destinder-client
 Front-end client for [Destinder LFG](https://www.destinder.com). Replaces the front-end portion of [Destinder V1](https://github.com/destiny-aviato/destinder).
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/destiny-aviato/destinder-client/master/LICENSE)
 [![Build Status](https://travis-ci.org/destiny-aviato/destinder-client.svg?branch=master)](https://travis-ci.org/destiny-aviato/destinder-client) [![Maintainability](https://api.codeclimate.com/v1/badges/3db5fc975d294c55f608/maintainability)](https://codeclimate.com/github/destiny-aviato/destinder-client/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3db5fc975d294c55f608/test_coverage)](https://codeclimate.com/github/destiny-aviato/destinder-client/test_coverage)
 
 ## Installation Instructions
