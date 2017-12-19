@@ -198,17 +198,17 @@ textarea {
 }
 
 .ui.toggle.checkbox input:focus~.box:before, .ui.toggle.checkbox input:focus~label:before {
-    background-color: #51A3A3 !important;
+    background-color: #22CCE9 !important;
     border: none;
 }
 
 .ui.toggle.checkbox .box:hover::before, .ui.toggle.checkbox label:hover::before {
-    background-color: #51A3A3 !important;
+    background-color: #22CCE9 !important;
     border: none;
 }
 
 .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
-    background-color: #51A3A3 !important;
+    background-color: #22CCE9 !important;
 }
 
 .ui.card.lfg-post-card {

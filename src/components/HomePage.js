@@ -305,23 +305,40 @@ class HomeSecond extends Component {
 class HomeLayout extends Component {
   render() {
 
+    // const secondStyle = {
+    //   display: "flex",
+    //   alignItems: "center",
+    //   justifyContent: "center",
+    //   backgroundImage:
+    //     'url("https://www.toptal.com/designers/subtlepatterns/patterns/binding_dark.png")',
+    //   backgroundSize: "auto",
+    //   backgroundRepeat: "inherit",
+    //   color: "white"
+    // };
+
     const secondStyle = {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      backgroundImage:
-        'url("https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png")',
+      background:
+        'linear-gradient(rgb(35, 37, 38), rgb(65, 67, 69))',
       backgroundSize: "auto",
       backgroundRepeat: "inherit",
       color: "white"
     };
 
     const homeStyle = {
-      backgroundImage:
-        'url("https://www.toptal.com/designers/subtlepatterns/patterns/ep_naturalblack.png")',
+      background:
+        'linear-gradient(rgb(35, 37, 38), rgb(65, 67, 69))',
       backgroundSize: "auto",
       backgroundRepeat: "inherit"
     };
+    // const homeStyle = {
+    //   backgroundImage:
+    //     'url("https://www.toptal.com/designers/subtlepatterns/patterns/binding_dark.png")',
+    //   backgroundSize: "auto",
+    //   backgroundRepeat: "inherit"
+    // };
     return (
       <Parallax ref="parallax" pages={2} style={homeStyle}  >
         <Parallax.Layer offset={0} speed={0.5} className='first-layer-home'>
