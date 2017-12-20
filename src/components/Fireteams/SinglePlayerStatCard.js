@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Card, Segment, Icon, Image, Grid, Label, Popup, Button, Rating, Divider } from 'semantic-ui-react';
+import { Header, Card, Segment,  Image, Grid,  Popup } from 'semantic-ui-react';
 import KillChart from '../../charts/KillChart.js';
 import { SUBCLASS_ICONS } from '../../data/common_constants'
 import NoItem from '../../img/no-item-found.jpg';
@@ -25,7 +25,7 @@ class CardContainer extends Component {
 class PlayerStatCard extends Component {
     render() {
 
-        const { stats, player_name, has_account } = this.props
+        const { stats, player_name } = this.props
         const items = stats.character_data.items === null ? null : stats.character_data.items
 
         var exotic = (items === null || items.helmet === undefined) ? null : items.helmet

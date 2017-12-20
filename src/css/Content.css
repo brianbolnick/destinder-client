@@ -241,9 +241,14 @@ textarea {
     }
 
     .ui.container {
-        width: 1444px;
+        /* width: 90%; */
         margin-left: auto!important;
         margin-right: auto!important;
+        min-height: 100%;
+    }
+
+    .row.home-scroll-button {
+        margin-top: 7rem;
     }
 
     a.ui.basic.icon.inverted.button.fireteam-back-btn {
@@ -257,9 +262,10 @@ textarea {
     }
 
     .ui.container {
-        width: 1444px;
+        /* width: 90%; */
         margin-left: auto!important;
         margin-right: auto!important;
+        min-height: 100%;
     }
 
     a.ui.basic.icon.inverted.button.fireteam-back-btn {

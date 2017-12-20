@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { Container, Image, Message, Icon } from "semantic-ui-react";
 import Layout from "./Layout.js";
 
-class PlayersPage extends Component {
+class ClansPage extends Component {
     render() {
         return (
             <Layout>
-                <div className="profile-page" style={{ height: '100vh' }}>
+                <div className="clans-page" style={{ height: '100vh' }}>
                     <Container style={{ textAlign: 'center' }}>
                         <Message icon info>
                             <Icon name='circle notched' loading />
                             <Message.Content>
                                 <Message.Header>Nothing here yet!</Message.Header>
-                                Don't worry. We're working on it. Soon you'll be able to view other players specific stats for various game modes. Stay Tuned!!
+                                Don't worry. We're working on it. Soon you'll be able to view clan stats, recruit for your clan, and more!
                             </Message.Content>
                         </Message>
                         <Image size='big' centered fluid src='http://i.imgur.com/7rlgPZQ.gif' />
@@ -23,4 +23,4 @@ class PlayersPage extends Component {
     }
 }
 
-export default PlayersPage;
+export default ClansPage;

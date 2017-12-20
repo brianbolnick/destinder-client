@@ -5,10 +5,8 @@ import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
-import TrialsIcon from '../img/fireteams-icon.png';
-import ClansIcon from '../img/clans-icon.png';
 import LfgIcon from '../img/lfg-icon.png';
-import ModalContent from './ModalContent';
+import {FaqContent, BadgeContent }from './ModalContent';
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
 
@@ -16,7 +14,16 @@ const FaqButton = () => {
   return (
     <Modal closeIcon trigger={<span className="home-nav-link">FAQ</span>}>
       <Modal.Header>FAQ</Modal.Header>
-      <ModalContent />
+      <FaqContent />
+    </Modal>
+  )
+}
+
+const BadgeInfo = () => {
+  return (
+    <Modal closeIcon trigger={<span className="home-nav-link">BADGES</span>}>
+      <Modal.Header>Badge-o-Graphy</Modal.Header>
+      <BadgeContent />
     </Modal>
   )
 }
@@ -59,7 +66,7 @@ class LoginButton extends Component {
           <Dropdown.Menu>
             <Modal closeIcon trigger={<Dropdown.Item className='hide-on-med-and-up'>FAQ</Dropdown.Item>}>
               <Modal.Header>FAQ</Modal.Header>
-              <ModalContent />
+              <FaqContent />
             </Modal>
             <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
           </Dropdown.Menu>
@@ -84,6 +91,9 @@ class HomeNav extends Component {
           <Image src={Logo} size="small" />
         </Menu.Item>
         <Menu.Menu position="right">
+          <Menu.Item link className='hide-on-mobile'>
+            <BadgeInfo />
+          </Menu.Item>
           <Menu.Item link className='hide-on-mobile'>
             <FaqButton />
           </Menu.Item>
@@ -122,7 +132,7 @@ class HomeFirst extends Component {
 
   render() {
     return (
-      <Container className="home-first-container">
+      <Container className="home-first-container" style={{width: '90%' }}>
         <HomeNav />
         <Modal basic size='small' open={this.state.showIntro}>
           <Modal.Header style={{ fontSize: '1.7em', color: '#FDD66F' }}>
@@ -222,7 +232,7 @@ class HomeFirst extends Component {
             <Grid.Column mobile={8} computer={3}>
               <Card
                 as={Link}
-                to="/players"
+                to="/clans"
                 className="home-tile-card"
 
               >
@@ -243,7 +253,7 @@ class HomeFirst extends Component {
           </Grid.Row>
         </Grid>
         <Grid columns={1}>
-          <Grid.Row>
+          <Grid.Row className="home-scroll-button">
             <Grid.Column width={16}>
               <div style={{ textAlign: "center" }}>
                 <Icon

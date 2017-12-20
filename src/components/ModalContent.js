@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Icon, Button, Modal, Divider, Header } from "semantic-ui-react";
+import { Icon, Button, Modal, Divider, Header, Label } from "semantic-ui-react";
+import { Dedicated, BigDonator, Donator, Follower, Veteran, Sponsor, LittleHelper } from '../data/badges';
 
-export default class ModalContent extends Component {
+export class FaqContent extends Component {
     render() {
         return (
             <Modal.Content >
@@ -64,6 +65,31 @@ export default class ModalContent extends Component {
                         <li><a href="https://www.instagram.com/destinderdotcom/">Instagram</a></li>
                         <li><a href="mailto:help@destinder.com">Email</a></li>
                     </ul>
+                </Modal.Description>
+            </Modal.Content>
+        )
+    }
+}
+
+export class BadgeContent extends Component {
+    render() {
+        return (
+            <Modal.Content >
+                <Modal.Description>
+                    <Header>Earn account badges for interacting with the site in certain ways!</Header>                
+                    <Label.Group>
+                        <Veteran />
+                        <Donator />
+                        <BigDonator />
+                        <Sponsor />
+                        <Dedicated />
+                        <Follower />
+                        <LittleHelper />
+                    </Label.Group>  
+
+                    <Divider />
+                    <Header>Want More?</Header>    
+                    <p>We're always creating new badges and new ways to earn them. If you have a suggestion for one, let us know!</p>
                 </Modal.Description>
             </Modal.Content>
         )

@@ -130,10 +130,10 @@ class FireteamsCard extends Component {
   }
 }
 
-class PlayerCard extends Component {
+class ClansCard extends Component {
   render() {
     return (
-      this.props.currentLocation === 'players'
+      this.props.currentLocation === 'clans'
         ?
         <Card
           className="nav-card"
@@ -143,10 +143,10 @@ class PlayerCard extends Component {
           <Card.Content className="nav-card-content">
             <Card.Header>
               <Icon name='marker' />
-              Player Search
+              Clans
             </Card.Header>
             <Card.Description className='hide-on-mobile'>
-              View the profile of another player.
+              Stats, recruiting, and more.
             </Card.Description>
           </Card.Content>
         </Card>
@@ -154,16 +154,16 @@ class PlayerCard extends Component {
         <Card
           className="nav-card"
           as={Link}
-          to='/players'
+          to='/clans'
           raised
           style={{ border: 'solid 3px #47D5CF' }}
         >
           <Card.Content className="nav-card-content">
             <Card.Header>
-              Player Search
+              Clans
           </Card.Header>
             <Card.Description className='hide-on-mobile'>
-              View the profile of another player.
+              Stats, recruiting, and more.
           </Card.Description>
           </Card.Content>
         </Card>
@@ -192,7 +192,7 @@ class NavLinks extends Component {
             <FireteamsCard currentLocation={this.state.currentLocation} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={8} computer={4}>
-            <PlayerCard currentLocation={this.state.currentLocation} />
+            <ClansCard currentLocation={this.state.currentLocation} />
           </Grid.Column>
         </Grid>
         {/* <Card.Group itemsPerRow={4}>
