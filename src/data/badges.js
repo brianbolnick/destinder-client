@@ -160,3 +160,19 @@ export class LittleHelper extends Component {
         )
     }
 }
+
+export class Conjuror  extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ background: 'linear-gradient(to right, rgb(229, 45, 39), rgb(179, 18, 23))', color: '#FAFAFA' }}>
+                        <Icon name='magic' /> CONJUROR
+                    </Label>
+                }
+                content='Referred a friend!'
+            />
+            
+        )
+    }
+}

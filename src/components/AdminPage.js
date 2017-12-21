@@ -36,7 +36,7 @@ class Admin extends Component {
     render() {
         return (
             <Layout>
-                <div className="profile-page" style={{ height: '100vh' }}>
+                <div className="profile-page" style={{ minHeight: '100vh' }}>
                     <Container>
                         <Header as="h2">Site Users</Header>
                         <Table celled>
@@ -51,7 +51,6 @@ class Admin extends Component {
                             </Table.Header>
                             <Table.Body>
                                 {this.state.users}
-
                             </Table.Body>
                         </Table>
 

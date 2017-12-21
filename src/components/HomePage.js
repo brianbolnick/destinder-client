@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 import Logo from "../img/logo-with-title-word-black.png";
 import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 import LfgIcon from '../img/lfg-icon.png';
-import {FaqContent, BadgeContent }from './ModalContent';
+import { FaqContent, BadgeContent } from './ModalContent';
 import { API_URL } from '../tools/api-config';
 import { jwt } from '../tools/jwt';
 
 const FaqButton = () => {
   return (
     <Modal closeIcon trigger={<span className="home-nav-link">FAQ</span>}>
-      <Modal.Header>FAQ</Modal.Header>
+      <Modal.Header>faq</Modal.Header>
       <FaqContent />
     </Modal>
   )
@@ -21,7 +21,7 @@ const FaqButton = () => {
 
 const BadgeInfo = () => {
   return (
-    <Modal closeIcon trigger={<span className="home-nav-link">BADGES</span>}>
+    <Modal closeIcon trigger={<span className="home-nav-link">Badges</span>}>
       <Modal.Header>Badge-o-Graphy</Modal.Header>
       <BadgeContent />
     </Modal>
@@ -51,17 +51,18 @@ class LoginButton extends Component {
         ?
         <Dropdown
           trigger={
-            <span style={{ letterSpacing: '1px', fontSize: '1.1em' }}>
+            <span style={{ letterSpacing: '1.1px', fontSize: '1.1em' }}>
+              {jwt.display_name}
               <Image
                 avatar
                 src={jwt.profile_picture}
               />{" "}
-              {jwt.display_name}
+
             </span>
           }
           pointing="top left"
           icon={null}
-          style={{ color: "#f5f5f5" }}
+          style={{ color: "#f5f5f5", lineHeight: '2' }}
         >
           <Dropdown.Menu>
             <Modal closeIcon trigger={<Dropdown.Item className='hide-on-med-and-up'>FAQ</Dropdown.Item>}>
@@ -132,7 +133,7 @@ class HomeFirst extends Component {
 
   render() {
     return (
-      <Container className="home-first-container" style={{width: '90%' }}>
+      <Container className="home-first-container" style={{ width: '90%' }}>
         <HomeNav />
         <Modal basic size='small' open={this.state.showIntro}>
           <Modal.Header style={{ fontSize: '1.7em', color: '#FDD66F' }}>
@@ -193,7 +194,7 @@ class HomeFirst extends Component {
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
                     {/* <Icon name="comment outline" size="massive" style={{marginTop: '12px'}}/> */}
-                    <Image src={LfgIcon} centered size='tiny' className='home-lfg-icon'  />
+                    <Image src={LfgIcon} centered size='tiny' className='home-lfg-icon' />
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
@@ -240,7 +241,7 @@ class HomeFirst extends Component {
                   <div className="home-tile-icon">
                     {/* <Icon name="search" size="massive" /> */}
                     {/* <Image src={ClansIcon} centered size='tiny' style={{width: '100px'}}/> */}
-                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' className='home-clans-icon'/>
+                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' className='home-clans-icon' />
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">

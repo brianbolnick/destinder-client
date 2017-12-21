@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Icon, Button, Modal, Divider, Header, Label } from "semantic-ui-react";
-import { Dedicated, BigDonator, Donator, Follower, Veteran, Sponsor, LittleHelper } from '../data/badges';
+import { Dedicated, BigDonator, Donator, Follower, Veteran, Sponsor, LittleHelper, Conjuror } from '../data/badges';
 
 export class FaqContent extends Component {
     render() {
@@ -26,7 +26,6 @@ export class FaqContent extends Component {
                     <p>Here are some of the other features we're working on adding:</p>
                     <ul>
                         <li>Personal profile and stat dashboard for multiple game types</li>
-                        <li>Trials of the Nine fireteam stat search with custom player analysis tools</li>
                         <li>Clan recruitment and stats</li>
                         <li>Inventory management system</li>
                         <li>Updated account badges, LFG post prioritzation options, and more!</li>
@@ -47,7 +46,9 @@ export class FaqContent extends Component {
                     <p>
                         Running the site takes a lot of time, effort, and money. We greatly appreciate any donations as they
                         help us cover things like hosting fees and other expenses. Anyone who donates $5 or more receives a special
-                        donator badge (see below).
+                        <span style={{marginLeft: '5px', marginRight: '2px'}}><Donator /></span> badge.
+
+                        {/* <div style={{textAlign: 'center', padding: '30px'}}> <Donator /></div> */}
                     </p>
                     <Button basic onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
                         <Icon name='paypal' />  Donate!
@@ -85,6 +86,7 @@ export class BadgeContent extends Component {
                         <Dedicated />
                         <Follower />
                         <LittleHelper />
+                        <Conjuror />
                     </Label.Group>  
 
                     <Divider />
