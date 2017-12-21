@@ -232,9 +232,9 @@ class PlayerStatCard extends Component {
                                 <Grid.Column style={{ padding: '5px 4px 7px 4px' }}>
                                     <Popup
                                         trigger={<Image style={{ borderRadius: '4px' }} bordered src={
-                                            (items === null || items.primary_weapon_1 === undefined) ? NoItem : items.primary_weapon_1.item_icon
+                                            (items === null || items.kinetic_weapon === undefined) ? NoItem : items.kinetic_weapon.item_icon
                                         } />}
-                                        content={(items === null || items.primary_weapon_1 === undefined) ? "No Data" : items.primary_weapon_1.item_name}
+                                        content={(items === null || items.kinetic_weapon === undefined) ? "No Data" : items.kinetic_weapon.item_name}
                                         header="Primary 1"
                                         position='top center'
                                     />
@@ -242,9 +242,9 @@ class PlayerStatCard extends Component {
                                 <Grid.Column style={{ padding: '5px 4px 7px 4px' }}>
                                     <Popup
                                         trigger={<Image style={{ borderRadius: '4px' }} bordered src={
-                                            (items === null || items.primary_weapon_2 === undefined) ? NoItem : items.primary_weapon_2.item_icon
+                                            (items === null || items.energy_weapon === undefined) ? NoItem : items.energy_weapon.item_icon
                                         } />}
-                                        content={(items === null || items.primary_weapon_2 === undefined) ? "No Data" : items.primary_weapon_2.item_name}
+                                        content={(items === null || items.energy_weapon === undefined) ? "No Data" : items.energy_weapon.item_name}
                                         header="Primary 2"
                                         position='top center'
                                     />

@@ -138,8 +138,8 @@ class FireteamPage extends Component {
 
             playerPanes = players[0].map(function (object, i) {
                 slides.push(
-                    <div>
-                        {<PlayerStatCard key={`slides${i}`} data={object}/>}
+                    <div key={`slides${i}`}>
+                        {<PlayerStatCard  data={object}/>}
                     </div>
                 );
 
