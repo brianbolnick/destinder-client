@@ -1,5 +1,15 @@
 // eslint-disable-next-line
-import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START, ADD_FIRETEAM_CHARACTER } from '../actions/types';
+import { 
+    FETCH_FIRETEAM_START, 
+    FETCH_FIRETEAM_END, 
+    SET_FIRETEAM_ERRORS, 
+    FETCH_PLAYER_DATA, 
+    SET_USER_ERRORS, 
+    VALIDATE_PLAYER_END, 
+    VALIDATE_PLAYER_START, 
+    ADD_FIRETEAM_CHARACTER, 
+    CLEAR_STORE 
+} from '../actions/types';
 
 const INITIAL_STATE = {
     fireteam: [],
@@ -29,6 +39,8 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, error: action.message, fetchingFireteam: false }
         case SET_USER_ERRORS:
             return { ...state, userValid: false, validatingUser: false, error: action.payload }
+        case CLEAR_STORE:
+            return INITIAL_STATE;
         case ADD_FIRETEAM_CHARACTER:
             return {
                 ...state,

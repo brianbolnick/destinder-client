@@ -8,19 +8,20 @@ import Carousel from 'nuka-carousel';
 import StatsCard from './PlayerOverview.js';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { resetErrors, validateUserDirectPath, fetchFireteamMembers, addPlayerStats } from '../../actions/fireteams_index';
+import { resetErrors, validateUserDirectPath, fetchFireteamMembers, addPlayerStats, clearOnUnmount } from '../../actions/fireteams_index';
 import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
 class HomeNav extends Component {
+    handleClick = () => console.log("clicked")
     render() {
         return (
             <Menu text className="fireteams-nav">
                 <Menu.Menu position="right">
                     <Menu.Item >
                         <div>
-                            <Button as={Link} to='/fireteams' basic inverted icon >
+                            <Button as={Link} to='/fireteams' onClick={this.handleClick} basic inverted icon >
                                 <Icon name='search' /> New Search
                             </Button>
                         </div>
@@ -111,6 +112,10 @@ class FireteamPage extends Component {
                 console.log("There's something wrong here.... I'm done working for now..")
             }
         }, 1);
+    }
+
+    componentWillUnmount() {        
+        this.props.clearOnUnmount();
     }
 
     handleDismiss = () => {
@@ -254,4 +259,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { validateUserDirectPath, resetErrors, fetchFireteamMembers, addPlayerStats })(FireteamPage)
+export default connect(mapStateToProps, { validateUserDirectPath, resetErrors, fetchFireteamMembers, addPlayerStats, clearOnUnmount })(FireteamPage)

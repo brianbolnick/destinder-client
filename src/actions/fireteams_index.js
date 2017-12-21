@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START, ADD_FIRETEAM_CHARACTER } from './types';
+import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START, ADD_FIRETEAM_CHARACTER, CLEAR_STORE } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
 import { push } from 'react-router-redux'
@@ -12,6 +12,14 @@ export const addPlayerStats = (id, data) => {
             type: ADD_FIRETEAM_CHARACTER,
             payload: data,
             id: id
+        })
+    }
+}
+
+export const clearOnUnmount = () => {
+    return (dispatch, getState) => {
+        dispatch({
+            type: CLEAR_STORE
         })
     }
 }
