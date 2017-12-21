@@ -26,7 +26,7 @@ class PlayerStatCard extends Component {
     render() {
 
         const { stats, player_name } = this.props
-        const items = stats.character_data.items === null ? null : stats.character_data.items
+        const items = stats.items === null ? null : stats.items
 
         var exotic = (items === null || items.helmet === undefined) ? null : items.helmet
         for (var key in items) {
