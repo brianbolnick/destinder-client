@@ -260,13 +260,12 @@ class Container extends Component {
     renderCards = (data) => {
         let character_data;
         return data.fireteam_data.map((player, index) => {
-            character_data = JSON.parse(player).character_data
+            character_data = JSON.parse(player).character_data            
             return (
-                <div>
-                    <LfgCard
-                        key={`${JSON.parse(player).user_id}${index}`}
+                <div key={`${JSON.parse(player).user_id}${index}`}>
+                    <LfgCard                        
                         data={data} playerData={JSON.parse(player).player_data}
-                        character_data={JSON.parse(character_data)[1]}
+                        character_data={JSON.parse(character_data)}
                         onDeleteClick={this.handleDeleteButtonClick}
                     />
                 </div>
@@ -286,9 +285,9 @@ class Container extends Component {
                         swipeToSlide={true}
                         draggable
                     >
-                        <div>
+                        <div key={data.user_id}>
                             <LfgCard
-                                key={data.user_id}
+                                
                                 data={data}
                                 playerData={data.player_data}
                                 character_data={JSON.parse(data.character_data)}
@@ -301,9 +300,8 @@ class Container extends Component {
 
                 :
                 <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
-                    <div>
-                        <LfgCard
-                            key={data.user_id}
+                    <div key={data.user_id}>
+                        <LfgCard                            
                             data={data}
                             playerData={data.player_data}
                             character_data={JSON.parse(data.character_data)}
