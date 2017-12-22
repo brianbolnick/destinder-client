@@ -7,7 +7,7 @@ import {
 export class TrialsData extends Component {
     render() {
         return (
-            <Grid columns={4} divided>
+            <Grid columns={4} divided style={{ width: '100%' }}>
                 <Grid.Row >
                     <Grid.Column>
                         <Statistic size='mini'>
@@ -18,7 +18,7 @@ export class TrialsData extends Component {
 
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value>{this.props.player_data.elo.elo}</Statistic.Value>
+                            <Statistic.Value className='long-stat' style={{ fontSize: '1.1em' }}>{this.props.player_data.elo.elo}</Statistic.Value>
                             <Statistic.Label style={{ marginTop: '10px' }}>ELO</Statistic.Label>
                         </Statistic>
                     </Grid.Column>
@@ -32,8 +32,8 @@ export class TrialsData extends Component {
 
                     <Grid.Column>
                         <Statistic size='mini'>
-                            <Statistic.Value>{this.props.player_data.kad_ratio}</Statistic.Value>
-                            <Statistic.Label style={{ marginTop: '10px' }}>KA/D</Statistic.Label>
+                            <Statistic.Value >{this.props.player_data.flawless}<span style={{ fontSize: '0.8em' }}>x</span></Statistic.Value>
+                            <Statistic.Label  style={{ fontSize: '0.8em', marginTop: '10px' }}>FLAWLESS</Statistic.Label>
                         </Statistic>
                     </Grid.Column>
 

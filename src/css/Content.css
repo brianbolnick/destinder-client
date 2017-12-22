@@ -28,6 +28,9 @@ i.world.link.icon.header-button:hover {
 .ui.mini.statistic>.value.extra-long-stat, .ui.mini.statistics .statistic>.value.extra-long-stat {
     font-size: 0.9em !important;
 }
+.ui.mini.statistic>.value.long-stat, .ui.mini.statistics .statistic>.value.long-stat {
+    font-size: 1.1em !important;
+}
 
 .ui.mini.statistic>.value, .ui.mini.statistics .statistic>.value {
     font-size: 1.3rem!important;

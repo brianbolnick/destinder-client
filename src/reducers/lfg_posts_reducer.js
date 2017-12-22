@@ -58,14 +58,16 @@ export default function (state = INITIAL_STATE, action) {
         case SHOW_ALL_POSTS:
             return { ...state, all: state.all }
         case FILTER_ELO:
+            // console.log(action.payload)
             return {
                 ...state,
                 all: state.all.filter(post =>
-                    JSON.parse(post.player_data).elo >= action.payload[0] &&
-                    JSON.parse(post.player_data).elo <= action.payload[1]
+                    JSON.parse(post.player_data).elo.elo >= action.payload[0] &&
+                    JSON.parse(post.player_data).elo.elo <= action.payload[1]
                 )
             }
         case FILTER_KD:
+        console.log(action.payload)
             return {
                 ...state,
                 all: state.all.filter(post =>
