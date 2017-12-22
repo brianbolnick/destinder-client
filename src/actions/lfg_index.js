@@ -154,7 +154,7 @@ export const createLfgPost = (props) => {
             props,
             config
         )
-            .then(response => {
+            .then(response => {                
                 dispatch({
                     type: CREATE_LFG_POST,
                     payload: response.data
