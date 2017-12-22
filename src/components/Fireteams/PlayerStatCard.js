@@ -123,6 +123,20 @@ class PlayerStatCard extends Component {
                 content={"This player does not have a Destinder account."}
             />
 
+        const elo = stats[0].player_data.stats.elo.elo;
+        let eloColor;
+        if (elo < 1100) {
+
+        } else if (elo >= 1100 && elo < 1299) {
+            eloColor = {color: '#5d5d5d'}
+        } else if (elo >= 1300 && elo < 1499) {
+            eloColor = {color: '#ab7000'}
+        } else if (elo >= 1500 && elo < 1699) {
+            eloColor = {color: '#006b31'}
+        } else {
+            eloColor = { color: '#00567d' }
+        }
+
         return (
             <div>
                 <Card style={{ boxShadow: 'none' }}>
@@ -179,8 +193,8 @@ class PlayerStatCard extends Component {
                                     letterSpacing: '1px'
                                 }}>
                                     {/* <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' /> */}
-                                    <span>{stats[0].character_data.subclass}</span> <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' /> 
-                                    <span style={{marginLeft: '4px', fontWeight: '600', fontSize: '0.9rem', textTransform: 'lowercase'}} > {stats[0].player_data.stats.flawless}x </span> Flawless
+                                    <span>{stats[0].character_data.subclass}</span> <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' />
+                                    <span style={{ marginLeft: '4px', fontWeight: '600', fontSize: '0.9rem', textTransform: 'lowercase' }} > {stats[0].player_data.stats.flawless}x </span> Flawless
                                 </div>}
                                 content='Subclass Stats Coming Soon...'
                                 position='bottom center'
@@ -209,7 +223,7 @@ class PlayerStatCard extends Component {
                                         </Header>
                                     </Grid.Column>
                                     <Grid.Column>
-                                        <Header as='h4' style={{ color: 'rgb(113, 152, 183)' }}>
+                                        <Header as='h4' style={eloColor}>
                                             {stats[0].player_data.stats.elo.elo}
                                             <Header.Subheader>
                                                 ELO

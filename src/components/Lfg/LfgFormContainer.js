@@ -15,17 +15,22 @@ class FormContainer extends Component {
 
     componentWillMount() {
         //populate form character options with users characters
-        if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
-            this.props.getPlayerCharacters(jwt.user_id);
+        if (jwt != null) {
+            if ((jwt.exp * 1000) >= Date.now()) {
+                this.props.getPlayerCharacters(jwt.user_id);
+            } else {
+                localStorage.removeItem('jwt');
+                localStorage.removeItem('auth_token');
+            }
         }
     }
 
     handleFormSubmit = values => {
         //close accordion on submit
-        this.setState({activeIndex: -1 })
+        this.setState({ activeIndex: -1 })
 
         //merge user id with form props
-        values = {...values, user_id: JSON.parse(localStorage.getItem('jwt')).user_id}
+        values = { ...values, user_id: JSON.parse(localStorage.getItem('jwt')).user_id }
         this.props.createLfgPost(values);
     }
 
@@ -79,10 +84,10 @@ class FormContainer extends Component {
                         />
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 0}>
-                        <NewForm 
-                        characters={charOptions}
-                        onSubmit={this.handleFormSubmit}
-                        fetching={this.props.fetchingNewPost}
+                        <NewForm
+                            characters={charOptions}
+                            onSubmit={this.handleFormSubmit}
+                            fetching={this.props.fetchingNewPost}
                         />
                     </Accordion.Content>
                 </Accordion>
@@ -97,10 +102,10 @@ class FormContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    return { 
+    return {
         characters: state.lfgPosts.characters,
         fetchingNewPost: state.lfgPosts.fetchingNewPost
-     }
+    }
 }
 
 export default connect(mapStateToProps, { getPlayerCharacters, createLfgPost })(FormContainer)

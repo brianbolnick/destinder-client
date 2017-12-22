@@ -87,10 +87,15 @@ class LfgPage extends Component {
   }
 
   isLoggedIn() {
-    if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
-      return true;
-    }
-    return false;
+    if (jwt != null) { 
+      if ((jwt.exp * 1000) >= Date.now()) {
+          return true;
+      } else {
+          localStorage.removeItem('jwt');
+          localStorage.removeItem('auth_token');
+      }
+  }
+  return false;
   }
 
   handleRefreshButtonClick() {

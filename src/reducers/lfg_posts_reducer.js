@@ -67,7 +67,6 @@ export default function (state = INITIAL_STATE, action) {
                 )
             }
         case FILTER_KD:
-        console.log(action.payload)
             return {
                 ...state,
                 all: state.all.filter(post =>

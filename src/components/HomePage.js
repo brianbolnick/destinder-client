@@ -8,7 +8,10 @@ import AnnouncementLogo from "../img/announce-with-title-word-white.png";
 import LfgIcon from '../img/lfg-icon.png';
 import { FaqContent, BadgeContent } from './ModalContent';
 import { API_URL } from '../tools/api-config';
+import axios from 'axios';
 import { jwt } from '../tools/jwt';
+const token = localStorage.getItem('auth_token');
+const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 
 const FaqButton = () => {
   return (
@@ -31,19 +34,34 @@ const BadgeInfo = () => {
 class LoginButton extends Component {
   isLoggedIn() {
 
-    if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
-      return true;
+    if (jwt != null) {
+      if ((jwt.exp * 1000) >= Date.now()) {
+        return true;
+      } else {
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('auth_token');
+      }
     }
     return false;
   }
 
   onLogoutClick() {
-    localStorage.getItem('jwt')
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('auth_token');
-    console.log('logging out');
-    window.location.replace('/');
-  }
+    axios.post(`${API_URL}/v1/users/${jwt.user_id}/logout`,
+        null,
+        config
+    )
+        .then(response => {
+            localStorage.getItem('jwt')
+            localStorage.removeItem('jwt');
+            localStorage.removeItem('auth_token');
+            console.log('logging out');
+            window.location.replace('/');
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+}
 
   render() {
     return (

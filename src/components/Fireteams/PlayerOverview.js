@@ -26,8 +26,13 @@ class StatsCard extends Component {
     }
 
     isLoggedIn() {
-        if ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) {
-            return true;
+        if (jwt != null) { 
+            if ((jwt.exp * 1000) >= Date.now()) {
+                return true;
+            } else {
+                localStorage.removeItem('jwt');
+                localStorage.removeItem('auth_token');
+            }
         }
         return false;
     }

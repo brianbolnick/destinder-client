@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Image, Grid, Message, Button, Icon, Statistic, Menu, Segment, Divider } from 'semantic-ui-react';
+import { Container, Card, Image, Grid, Message, Button, Icon, Statistic, Menu, Segment, Divider, Dropdown } from 'semantic-ui-react';
 import Layout from '../Layout.js';
 import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';
@@ -10,11 +10,79 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { resetErrors, validateUserDirectPath, fetchFireteamMembers, addPlayerStats, clearOnUnmount } from '../../actions/fireteams_index';
 import { Tabs } from 'antd';
+import { jwt } from '../../tools/jwt';
+import { API_URL } from '../../tools/api-config';
+import axios from 'axios';
+const token = localStorage.getItem('auth_token');
+const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
+
 
 const TabPane = Tabs.TabPane;
 
+
+class LoginButton extends Component {
+    isLoggedIn() {
+        if (jwt != null) {
+            if ((jwt.exp * 1000) >= Date.now()) {
+                return true;
+            } else {
+                localStorage.removeItem('jwt');
+                localStorage.removeItem('auth_token');
+            }
+        }
+        return false;
+    }
+
+    onLogoutClick() {
+        axios.post(`${API_URL}/v1/users/${jwt.user_id}/logout`,
+            null,
+            config
+        )
+            .then(response => {
+                localStorage.getItem('jwt')
+                localStorage.removeItem('jwt');
+                localStorage.removeItem('auth_token');
+                console.log('logging out');
+                window.location.replace('/fireteams');
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+    }
+
+    render() {
+        return (
+            this.isLoggedIn()
+                ?
+                <Dropdown
+                    trigger={
+                        <span style={{ letterSpacing: '1.1px', fontSize: '1.1em' }}>
+                            {jwt.display_name}
+                        </span>
+                    }
+                    pointing="top left"
+                    icon={null}
+                    style={{ color: "#f5f5f5", lineHeight: '2' }}
+                >
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                :
+                <Button basic inverted color='teal' animated as='a' href={`${API_URL}/login`}>
+                    <Button.Content style={{ color: '#f5f5f5' }} visible>Login</Button.Content>
+                    <Button.Content style={{ color: '#f5f5f5' }} hidden>
+                        <Icon name='right arrow' />
+                    </Button.Content>
+                </Button>
+
+        )
+    }
+}
 class HomeNav extends Component {
     handleClick = () => console.log("clicked")
+
     render() {
         return (
             <Menu text className="fireteams-nav">
@@ -24,6 +92,11 @@ class HomeNav extends Component {
                             <Button as={Link} to='/fireteams' onClick={this.handleClick} basic inverted icon >
                                 <Icon name='search' /> New Search
                             </Button>
+                        </div>
+                    </Menu.Item>
+                    <Menu.Item >
+                        <div>
+                            <LoginButton />
                         </div>
                     </Menu.Item>
                 </Menu.Menu>

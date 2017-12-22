@@ -35,6 +35,20 @@ class PlayerStatCard extends Component {
             }
         }
 
+        const elo = stats.player_data.stats.elo.elo;
+        let eloColor;
+        if (elo < 1100) {
+
+        } else if (elo >= 1100 && elo < 1299) {
+            eloColor = {color: '#5d5d5d'}
+        } else if (elo >= 1300 && elo < 1499) {
+            eloColor = {color: '#ab7000'}
+        } else if (elo >= 1500 && elo < 1699) {
+            eloColor = {color: '#006b31'}
+        } else {
+            eloColor = { color: '#00567d' }
+        }
+
 
         return (
             <div style={{padding: '5%' }}>
@@ -109,7 +123,7 @@ class PlayerStatCard extends Component {
                                         </Header>
                                     </Grid.Column>
                                     <Grid.Column>
-                                        <Header as='h4' style={{ color: '#7198B7' }}>
+                                        <Header as='h4' style={eloColor}>
                                             {stats.player_data.stats.elo.elo}
                                             <Header.Subheader>
                                                 ELO
