@@ -72,18 +72,20 @@ class PlayerStatCard extends Component {
 
                             </div>
                             <Popup
-                                trigger={<div style={{
-                                    textAlign: 'center',
-                                    fontSize: '1em',
-                                    fontWeight: '400',
-                                    marginBottom: '5%'
-                                }}>
-                                    {/* subclass */}
-                                    <Image src={SUBCLASS_ICONS[stats.character_data.subclass]} avatar size='mini' />{stats.character_data.subclass}
-                                </div>}
-                                content='Subclass Stats Coming Soon...'
-                                position='bottom center'
-                            />
+                            trigger={<div style={{
+                                textAlign: 'center',
+                                fontSize: '0.8rem',
+                                fontWeight: '400',
+                                marginBottom: '5%',
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px'
+                            }}>                                
+                                <span>{stats.character_data.subclass}</span> <Image src={SUBCLASS_ICONS[stats.character_data.subclass]} avatar size='mini' /> 
+                                <span style={{marginLeft: '4px', fontWeight: '600', fontSize: '0.9rem', textTransform: 'lowercase'}} > {stats.player_data.stats.flawless}x </span> Flawless
+                            </div>}
+                            content='Subclass Stats Coming Soon...'
+                            position='bottom center'
+                        />
 
                             <div style={{ padding: '15px' }}>
                                 {stats.recent_games === null ?
@@ -137,7 +139,7 @@ class PlayerStatCard extends Component {
                                             (items === null || items.kinetic_weapon === undefined) ? NoItem : items.kinetic_weapon.item_icon
                                         } />}
                                         content={(items === null || items.kinetic_weapon === undefined) ? "No Data" : items.kinetic_weapon.item_name}
-                                        header="Primary 1"
+                                        header="Kinetic Weapon"
                                         position='top center'
                                     />
                                 </Grid.Column>
@@ -147,7 +149,7 @@ class PlayerStatCard extends Component {
                                             (items === null || items.energy_weapon === undefined) ? NoItem : items.energy_weapon.item_icon
                                         } />}
                                         content={(items === null || items.energy_weapon === undefined) ? "No Data" : items.energy_weapon.item_name}
-                                        header="Primary 2"
+                                        header="Energy Weapon"
                                         position='top center'
                                     />
                                 </Grid.Column>

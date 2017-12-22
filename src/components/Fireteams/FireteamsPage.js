@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Image, Grid, Message, Button, Icon, Statistic, Menu } from 'semantic-ui-react';
+import { Container, Card, Image, Grid, Message, Button, Icon, Statistic, Menu, Segment, Divider } from 'semantic-ui-react';
 import Layout from '../Layout.js';
 import createReactClass from 'create-react-class';
 import PlayerStatCard from './PlayerStatCard.js';
@@ -57,7 +57,7 @@ const FireteamOverview = (props) => {
     if (props.data[0] !== undefined) {
         columns = props.data[0].map(function (object, i) {
             return (
-                <PlayerStatCard key={i + 5} data={object} action={props.action} account_info={object.account_info}/>
+                <PlayerStatCard key={i + 5} data={object} action={props.action} account_info={object.account_info} />
             )
         });
     }
@@ -96,6 +96,11 @@ const FireteamStatsView = (props) => {
                     <Statistic.Label>Longest Streak</Statistic.Label>
                 </Statistic>
             </Statistic.Group>
+
+            <Divider />
+            <Segment disabled padded='very' inverted size='massive'>
+                More stats and charts coming soon!
+            </Segment>
         </div>
 
     )
@@ -114,7 +119,7 @@ class FireteamPage extends Component {
         }, 1);
     }
 
-    componentWillUnmount() {        
+    componentWillUnmount() {
         this.props.clearOnUnmount();
     }
 
@@ -139,18 +144,18 @@ class FireteamPage extends Component {
             playerPanes = players[0].map(function (object, i) {
                 slides.push(
                     <div key={`slides${i}`}>
-                        {<PlayerStatCard  data={object}/>}
+                        {<PlayerStatCard data={object} />}
                     </div>
                 );
 
                 if (characters[object.player_name]) {
                     tabs = characters[object.player_name].map(function (char, i) {
                         return (
-                            <TabPane tab={char.character_data.character_type} key={`${char.character_data.character_id}`}>
+                            <TabPane tab={char.character_data.character_type} key={`${char.character_data.character_id.toString()}`}>
                                 <div style={{ marginLeft: '2%', marginRight: '2%' }}>
                                     <Grid centered stretched verticalAlign='middle' columns={2} style={{ height: '80vh' }}>
                                         <Grid.Column width={5}>
-                                            <SinglePlayerStatCard stats={char} player_name={object.player_name} has_account={object.has_account} account_info={object.account_info}/>
+                                            <SinglePlayerStatCard stats={char} player_name={object.player_name} has_account={object.has_account} account_info={object.account_info} />
                                         </Grid.Column>
                                         <Grid.Column width={11} style={{ minHeight: '77vh', width: '100%' }}>
                                             <StatsCard data={char} account_info={object.account_info} />
@@ -168,7 +173,7 @@ class FireteamPage extends Component {
                         key={`tabs${object.player_name}`}
                     >
                         <Tabs
-                            defaultActiveKey={object.character_id}
+                            defaultActiveKey={object.character_id.toString()}
                             tabPosition='top'
                             size='large'
                             type='card'
@@ -227,10 +232,10 @@ class FireteamPage extends Component {
                                                 <TabPane tab="Team Stats" key="21"><FireteamStatsView data={this.props.fireteam} /></TabPane>
                                             </Tabs>
                                         </TabPane>
-                                            {playerPanes}
+                                        {playerPanes}
 
                                     </Tabs>
-                                    
+
                                     :
                                     null
                                 }

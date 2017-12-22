@@ -172,11 +172,15 @@ class PlayerStatCard extends Component {
                             <Popup
                                 trigger={<div style={{
                                     textAlign: 'center',
-                                    fontSize: '1em',
+                                    fontSize: '0.8rem',
                                     fontWeight: '400',
-                                    marginBottom: '5%'
+                                    marginBottom: '5%',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px'
                                 }}>
-                                    <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' />{stats[0].character_data.subclass}
+                                    {/* <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' /> */}
+                                    <span>{stats[0].character_data.subclass}</span> <Image src={SUBCLASS_ICONS[stats[0].character_data.subclass]} avatar size='mini' /> 
+                                    <span style={{marginLeft: '4px', fontWeight: '600', fontSize: '0.9rem', textTransform: 'lowercase'}} > {stats[0].player_data.stats.flawless}x </span> Flawless
                                 </div>}
                                 content='Subclass Stats Coming Soon...'
                                 position='bottom center'
@@ -201,15 +205,15 @@ class PlayerStatCard extends Component {
                                             {stats[0].player_data.stats.kad_ratio}
                                             <Header.Subheader>
                                                 KA/D
-                                        </Header.Subheader>
+                                            </Header.Subheader>
                                         </Header>
                                     </Grid.Column>
                                     <Grid.Column>
-                                        <Header as='h4' style={{ color: '#7198B7' }}>
+                                        <Header as='h4' style={{ color: 'rgb(113, 152, 183)' }}>
                                             {stats[0].player_data.stats.elo.elo}
                                             <Header.Subheader>
                                                 ELO
-                                        </Header.Subheader>
+                                            </Header.Subheader>
                                         </Header>
                                     </Grid.Column>
                                     <Grid.Column>
@@ -217,7 +221,7 @@ class PlayerStatCard extends Component {
                                             {stats[0].player_data.stats.win_rate}
                                             <Header.Subheader>
                                                 WIN %
-                                        </Header.Subheader>
+                                            </Header.Subheader>
                                         </Header>
                                     </Grid.Column>
                                 </Grid.Row>
@@ -235,7 +239,7 @@ class PlayerStatCard extends Component {
                                             (items === null || items.kinetic_weapon === undefined) ? NoItem : items.kinetic_weapon.item_icon
                                         } />}
                                         content={(items === null || items.kinetic_weapon === undefined) ? "No Data" : items.kinetic_weapon.item_name}
-                                        header="Primary 1"
+                                        header="Kinetic Weapon"
                                         position='top center'
                                     />
                                 </Grid.Column>
@@ -245,7 +249,7 @@ class PlayerStatCard extends Component {
                                             (items === null || items.energy_weapon === undefined) ? NoItem : items.energy_weapon.item_icon
                                         } />}
                                         content={(items === null || items.energy_weapon === undefined) ? "No Data" : items.energy_weapon.item_name}
-                                        header="Primary 2"
+                                        header="Energy Weapon"
                                         position='top center'
                                     />
                                 </Grid.Column>

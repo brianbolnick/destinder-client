@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label } from 'semantic-ui-react';
+import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
 import { WEAPONS, BADGES } from '../../data/common_constants'
 import { jwt } from '../../tools/jwt';
@@ -94,7 +94,7 @@ class StatsCard extends Component {
         let downvote = null;
         const repValue = account_info.reputation ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
 
-        let badges = null;
+        let badges = "Nothing here... :("
         if (account_info.badges) {
             badges = account_info.badges.map(function (badge) {
                 return (
@@ -124,17 +124,17 @@ class StatsCard extends Component {
 
         const repDisplay = account_info.reputation ?
             <Popup
-                trigger={<Rating className='player-overview-rating' size='mini' defaultRating={repValue} maxRating={5} icon='star' disabled />}
+                trigger={<Rating className='player-overview-rating' size='large' defaultRating={repValue} maxRating={5} icon='star' disabled />}
                 content={`Reputation: ${account_info.reputation.reputation_score}% (${account_info.reputation.total_votes} votes)`}
             />
             :
             <Popup
-                trigger={<Rating size='mini' defaultRating={0} maxRating={5} icon='star' disabled />}
+                trigger={<Rating size='large' defaultRating={0} maxRating={5} icon='star' disabled />}
                 content={"This player does not have a Destinder account."}
             />
         return (
             <Card style={{ width: '100%', color: '#f5f5f5', backgroundColor: 'transparent' }}>
-                <Container text style={{ padding: '2%' }}>
+                <Container text style={{ padding: '2%', width: '100%' }}>
                     <Grid centered stretched verticalAlign='middle' style={{ height: '77vh' }}>
                         <Grid.Row>
                             <Grid.Column>
@@ -198,26 +198,31 @@ class StatsCard extends Component {
                             <Grid.Column>
                                 <Grid centered stretched verticalAlign='middle' columns={2} >
                                     <Grid.Column>
-                                        <h4>Player Badges</h4>
-                                        <Label.Group>
-                                            {badges}
-                                        </Label.Group>
+                                        <h2 className="player-overview-header">Badges</h2>
+                                        <Segment inverted padded style={{background: 'transparent'}}>
+                                            <Label.Group>
+                                                {badges}
+                                            </Label.Group>
+                                        </Segment>
                                     </Grid.Column>
                                     <Grid.Column >
-                                        <h4>Player Reputation</h4>
-                                        <Grid centered stretched verticalAlign='middle'>
-                                            <Grid.Column width={3} style={{ alignItems: 'center' }}>
-                                                {/* <Icon name="thumbs outline up" link size='big' /> */}
-                                                {upvote}
-                                            </Grid.Column>
-                                            <Grid.Column width={5}>
-                                                {repDisplay}
-                                            </Grid.Column>
-                                            <Grid.Column width={3} style={{ alignItems: 'center' }}>
-                                                {/* <Icon name="thumbs outline down" link size='big' /> */}
-                                                {downvote}
-                                            </Grid.Column>
-                                        </Grid>
+                                        <h2 className="player-overview-header">Reputation</h2>
+                                        <Segment inverted textAlign='center' padded style={{background: 'transparent'}}>
+                                            <Grid centered stretched verticalAlign='middle'>
+                                                <Grid.Column width={3} style={{ alignItems: 'center' }}>
+                                                    {/* <Icon name="thumbs outline up" link size='big' /> */}
+                                                    {upvote}
+                                                </Grid.Column>
+                                                <Grid.Column width={5}>
+                                                    {repDisplay}
+                                                </Grid.Column>
+                                                <Grid.Column width={6} style={{ alignItems: 'center' }}>
+                                                    {/* <Icon name="thumbs outline down" link size='big' /> */}
+                                                    {downvote}
+                                                </Grid.Column>
+                                            </Grid>
+                                        </Segment>
+
                                     </Grid.Column>
                                 </Grid>
                             </Grid.Column>
@@ -227,11 +232,15 @@ class StatsCard extends Component {
                             <Grid.Column>
                                 <Grid columns={2} centered stretched verticalAlign='middle' >
                                     <Grid.Column>
-                                        Recent Games
-                                </Grid.Column>
+                                        <Segment disabled inverted textAlign='center' padded='very'>
+                                            More Stats Coming soon!
+                                        </Segment>
+                                    </Grid.Column>
                                     <Grid.Column>
-                                        Something else
-                                </Grid.Column>
+                                        <Segment disabled inverted textAlign='center' padded='very'>
+                                            More Stats Coming soon!
+                                        </Segment>
+                                    </Grid.Column>
                                 </Grid>
                             </Grid.Column>
                         </Grid.Row>

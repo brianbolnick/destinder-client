@@ -133,6 +133,16 @@ a.ui.basic.icon.inverted.button.fireteam-back-btn:hover {
     animation: rainbow 18s ease infinite;
     background-size: 1800% 1800% !important;
 }
+
+h2.player-overview-header {
+    text-transform: uppercase;
+    font-size: 1.2vw;
+    letter-spacing: 2px;
+}
+
+.ui.disabled.rating .icon {
+    color: #DEDEDF;
+}
   
   @-webkit-keyframes rainbow {
       0%{background-position:0% 82%}
