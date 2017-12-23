@@ -87,6 +87,10 @@ class LoginButton extends Component {
               <Modal.Header>FAQ</Modal.Header>
               <FaqContent />
             </Modal>
+            <Modal closeIcon trigger={<Dropdown.Item className='hide-on-med-and-up'>Badges</Dropdown.Item>}>
+              <Modal.Header>Badge-o-Graphy</Modal.Header>
+              <BadgeContent />
+            </Modal>
             <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
