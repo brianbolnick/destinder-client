@@ -25,13 +25,22 @@ const user_id = ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) ? jwt.user_i
 const membershipType = ((jwt != null) && ((jwt.exp * 1000) >= Date.now())) ? jwt.membership_type : null
 
 class HeaderData extends Component {
+
     render() {
+        const nameStyle = this.props.player_data.player_name.length > 9 ?
+            {
+                padding: '15px 0px 0px',
+                fontSize: '1em',
+                color: '#f5f5f5',
+                whiteSpace: 'nowrap'
+            } : 
+            { padding: '0', paddingTop: '15px', fontSize: '1.2em', color: '#f5f5f5' }
         return (
             <Grid columns='equal' style={{ height: '50px' }}>
                 <Grid.Row style={{ height: '50px', padding: '0' }}>
                     <Grid.Column>
                     </Grid.Column>
-                    <Grid.Column width={6} style={{ padding: '0', paddingTop: '15px', fontSize: '1.2em', color: '#f5f5f5' }}>
+                    <Grid.Column width={6} style={nameStyle}>
                         {this.props.player_data.player_name}
                     </Grid.Column>
                     <Grid.Column style={{ paddingTop: '5px' }}>
@@ -141,6 +150,8 @@ class LfgCard extends Component {
 
         )
 
+
+
         let statData;
         switch (data.game_type) {
             case '2':
@@ -182,7 +193,7 @@ class LfgCard extends Component {
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis'
-                    }}>{ data.checkpoint != null ? CHECKPOINTS[data.checkpoint] : GAME_TYPES[data.game_type]}</div>
+                    }}>{data.checkpoint != null ? CHECKPOINTS[data.checkpoint] : GAME_TYPES[data.game_type]}</div>
                     <div style={{
                         textTransform: 'uppercase',
                         textAlign: 'center',
@@ -260,10 +271,10 @@ class Container extends Component {
     renderCards = (data) => {
         let character_data;
         return data.fireteam_data.map((player, index) => {
-            character_data = JSON.parse(player).character_data            
+            character_data = JSON.parse(player).character_data
             return (
                 <div key={`${JSON.parse(player).user_id}${index}`}>
-                    <LfgCard                        
+                    <LfgCard
                         data={data} playerData={JSON.parse(player).player_data}
                         character_data={JSON.parse(character_data)}
                         onDeleteClick={this.handleDeleteButtonClick}
@@ -287,7 +298,7 @@ class Container extends Component {
                     >
                         <div key={data.user_id}>
                             <LfgCard
-                                
+
                                 data={data}
                                 playerData={data.player_data}
                                 character_data={JSON.parse(data.character_data)}
@@ -301,7 +312,7 @@ class Container extends Component {
                 :
                 <Grid.Column mobile={16} tablet={8} computer={5} largeScreen={4}>
                     <div key={data.user_id}>
-                        <LfgCard                            
+                        <LfgCard
                             data={data}
                             playerData={data.player_data}
                             character_data={JSON.parse(data.character_data)}
