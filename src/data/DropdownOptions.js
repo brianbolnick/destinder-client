@@ -64,6 +64,7 @@ export const raidOptions = [
     { key: "14", text: "Prestige - Pleasure Gardens", value: 14 },
     { key: "15", text: "Prestige - Gauntlet", value: 15 },
     { key: "16", text: "Prestige - Calus", value: 16 },
+    { key: "17", text: "Eater of Worlds", value: 16 },
     { key: "102", text: "Other", value: 102 }
 ]
 
