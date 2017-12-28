@@ -32,6 +32,7 @@ export const pvpOptions = [
 
 export const allModeOptions = [
     { key: "7", text: "PVE - Any", value: 7 },
+    { key: "8", text: "Exotic Quest - Any", value: 7 },
     { key: "4", text: "Raid - Leviathan", value: 4 },
     { key: "16", text: "Nightfall", value: 16 },
     { key: "17", text: "Nightfall - Heroic", value: 17 },

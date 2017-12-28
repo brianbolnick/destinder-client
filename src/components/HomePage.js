@@ -195,7 +195,7 @@ class HomeFirst extends Component {
                 <div className="home-tile-content">
                   <div className="home-tile-icon">
                     {/* <Icon name="user outline" size="massive" />    */}
-                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/free_roam.png" centered size='tiny' className='home-profile-icon' />
+                    <Image src="https://www.bungie.net/img/theme/destiny/icons/game_modes/free_roam.png" centered size='tiny' className='home-profile-icon' />
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">
@@ -240,7 +240,7 @@ class HomeFirst extends Component {
                     <Icon.Group size="massive">
                       {/* <Icon name="users" /> */}
                       {/* <Image src={TrialsIcon} style={{marginTop: '20px'}}/> */}
-                      <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/trials_of_the_nine.png" centered size='tiny' className='home-fireteams-icon' />
+                      <Image src="https://www.bungie.net/img/theme/destiny/icons/game_modes/trials_of_the_nine.png" centered size='tiny' className='home-fireteams-icon' />
                       {/* <Icon corner color='grey' name='search' /> */}
                     </Icon.Group>
                   </div>
@@ -263,7 +263,7 @@ class HomeFirst extends Component {
                   <div className="home-tile-icon">
                     {/* <Icon name="search" size="massive" /> */}
                     {/* <Image src={ClansIcon} centered size='tiny' style={{width: '100px'}}/> */}
-                    <Image src="http://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' className='home-clans-icon' />
+                    <Image src="https://www.bungie.net/img/theme/destiny/icons/game_modes/crucible_control.png" centered size='tiny' className='home-clans-icon' />
                   </div>
                   <Card.Content style={{ borderTop: "none" }}>
                     <Card.Header className="home-tile-text-header">

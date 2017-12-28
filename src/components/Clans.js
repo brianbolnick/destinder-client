@@ -15,7 +15,7 @@ class ClansPage extends Component {
                                 Don't worry. We're working on it. Soon you'll be able to view clan stats, recruit for your clan, and more!
                             </Message.Content>
                         </Message>
-                        <Image size='big' centered fluid src='http://i.imgur.com/7rlgPZQ.gif' />
+                        <Image size='big' centered fluid src='https://i.imgur.com/7rlgPZQ.gif' />
                     </Container>
                 </div>
             </Layout>
