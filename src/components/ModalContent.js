@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Icon, Button, Modal, Divider, Header, Label } from "semantic-ui-react";
 import { Dedicated, BigDonator, Donator, Follower, Veteran, Sponsor, LittleHelper, Conjuror } from '../data/badges';
+import { Link } from "react-router-dom";
+
 
 export class FaqContent extends Component {
     render() {
