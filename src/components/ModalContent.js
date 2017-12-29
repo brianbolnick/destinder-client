@@ -50,7 +50,7 @@ export class FaqContent extends Component {
 
                         {/* <div style={{textAlign: 'center', padding: '30px'}}> <Donator /></div> */}
                     </p>
-                    <Button basic onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
+                    <Button basic as={Link} to='/donate' >
                         <Icon name='paypal' />  Donate!
                     </Button>
                     <Divider />
