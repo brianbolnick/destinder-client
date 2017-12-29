@@ -174,7 +174,7 @@ class HomeFirst extends Component {
 
           </Modal.Content>
           <Modal.Actions>
-            <Button floated='left' basic inverted onClick={() => { window.location.replace('"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2"') }} >
+            <Button floated='left' as={Link} basic inverted to='/donate' >
               <Icon name='paypal' /> Help run the site, donate now!
             </Button>
             <Button floated='right' inverted basic color='teal' onClick={this.handleDismissClick.bind(this)} >

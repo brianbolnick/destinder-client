@@ -80,6 +80,24 @@ class App extends Component  {
                 (window.location =
                   "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HUYFMWSSJERU2")}
             />
+            <Route
+              path="/twitter"
+              component={() =>
+                (window.location =
+                  "https://twitter.com/Destinderdotcom")}
+            />
+            <Route
+              path="/instagram"
+              component={() =>
+                (window.location =
+                  "https://www.instagram.com/destinderdotcom/")}
+            />
+            <Route
+              path="/reddit"
+              component={() =>
+                (window.location =
+                  "https://www.reddit.com/r/destinder/")}
+            />
             <Route component={NotFound} />
           </Switch>
         </CSSTransition>
