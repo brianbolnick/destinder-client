@@ -26,8 +26,8 @@ class WeaponChart extends Component {
                 backgroundColor: [
                     "#FA8708",
                     "#3498db",
-                    "#2ecc71",
                     "#9b59b6",
+                    "#2ecc71",
                     "#f1c40f",
                     "#e74c3c",
                     "#34495e",

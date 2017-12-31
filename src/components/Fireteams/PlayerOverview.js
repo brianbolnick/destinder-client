@@ -23,7 +23,7 @@ class AccordionExampleFluid extends Component {
         const { activeIndex } = this.state
 
         return (
-            <Accordion fluid inverted >
+            <Accordion fluid inverted style={{textAlign: 'left'}}>
                 <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
                     <Icon name='dropdown' />
                     Historical Game Data
