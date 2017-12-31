@@ -22,7 +22,7 @@ class FireteamsFormPage extends Component {
     render() {
         return (
             <Layout>
-                <div className="fireteam-form" style={{ minHeight: '100vh' }}>
+                <div className="fireteam-form" style={{ minHeight: '100%' }}>
                     <Container style={{ width: '80%' }}>
 
                         <Segment

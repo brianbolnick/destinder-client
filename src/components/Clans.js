@@ -6,7 +6,7 @@ class ClansPage extends Component {
     render() {
         return (
             <Layout>
-                <div className="clans-page" style={{ height: '100vh' }}>
+                <div className="clans-page" style={{ height: '100%' }}>
                     <Container style={{ textAlign: 'center' }}>
                         <Message icon info>
                             <Icon name='circle notched' loading />

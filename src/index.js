@@ -11,7 +11,7 @@ import store, { history } from './tools/store';
 ReactDOM.render((
   <Provider store={store}>
       <ConnectedRouter history={history}>
-          <div>
+          <div style={{height: '100vh'}}>
               <App />
           </div>
       </ConnectedRouter>

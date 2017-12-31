@@ -15,7 +15,8 @@ const layoutStyle = {
     'linear-gradient(rgb(35, 37, 38), rgb(65, 67, 69))',
   backgroundSize: "auto",
   backgroundRepeat: "inherit",
-  color: "#f5f5f5"
+  color: "#f5f5f5",
+  height: '100%'
 };
 
 const Layout = ({ children }) => (

@@ -143,7 +143,7 @@ class LfgPage extends Component {
 
     return (
       <Layout>
-        <div className="lfg-page" style={{ minHeight: '100vh' }}>
+        <div className="lfg-page" style={{ minHeight: '100%' }}>
           <Container style={{ width: '80%' }}>
             <PlatformSelectModal
               filterSelect={this.state.filterSelect}

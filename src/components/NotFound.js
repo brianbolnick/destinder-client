@@ -6,7 +6,7 @@ class NotFound extends Component {
   render() {
     return (
       <Layout>
-        <div className="profile-page" style={{height: '100vh' }}>
+        <div className="profile-page" style={{height: '100%' }}>
           <Container>
             <Header as="h2">Sorry!</Header>
             <p>The page you're looking for doesn't exist.</p>

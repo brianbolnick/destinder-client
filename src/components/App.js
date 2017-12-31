@@ -58,7 +58,7 @@ class App extends Component  {
     const currentKey = this.props.location.pathname.split("/")[1] || "/";
     const timeout = { enter: 300, exit: 200 };
     return (
-      <TransitionGroup component="main" className="page-main">
+      <TransitionGroup component="main" className="page-main" style={{height: '100%'}}>
         <CSSTransition
           key={currentKey}
           timeout={timeout}

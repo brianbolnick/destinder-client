@@ -6,7 +6,7 @@ class ProfilePage extends Component {
     render() {
         return (
             <Layout>
-                <div className="profile-page" style={{ height: '100vh' }}>
+                <div className="profile-page" style={{ height: '100%' }}>
                     <Container style={{ textAlign: 'center' }}>
                         <Message icon info>
                             <Icon name='circle notched' loading />

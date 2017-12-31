@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown, Modal, Divider } from "semantic-ui-react";
+import { Container, Menu, Icon, Image, Grid, Card, Button, Dropdown, Modal, Divider, Header, Segment } from "semantic-ui-react";
 import "../css/HomePage.css";
 import Parallax from "react-springy-parallax";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo-with-title-word-black.png";
-import AnnouncementLogo from "../img/announce-with-title-word-white.png";
+import NoTextLogo from "../img/logo-no-text-white.png";
 import LfgIcon from '../img/lfg-icon.png';
 import { FaqContent, BadgeContent } from './ModalContent';
 import { API_URL } from '../tools/api-config';
@@ -47,21 +47,21 @@ class LoginButton extends Component {
 
   onLogoutClick() {
     axios.post(`${API_URL}/v1/users/${jwt.user_id}/logout`,
-        null,
-        config
+      null,
+      config
     )
-        .then(response => {
-            localStorage.getItem('jwt')
-            localStorage.removeItem('jwt');
-            localStorage.removeItem('auth_token');
-            console.log('logging out');
-            window.location.replace('/');
-        })
-        .catch(error => {
-            console.log(error)
-        })
+      .then(response => {
+        localStorage.getItem('jwt')
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('auth_token');
+        console.log('logging out');
+        window.location.replace('/');
+      })
+      .catch(error => {
+        console.log(error)
+      })
 
-}
+  }
 
   render() {
     return (
@@ -297,19 +297,29 @@ class HomeFirst extends Component {
 class HomeSecond extends Component {
   render() {
     return (
-      <Container style={{ height: "90vh" }}>
+      <Container style={{ padding: "2%", minHeight: '90vh' }}>
         <div>
-          <Image src={AnnouncementLogo} size="large" />
-          {/* <p>LFG for the <span><TypedHeader/></span></p> */}
+          <Header as='h1'>
+            <Image verticalAlign='middle' src={NoTextLogo} />
+            <Header.Content style={{ color: '#f5f5f5' }}>
+              LEADERBOARDS
+                <Header.Subheader style={{ color: '#d8d8d8' }}>
+                Destinder Tracked Stat Leaderboards
+                </Header.Subheader>
+            </Header.Content>
+          </Header>
         </div>
         <br />
         <br />
 
         <Grid columns={4}>
           <Grid.Row>
-            <Grid.Column width={4}>
+            <Grid.Column width={16}>
               <div style={{ textAlign: "center", height: '60vh' }}>
                 {/* <AnnouncementCard /> */}
+                <Segment inverted padded='very' fluid textAlign='center' size='massive' style={{bordeBottom: 'solid 1px #47D5CF'}}>
+                  We'll have some leaderboards of all the stats we track coming soon!
+                </Segment>
               </div>
             </Grid.Column>
           </Grid.Row>
@@ -373,9 +383,9 @@ class HomeLayout extends Component {
     //   backgroundRepeat: "inherit"
     // };
     return (
-      <Parallax ref="parallax" pages={2} style={homeStyle}  >
+      <Parallax ref="parallax" pages={2} style={homeStyle} scrolling={false}>
         <Parallax.Layer offset={0} speed={0.5} className='first-layer-home'>
-          <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(2)} />
+          <HomeFirst scrollClick={() => this.refs.parallax.scrollTo(1)} />
         </Parallax.Layer>
 
         <Parallax.Layer offset={1} speed={2} style={secondStyle}>

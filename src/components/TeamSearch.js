@@ -123,7 +123,7 @@ class TeamSearchPage extends Component {
 
     return (
       <Layout>
-        <div className="profile-page" style={{ height: "100vh" }}>
+        <div className="profile-page" style={{ height: "100%" }}>
           <Container>
             <div style={{ height: "50px" }} />
             <div>

@@ -230,7 +230,7 @@ class FireteamPage extends Component {
                                         <Grid.Column width={5}>
                                             <SinglePlayerStatCard stats={char} player_name={object.player_name} has_account={object.has_account} account_info={object.account_info} />
                                         </Grid.Column>
-                                        <Grid.Column width={11} style={{ minHeight: '77vh', width: '100%' }}>
+                                        <Grid.Column width={11} style={{ minHeight: '77vh', width: '100%', overflowY: 'auto' }}>
                                             <StatsCard data={char} account_info={object.account_info} />
                                         </Grid.Column>
                                     </Grid>
@@ -250,7 +250,7 @@ class FireteamPage extends Component {
                             tabPosition='top'
                             size='large'
                             type='card'
-                            style={{ backgroundColor: '#212121', minHeight: '85vh' }}
+                            style={{ backgroundColor: 'transparent', minHeight: '85vh' }}
                         >
                             {tabs}
                         </Tabs>
@@ -264,7 +264,7 @@ class FireteamPage extends Component {
 
         return (
             <Layout>
-                <div className="profile-page" style={{ minHeight: '100vh' }}>
+                <div className="profile-page" >
                     <Container style={{ width: '90%' }}>
                         <HomeNav />
                         {this.props.error ?
@@ -278,7 +278,7 @@ class FireteamPage extends Component {
                         }
 
 
-                        <Card className='hide-on-mobile' fluid style={{ marginTop: '20px', backgroundColor: '#212121', boxShadow: 'none' }}>
+                        <Card className='hide-on-mobile' fluid style={{ marginTop: '20px', backgroundColor: 'transparent', boxShadow: 'none' }}>
                             <Card.Content style={{ padding: '0' }}>
                                 {!this.props.error ?
 
@@ -299,7 +299,7 @@ class FireteamPage extends Component {
                                                 tabPosition='top'
                                                 size='large'
                                                 type='card'
-                                                style={{ backgroundColor: '#212121', minHeight: '85vh' }}
+                                                style={{ backgroundColor: 'transparent', minHeight: '85vh' }}
                                             >
                                                 <TabPane tab='Fireteam' key="11"><FireteamOverview data={this.props.fireteam} action={this.props.addPlayerStats} /></TabPane>
                                                 <TabPane tab="Team Stats" key="21"><FireteamStatsView data={this.props.fireteam} /></TabPane>

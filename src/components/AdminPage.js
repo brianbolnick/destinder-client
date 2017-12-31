@@ -36,7 +36,7 @@ class Admin extends Component {
     render() {
         return (
             <Layout>
-                <div className="profile-page" style={{ minHeight: '100vh' }}>
+                <div className="profile-page" style={{ minHeight: '100%' }}>
                     <Container>
                         <Header as="h2">Site Users (Total: {this.state.users.length})</Header>
                         <Table celled>
