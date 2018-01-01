@@ -176,3 +176,259 @@ export class Conjuror  extends Component {
         )
     }
 }
+
+export class SniperBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#f1c40f', border: '1px #f1c40f solid' }}>
+                        <Icon name='crosshairs' /> SNIPER
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Sniper Rifle'
+            />
+            
+        )
+    }
+}
+
+export class PulseBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#2ecc71', border: '1px #2ecc71 solid' }}>
+                        <Icon name='crosshairs' /> PULSE
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Pulse Rifle'
+            />
+            
+        )
+    }
+}
+
+export class ScoutBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#9b59b6', border: '1px #9b59b6 solid' }}>
+                        <Icon name='crosshairs' /> SCOUT
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Scout Rifle'
+            />
+            
+        )
+    }
+}
+
+export class HandCannonBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#3498db', border: '1px #3498db solid' }}>
+                        <Icon name='crosshairs' /> HAND CANNON
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Hand Cannon'
+            />
+            
+        )
+    }
+}
+
+export class FusionBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#34495e', border: '1px #34495e solid' }}>
+                        <Icon name='crosshairs' /> FUSION
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Fusion Rifle'
+            />
+            
+        )
+    }
+}
+
+export class AutoBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#FA8708', border: '1px #FA8708 solid' }}>
+                        <Icon name='crosshairs' /> AUTO
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with an Auto Rifle'
+            />
+            
+        )
+    }
+}
+
+export class SidearmBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#AA885F', border: '1px #AA885F solid' }}>
+                        <Icon name='crosshairs' /> SIDEARM
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Sidearm'
+            />
+            
+        )
+    }
+}
+
+export class ShotgunBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#e74c3c', border: '1px #e74c3c solid' }}>
+                        <Icon name='crosshairs' /> SHOTGUN
+                    </Label>
+                }
+                content='More than 1/3 of total weapon kills with a Shotgun'
+            />
+            
+        )
+    }
+}
+
+export class MedicBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#FF3B3F', border: '1px #FF3B3F solid' }}>
+                        <Icon name='medkit' /> MEDIC
+                    </Label>
+                }
+                content='Performed more than 2x revives than received'
+            />
+            
+        )
+    }
+}
+
+export class SuperManBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#4484CE', border: '1px #4484CE solid' }}>
+                        <Icon name='superpowers' /> SUPER MAN
+                    </Label>
+                }
+                content='20%+ of total kills with abilities'
+            />
+            
+        )
+    }
+}
+
+export class MarksmanBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#212121', border: '1px #212121 solid' }}>
+                        <Icon name='bullseye' /> MARKSMAN
+                    </Label>
+                }
+                content='More than 60% of total weapon kills are precision kills'
+            />
+            
+        )
+    }
+}
+
+export class FightForeverBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#FF3B3D', border: '1px #009EF9 solid' }}>
+                        <Icon name='fire extinguisher' /> FIGHT FOREVER
+                    </Label>
+                }
+                content='More than 60% of total weapon kills are precision kills'
+            />
+            
+        )
+    }
+}
+
+export class ArmyOfOneBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#DFBF93', border: '1px #374730 solid' }}>
+                        <Icon name='star' /> ARMY OF ONE
+                    </Label>
+                }
+                content='Kill Spree Greater than 15'
+            />
+            
+        )
+    }
+}
+
+export class TrialsGodBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#009EF9', border: '1px #009EF9 solid' }}>
+                        <Icon name='star' /> TRIALS GOD
+                    </Label>
+                }
+                content='Kill Spree Greater than 20'
+            />
+            
+        )
+    }
+}
+
+export class CamperBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#AA885F', border: '1px #AA885F solid' }}>
+                        <Icon name='free code camp' /> CAMPER
+                    </Label>
+                }
+                content='Kill Distance is greater than 25m'
+            />
+            
+        )
+    }
+}
+
+export class RusherBadge extends Component {
+    render() {
+        return (
+            <Popup
+                trigger={
+                    <Label style={{ backgroundColor: 'transparent', color: '#AA885F', border: '1px #AA885F solid' }}>
+                        <Icon name='fast forward' /> RUSHER
+                    </Label>
+                }
+                content='Kill Distance is less than 20m'
+            />
+            
+        )
+    }
+}

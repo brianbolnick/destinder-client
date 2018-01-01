@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
-import { WEAPONS, BADGES } from '../../data/common_constants'
+import { WEAPONS, BADGES, TRIALS_BADGES } from '../../data/common_constants'
 import { jwt } from '../../tools/jwt';
 import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
 const token = localStorage.getItem('auth_token');
 const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 
-class AccordionExampleFluid extends Component {
+class GameHistory extends Component {
     state = { activeIndex: -1 }
 
     handleClick = (e, titleProps) => {
@@ -23,7 +23,7 @@ class AccordionExampleFluid extends Component {
         const { activeIndex } = this.state
 
         return (
-            <Accordion fluid inverted style={{textAlign: 'left'}}>
+            <Accordion fluid inverted style={{ textAlign: 'left' }}>
                 <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
                     <Icon name='dropdown' />
                     Historical Game Data
@@ -123,6 +123,7 @@ class StatsCard extends Component {
 
     render() {
 
+
         const { data, account_info } = this.props
         let upvote = null;
         let downvote = null;
@@ -143,6 +144,24 @@ class StatsCard extends Component {
 
             })
         }
+        
+        let analysisBadges = "No trials badges for this player."
+        if (data.analysis_badges) {
+            analysisBadges = data.analysis_badges.map(function (badge) {
+                console.log(badge)
+                return (
+                    <Popup
+                        key={badge.name}
+                        position='top center'
+                        hoverable
+                        trigger={TRIALS_BADGES[badge.id]}
+                        content={badge.description}
+                    />
+                )
+
+            })
+        }
+
 
         if (this.state.loggedIn) {
             upvote = this.state.voted_for
@@ -265,9 +284,13 @@ class StatsCard extends Component {
                         <Grid.Column>
                             <Grid columns={1} centered stretched verticalAlign='middle' >
                                 <Grid.Column>
-                                    <Segment disabled inverted textAlign='center' padded='very'>
-                                        Player Analysis Coming soon!
-                                        </Segment>
+                                    <Segment inverted padded style={{ background: 'transparent', margin: '0' }}>
+                                        <h2 className="player-overview-header">Analysis</h2>                                    
+                                        <Label.Group>
+                                            {TRIALS_BADGES['Scout']}
+                                            {analysisBadges}
+                                        </Label.Group>
+                                    </Segment>
                                 </Grid.Column>
                             </Grid>
                         </Grid.Column>
@@ -278,7 +301,7 @@ class StatsCard extends Component {
                             <Grid columns={1} centered stretched verticalAlign='middle' >
                                 <Grid.Column>
                                     <Segment inverted textAlign='center'>
-                                        <AccordionExampleFluid />
+                                        <GameHistory />
                                     </Segment>
                                 </Grid.Column>
                             </Grid>

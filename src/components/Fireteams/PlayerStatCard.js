@@ -63,7 +63,6 @@ class PlayerStatCard extends Component {
         const { stats, player_name, has_account, account_info } = this.props
         const items = stats[0].items === null ? null : stats[0].items
 
-        console.log(items)
         var exotic = (items === null || items.helmet === undefined) ? null : items.helmet
         for (var key in items) {
             if (items[key].item_tier === "Exotic" && items[key].item_type.match(/^(Helmet|Gauntlets|Leg Armor|Chest Armor)$/)) {

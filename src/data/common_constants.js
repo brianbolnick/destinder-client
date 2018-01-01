@@ -8,7 +8,23 @@ import {
   CakeBoss,
   Donator,
   BigDonator,
-  Dedicated
+  Dedicated,
+  SniperBadge,
+  PulseBadge,
+  ScoutBadge,
+  HandCannonBadge,
+  FusionBadge,
+  AutoBadge,
+  SidearmBadge,
+  ShotgunBadge,
+  MedicBadge,
+  SuperManBadge,
+  MarksmanBadge,
+  FightForeverBadge,
+  ArmyOfOneBadge,
+  TrialsGodBadge,
+  CamperBadge,
+  RusherBadge
 } from './badges';
 
 import Sentinel from "../img/sentinel-icon.png";
@@ -82,6 +98,25 @@ export const BADGES = {
   7: <LittleHelper />,
   8: <Follower />,
   9: <Dedicated />
+}
+
+export const TRIALS_BADGES = {
+  1: <SniperBadge />,
+  2: <PulseBadge />,
+  3: <ScoutBadge />,
+  4: <HandCannonBadge />,
+  5: <FusionBadge />,
+  6: <AutoBadge />,
+  7: <SidearmBadge />,
+  8: <ShotgunBadge />,
+  9: <MedicBadge />,
+  10: <SuperManBadge />,
+  11: <MarksmanBadge />,
+  12: <FightForeverBadge />,
+  13: <ArmyOfOneBadge />,
+  14: <TrialsGodBadge />,
+  15: <CamperBadge />,
+  16: <RusherBadge />
 }
 
 export const SUBCLASS_ICONS = {
