@@ -16,6 +16,7 @@ const layoutStyle = {
   backgroundSize: "auto",
   backgroundRepeat: "inherit",
   color: "#f5f5f5",
+  minHeight: '100vh',
   height: '100%'
 };
 

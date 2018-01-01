@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+html, body, #app, #app>div {
+    height: 100%;
+}
+
+div#app {
+    height: 100%;
+    
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
