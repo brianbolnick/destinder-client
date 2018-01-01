@@ -1,6 +1,24 @@
 import React, { Component } from "react";
 import { Icon, Button, Modal, Divider, Header, Label } from "semantic-ui-react";
-import { Dedicated, BigDonator, Donator, Follower, Veteran, Sponsor, LittleHelper, Conjuror } from '../data/badges';
+import {
+    Dedicated, BigDonator, Donator, Follower, Veteran, Sponsor, LittleHelper, Conjuror,
+    SniperBadge,
+    PulseBadge,
+    ScoutBadge,
+    HandCannonBadge,
+    FusionBadge,
+    AutoBadge,
+    SidearmBadge,
+    ShotgunBadge,
+    MedicBadge,
+    SuperManBadge,
+    MarksmanBadge,
+    FightForeverBadge,
+    ArmyOfOneBadge,
+    TrialsGodBadge,
+    CamperBadge,
+    RusherBadge
+} from '../data/badges';
 import { Link } from "react-router-dom";
 
 
@@ -48,7 +66,7 @@ export class FaqContent extends Component {
                     <p>
                         Running the site takes a lot of time, effort, and money. We greatly appreciate any donations as they
                         help us cover things like hosting fees and other expenses. Anyone who donates $5 or more receives a special
-                        <span style={{marginLeft: '5px', marginRight: '2px'}}><Donator /></span> badge.
+                        <span style={{ marginLeft: '5px', marginRight: '2px' }}><Donator /></span> badge.
 
                         {/* <div style={{textAlign: 'center', padding: '30px'}}> <Donator /></div> */}
                     </p>
@@ -79,7 +97,7 @@ export class BadgeContent extends Component {
         return (
             <Modal.Content >
                 <Modal.Description>
-                    <Header>Earn account badges for interacting with the site in certain ways!</Header>                
+                    <Header>Earn account badges for interacting with the site in certain ways!</Header>
                     <Label.Group>
                         <Veteran />
                         <Donator />
@@ -89,11 +107,32 @@ export class BadgeContent extends Component {
                         <Follower />
                         <LittleHelper />
                         <Conjuror />
-                    </Label.Group>  
+                    </Label.Group>
 
                     <Divider />
-                    <Header>Want More?</Header>    
+                    <Header>Want More?</Header>
                     <p>We're always creating new badges and new ways to earn them. If you have a suggestion for one, let us know!</p>
+                    <Divider />
+                    <Header>Stat-Specific badges earned from in-game accomplishments</Header>
+                    <Label.Group>
+                        <SniperBadge />
+                        <PulseBadge/>
+                        <ScoutBadge/>
+                        <HandCannonBadge/>
+                        <FusionBadge/>
+                        <AutoBadge/>
+                        <SidearmBadge/>
+                        <ShotgunBadge/>
+                        <MedicBadge/>
+                        <SuperManBadge/>
+                        <MarksmanBadge/>
+                        <FightForeverBadge/>
+                        <ArmyOfOneBadge/>
+                        <TrialsGodBadge/>
+                        <CamperBadge/>
+                        <RusherBadge/>
+                    </Label.Group>
+                    <p>Find out someone's play style at a glance with our player analysis badges on our Trials fireteam search.</p>
                 </Modal.Description>
             </Modal.Content>
         )

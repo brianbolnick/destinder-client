@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion } from 'semantic-ui-react';
+import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
 import { WEAPONS, BADGES, TRIALS_BADGES } from '../../data/common_constants'
 import { jwt } from '../../tools/jwt';
