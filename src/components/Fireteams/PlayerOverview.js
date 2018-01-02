@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion } from 'semantic-ui-react';
+import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion, Menu, Header, List } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
 import { WEAPONS, BADGES, TRIALS_BADGES } from '../../data/common_constants'
 import { jwt } from '../../tools/jwt';
@@ -7,9 +7,10 @@ import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
 const token = localStorage.getItem('auth_token');
 const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
+var ta = require("time-ago")();
 
 class GameHistory extends Component {
-    state = { activeIndex: -1 }
+    state = { activeIndex: 0 }
 
     handleClick = (e, titleProps) => {
         const { index } = titleProps
@@ -20,21 +21,102 @@ class GameHistory extends Component {
     }
 
     render() {
+        const { games } = this.props;
         const { activeIndex } = this.state
 
-        return (
-            <Accordion fluid inverted style={{ textAlign: 'left' }}>
-                <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-                    <Icon name='dropdown' />
-                    Historical Game Data
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 0} style={{ color: '#f5f5f5' }}>
-                    <p>
-                        Coming soon! See details about all games for this character.
-                    </p>
-                </Accordion.Content>
+        let matches =
+            {
+                title: {
+                    content: "There is no data to display",
+                    key: `N/A`
+                },
+                content: "There is no data to display"
+            }
 
-            </Accordion>
+        if (games.length) {
+            const ordered = games.reverse()
+            matches = games.map((function (match, index) {
+                const alpha = match.members.alpha.map((function (player, index) {
+                    return (
+                        <List.Item>
+                            <List.Content>{player.player_name}</List.Content>
+                        </List.Item>
+                    )
+                }))
+
+                const bravo = match.members.bravo.map((function (player, index) {
+                    return (
+                        <List.Item>
+                            <List.Content>{player.player_name}</List.Content>
+                        </List.Item>
+                    )
+                }))
+
+                const content =
+                    <Grid columns={2} divided>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <List>
+                                    <Header as='h5'>
+                                        Alpha Team
+                                    </Header>
+                                    {alpha}
+
+                                </List>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <List>
+                                    <Header as='h5'>
+                                        Bravo Team
+                                    </Header>
+                                    {bravo}
+                                </List>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+
+
+
+                const title = match.standing === 1 ?
+                    <Header as='h3' block>
+                        <Icon name='check' style={{ fontSize: '1em' }} />
+                        <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
+                            <span style={{ color: '#2fcc71' }}>Victory</span>
+                            <Header.Subheader>
+                                <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} ({match.activity_duration})</span>
+                            </Header.Subheader>
+                        </Header.Content>
+                    </Header>
+                    :
+                    <Header as='h3' block>
+                        <Icon name='close' style={{ fontSize: '1em' }} />
+                        <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
+                            <span style={{ color: '#D75745' }}>Defeat</span>
+                            <Header.Subheader>
+                                <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} ({match.activity_duration})</span>
+                            </Header.Subheader>
+                        </Header.Content>
+
+
+                    </Header>
+
+                return (
+                    {
+                        title: {
+                            content: title,
+                            key: `Victory - ${ta.ago(match.game_date)} (${match.activity_duration})`
+                        },
+                        content: {
+                            content: content,
+                            key: `content - ${ta.ago(match.game_date)} (${match.activity_duration})`
+                        }
+                    }
+                )
+            }))
+        }
+
+        return (
+            <Accordion defaultActiveIndex={0} panels={matches} fluid styled style={{ textAlign: 'left' }} className="game-history" />
         )
     }
 }
@@ -125,6 +207,7 @@ class StatsCard extends Component {
 
 
         const { data, account_info } = this.props
+        console.log(data.recent_games)
         let upvote = null;
         let downvote = null;
         const repValue = account_info.reputation ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
@@ -144,11 +227,10 @@ class StatsCard extends Component {
 
             })
         }
-        
+
         let analysisBadges = "No trials badges for this player."
         if (data.analysis_badges) {
             analysisBadges = data.analysis_badges.map(function (badge) {
-                console.log(badge)
                 return (
                     <Popup
                         key={badge.name}
@@ -185,6 +267,8 @@ class StatsCard extends Component {
                 trigger={<Rating size='large' defaultRating={0} maxRating={5} icon='star' disabled />}
                 content={"This player does not have a Destinder account."}
             />
+
+
         return (
             <Container text style={{ padding: '2%', width: '100%' }}>
                 <Grid centered stretched verticalAlign='middle' style={{ height: '77vh' }}>
@@ -285,7 +369,7 @@ class StatsCard extends Component {
                             <Grid columns={1} centered stretched verticalAlign='middle' >
                                 <Grid.Column>
                                     <Segment inverted padded style={{ background: 'transparent', margin: '0' }}>
-                                        <h2 className="player-overview-header">Analysis</h2>                                    
+                                        <h2 className="player-overview-header">Analysis</h2>
                                         <Label.Group>
                                             {TRIALS_BADGES['Scout']}
                                             {analysisBadges}
@@ -300,8 +384,9 @@ class StatsCard extends Component {
                         <Grid.Column>
                             <Grid columns={1} centered stretched verticalAlign='middle' >
                                 <Grid.Column>
-                                    <Segment inverted textAlign='center'>
-                                        <GameHistory />
+                                    <h2 className="player-overview-header">Game History</h2>
+                                    <Segment inverted textAlign='center' style={{ background: 'transparent', margin: '0' }}>
+                                        <GameHistory games={data.recent_games} />
                                     </Segment>
                                 </Grid.Column>
                             </Grid>

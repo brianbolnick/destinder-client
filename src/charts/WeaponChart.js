@@ -5,7 +5,7 @@ import { Pie } from "react-chartjs-2";
 class WeaponChart extends Component {
 
     render() {
-        console.log(this.props.data)
+        // console.log(this.props.data)
         const {data} = this.props
         const stats = data.player_data.stats.kill_stats
         const heavyKills = parseInt(stats.grenade_launcher, 10) + parseInt(stats.rocket_launcher, 10) + parseInt(stats.sub_machine_gun, 10) + parseInt(stats.sword, 10) + parseInt(stats.trace_rifle, 10)

@@ -10,16 +10,20 @@ const KillChart = props => {
   let kills = [];
   let deaths = [];
   // eslint-disable-next-line
-  props.data.reverse().map(function(object, i) {
+
+
+  props.data.slice(0, 15).reverse().map(function (object, i) {
+
     kills.push(object.kills);
     deaths.push(object.deaths * -1);
     temp_data.push(object.kd_ratio);
     temp_wins.push(object.standing);
     temp_dates.push(ta.ago(object.game_date));
+
   });
 
   var pointBackgroundColors = [];
-  for (var i = 0; i < temp_wins.length; i++) {
+  for (var i = 0; i < 15; i++) {
     if (temp_wins[i] === 0) {
       pointBackgroundColors.push("#f5f5f5");
     } else {
@@ -99,7 +103,7 @@ const KillChart = props => {
     responsive: true,
     tooltips: {
       callbacks: {
-        label: function(tooltipItem, data) {
+        label: function (tooltipItem, data) {
           // console.log(temp_dates[tooltipItem.index]);
           // console.log(tooltipItem);
           // return "K/D: " + tooltipItem.yLabel + " (" + $.timeago(temp_dates[tooltipItem.index]) + ")";
@@ -161,7 +165,7 @@ const KillChart = props => {
         // title: function(tooltipItem, chart) {
         //     return tooltipItem.xLabel;
         // },
-        label: function(tooltipItem, data) {
+        label: function (tooltipItem, data) {
           // console.log(temp_dates[tooltipItem.index]);
           if (tooltipItem.datasetIndex === 0) {
             // console.log("wins");
@@ -236,7 +240,7 @@ const KillChart = props => {
     plugins: {
       datalabels: {
         color: "white",
-        display: function(context) {
+        display: function (context) {
           return context.dataset.data[context.dataIndex] > 15;
         },
         font: {

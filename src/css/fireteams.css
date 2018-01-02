@@ -36,6 +36,14 @@ input[type="text"]:focus {
     border-radius: 0px;
 } */
 
+.accordion.ui.fluid.styled.game-history .title .dropdown.icon {
+    display: none;
+}
+
+h3.ui.block.header {
+    margin-top: 3px;
+}
+
 .ui.text.fireteams-nav.menu {
     margin-bottom: 0;
     margin-top: -25px;
