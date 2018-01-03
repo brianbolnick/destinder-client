@@ -30,6 +30,9 @@ div#app {
   font-size: large;
 }
 
+.ui.text.container {
+    -webkit-font-smoothing: antialiased;
+}
 
 i.yellow.icon {
     color: #fed765!important;

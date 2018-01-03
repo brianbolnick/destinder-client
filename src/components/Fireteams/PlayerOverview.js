@@ -12,58 +12,100 @@ const token = localStorage.getItem('auth_token');
 const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 var ta = require("time-ago")();
 
+const modes = {
+    41: 'Countdown',
+    42: 'Survival'
+}
 
 class GameContent extends Component {
-    render () {
+    render() {
         console.log(this.props.pgcr)
         let backgroundStyle = { background: '#f5f5f5' }
+        let mapName = "";
         if (this.props.pgcr.map) {
             backgroundStyle = {
-                background: `url(${this.props.pgcr.map.image})`,
+                background: `linear-gradient(to right, rgba(35, 37, 38, 0.4), rgba(65, 67, 69, 0.5)), url(${this.props.pgcr.map.image})`,
                 backgroundSize: 'cover'
             }
+            mapName = this.props.pgcr.map.name
+
         }
-                // const alpha = match.members.alpha.map((function (player, index) {
-                //     return (
-                //         <List.Item>
-                //             <List.Content>{player.player_name}</List.Content>
-                //         </List.Item>
-                //     )
-                // }))
+        let alpha = []
+        let bravo = []
+        if (this.props.pgcr.alpha) {
+            alpha = this.props.pgcr.alpha.map((function (player, index) {
+                return (
+                    <Grid.Row>
+                        <Grid.Column style={{ margin: '5px' }}>
+                            <Segment raised style={{ padding: '0' }}>
+                                <Header as='h5'>
+                                    <Image src={player.emblem} style={{ width: '3em', marginRight: '5px' }} />
+                                    <Header.Content style={{ padding: '0', width: '80%' }}>
+                                        {player.player_name}
+                                        <Header.Subheader>
+                                            stats coming soon!
+                                     </Header.Subheader>
+                                    </Header.Content>
+                                </Header>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                )
+            }))
+        }
 
-                // const bravo = match.members.bravo.map((function (player, index) {
-                //     return (
-                //         <List.Item>
-                //             <List.Content>{player.player_name}</List.Content>
-                //         </List.Item>
-                //     )
-                // }))
+        if (this.props.pgcr.alpha) {
+            bravo = this.props.pgcr.bravo.map((function (player, index) {
+                return (
+                    <Grid.Row>
+                        <Grid.Column style={{ margin: '5px' }}>
+                            <Segment raised style={{ padding: '0' }}>
+                                <Header as='h5'>
+                                    <Image src={player.emblem} style={{ width: '3em', marginRight: '5px' }} />
+                                    <Header.Content style={{ padding: '0', width: '80%' }}>
+                                        {player.player_name}
+                                        <Header.Subheader>
+                                            stats coming soon!
+                                        </Header.Subheader>
+                                    </Header.Content>
+                                </Header>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                )
+            }))
+        }
+
         return (
-            this.props.fetchingPgcr ? 
-                <div style={{textAlign: 'center', background: '#f5f5f5'}} ><Image src={Loader} size='small' /></div>
-            :
-            
-            <Grid columns={2} divided style={backgroundStyle} >
-                <Grid.Row>
-                    <Grid.Column>
-                        <List>
-                            <Header as='h5'>
-                                Alpha Team
-                            </Header>
-                            {/* {alpha} */}
+            this.props.fetchingPgcr ?
+                <div style={{ textAlign: 'center', background: '#f5f5f5' }} >
+                    <Image src={Loader} size='small' />
+                </div>
+                :
+                <Segment raised className='pgcr-bg' style={{ border: 'none' }}>
+                    <div className='pgcr-overlay' style={backgroundStyle}></div>
+                    <Grid columns='equal' >
+                        <Grid.Row>
+                            <Grid.Column>
+                                <Header as='h2' >
+                                    {mapName}
+                                    <Header.Subheader style={{ color: '#e6e6e6' }}>
+                                        {this.props.mode ? modes[this.props.mode] : ""}
+                                    </Header.Subheader>
+                                </Header>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column>
+                                {alpha}
+                            </Grid.Column>
+                            <Grid.Column>
+                                {bravo}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
 
-                        </List>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <List>
-                            <Header as='h5'>
-                                Bravo Team
-                            </Header>
-                            {/* {bravo} */}
-                        </List>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
         )
     }
 }
@@ -75,7 +117,7 @@ class GameHistory extends Component {
     }
 
     render() {
-        
+
         const { games, pgcr, pgcrError, fetchingPgcr } = this.props;
         const { activeIndex } = this.state
         let matches =
@@ -107,10 +149,10 @@ class GameHistory extends Component {
                 // }))
 
                 const title = match.standing === 0 ?
-                    <Header 
-                        as='h3' 
+                    <Header
+                        as='h3'
                         block
-                        className="history-victory" 
+                        className="history-victory"
                     >
                         {/* <Icon name='check' style={{ fontSize: '1em' }} /> */}
                         <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
@@ -121,11 +163,11 @@ class GameHistory extends Component {
                         </Header.Content>
                     </Header>
                     :
-                    <Header 
-                        as='h3' 
+                    <Header
+                        as='h3'
                         block
-                        className="history-defeat" 
-                        >
+                        className="history-defeat"
+                    >
                         {/* <Icon name='close' style={{ fontSize: '1em' }} /> */}
                         <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
                             <span style={{ color: '#f5f5f5' }}>Defeat</span>
@@ -144,7 +186,7 @@ class GameHistory extends Component {
                             key: match.instance_id
                         },
                         content: {
-                            content: <GameContent pgcr={pgcr} pgcrError={pgcrError} fetchingPgcr={fetchingPgcr}/>,
+                            content: <GameContent pgcr={pgcr} pgcrError={pgcrError} fetchingPgcr={fetchingPgcr} mode={match.mode} />,
                             key: `content - ${match.instance_id})`
                         }
                     }
