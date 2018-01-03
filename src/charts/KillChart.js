@@ -13,7 +13,6 @@ const KillChart = props => {
 
 
   props.data.slice(0, 15).reverse().map(function (object, i) {
-
     kills.push(object.kills);
     deaths.push(object.deaths * -1);
     temp_data.push(object.kd_ratio);

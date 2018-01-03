@@ -1,14 +1,17 @@
 // eslint-disable-next-line
-import { 
-    FETCH_FIRETEAM_START, 
-    FETCH_FIRETEAM_END, 
-    SET_FIRETEAM_ERRORS, 
-    FETCH_PLAYER_DATA, 
-    SET_USER_ERRORS, 
-    VALIDATE_PLAYER_END, 
-    VALIDATE_PLAYER_START, 
-    ADD_FIRETEAM_CHARACTER, 
-    CLEAR_STORE 
+import {
+    FETCH_FIRETEAM_START,
+    FETCH_FIRETEAM_END,
+    SET_FIRETEAM_ERRORS,
+    FETCH_PLAYER_DATA,
+    SET_USER_ERRORS,
+    VALIDATE_PLAYER_END,
+    VALIDATE_PLAYER_START,
+    ADD_FIRETEAM_CHARACTER,
+    CLEAR_STORE,
+    FETCH_PGCR_START,
+    FETCH_PGCR_END,
+    SET_PGCR_ERRORS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -19,7 +22,10 @@ const INITIAL_STATE = {
     error: null,
     userValid: true,
     validatingUser: false,
-    characters: {}
+    characters: {},
+    pgcr: {},
+    fetchingPgcr: false,
+    pgcrError: null
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -34,6 +40,13 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, fetchingTeam: false, fireteam: action.payload }
         case FETCH_PLAYER_DATA:
             return { ...state, fetchingPlayer: true, fetching: false }
+        case FETCH_PGCR_START:
+            return { ...state, pgcrError: null, fetchingPgcr: true }
+        case FETCH_PGCR_END:
+            return { ...state, pgcrError: null, fetchingPgcr: false, pgcr: action.payload }
+        case SET_PGCR_ERRORS:
+            console.log("setting error in reducer", action.message)
+            return { ...state, pgcrError: action.message, fetchingPgcr: false }
         case SET_FIRETEAM_ERRORS:
             console.log("setting error in reducer", action.message)
             return { ...state, error: action.message, fetchingFireteam: false }

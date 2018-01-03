@@ -1,29 +1,83 @@
 import React, { Component } from 'react';
 import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion, Menu, Header, List } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
+import { fetchPgcr } from '../../actions/fireteams_index';
 import { WEAPONS, BADGES, TRIALS_BADGES } from '../../data/common_constants'
 import { jwt } from '../../tools/jwt';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
+import Loader from '../../img/rope-loader.svg'
 const token = localStorage.getItem('auth_token');
 const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 var ta = require("time-ago")();
 
+
+class GameContent extends Component {
+    render () {
+        console.log(this.props.pgcr)
+        let backgroundStyle = { background: '#f5f5f5' }
+        if (this.props.pgcr.map) {
+            backgroundStyle = {
+                background: `url(${this.props.pgcr.map.image})`,
+                backgroundSize: 'cover'
+            }
+        }
+                // const alpha = match.members.alpha.map((function (player, index) {
+                //     return (
+                //         <List.Item>
+                //             <List.Content>{player.player_name}</List.Content>
+                //         </List.Item>
+                //     )
+                // }))
+
+                // const bravo = match.members.bravo.map((function (player, index) {
+                //     return (
+                //         <List.Item>
+                //             <List.Content>{player.player_name}</List.Content>
+                //         </List.Item>
+                //     )
+                // }))
+        return (
+            this.props.fetchingPgcr ? 
+                <div style={{textAlign: 'center', background: '#f5f5f5'}} ><Image src={Loader} size='small' /></div>
+            :
+            
+            <Grid columns={2} divided style={backgroundStyle} >
+                <Grid.Row>
+                    <Grid.Column>
+                        <List>
+                            <Header as='h5'>
+                                Alpha Team
+                            </Header>
+                            {/* {alpha} */}
+
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <List>
+                            <Header as='h5'>
+                                Bravo Team
+                            </Header>
+                            {/* {bravo} */}
+                        </List>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        )
+    }
+}
 class GameHistory extends Component {
     state = { activeIndex: 0 }
 
-    handleClick = (e, titleProps) => {
-        const { index } = titleProps
-        const { activeIndex } = this.state
-        const newIndex = activeIndex === index ? -1 : index
-
-        this.setState({ activeIndex: newIndex })
+    handleClick = (e, data) => {
+        this.props.fetchPgcr(this.props.games[data.index].instance_id)
     }
 
     render() {
-        const { games } = this.props;
+        
+        const { games, pgcr, pgcrError, fetchingPgcr } = this.props;
         const { activeIndex } = this.state
-
         let matches =
             {
                 title: {
@@ -35,63 +89,46 @@ class GameHistory extends Component {
 
         if (games.length) {
             const ordered = games.reverse()
-            matches = games.map((function (match, index) {
-                const alpha = match.members.alpha.map((function (player, index) {
-                    return (
-                        <List.Item>
-                            <List.Content>{player.player_name}</List.Content>
-                        </List.Item>
-                    )
-                }))
+            matches = ordered.reverse().map((function (match, index) {
+                // const alpha = match.members.alpha.map((function (player, index) {
+                //     return (
+                //         <List.Item>
+                //             <List.Content>{player.player_name}</List.Content>
+                //         </List.Item>
+                //     )
+                // }))
 
-                const bravo = match.members.bravo.map((function (player, index) {
-                    return (
-                        <List.Item>
-                            <List.Content>{player.player_name}</List.Content>
-                        </List.Item>
-                    )
-                }))
+                // const bravo = match.members.bravo.map((function (player, index) {
+                //     return (
+                //         <List.Item>
+                //             <List.Content>{player.player_name}</List.Content>
+                //         </List.Item>
+                //     )
+                // }))
 
-                const content =
-                    <Grid columns={2} divided>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <List>
-                                    <Header as='h5'>
-                                        Alpha Team
-                                    </Header>
-                                    {alpha}
-
-                                </List>
-                            </Grid.Column>
-                            <Grid.Column>
-                                <List>
-                                    <Header as='h5'>
-                                        Bravo Team
-                                    </Header>
-                                    {bravo}
-                                </List>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-
-
-
-                const title = match.standing === 1 ?
-                    <Header as='h3' block>
-                        <Icon name='check' style={{ fontSize: '1em' }} />
+                const title = match.standing === 0 ?
+                    <Header 
+                        as='h3' 
+                        block
+                        className="history-victory" 
+                    >
+                        {/* <Icon name='check' style={{ fontSize: '1em' }} /> */}
                         <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
-                            <span style={{ color: '#2fcc71' }}>Victory</span>
+                            <span style={{ color: '#f5f5f5' }}>Victory</span>
                             <Header.Subheader>
                                 <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} ({match.activity_duration})</span>
                             </Header.Subheader>
                         </Header.Content>
                     </Header>
                     :
-                    <Header as='h3' block>
-                        <Icon name='close' style={{ fontSize: '1em' }} />
+                    <Header 
+                        as='h3' 
+                        block
+                        className="history-defeat" 
+                        >
+                        {/* <Icon name='close' style={{ fontSize: '1em' }} /> */}
                         <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
-                            <span style={{ color: '#D75745' }}>Defeat</span>
+                            <span style={{ color: '#f5f5f5' }}>Defeat</span>
                             <Header.Subheader>
                                 <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} ({match.activity_duration})</span>
                             </Header.Subheader>
@@ -104,11 +141,11 @@ class GameHistory extends Component {
                     {
                         title: {
                             content: title,
-                            key: `Victory - ${ta.ago(match.game_date)} (${match.activity_duration})`
+                            key: match.instance_id
                         },
                         content: {
-                            content: content,
-                            key: `content - ${ta.ago(match.game_date)} (${match.activity_duration})`
+                            content: <GameContent pgcr={pgcr} pgcrError={pgcrError} fetchingPgcr={fetchingPgcr}/>,
+                            key: `content - ${match.instance_id})`
                         }
                     }
                 )
@@ -116,7 +153,7 @@ class GameHistory extends Component {
         }
 
         return (
-            <Accordion defaultActiveIndex={0} panels={matches} fluid styled style={{ textAlign: 'left' }} className="game-history" />
+            <Accordion defaultActiveIndex={-1} panels={matches} onTitleClick={this.handleClick.bind(this)} fluid styled style={{ textAlign: 'left', background: 'transparent' }} className="game-history" />
         )
     }
 }
@@ -127,7 +164,6 @@ class StatsCard extends Component {
             this.setState({ loggedIn: true })
             if (this.props.account_info.user_id) {
                 axios.get(`${API_URL}/v1/users/${this.props.account_info.user_id}/voted_for`, config).then(response => {
-                    console.log(response.data)
                     this.setState({ voted_for: response.data.voted_for })
                 }).catch(error => {
                     console.log(error);
@@ -154,7 +190,6 @@ class StatsCard extends Component {
             config
         )
             .then(response => {
-                console.log(response.data)
                 if (response.data.data === "Upvote") {
                     this.setState({ voted_for: true })
                 } else {
@@ -172,7 +207,6 @@ class StatsCard extends Component {
             config
         )
             .then(response => {
-                console.log(response.data)
                 if (response.data.data === "Downvote") {
                     this.setState({ voted_for: true })
                 } else {
@@ -190,7 +224,6 @@ class StatsCard extends Component {
             config
         )
             .then(response => {
-                console.log(response.data)
                 if (response.data.data === "Removed") {
                     this.setState({ voted_for: false })
                 } else {
@@ -207,7 +240,6 @@ class StatsCard extends Component {
 
 
         const { data, account_info } = this.props
-        console.log(data.recent_games)
         let upvote = null;
         let downvote = null;
         const repValue = account_info.reputation ? Math.round(account_info.reputation.reputation_score * 5) / 100 : 0
@@ -386,7 +418,13 @@ class StatsCard extends Component {
                                 <Grid.Column>
                                     <h2 className="player-overview-header">Game History</h2>
                                     <Segment inverted textAlign='center' style={{ background: 'transparent', margin: '0' }}>
-                                        <GameHistory games={data.recent_games} />
+                                        <GameHistory
+                                            games={data.recent_games}
+                                            fetchPgcr={this.props.fetchPgcr}
+                                            pgcrError={this.props.pgcrError}
+                                            pgcr={this.props.pgcr}
+                                            fetchingPgcr={this.props.fetchingPgcr}
+                                        />
                                     </Segment>
                                 </Grid.Column>
                             </Grid>
@@ -398,4 +436,13 @@ class StatsCard extends Component {
     }
 }
 
-export default StatsCard;
+function mapStateToProps(state) {
+    return {
+        pgcrError: state.fireteam.pgcrError,
+        pgcr: state.fireteam.pgcr,
+        fetchingPgcr: state.fireteam.fetchingPgcr
+    }
+}
+
+export default connect(mapStateToProps, { fetchPgcr })(StatsCard)
+

@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START, ADD_FIRETEAM_CHARACTER, CLEAR_STORE } from './types';
+import { FETCH_FIRETEAM_START, FETCH_FIRETEAM_END, SET_FIRETEAM_ERRORS, FETCH_PLAYER_DATA, SET_USER_ERRORS, VALIDATE_PLAYER_END, VALIDATE_PLAYER_START, ADD_FIRETEAM_CHARACTER, CLEAR_STORE, FETCH_PGCR_END, FETCH_PGCR_START, SET_PGCR_ERRORS } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
 import { push } from 'react-router-redux'
@@ -71,6 +71,32 @@ export const fetchFireteamMembers = (data) => {
             dispatch({
                 type: SET_FIRETEAM_ERRORS,
                 message: "There was an issue pulling stats for that player."
+            })
+        })
+    }
+}
+
+export const fetchPgcr = (data) => {
+    return (dispatch, getState) => {
+        dispatch({ type: FETCH_PGCR_START })
+        axios.get(`${API_URL}/v1/characters/pgcr/${data}`).then(response => {            
+            if (response.data.error) {
+                console.log("found error getting pgcr: ",  response.data.error)
+                dispatch({
+                    type: SET_PGCR_ERRORS,
+                    message: "There was an issue pulling game data for this match."
+                })
+            } else {
+                dispatch({
+                    type: FETCH_PGCR_END,
+                    payload: response.data
+                })
+            }
+        }).catch(error => {
+            console.log(error)
+            dispatch({
+                type: SET_PGCR_ERRORS,
+                message: "There was an issue pulling game data for this match."
             })
         })
     }
