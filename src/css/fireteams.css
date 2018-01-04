@@ -67,6 +67,14 @@ h3.ui.block.header.history-defeat:hover {
 
 }
 
+.ui.mini.statistic .value {
+    font-size: 1em !important;
+}
+
+.ui.items>.item>.image>img {
+    border-radius: 5px 0 0 5px;
+}
+
 .ui.raised.segment.pgcr-bg {
     background-size: cover;
     height: 375px;

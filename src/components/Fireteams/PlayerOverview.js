@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion, Menu, Header, List } from 'semantic-ui-react';
+import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion, Menu, Header, List, Item } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
 import { fetchPgcr } from '../../actions/fireteams_index';
 import { WEAPONS, BADGES, TRIALS_BADGES } from '../../data/common_constants'
@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
 import Loader from '../../img/rope-loader.svg'
+import StatisticLabel from 'semantic-ui-react/dist/commonjs/views/Statistic/StatisticLabel';
 const token = localStorage.getItem('auth_token');
 const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 var ta = require("time-ago")();
@@ -30,48 +31,105 @@ class GameContent extends Component {
             mapName = this.props.pgcr.map.name
 
         }
+
         let alpha = []
         let bravo = []
         if (this.props.pgcr.alpha) {
             alpha = this.props.pgcr.alpha.map((function (player, index) {
+                const scoreStyle = player.standing === 0 ?
+                    { fontSize: '1.4em', color: '#63C98B', fontWeight: '700' } : { fontSize: '1.4em', color: '#B84558', fontWeight: '700' }
                 return (
-                    <Grid.Row>
-                        <Grid.Column style={{ margin: '5px' }}>
-                            <Segment raised style={{ padding: '0' }}>
-                                <Header as='h5'>
-                                    <Image src={player.emblem} style={{ width: '3em', marginRight: '5px' }} />
-                                    <Header.Content style={{ padding: '0', width: '80%' }}>
-                                        {player.player_name}
-                                        <Header.Subheader>
-                                            stats coming soon!
-                                     </Header.Subheader>
-                                    </Header.Content>
-                                </Header>
-                            </Segment>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Item
+                        className='pgcr-item'
+                        style={{
+                            display: 'inline-flex',
+                            background: '#FFFFFF',
+                            width: '100%',
+                            height: '55px',
+                            margin: '5px',
+                            borderRadius: '5px'
+                        }}
+                    >
+                        <Item.Image size='tiny' src={player.emblem} style={{ width: '55px' }} />
+
+                        <Item.Content verticalAlign='middle' style={{ height: '100%', padding: '0', marginLeft: '15px' }}>
+                            <div style={{
+                                display: 'inlineBlock',
+                                fontWeight: '400',
+                                fontSize: '1.28571429em',
+                                letterSpacing: '1px'
+                            }}
+                            >{player.player_name}</div>
+                            <div>
+                                <Label.Group size='tiny'>
+                                    <Label basic>
+                                        KD
+                                        <Label.Detail>{player.kd_ratio}</Label.Detail>
+                                    </Label>
+                                    <Label basic>
+                                        EF
+                                        <Label.Detail>{player.efficiency}</Label.Detail>
+                                    </Label>
+                                </Label.Group>
+                            </div>
+
+                        </Item.Content>
+                        <div style={{ textAlign: 'center', margin: '0px 5px 0px 0px', paddingLeft: '5px' }}>
+                            <span style={{ letterSpacing: '1px', fontSize: '0.8em' }}>SCORE</span><br />
+                            <span style={scoreStyle}> {player.score}</span>
+                        </div>
+
+                    </Item>
                 )
             }))
         }
 
-        if (this.props.pgcr.alpha) {
+        if (this.props.pgcr.bravo) {
             bravo = this.props.pgcr.bravo.map((function (player, index) {
+                const scoreStyle = player.standing === 0 ?
+                    { fontSize: '1.4em', color: '#63C98B', fontWeight: '700' } : { fontSize: '1.4em', color: '#B84558', fontWeight: '700' }
                 return (
-                    <Grid.Row>
-                        <Grid.Column style={{ margin: '5px' }}>
-                            <Segment raised style={{ padding: '0' }}>
-                                <Header as='h5'>
-                                    <Image src={player.emblem} style={{ width: '3em', marginRight: '5px' }} />
-                                    <Header.Content style={{ padding: '0', width: '80%' }}>
-                                        {player.player_name}
-                                        <Header.Subheader>
-                                            stats coming soon!
-                                        </Header.Subheader>
-                                    </Header.Content>
-                                </Header>
-                            </Segment>
-                        </Grid.Column>
-                    </Grid.Row>
+                    <Item
+                        className='pgcr-item'
+                        style={{
+                            display: 'inline-flex',
+                            background: '#FFFFFF',
+                            width: '100%',
+                            height: '55px',
+                            margin: '5px',
+                            borderRadius: '5px'
+                        }}
+                    >
+                        <Item.Image size='tiny' src={player.emblem} style={{ width: '55px' }} />
+
+                        <Item.Content verticalAlign='middle' style={{ height: '100%', padding: '0', marginLeft: '15px' }}>
+                            <div style={{
+                                display: 'inlineBlock',
+                                fontWeight: '400',
+                                fontSize: '1.28571429em',
+                                letterSpacing: '1px'
+                            }}
+                            >{player.player_name}</div>
+                            <div>
+                                <Label.Group size='tiny'>
+                                    <Label basic>
+                                        KD
+                                        <Label.Detail>{player.kd_ratio}</Label.Detail>
+                                    </Label>
+                                    <Label basic>
+                                        EF
+                                        <Label.Detail>{player.efficiency}</Label.Detail>
+                                    </Label>
+                                </Label.Group>
+                            </div>
+
+                        </Item.Content>
+                        <div style={{ textAlign: 'center', margin: '0px 5px 0px 0px', paddingLeft: '5px' }}>
+                            <span style={{ letterSpacing: '1px', fontSize: '0.8em' }}>SCORE</span><br />
+                            <span style={scoreStyle}> {player.score}</span>
+                        </div>
+
+                    </Item>
                 )
             }))
         }
@@ -80,7 +138,7 @@ class GameContent extends Component {
             this.props.fetchingPgcr ?
                 <div style={{ textAlign: 'center', background: '#f5f5f5' }} >
                     <Image src={Loader} size='small' />
-                </div>
+                </div >
                 :
                 <Segment raised className='pgcr-bg' style={{ border: 'none' }}>
                     <div className='pgcr-overlay' style={backgroundStyle}></div>
@@ -90,17 +148,23 @@ class GameContent extends Component {
                                 <Header as='h2' >
                                     {mapName}
                                     <Header.Subheader style={{ color: '#e6e6e6' }}>
-                                        {this.props.mode ? modes[this.props.mode] : ""}
+                                        {this.props.mode ? `${modes[this.props.mode]} (${this.props.time})` : ""}
                                     </Header.Subheader>
                                 </Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column>
-                                {alpha}
+                                <Header as='h3' style={{ textAlign: 'center', color: '#f5f5f5', letterSpacing: '5px', fontWeight: '300', marginBottom: '0' }}> ALPHA </Header>
+                                <Item.Group style={{ marginTop: '0' }}>
+                                    {alpha}
+                                </Item.Group>
                             </Grid.Column>
                             <Grid.Column>
-                                {bravo}
+                                <Header as='h3' style={{ textAlign: 'center', color: '#f5f5f5', letterSpacing: '5px', fontWeight: '300', marginBottom: '0' }}> BRAVO </Header>
+                                <Item.Group style={{ marginTop: '0' }}>
+                                    {bravo}
+                                </Item.Group>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -132,21 +196,6 @@ class GameHistory extends Component {
         if (games.length) {
             const ordered = games.reverse()
             matches = ordered.reverse().map((function (match, index) {
-                // const alpha = match.members.alpha.map((function (player, index) {
-                //     return (
-                //         <List.Item>
-                //             <List.Content>{player.player_name}</List.Content>
-                //         </List.Item>
-                //     )
-                // }))
-
-                // const bravo = match.members.bravo.map((function (player, index) {
-                //     return (
-                //         <List.Item>
-                //             <List.Content>{player.player_name}</List.Content>
-                //         </List.Item>
-                //     )
-                // }))
 
                 const title = match.standing === 0 ?
                     <Header
@@ -154,11 +203,10 @@ class GameHistory extends Component {
                         block
                         className="history-victory"
                     >
-                        {/* <Icon name='check' style={{ fontSize: '1em' }} /> */}
                         <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
                             <span style={{ color: '#f5f5f5' }}>Victory</span>
                             <Header.Subheader>
-                                <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} ({match.activity_duration})</span>
+                                <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)}</span>
                             </Header.Subheader>
                         </Header.Content>
                     </Header>
@@ -168,11 +216,10 @@ class GameHistory extends Component {
                         block
                         className="history-defeat"
                     >
-                        {/* <Icon name='close' style={{ fontSize: '1em' }} /> */}
                         <Header.Content style={{ padding: '0', paddingLeft: '15px' }}>
                             <span style={{ color: '#f5f5f5' }}>Defeat</span>
                             <Header.Subheader>
-                                <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} ({match.activity_duration})</span>
+                                <span style={{ fontWeight: '100' }}>{ta.ago(match.game_date)} </span>
                             </Header.Subheader>
                         </Header.Content>
 
@@ -186,7 +233,7 @@ class GameHistory extends Component {
                             key: match.instance_id
                         },
                         content: {
-                            content: <GameContent pgcr={pgcr} pgcrError={pgcrError} fetchingPgcr={fetchingPgcr} mode={match.mode} />,
+                            content: <GameContent pgcr={pgcr} pgcrError={pgcrError} fetchingPgcr={fetchingPgcr} mode={match.mode} time={match.activity_duration} />,
                             key: `content - ${match.instance_id})`
                         }
                     }
