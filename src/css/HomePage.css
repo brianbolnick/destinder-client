@@ -227,6 +227,10 @@ input[type=text]:focus {
     width: 58px !important;
 }
 
+a.ui.raised.card.nav-card {
+    height: 100px;
+}
+
 @media only screen and (min-width: 1300px) and (max-width: 1500px) {
     .ui.two.column.grid.home-columns {
         position: relative;
@@ -239,7 +243,7 @@ input[type=text]:focus {
 @media only screen and (min-width: 1501px)  {
     .ui.two.column.grid.home-columns {
         position: relative;
-        top: 390px;
+        top: 520px;
         right: 30px;
     }
 

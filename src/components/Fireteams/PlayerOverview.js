@@ -63,11 +63,11 @@ class GameContent extends Component {
                             <div>
                                 <Label.Group size='tiny'>
                                     <Label basic>
-                                        KD
-                                        <Label.Detail>{player.kd_ratio}</Label.Detail>
+                                        Kills
+                                        <Label.Detail>{player.kills}</Label.Detail>
                                     </Label>
                                     <Label basic>
-                                        EF
+                                        EFficiency
                                         <Label.Detail>{player.efficiency}</Label.Detail>
                                     </Label>
                                 </Label.Group>
@@ -75,8 +75,8 @@ class GameContent extends Component {
 
                         </Item.Content>
                         <div style={{ textAlign: 'center', margin: '0px 5px 0px 0px', paddingLeft: '5px' }}>
-                            <span style={{ letterSpacing: '1px', fontSize: '0.8em' }}>SCORE</span><br />
-                            <span style={scoreStyle}> {player.score}</span>
+                            <span style={{ letterSpacing: '1px', fontSize: '0.8em' }}>KD</span><br />
+                            <span style={{ fontSize: '1.3em', fontWeight: '700' }}> {player.kd_ratio}</span>
                         </div>
 
                     </Item>
@@ -113,20 +113,20 @@ class GameContent extends Component {
                             <div>
                                 <Label.Group size='tiny'>
                                     <Label basic>
-                                        KD
-                                        <Label.Detail>{player.kd_ratio}</Label.Detail>
+                                        Kills
+                                  <Label.Detail>{player.kills}</Label.Detail>
                                     </Label>
                                     <Label basic>
-                                        EF
-                                        <Label.Detail>{player.efficiency}</Label.Detail>
+                                        EFficiency
+                                  <Label.Detail>{player.efficiency}</Label.Detail>
                                     </Label>
                                 </Label.Group>
                             </div>
 
                         </Item.Content>
                         <div style={{ textAlign: 'center', margin: '0px 5px 0px 0px', paddingLeft: '5px' }}>
-                            <span style={{ letterSpacing: '1px', fontSize: '0.8em' }}>SCORE</span><br />
-                            <span style={scoreStyle}> {player.score}</span>
+                            <span style={{ letterSpacing: '1px', fontSize: '0.8em' }}>KD</span><br />
+                            <span style={{ fontSize: '1.3em', fontWeight: '700' }}> {player.kd_ratio}</span>
                         </div>
 
                     </Item>
