@@ -362,7 +362,7 @@ export class FightForeverBadge extends Component {
                         <Icon name='fire extinguisher' /> FIGHT FOREVER
                     </Label>
                 }
-                content='More than 60% of total weapon kills are precision kills'
+                content='Kill Spree Greater than 10'
             />
             
         )
