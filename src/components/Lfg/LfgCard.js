@@ -208,7 +208,7 @@ class LfgCard extends Component {
                             <Grid.Row stretched style={{ padding: '0' }}>
                                 <Grid.Column width={12}>
                                     <Divider fitted style={{ fontSize: '0.8rem' }} horizontal>MESSAGE</Divider>
-                                    <Grid.Row className='post-message' style={{ marginTop: '-50px' }}>
+                                    <Grid.Row className='post-message' style={{ marginTop: '5px' }}>
                                         <p>
                                             {filter.clean(data.message)}
                                         </p>
