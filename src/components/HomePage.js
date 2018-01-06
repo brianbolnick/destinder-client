@@ -91,6 +91,7 @@ class LoginButton extends Component {
               <Modal.Header>Badge-o-Graphy</Modal.Header>
               <BadgeContent />
             </Modal>
+            <Dropdown.Item as={Link} to='/discord' >Discord</Dropdown.Item>
             <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -119,6 +120,9 @@ class HomeNav extends Component {
           </Menu.Item>
           <Menu.Item link className='hide-on-mobile'>
             <FaqButton />
+          </Menu.Item>
+          <Menu.Item link href='//discord.gg/wgCEXZr' target='_blank' className='hide-on-mobile'>
+            <span className="home-nav-link">Discord</span>  
           </Menu.Item>
           <Menu.Item >
             <div>
@@ -170,6 +174,7 @@ class HomeFirst extends Component {
               <Icon name='twitter' size='large' link onClick={() => { window.location.replace('https://twitter.com/Destinderdotcom') }} />
               <Icon name='instagram' size='large' link onClick={() => { window.location.replace('https://www.instagram.com/destinderdotcom/') }} />
               <Icon name='reddit' size='large' link onClick={() => { window.location.replace('https://www.reddit.com/r/destinder/') }} />
+              <Icon name='simplybuilt' flipped='vertically' size='large' link onClick={() => { window.location.replace('https://discord.gg/wgCEXZr') }} />
             </div>
 
           </Modal.Content>

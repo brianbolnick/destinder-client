@@ -98,6 +98,12 @@ class App extends Component  {
                 (window.location =
                   "https://www.reddit.com/r/destinder/")}
             />
+            <Route
+              path="/discord"
+              component={() =>
+                (window.location =
+                  "https://discord.gg/wgCEXZr")}
+            />
             <Route component={NotFound} />
           </Switch>
         </CSSTransition>

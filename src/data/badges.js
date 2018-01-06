@@ -170,7 +170,7 @@ export class Conjuror  extends Component {
                         <Icon name='magic' /> CONJUROR
                     </Label>
                 }
-                content='Referred a friend!'
+                content='Referred 10 people to the site!'
             />
             
         )
