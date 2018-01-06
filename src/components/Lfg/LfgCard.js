@@ -162,6 +162,9 @@ class LfgCard extends Component {
             case '16':
             case '17':
             case '18':
+            case '40':
+            case '41':
+            case '42':
                 statData = <PveData mode={data.game_type} player_data={player_data} />
                 break;
             case '39':

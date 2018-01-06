@@ -2,6 +2,9 @@
 export const pveOptions = [
     { key: "7", text: "PVE - Any", value: 7 },
     { key: "4", text: "Raid - Leviathan", value: 4 },
+    { key: "40", text: "Eater of Worlds (300)", value: 40 },
+    { key: "41", text: "Eater of Worlds (310)", value: 41 },
+    { key: "42", text: "Eater of Worlds (330)", value: 42 },
     { key: "16", text: "Nightfall", value: 16 },
     { key: "17", text: "Nightfall - Heroic", value: 17 },
     { key: "2", text: "Story", value: 2 },
@@ -65,7 +68,6 @@ export const raidOptions = [
     { key: "14", text: "Prestige - Pleasure Gardens", value: 14 },
     { key: "15", text: "Prestige - Gauntlet", value: 15 },
     { key: "16", text: "Prestige - Calus", value: 16 },
-    { key: "17", text: "Eater of Worlds", value: 16 },
     { key: "102", text: "Other", value: 102 }
 ]
 
