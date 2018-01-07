@@ -9,9 +9,8 @@ const KillChart = props => {
   let temp_dates = [];
   let kills = [];
   let deaths = [];
+  
   // eslint-disable-next-line
-
-
   props.data.slice(0, 15).reverse().map(function (object, i) {
     kills.push(object.kills);
     deaths.push(object.deaths * -1);

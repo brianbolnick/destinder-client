@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 import { Draggable, DragComponent, Droppable } from "react-dragtastic";
-import { Grid, Image, Container, Card, Icon } from 'semantic-ui-react'
-import _ from 'lodash'
+import { Grid, Container } from 'semantic-ui-react'
 
-const styles = {
-  fontFamily: "sans-serif",
-  textAlign: "center",
-  display: "flex",
-  justifyContent: "space-between"
-};
+// const styles = {
+//   fontFamily: "sans-serif",
+//   textAlign: "center",
+//   display: "flex",
+//   justifyContent: "space-between"
+// };
 
 const draggableStyles = {
   width: 300,
@@ -25,31 +24,31 @@ const draggableStyles = {
   transition: "background 300ms"
 };
 
-const orangeCircleStyles = {
-  width: 50,
-  height: 50,
-  zIndex: '100',
-  borderRadius: "10%",
-  boxShadow: "1px 1px 0px rgba(0,0,0,.9)",
-  position: "fixed",
-  pointerEvents: "none" //This is important for now. Mouseup events can't trigger if the pointer is on top of your DragComponent
-};
+// const orangeCircleStyles = {
+//   width: 50,
+//   height: 50,
+//   zIndex: '100',
+//   borderRadius: "10%",
+//   boxShadow: "1px 1px 0px rgba(0,0,0,.9)",
+//   position: "fixed",
+//   pointerEvents: "none" //This is important for now. Mouseup events can't trigger if the pointer is on top of your DragComponent
+// };
 
-const tealCircleStyles = {
-  background: "teal"
-};
+// const tealCircleStyles = {
+//   background: "teal"
+// };
 
-const tealDroppableStyles = {
-  background: "teal"
-};
+// const tealDroppableStyles = {
+//   background: "teal"
+// };
 
 const overOrange = {
   background: "yellow"
 };
 
-const overTeal = {
-  background: "aqua"
-};
+// const overTeal = {
+//   background: "aqua"
+// };
 
 
 const weapons = [
@@ -256,105 +255,6 @@ class PageLayout extends Component {
         </Grid>
       </Container>
     )
-  }
-}
-
-class Testing extends Component {
-  onOrangeDrop = data => {
-    alert(`Dropped orange and got the following data: ${data}`);
-  };
-  onTealDrop = data => {
-    alert(`Dropped teal and got the following data: ${data}`);
-  };
-  render() {
-    return (
-      <div style={styles}>
-        <div>
-          <Draggable
-            id="orange-draggable"
-            type="orange"
-            data="Some Orange Data"
-          >
-            {dragState => (
-              <div {...dragState.events} style={draggableStyles}>
-                Draggable Zone
-              </div>
-            )}
-          </Draggable>
-          <Draggable id="teal-draggable" type="teal" data="Some Teal Data">
-            {dragState => (
-              <div
-                {...dragState.events}
-                style={{
-                  ...draggableStyles,
-                  ...tealDroppableStyles
-                }}
-              >
-                Draggable Zone
-              </div>
-            )}
-          </Draggable>
-        </div>
-        <DragComponent for="orange-draggable">
-          {dragState => (
-            <div
-              style={{
-                ...orangeCircleStyles,
-                left: dragState.x - 15,
-                top: dragState.y - 15
-              }}
-            />
-          )}
-        </DragComponent>
-        <DragComponent for="teal-draggable">
-          {dragState => (
-            <div
-              style={{
-                ...orangeCircleStyles,
-                ...tealCircleStyles,
-                left: dragState.x - 15,
-                top: dragState.y - 15
-              }}
-            />
-          )}
-        </DragComponent>
-        <div>
-          <Droppable accepts="orange" onDrop={this.onOrangeDrop}>
-            {dragState => (
-              <div
-                style={{
-                  ...draggableStyles,
-                  ...(dragState.isOver && dragState.type === "orange"
-                    ? overOrange
-                    : {})
-                }}
-                {...dragState.events}
-              >
-                Droppable Zone <br />
-                Accepts Orange
-              </div>
-            )}
-          </Droppable>
-          <Droppable accepts="teal" onDrop={this.onTealDrop}>
-            {dragState => (
-              <div
-                style={{
-                  ...draggableStyles,
-                  ...tealDroppableStyles,
-                  ...(dragState.isOver && dragState.type === "teal"
-                    ? overTeal
-                    : {})
-                }}
-                {...dragState.events}
-              >
-                Droppable Zone <br />
-                Accepts Teal
-              </div>
-            )}
-          </Droppable>
-        </div>
-      </div>
-    );
   }
 }
 

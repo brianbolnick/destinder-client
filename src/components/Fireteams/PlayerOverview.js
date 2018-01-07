@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion, Menu, Header, List, Item } from 'semantic-ui-react';
+import { Container, Grid, Divider, Statistic, Image, Popup, Rating, Icon, Button, Label, Segment, Accordion, Header, Item } from 'semantic-ui-react';
 import WeaponChart from '../../charts/WeaponChart.js';
 import { fetchPgcr } from '../../actions/fireteams_index';
 import { WEAPONS, BADGES, TRIALS_BADGES } from '../../data/common_constants'
@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { API_URL } from '../../tools/api-config';
 import Loader from '../../img/rope-loader.svg'
-import StatisticLabel from 'semantic-ui-react/dist/commonjs/views/Statistic/StatisticLabel';
 const token = localStorage.getItem('auth_token');
 const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 var ta = require("time-ago")();
@@ -36,8 +35,8 @@ class GameContent extends Component {
         let bravo = []
         if (this.props.pgcr.alpha) {
             alpha = this.props.pgcr.alpha.map((function (player, index) {
-                const scoreStyle = player.standing === 0 ?
-                    { fontSize: '1.4em', color: '#63C98B', fontWeight: '700' } : { fontSize: '1.4em', color: '#B84558', fontWeight: '700' }
+                // const scoreStyle = player.standing === 0 ?
+                //     { fontSize: '1.4em', color: '#63C98B', fontWeight: '700' } : { fontSize: '1.4em', color: '#B84558', fontWeight: '700' }
                 return (
                     <Item
                         className='pgcr-item'
@@ -86,8 +85,8 @@ class GameContent extends Component {
 
         if (this.props.pgcr.bravo) {
             bravo = this.props.pgcr.bravo.map((function (player, index) {
-                const scoreStyle = player.standing === 0 ?
-                    { fontSize: '1.4em', color: '#63C98B', fontWeight: '700' } : { fontSize: '1.4em', color: '#B84558', fontWeight: '700' }
+                // const scoreStyle = player.standing === 0 ?
+                //     { fontSize: '1.4em', color: '#63C98B', fontWeight: '700' } : { fontSize: '1.4em', color: '#B84558', fontWeight: '700' }
                 return (
                     <Item
                         className='pgcr-item'
@@ -183,7 +182,6 @@ class GameHistory extends Component {
     render() {
 
         const { games, pgcr, pgcrError, fetchingPgcr } = this.props;
-        const { activeIndex } = this.state
         let matches =
             {
                 title: {

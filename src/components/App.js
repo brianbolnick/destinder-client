@@ -7,6 +7,7 @@ import FireteamsForm from "./Fireteams/FireteamsFormPage.js";
 import Fireteams from "./Fireteams/FireteamsPage.js";
 import Admin from "./AdminPage.js";
 import Testing from "./Testing.js";
+import LoginSelect from "./LoginSelect.js";
 import Clans from './Clans.js'
 // import TeamSearch from './TeamSearch.js';
 import NotFound from "./NotFound.js";
@@ -74,6 +75,7 @@ class App extends Component  {
             <Route path="/clans" component={Clans} />
             <Route path="/admin" component={Admin} />
             <Route path="/test" component={Testing} />
+            <Route path="/login_select" component={LoginSelect} />
             <Route
               path="/donate"
               component={() =>
