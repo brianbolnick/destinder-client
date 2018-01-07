@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Container, Icon, Image, Grid, Header, Segment, Message } from "semantic-ui-react";
+import { Container, Icon, Image, Grid, Header, Segment, Message, Button, Divider } from "semantic-ui-react";
 import Layout from "../Layout.js";
 import NoTextLogo from "../../img/logo-no-text-white.png";
 import { jwt } from '../../tools/jwt';
 import Parallax from "react-springy-parallax";
 import HeaderNav from "../Header.js";
+import { API_URL } from '../../tools/api-config';
 
 class Stats extends Component {
     render() {
@@ -147,11 +148,15 @@ class NoAuth extends Component {
                 <Message icon info>
                     <Icon name='circle notched' loading />
                     <Message.Content>
-                        <Message.Header>Sorry!</Message.Header>
-                        You need to be logged in to access this page.
+                        <Message.Header>Sorry! You need to be logged in to access this page.</Message.Header>
+                        We can't pull any of your info if we don't know who you are... It'll be worth it :)
                     </Message.Content>
                 </Message>
-                <Image size='big' centered fluid src='http://i.imgur.com/7rlgPZQ.gif' />
+                <Button color='green' basic fluid as='a' href={`${API_URL}/login`}>
+                    Sign up or Login with Bungie
+                </Button>
+                <Divider />
+                <Image size='big' centered fluid src='https://media.giphy.com/media/l378k9LrbIFNby9gY/source.gif' />
             </div>
         )
     }
