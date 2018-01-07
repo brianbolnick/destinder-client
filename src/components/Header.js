@@ -195,12 +195,6 @@ class NavLinks extends Component {
             <ClansCard currentLocation={this.state.currentLocation} />
           </Grid.Column>
         </Grid>
-        {/* <Card.Group itemsPerRow={4}>
-          <ProfileCard currentLocation={this.state.currentLocation} />
-          <LfgCard currentLocation={this.state.currentLocation} />
-          <FireteamsCard currentLocation={this.state.currentLocation} />
-          <PlayerCard currentLocation={this.state.currentLocation} />
-        </Card.Group> */}
       </div>
     )
   }

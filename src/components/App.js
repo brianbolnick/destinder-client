@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./Lfg/LfgPage.js";
-import Profile from "./ProfilePage.js";
+import Profile from "./Profile/ProfilePage.js";
 import FireteamsForm from "./Fireteams/FireteamsFormPage.js";
 import Fireteams from "./Fireteams/FireteamsPage.js";
 import Admin from "./AdminPage.js";

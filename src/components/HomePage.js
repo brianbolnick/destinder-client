@@ -91,7 +91,7 @@ class LoginButton extends Component {
               <Modal.Header>Badge-o-Graphy</Modal.Header>
               <BadgeContent />
             </Modal>
-            <Dropdown.Item as={Link} to='/discord' >Discord</Dropdown.Item>
+            <Dropdown.Item className='hide-on-med-and-up' as={Link} to='/discord' >Discord</Dropdown.Item>
             <Dropdown.Item onClick={() => this.onLogoutClick()}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -322,7 +322,7 @@ class HomeSecond extends Component {
             <Grid.Column width={16}>
               <div style={{ textAlign: "center", height: '60vh' }}>
                 {/* <AnnouncementCard /> */}
-                <Segment inverted padded='very' fluid textAlign='center' size='massive' style={{bordeBottom: 'solid 1px #47D5CF'}}>
+                <Segment inverted padded='very' textAlign='center' size='massive' style={{borderBottom: 'solid 1px #47D5CF'}}>
                   We'll have some leaderboards of all the stats we track coming soon!
                 </Segment>
               </div>

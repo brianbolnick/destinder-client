@@ -19,7 +19,7 @@ import FilterModal from './FilterModal';
 import PlatformSelectModal from './PlatformSelectModal';
 
 class ErrorMessage extends Component {
- 
+
   render() {
     const content = (
       <div>
@@ -28,13 +28,13 @@ class ErrorMessage extends Component {
     )
 
     return (
-      <Message 
-        icon='frown' 
+      <Message
+        icon='frown'
         error
         header='Whoops! Something went wrong!'
         content={content}
-        />
-      
+      />
+
     )
   }
 }
@@ -87,15 +87,15 @@ class LfgPage extends Component {
   }
 
   isLoggedIn() {
-    if (jwt != null) { 
+    if (jwt != null) {
       if ((jwt.exp * 1000) >= Date.now()) {
-          return true;
+        return true;
       } else {
-          localStorage.removeItem('jwt');
-          localStorage.removeItem('auth_token');
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('auth_token');
       }
-  }
-  return false;
+    }
+    return false;
   }
 
   handleRefreshButtonClick() {
