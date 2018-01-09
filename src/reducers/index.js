@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import ProfileReducer from './profile_reducer';
 import LfgPostsReducer from './lfg_posts_reducer';
 import FireteamsReducer from './fireteams_reducer';
 import FireteamPlayerReducer from './fireteam_player_reducer';
@@ -10,5 +11,6 @@ export default combineReducers({
     lfgPosts: LfgPostsReducer,
     fireteam: FireteamsReducer,
     fireteamPlayer: FireteamPlayerReducer,
+    profile: ProfileReducer,
     form: formReducer
 });

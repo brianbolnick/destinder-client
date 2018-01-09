@@ -1,134 +1,54 @@
-// eslint-disable-next-line
-import { FETCH_PROFILE_CHARACTERS_START, FETCH_PROFILE_CHARACTERS_END, SET_PROFILE_CHARACTERS_ERROR } from './types';
+import { 
+    FETCH_PROFILE_CHARACTERS_START, 
+    FETCH_PROFILE_CHARACTERS_END, 
+    SET_PROFILE_CHARACTERS_ERROR,
+    FETCH_PROFILE_USER_START,
+    FETCH_PROFILE_USER_END,
+    SET_PROFILE_USER_ERROR
+ } from './types';
 import axios from 'axios';
 import { API_URL } from '../tools/api-config';
-import { push } from 'react-router-redux'
-const token = localStorage.getItem('auth_token');
-const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
+// const token = localStorage.getItem('auth_token');
+// const config = { headers: { 'AUTHORIZATION': `Bearer ${token}` } }
 
-export const addPlayerStats = (id, data) => {
+export const fetchUserDetails = (user_id) => {    
     return (dispatch, getState) => {
-        dispatch({
-            type: ADD_FIRETEAM_CHARACTER,
-            payload: data,
-            id: id
-        })
-    }
-}
-
-export const clearOnUnmount = () => {
-    return (dispatch, getState) => {
-        dispatch({
-            type: CLEAR_STORE
-        })
-    }
-}
-
-export const validateUser = (data) => {
-    return (dispatch, getState) => {
-        dispatch({ type: VALIDATE_PLAYER_START })
-        const gamertag = encodeURIComponent(data.gamertag.trim())
-        axios.get(`${API_URL}/v1/validate_player?user=${gamertag}&platform=${data.console}`, config).then(response => {
-            if (response.data.valid === 0) {
+        dispatch({ type: FETCH_PROFILE_USER_START })
+        axios.get(`${API_URL}/v1/users/${user_id}/`).then(userResponse => {            
+            axios.get(`${API_URL}/v1/users/${user_id}/reputation`).then(repResponse => {
+                dispatch({ type: FETCH_PROFILE_USER_END, payload: userResponse.data, rep: repResponse.data })
+            }).catch(error => {
+                console.log(error)
                 dispatch({
-                    type: SET_USER_ERRORS,
-                    payload: "User not found."
+                    type: SET_PROFILE_USER_ERROR,
+                    payload: error,
+                    message: "There was a problem retrieving your characters."
                 })
-            } else {
-                dispatch({
-                    type: VALIDATE_PLAYER_START
-                })
-                dispatch(push(`/fireteams/${data.console}/${gamertag}`))
-            }
-        }).catch(error => {
-            dispatch({
-                type: SET_USER_ERRORS,
-                payload: "There was an issue searching for that user."
             })
-        })
-
-    };
-}
-
-export const fetchFireteamMembers = (data) => {
-    return (dispatch, getState) => {
-        dispatch({ type: FETCH_FIRETEAM_START })
-        axios.get(`${API_URL}/v1/fireteams/${data.platform}/${data.gamertag}`).then(response => {
-            if (response.data.error) {
-                console.log("found error getting fireteam: ", response.data.error)
-                dispatch({
-                    type: SET_FIRETEAM_ERRORS,
-                    message: "There was an issue pulling stats for that player."
-                })
-            } else {
-                dispatch({
-                    type: FETCH_FIRETEAM_END,
-                    payload: response.data
-                })
-            }
         }).catch(error => {
             console.log(error)
             dispatch({
-                type: SET_FIRETEAM_ERRORS,
-                message: "There was an issue pulling stats for that player."
+                type: SET_PROFILE_USER_ERROR,
+                payload: error,
+                message: "There was a problem retrieving your characters."
             })
         })
-    }
-}
-
-export const fetchPgcr = (data) => {
-    return (dispatch, getState) => {
-        dispatch({ type: FETCH_PGCR_START })
-        axios.get(`${API_URL}/v1/characters/pgcr/${data}`).then(response => {
-            if (response.data.error) {
-                console.log("found error getting pgcr: ", response.data.error)
-                dispatch({
-                    type: SET_PGCR_ERRORS,
-                    message: "There was an issue pulling game data for this match."
-                })
-            } else {
-                dispatch({
-                    type: FETCH_PGCR_END,
-                    payload: response.data
-                })
-            }
-        }).catch(error => {
-            console.log(error)
-            dispatch({
-                type: SET_PGCR_ERRORS,
-                message: "There was an issue pulling game data for this match."
-            })
-        })
-    }
-}
-
-export const validateUserDirectPath = (data) => {
-    return (dispatch, getState) => {
-        const gamertag = encodeURIComponent(data.gamertag.trim())
-        axios.get(`${API_URL}/v1/validate_player?user=${gamertag}&platform=${data.platform}`, config).then(response => {
-            if (response.data.valid === 0) {
-                dispatch({
-                    type: SET_USER_ERRORS,
-                    payload: "User not found. Please go back and search again."
-                })
-            } else {
-                console.log("found user, getting fireteam.");
-            }
-        }).catch(error => {
-            dispatch({
-                type: SET_USER_ERRORS,
-                payload: "There was an issue searching for that user."
-            })
-        })
-
     };
 }
 
-export const resetErrors = () => {
+
+export const fetchPlayerCharacters = (user_id) => {    
     return (dispatch, getState) => {
-        dispatch({
-            type: SET_USER_ERRORS,
-            payload: null
+        dispatch({ type: FETCH_PROFILE_CHARACTERS_START })
+        axios.get(`${API_URL}/v1/users/${user_id}/characters`).then(response => {            
+            dispatch({ type: FETCH_PROFILE_CHARACTERS_END, payload: response.data })            
+        }).catch(error => {
+            console.log(error)
+            dispatch({
+                type: SET_PROFILE_CHARACTERS_ERROR,
+                payload: error,
+                message: "There was a problem retrieving your characters."
+            })
         })
-    }
+    };
 }
