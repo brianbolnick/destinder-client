@@ -1,0 +1,11 @@
+.profile-character-tabs .ant-tabs-nav-container .ant-tabs-nav-wrap {
+    text-align: center;
+}
+
+.profile-character-tabs .ant-tabs-tab {
+    color: #636363;
+}
+
+.profile-character-tabs .ant-tabs-tabpane.ant-tabs-tabpane-active {
+    color: #636363;
+}
