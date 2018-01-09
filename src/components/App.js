@@ -3,6 +3,7 @@ import "../css/App.css";
 import Home from "./HomePage.js";
 import Lfg from "./Lfg/LfgPage.js";
 import Profile from "./Profile/ProfilePage.js";
+import ProfilePath from "./Profile/ProfilePathPage.js";
 import FireteamsForm from "./Fireteams/FireteamsFormPage.js";
 import Fireteams from "./Fireteams/FireteamsPage.js";
 import Admin from "./AdminPage.js";
@@ -69,7 +70,8 @@ class App extends Component  {
           <Switch location={this.props.location}>
             <Route path="/" exact component={Home} />
             <Route path="/lfg" component={Lfg} />
-            <Route path="/profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/profile/:user_id" component={ProfilePath} />
             <Route exact path="/fireteams" component={FireteamsForm} />          }
             <Route path="/fireteams/:platform/:gamertag" component={Fireteams} />
             <Route path="/clans" component={Clans} />

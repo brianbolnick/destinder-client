@@ -4,7 +4,6 @@ import { fetchPlayerCharacters, fetchUserDetails, fetchCharacter } from '../../a
 import { Container, Icon, Image, Grid, Header, Segment, Rating, Popup, Dropdown, Label, Divider } from "semantic-ui-react";
 import '../../css/Profile.css';
 import NoTextLogo from "../../img/logo-no-text.png";
-import { jwt } from '../../tools/jwt';
 import { BADGES } from '../../data/common_constants'
 
 
@@ -65,6 +64,8 @@ class UserOverview extends Component {
                 })
             }
         }
+
+        console.log(this.props.user)
         return (
             <Segment
                 inverted
@@ -75,7 +76,7 @@ class UserOverview extends Component {
                 <Header as='h1'>
                     <Image verticalAlign='middle' src={NoTextLogo} />
                     <Header.Content style={{ color: '#212121', fontWeight: '100', }}>
-                        {jwt.display_name}
+                        {this.props.user.display_name}
                         <Header.Subheader style={{ color: '#212121' }}>
                             {repDisplay}
                         </Header.Subheader>
@@ -101,8 +102,8 @@ class UserOverview extends Component {
 
 class Stats extends Component {
     componentWillMount() {
-        this.props.fetchUserDetails(jwt.user_id);
-        this.props.fetchPlayerCharacters(jwt.user_id);
+        this.props.fetchUserDetails(this.props.user_id);
+        this.props.fetchPlayerCharacters(this.props.user_id);
     }
 
     render() {
