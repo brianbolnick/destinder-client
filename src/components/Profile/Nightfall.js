@@ -21,8 +21,8 @@ class Nightfall extends Component {
     render() {
         const normal = this.props.nightfallNormal
         const heroic = this.props.nightfallHeroic
-        const normalDeathRate = normal.deaths ? parseFloat(normal.deaths).toFixed(2) / parseFloat(normal.games_played) : null
-        const heroicDeathRate = heroic.deaths ? parseFloat(heroic.deaths).toFixed(2) / parseFloat(heroic.games_played) : "-"
+        const normalDeathRate = normal.deaths ? (parseFloat(normal.deaths) / parseFloat(normal.games_played)).toFixed(2) : null
+        const heroicDeathRate = heroic.deaths ? (parseFloat(heroic.deaths) / parseFloat(heroic.games_played)).toFixed(2) : "-"
 
         return (
             <Segment
