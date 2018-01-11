@@ -1,22 +1,25 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { fetchPlayerCharacters, fetchUserDetails, fetchCharacter } from '../../actions/profile_index';
+import { fetchPlayerCharacters, fetchUserDetails, fetchCharacter, changeCharacter } from '../../actions/profile_index';
 import { Container, Icon, Image, Grid, Header, Segment, Rating, Popup, Dropdown, Label, Divider } from "semantic-ui-react";
 import '../../css/Profile.css';
 import NoTextLogo from "../../img/logo-no-text.png";
+import Nightfall from './Nightfall'
+import Pvp from './Pvp'
+import 'react-tippy/dist/tippy.css';
 import { jwt } from '../../tools/jwt';
 import { BADGES } from '../../data/common_constants'
 
 
 class UserOverview extends Component {
     render() {
-        const { reputation, user, characters } = this.props;
-        const characterOptions = Object.values(characters).map((character, index) => {
+        const { reputation, user, characters, character, fetchingCharacters } = this.props;
+        const characterOptions = Object.entries(characters).map((character, index) => {
             return {
                 key: index,
-                value: character.id,
-                text: character.character_type,
-                image: character.emblem
+                value: character[0],
+                text: character[1].character_type,
+                image: character[1].emblem
             }
         })
 
@@ -65,6 +68,7 @@ class UserOverview extends Component {
                 })
             }
         }
+
         return (
             <Segment
                 inverted
@@ -93,11 +97,20 @@ class UserOverview extends Component {
                     />
                 </Label.Group>
                 <Divider />
-                <Dropdown placeholder='Select Character' fluid selection options={characterOptions} loading={this.props.fetchingCharacters} />
+                <Dropdown
+                    fluid
+                    selection
+                    options={characterOptions}
+                    placeholder={character !== null ? character.type : null}
+                    defaultValue={character !== null ? character.id : null}
+                    loading={fetchingCharacters}
+                    onChange={this.props.handleChange}
+                />
             </Segment>
         )
     }
 }
+
 
 class Stats extends Component {
     componentWillMount() {
@@ -105,37 +118,27 @@ class Stats extends Component {
         this.props.fetchPlayerCharacters(jwt.user_id);
     }
 
+    handleChange = (e, data) => {
+        const id = data.value
+        const type  = data.options.filter(char => char.value === id)[0].text
+        this.props.changeCharacter(id, type) 
+    }
+
     render() {
-        const { reputation, user, characters } = this.props;
+        const { reputation, user, characters, character } = this.props;
 
         return (
             <Container style={{ padding: "2%", minHeight: '90vh', width: '90%' }} className='hide-on-mobile'>
                 <Grid columns={3}>
                     <Grid.Row stretched>
                         <Grid.Column>
-                            <UserOverview reputation={reputation} user={user} characters={characters} />
+                            <UserOverview reputation={reputation} user={user} characters={characters} character={character} handleChange={this.handleChange}/>
                         </Grid.Column>
                         <Grid.Column>
-                            <Segment
-                                inverted
-                                raised
-                                padded='very'
-                                size='massive'
-                                className="profile-segment"
-                            >
-                                Nightfall stats coming soon!
-                            </Segment>
+                            <Nightfall user={user} character={character} />
                         </Grid.Column>
                         <Grid.Column>
-                            <Segment
-                                inverted
-                                raised
-                                padded='very'
-                                size='massive'
-                                className="profile-segment"
-                            >
-                                Overall PVP stats coming soon!
-                            </Segment>
+                            <Pvp user={user} character={character} />
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row stretched>
@@ -173,7 +176,7 @@ class Stats extends Component {
                     </Grid.Row>
                 </Grid>
 
-                <Grid columns={1} style ={{ width: '110%', marginTop: '0' }}>
+                <Grid columns={1} style={{ width: '110%', marginTop: '0' }}>
                     <Grid.Row>
                         <Grid.Column width={16}>
                             <div style={{ textAlign: "right" }}>
@@ -207,5 +210,5 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchPlayerCharacters, fetchUserDetails, fetchCharacter })(Stats)
+export default connect(mapStateToProps, { fetchPlayerCharacters, fetchUserDetails, fetchCharacter, changeCharacter })(Stats)
 

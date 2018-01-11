@@ -1,14 +1,5 @@
 // eslint-disable-next-line
-import {
-    FETCH_PROFILE_CHARACTERS_START,
-    FETCH_PROFILE_CHARACTERS_END,
-    SET_PROFILE_CHARACTERS_ERROR,
-    FETCH_PROFILE_USER_START,
-    FETCH_PROFILE_USER_END,
-    SET_PROFILE_USER_ERROR,
-    FETCH_PROFILE_CHARACTER_START,
-    FETCH_PROFILE_CHARACTER_END
-} from '../actions/types';
+import * as Types from '../actions/types';
 
 const INITIAL_STATE = {
     characters: {},
@@ -16,7 +7,13 @@ const INITIAL_STATE = {
     fetchingCharacters: false,
     fetchingCharacter: false,
     fetchingUser: false,
+    fetchingNightfall: false,
+    fetchingPvp: false,
     user: {},
+    nightfallNormal: {},
+    nightfallHeroic: {},
+    pvp: {},
+    pvpError: {},
     userError: null,
     reputation: {},
     reputationError: null,
@@ -25,22 +22,43 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
-        case FETCH_PROFILE_USER_START:
+        case Types.FETCH_PROFILE_USER_START:
             return { ...state, fetchingUser: true };
-        case FETCH_PROFILE_USER_END:            
+        case Types.FETCH_PROFILE_USER_END:
             return { ...state, fetchingUser: false, user: action.payload, reputation: action.rep };
-        case SET_PROFILE_USER_ERROR:
+        case Types.SET_PROFILE_USER_ERROR:
             console.log("setting error in reducer", action.message)
             return { ...state, userError: action.message, fetchingUser: false }
-        case FETCH_PROFILE_CHARACTERS_START:
+        case Types.FETCH_PVP_START:
+            return { ...state, fetchingPvp: true, pvpError: null };
+        case Types.FETCH_PVP_END:
+            return { ...state, fetchingPvp: false, pvp: action.payload };
+        case Types.SET_PVP_ERROR:
+            console.log("setting error in reducer", action.message)
+            return { ...state, pvpError: action.message, pvpCharacters: false }
+        case Types.FETCH_NIGHTFALL_START:
+            return { ...state, fetchingNightfall: true, nightfallError: null };
+        case Types.FETCH_NIGHTFALL_END:
+            return { ...state, fetchingNightfall: false, nightfallNormal: action.normPayload, nightfallHeroic: action.presPayload };
+        case Types.SET_NIGHTFALL_ERROR:
+            console.log("setting error in reducer", action.message)
+            return { ...state, nightfallError: action.message, fetchingNightfall: false }
+        // case Types.FETCH_PROFILE_CHARACTER_START:
+        //     return { ...state, fetchingCharacter: true };
+        // case Types.FETCH_PROFILE_CHARACTER_END:
+        //     return { ...state, fetchingCharacter: false, character: action.payload };
+        case Types.FETCH_PROFILE_CHARACTERS_START:
             return { ...state, fetchingCharacters: true };
-        case FETCH_PROFILE_CHARACTERS_END:            
-            return { ...state, fetchingCharacters: false, characters: action.payload };
-        case FETCH_PROFILE_CHARACTER_START:
-            return { ...state, fetchingCharacter: true };
-        case FETCH_PROFILE_CHARACTER_END:            
-            return { ...state, fetchingCharacter: false, character: action.payload };
-        case SET_PROFILE_CHARACTERS_ERROR:
+        case Types.FETCH_PROFILE_CHARACTERS_END:
+            const first = Object.entries(action.payload)[0]
+            const character = {
+                id: first[0],
+                type: first[1].character_type
+            }
+            return { ...state, fetchingCharacters: false, characters: action.payload, character: character };
+        case Types.CHANGE_CHARACTER:
+            return { ...state, character: action.payload, characterError: null };
+        case Types.SET_PROFILE_CHARACTERS_ERROR:
             console.log("setting error in reducer", action.message)
             return { ...state, characterError: action.message, fetchingCharacters: false }
         default:

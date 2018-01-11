@@ -18,11 +18,11 @@
     font-size: 1.5rem;
     text-align: center;
     box-shadow: 0px 3px 1px 0px rgba(34,36,38,.12), 0px 2px 4px 0px rgba(34,36,38,.15);
-    transition: transform 0.7s;
+    /* transition: transform 0.7s; */
 }
 
 .ui.massive.inverted.segment.profile-segment:hover {
-    transform: scale(1.01);
+    /* transform: scale(1.01); */
 }
 
 .ui.massive.inverted.segment.profile-segment-header {
@@ -41,4 +41,20 @@
 
 .ui.star.small.disabled.rating.profile-rating i.icon {
     color: #FFD166;
+}
+
+.profile-stat-bubble-title {
+    font-size: 1vw;
+}
+
+.profile-stat-bubble {
+    background-color: #f8f8f8;
+    padding: 2px 0px 10px 10px;
+    text-align: left;
+    border-radius: 5px;
+    line-height: 2.1rem;
+}
+
+.profile-stat-bubble-value {
+    font-size: 1.4vw;
 }
