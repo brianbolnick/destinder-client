@@ -109,7 +109,7 @@ class Pvp extends Component {
                         <Chart data={pvp.kill_stats} />
                     </Grid.Column>
                 </Grid>
-            </Segment >
+            </Segment>
         )
     }
 }
