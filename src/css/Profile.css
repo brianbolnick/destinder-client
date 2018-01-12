@@ -58,3 +58,31 @@
 .profile-stat-bubble-value {
     font-size: 1.4vw;
 }
+
+
+.profile-stat-bubble-title-long {
+    font-size: 0.8vw;
+}
+
+.profile-stat-bubble-value-long {
+    font-size: 1.1vw;
+}
+
+/* mobile only branding  */
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+    .profile-stat-bubble-value {
+        font-size: 1.7vmax;
+    }
+
+    .profile-stat-bubble-title {
+        font-size: 1.4vmax;
+    }
+
+    .profile-stat-bubble-title-long {
+        font-size: 1.4vmax;
+    }
+    
+    .profile-stat-bubble-value-long {
+        font-size: 1.4vmax;
+    }
+}

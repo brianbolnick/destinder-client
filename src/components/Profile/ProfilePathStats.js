@@ -169,7 +169,7 @@ class Stats extends Component {
                                 className="profile-segment"
                             >
                                 Raid info coming soon!
-                    </Segment>
+                            </Segment>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>    

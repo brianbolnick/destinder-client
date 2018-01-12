@@ -23,7 +23,7 @@ class Stats extends Component {
 class Items extends Component {
     render() {
         return (
-            <Container style={{ padding: "2%", minHeight: '90vh', width: '90%' }}>
+            <Container style={{ padding: "2%", minHeight: '90vh', width: '90%' }} className='hide-on-mobile'> 
                 <div>
                     <Header as='h1'>
                         <Image verticalAlign='middle' src={NoTextLogo} />
@@ -67,9 +67,7 @@ class Items extends Component {
     }
 }
 
-
 class Profile extends Component {
-
     render() {
 
         const secondStyle = {

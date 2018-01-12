@@ -81,7 +81,7 @@ class Pvp extends Component {
                                                 followCursor
                                             >
                                                 <div className="profile-stat-bubble" >
-                                                    <div className="profile-stat-bubble-title" style={{ fontSize: '0.8vw' }}>Efficiency</div>
+                                                    <div className="profile-stat-bubble-title-long" >Efficiency</div>
                                                     <div className="profile-stat-bubble-value">{pvp.efficiency} </div>
                                                 </div>
                                             </Tooltip>
@@ -114,7 +114,7 @@ class Pvp extends Component {
                                                 followCursor
                                             >
                                                 <div className="profile-stat-bubble" >
-                                                    <div className="profile-stat-bubble-title" style={{ fontSize: '0.8vw' }}>Most Kills</div>
+                                                    <div className="profile-stat-bubble-title-long">Most Kills</div>
                                                     <div className="profile-stat-bubble-value">{bestKills}</div>
                                                 </div>
                                             </Tooltip>
@@ -198,8 +198,8 @@ class Pvp extends Component {
                                     followCursor
                                 >
                                     <div className="profile-stat-bubble" >
-                                        <div className="profile-stat-bubble-title"  style={{ fontSize: '0.8vw' }}>Avg. Life</div>
-                                        <div className="profile-stat-bubble-value" style={{ fontSize: '1.1vw' }}>{pvp.average_lifespan} </div>
+                                        <div className="profile-stat-bubble-title-long" >Avg. Life</div>
+                                        <div className="profile-stat-bubble-value-long" >{pvp.average_lifespan} </div>
                                     </div>
                                 </Tooltip>
                             </Grid.Column>
@@ -228,7 +228,7 @@ class Pvp extends Component {
                                     followCursor
                                 >
                                     <div className="profile-stat-bubble" >
-                                        <div className="profile-stat-bubble-title"  style={{ fontSize: '0.8vw' }}>Precision</div>
+                                        <div className="profile-stat-bubble-title-long">Precision</div>
                                         <div className="profile-stat-bubble-value">{pvp.kill_stats ? pvp.kill_stats.precision_kills : "-"}</div>
                                     </div>
                                 </Tooltip>
@@ -244,7 +244,7 @@ class Pvp extends Component {
                                 >
                                     <div className="profile-stat-bubble" >
                                         <div className="profile-stat-bubble-title">Time</div>
-                                        <div className="profile-stat-bubble-value" style={{ fontSize: '1.1vw' }}>{pvp.kill_stats ? pvp.kill_stats.total_activity_time : "-"}</div>
+                                        <div className="profile-stat-bubble-value-long" >{pvp.kill_stats ? pvp.kill_stats.total_activity_time : "-"}</div>
                                     </div>
                                 </Tooltip>
                             </Grid.Column>

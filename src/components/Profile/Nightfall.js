@@ -94,7 +94,7 @@ class Nightfall extends Component {
                                     >
                                         <div className="profile-stat-bubble" >
                                             <div className="profile-stat-bubble-title">Death Rate</div>
-                                            <div className="profile-stat-bubble-value">{normalDeathRate} | {heroicDeathRate}</div>
+                                            <div className="profile-stat-bubble-value-long">{normalDeathRate} | {heroicDeathRate}</div>
                                         </div>
                                     </Tooltip>
                                 </Grid.Column>
@@ -144,7 +144,7 @@ class Nightfall extends Component {
                     >
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
                             <div></div>
-                            <div style={{ textAlign: 'center' }}><Header as='h3' style={{ color: '#212121', fontWeight: '100', letterSpacing: '2px' }} > Other stuff </Header></div>
+                            <div style={{ textAlign: 'center' }}><Header as='h3' style={{ color: '#212121', fontWeight: '100', letterSpacing: '2px' }} > Other Stats </Header></div>
                             <div><Icon link name="close" fitted onClick={this.handleCloseClick} /></div>
                         </div>
                         <Grid columns='3'>
@@ -203,8 +203,8 @@ class Nightfall extends Component {
                                     followCursor
                                 >
                                     <div className="profile-stat-bubble" >
-                                        <div className="profile-stat-bubble-title" style={{ fontSize: '0.8vw' }}>Efficiency</div>
-                                        <div className="profile-stat-bubble-value" style={{ fontSize: '1.1vw' }}>{normal.efficiency} | {heroic.efficiency}</div>
+                                        <div className="profile-stat-bubble-title-long">Efficiency</div>
+                                        <div className="profile-stat-bubble-value-long">{normal.efficiency} | {heroic.efficiency}</div>
                                     </div>
                                 </Tooltip>
                             </Grid.Column>
