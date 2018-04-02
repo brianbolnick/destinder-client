@@ -6,6 +6,7 @@ import '../../css/Profile.css';
 import NoTextLogo from "../../img/logo-no-text.png";
 import Nightfall from './Nightfall'
 import Pvp from './Pvp'
+import TrialsStats from './TrialsStats'
 import 'react-tippy/dist/tippy.css';
 import { jwt } from '../../tools/jwt';
 import { BADGES } from '../../data/common_constants'
@@ -120,25 +121,28 @@ class Stats extends Component {
 
     handleChange = (e, data) => {
         const id = data.value
-        const type  = data.options.filter(char => char.value === id)[0].text
-        this.props.changeCharacter(id, type) 
+        const type = data.options.filter(char => char.value === id)[0].text
+        this.props.changeCharacter(id, type)
     }
 
     render() {
         const { reputation, user, characters, character } = this.props;
+        if (user.id) {
+            console.log(user.id)
+        }
 
         return (
-            <Container style={{ padding: "2%", minHeight: '90vh', width: '90%' }} className='hide-on-mobile'>
+            <Container style={{ padding: "0 5px", minHeight: '90vh', width: '90%' }} className='hide-on-mobile'>
                 <Grid columns={3}>
                     <Grid.Row stretched>
                         <Grid.Column>
-                            <UserOverview reputation={reputation} user={user} characters={characters} character={character} handleChange={this.handleChange}/>
+                            {user.id ? <UserOverview reputation={reputation} user={user} characters={characters} character={character} handleChange={this.handleChange} /> : null}
                         </Grid.Column>
                         <Grid.Column>
-                            <Nightfall user={user} character={character} />
+                            {user.id ? <Nightfall user={user} character={character} /> : null}
                         </Grid.Column>
                         <Grid.Column>
-                            <Pvp user={user} character={character} />
+                            {user.id ? <Pvp user={user} character={character} /> : null}
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row stretched>
@@ -154,15 +158,7 @@ class Stats extends Component {
                             </Segment>
                         </Grid.Column>
                         <Grid.Column style={{ width: '66.6667%' }}>
-                            <Segment
-                                inverted
-                                raised
-                                padded='very'
-                                size='massive'
-                                className="profile-segment"
-                            >
-                                Trials info coming soon!
-                            </Segment>
+                            <TrialsStats user={user} character={character} />
                             <Segment
                                 inverted
                                 raised

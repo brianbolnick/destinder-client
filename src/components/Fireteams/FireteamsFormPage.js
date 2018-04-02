@@ -54,7 +54,7 @@ class FireteamsFormPage extends Component {
                         <LeaderboardAd />
                     </div>
                 </div>
-            </Layout >
+            </Layout>
         );
     }
 }

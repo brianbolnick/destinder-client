@@ -29,8 +29,7 @@ CustomLabel.propTypes = { text: PropTypes.string };
 export default class SuccessChart extends Component {
     render() {
         // const chartData = this.props.map
-        const data = this.props.data
-        console.log(this.props.data)
+        const data = this.props.data        
         const kills = this.props.data ?
             [
                 { x: `Auto\nRifle\n(${data.auto_rifle} kills)`, y: parseInt(data.auto_rifle, 10) },

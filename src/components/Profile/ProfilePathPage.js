@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProfileStats from './ProfileStats';
+import ProfileStats from './ProfilePathStats';
 import ProfileStatsMobile from './ProfileStatsMobile';
 import { jwt } from '../../tools/jwt';
 import HeaderNav from "../Header.js";
@@ -8,7 +8,7 @@ class Stats extends Component {
     render() {
         return (
             <HeaderNav>
-                <ProfileStats scrollClick={this.props.scrollClick} />
+                <ProfileStats scrollClick={this.props.scrollClick} user_id={this.props.user_id} />
                 <ProfileStatsMobile scrollClick={this.props.scrollClick} />
             </HeaderNav>
         );

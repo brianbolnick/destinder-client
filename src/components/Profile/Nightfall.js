@@ -12,7 +12,7 @@ class Nightfall extends Component {
         this.state = { active: false, disabled: true }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         setTimeout(() => {
             this.props.fetchNightfall(this.props.user.id, this.props.character.id)
         }, 2500);

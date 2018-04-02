@@ -255,7 +255,7 @@ class FireteamPage extends Component {
                             {tabs}
                         </Tabs>
 
-                    </TabPane >
+                    </TabPane>
 
 
                 )

@@ -4,6 +4,8 @@ import { Line, Bar } from "react-chartjs-2";
 var ta = require("time-ago")();
 
 const KillChart = props => {
+console.log(props)
+
   let temp_data = [];
   let temp_wins = [];
   let temp_dates = [];

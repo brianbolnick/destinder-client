@@ -6,6 +6,7 @@ import '../../css/Profile.css';
 import NoTextLogo from "../../img/logo-no-text.png";
 import Nightfall from './Nightfall'
 import Pvp from './Pvp'
+import TrialsStats from './TrialsStats'
 import 'react-tippy/dist/tippy.css';
 import { jwt } from '../../tools/jwt';
 import { BADGES } from '../../data/common_constants'
@@ -114,8 +115,8 @@ class UserOverview extends Component {
 
 class Stats extends Component {
     componentWillMount() {
-        this.props.fetchUserDetails(jwt.user_id);
-        this.props.fetchPlayerCharacters(jwt.user_id);
+        this.props.fetchUserDetails(this.props.user_id);
+        this.props.fetchPlayerCharacters(this.props.user_id);
     }
 
     handleChange = (e, data) => {
@@ -161,7 +162,7 @@ class Stats extends Component {
                                 size='massive'
                                 className="profile-segment"
                             >
-                                Trials info coming soon!
+                                <TrialsStats user={user} character={character} />
                             </Segment>
                             <Segment
                                 inverted

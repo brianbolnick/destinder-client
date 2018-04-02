@@ -111,6 +111,7 @@ class UserOverview extends Component {
     }
 }
 
+console.log(this.props)
 class Stats extends Component {
     componentWillMount() {
         this.props.fetchUserDetails(this.props.user_id);
